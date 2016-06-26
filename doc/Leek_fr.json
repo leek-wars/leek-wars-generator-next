@@ -1,0 +1,12 @@
+{
+	"lol": {
+		"desc": "c'est un test en fait"
+	},
+	"getLife": {
+		"desc": "Renvoie la vie actuelle du poireau",
+		"args": {
+			"leek": "Le poireau dont la vie sera renvoyée"
+		}
+		"return" : "Le nombre de points de vie du poireau <b>leek</b>"
+	}
+}
