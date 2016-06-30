@@ -11,6 +11,8 @@ print(me.getChips())
 
 me.moveToward(him, 999)
 
+me.useWeapon(him)
+
 /*
 
 
