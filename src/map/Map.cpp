@@ -90,9 +90,13 @@ void Map::generate(int obstacles_count, const vector<Team*>& teams) {
 						c2->setObstacle(0, -1);
 						c3->setObstacle(0, -1);
 						c4->setObstacle(0, -1);
+						obstacles.push_back(c2);
+						obstacles.push_back(c3);
+						obstacles.push_back(c4);
 					}
 				}
 				c->setObstacle(type, size);
+				obstacles.push_back(c);
 			}
 		}
 		ConnexeMap cm(this);
@@ -142,21 +146,8 @@ Cell* Map::getCell(int x, int y) {
 	return coord[x - min_x][y - min_y];
 }
 
-Cell* Map::getObstacles() {
-	/*
-	if (mObstacles == null) {
-		ArrayList<Cell> obstacles = new ArrayList<Cell>();
-		for (Cell c : cells) {
-			if (!c.isWalkable())
-				obstacles.add(c);
-		}
-		mObstacles = new Cell[obstacles.size()];
-		for (int i = 0; i < obstacles.size(); i++) {
-			mObstacles[i] = obstacles.get(i);
-		}
-	}
-	return mObstacles;
-	*/
+std::vector<Cell*> Map::getObstacles() {
+	return obstacles;
 }
 
 Cell* Map::getRandomCell() {
@@ -435,6 +426,21 @@ void Map::draw_path(const std::vector<Cell*> path, Cell* cell1, Cell* cell2) con
 		}
 		cout << endl;
 	}
+}
+
+Json Map::json() const {
+
+	Json obstacles_json;
+	for (auto c : obstacles) {
+		obstacles_json.push_back(c->id);
+	}
+
+	return {
+		{"type", 1},
+		{"obstacles", obstacles_json},
+		{"width", width},
+		{"height", height}
+	};
 }
 
 std::ostream& operator << (std::ostream& os, const Map& map) {

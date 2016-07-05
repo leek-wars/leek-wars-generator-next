@@ -52,7 +52,7 @@ Report* Fight::start(ls::VM& vm) {
 		}
 	}
 
-	Report* report = new Report();
+	Report* report = new Report(this);
 
 	report->actions = &actions;
 

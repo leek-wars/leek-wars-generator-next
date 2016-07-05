@@ -111,7 +111,9 @@ int main() {
 	// Print the report
 	cout << report << endl;
 
+	std::ofstream report_file("fight.json");
 
+	report_file << report << std::endl;
 
 
 

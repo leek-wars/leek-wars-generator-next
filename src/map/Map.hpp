@@ -27,7 +27,7 @@ public:
 	int type;
 
 	std::vector<std::vector<Cell*>> coord;
-	Cell* obstacles;
+	std::vector<Cell*> obstacles;
 
 	int min_x = -1;
 	int max_x = -1;
@@ -39,7 +39,7 @@ public:
 
 	Cell* getCell(int id);
 	Cell* getCell(int x, int y);
-	Cell* getObstacles();
+	std::vector<Cell*> getObstacles();
 	Cell* getRandomCell();
 	Cell* getRandomCell(int part);
 
@@ -71,6 +71,8 @@ public:
 
 	void print() const;
 	void draw_path(const std::vector<Cell*> path, Cell* cell1, Cell* cell2) const;
+
+	Json json() const;
 
 	friend std::ostream& operator << (std::ostream& os, const Map& map);
 
