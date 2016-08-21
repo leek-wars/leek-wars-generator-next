@@ -11,7 +11,7 @@ LIBS := -lleekscript
 all: makedirs leek-wars-generator
 
 build/%.o: %.cpp
-	g++ -c -I/home/pierre/leekscript/ -Ilibs/ $(FLAGS) -o "$@" "$<"
+	g++ -c -Ilibs/ $(FLAGS) -o "$@" "$<"
 	
 makedirs: $(BUILD_DIR)
 

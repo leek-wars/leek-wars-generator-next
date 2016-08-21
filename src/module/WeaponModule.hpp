@@ -1,7 +1,7 @@
 #ifndef CLASS_WEAPONMODULE_HPP_
 #define CLASS_WEAPONMODULE_HPP_
 
-#include <leekscript.h>
+#include <leekscript/src/leekscript.h>
 #include "ItemModule.hpp"
 
 class WeaponType : public ItemType {

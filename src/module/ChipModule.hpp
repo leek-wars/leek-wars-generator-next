@@ -8,7 +8,7 @@
 #ifndef MODULE_CHIPMODULE_HPP_
 #define MODULE_CHIPMODULE_HPP_
 
-#include <leekscript.h>
+#include <leekscript/src/leekscript.h>
 #include "ItemModule.hpp"
 
 class ChipType : public ItemType {

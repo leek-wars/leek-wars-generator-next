@@ -1,7 +1,7 @@
 #ifndef CLASS_CELLMODULE_HPP_
 #define CLASS_CELLMODULE_HPP_
 
-#include <leekscript.h>
+#include <leekscript/src/leekscript.h>
 class Cell;
 class LSEntity;
 

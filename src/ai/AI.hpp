@@ -2,7 +2,7 @@
 #define AI_HPP_
 
 #include <string>
-#include <leekscript.h>
+#include <leekscript/src/leekscript.h>
 
 class AI {
 public:

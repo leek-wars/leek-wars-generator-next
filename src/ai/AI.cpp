@@ -6,7 +6,6 @@
  */
 
 #include "AI.hpp"
-#include <leekscript.h>
 
 AI::AI(std::string code) {
 
@@ -20,7 +19,8 @@ AI::~AI() {}
 
 void AI::compile(ls::VM& vm) {
 
-	program = vm.compile(this->code);
+	program = new ls::Program(code);
+	program->compile(&vm, "{}", ls::ExecMode::NORMAL);
 }
 
 void AI::execute() {

@@ -1,7 +1,7 @@
 #ifndef CLASS_LEEKMODULE_HPP_
 #define CLASS_LEEKMODULE_HPP_
 
-#include <leekscript.h>
+#include <leekscript/src/leekscript.h>
 class Leek;
 #include "EntityModule.hpp"
 

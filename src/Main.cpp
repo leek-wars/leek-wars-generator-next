@@ -6,7 +6,7 @@
 
 using namespace std;
 
-#include <leekscript.h>
+#include <leekscript/src/leekscript.h>
 
 #include "../benchmark/Benchmark.hpp"
 #include "util/Util.hpp"

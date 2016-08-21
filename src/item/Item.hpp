@@ -8,7 +8,7 @@
 #ifndef ITEM_HPP_
 #define ITEM_HPP_
 
-#include <leekscript.h>
+#include <leekscript/src/leekscript.h>
 
 #include "../effect/Attack.hpp"
 

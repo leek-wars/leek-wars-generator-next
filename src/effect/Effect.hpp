@@ -1,7 +1,7 @@
 #ifndef EFFECT_HPP_
 #define EFFECT_HPP_
 
-#include <leekscript.h>
+#include <leekscript/src/leekscript.h>
 
 class Fight;
 class Entity;

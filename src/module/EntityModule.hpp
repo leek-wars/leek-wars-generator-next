@@ -1,7 +1,7 @@
 #ifndef CLASS_ENTITYMODULE_HPP_
 #define CLASS_ENTITYMODULE_HPP_
 
-#include <leekscript.h>
+#include <leekscript/src/leekscript.h>
 
 class Entity;
 class Weapon;

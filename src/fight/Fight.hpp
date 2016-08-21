@@ -1,7 +1,7 @@
 #ifndef FIGHT_HPP_
 #define FIGHT_HPP_
 
-#include <leekscript.h>
+#include <leekscript/src/leekscript.h>
 
 #include <vector>
 class Entity;
