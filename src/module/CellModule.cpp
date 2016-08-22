@@ -92,9 +92,9 @@ bool cell__isObstacle(const ls::LSValue* cell) {
 ls::LSValue* cell__getCellX(const ls::LSValue* cell) {
 
 	const ls::LSNumber* n = dynamic_cast<const ls::LSNumber*>(cell);
-	if (n == nullptr) return ls::LSNull::null_var;
+	if (n == nullptr) return ls::LSNull::get();
 	const Cell* c = Simulator::fight->map->int_to_cell(n->value);
-	if (c == nullptr) return ls::LSNull::null_var;
+	if (c == nullptr) return ls::LSNull::get();
 
 	return ls::LSNumber::get(c->x);
 }
@@ -105,9 +105,9 @@ ls::LSValue* cell__getCellX(const ls::LSValue* cell) {
 ls::LSValue* cell__getCellY(const ls::LSValue* cell) {
 
 	const ls::LSNumber* n = dynamic_cast<const ls::LSNumber*>(cell);
-	if (n == nullptr) return ls::LSNull::null_var;
+	if (n == nullptr) return ls::LSNull::get();
 	const Cell* c = Simulator::fight->map->int_to_cell(n->value);
-	if (c == nullptr) return ls::LSNull::null_var;
+	if (c == nullptr) return ls::LSNull::get();
 
 	return ls::LSNumber::get(c->y);
 }

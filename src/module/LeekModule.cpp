@@ -67,7 +67,7 @@ int leek__getAIID() {
 }
 ls::LSValue* leek__getAIIDEntity(const ls::LSValue* entity) {
 	Entity* e = leek__getEntity(entity);
-	if (e == nullptr) return ls::LSNull::null_var;
+	if (e == nullptr) return ls::LSNull::get();
 	return ls::LSNumber::get(e->ai->id);
 }
 
@@ -76,7 +76,7 @@ ls::LSString* leek__getAIName() {
 }
 ls::LSValue* leek__getAINameEntity(const ls::LSValue* entity) {
 	Entity* e = leek__getEntity(entity);
-	if (e == nullptr) return ls::LSNull::null_var;
+	if (e == nullptr) return ls::LSNull::get();
 	return new ls::LSString(e->ai->name);
 }
 
@@ -87,8 +87,8 @@ int leek__getFarmerID() {
 ls::LSValue* leek__getFarmerIDEntity(const ls::LSValue* entity) {
 	// TODO
 	Entity* e = leek__getEntity(entity);
-	if (e == nullptr) return ls::LSNull::null_var;
-	return ls::LSNull::null_var;
+	if (e == nullptr) return ls::LSNull::get();
+	return ls::LSNull::get();
 }
 
 ls::LSString* leek__getFarmerName() {
@@ -97,6 +97,6 @@ ls::LSString* leek__getFarmerName() {
 }
 ls::LSValue* leek__getFarmerNameEntity(const ls::LSValue* entity) {
 	Entity* e = leek__getEntity(entity);
-	if (e == nullptr) return ls::LSNull::null_var;
+	if (e == nullptr) return ls::LSNull::get();
 	return new ls::LSString(e->farmer_name);
 }

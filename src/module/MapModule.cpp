@@ -118,10 +118,10 @@ int map__getCellDistance(const ls::LSValue* cell1, const ls::LSValue* cell2) {
 ls::LSValue* map__getCellFromXY(const ls::LSValue* x, const ls::LSValue* y) {
 
 	const ls::LSNumber* xn = dynamic_cast<const ls::LSNumber*>(x);
-	if (xn == nullptr) return ls::LSNull::null_var;
+	if (xn == nullptr) return ls::LSNull::get();
 
 	const ls::LSNumber* yn = dynamic_cast<const ls::LSNumber*>(y);
-	if (yn == nullptr) return ls::LSNull::null_var;
+	if (yn == nullptr) return ls::LSNull::get();
 
 	return ls::LSNumber::get(Simulator::fight->map->getCell(xn->value, yn->value)->id);
 }
@@ -165,20 +165,20 @@ ls::LSArray<int>* map__getObstacles() {
  * Null for invalid arguments or no path, an int array otherwise
  */
 ls::LSValue* map__getPath(const ls::LSValue* cell1, const ls::LSValue* cell2) {
-	return map__getPathIgnored(cell1, cell2, ls::LSNull::null_var);
+	return map__getPathIgnored(cell1, cell2, ls::LSNull::get());
 }
 
 ls::LSValue* map__getPathIgnored(const ls::LSValue* cell1, const ls::LSValue* cell2, const ls::LSValue* ignored) {
 
 	const ls::LSNumber* n1 = dynamic_cast<const ls::LSNumber*>(cell1);
-	if (n1 == nullptr) return ls::LSNull::null_var;
+	if (n1 == nullptr) return ls::LSNull::get();
 	const Cell* c1 = Simulator::fight->map->int_to_cell(n1->value);
 
 	const ls::LSNumber* n2 = dynamic_cast<const ls::LSNumber*>(cell2);
-	if (n2 == nullptr) return ls::LSNull::null_var;
+	if (n2 == nullptr) return ls::LSNull::get();
 	const Cell* c2 = Simulator::fight->map->int_to_cell(n2->value);
 
-	if (c1 == nullptr or c2 == nullptr) return ls::LSNull::null_var;
+	if (c1 == nullptr or c2 == nullptr) return ls::LSNull::get();
 
 	// Empty array if it's the same cells
 	if (c1 == c2) {
@@ -221,20 +221,20 @@ ls::LSValue* map__getPathIgnored(const ls::LSValue* cell1, const ls::LSValue* ce
  * Null for invalid arguments or no path, an int otherwise
  */
 ls::LSValue* map__getPathLength(const ls::LSValue* cell1, const ls::LSValue* cell2) {
-	return map__getPathLengthIgnored(cell1, cell2, ls::LSNull::null_var);
+	return map__getPathLengthIgnored(cell1, cell2, ls::LSNull::get());
 }
 
 ls::LSValue* map__getPathLengthIgnored(const ls::LSValue* cell1, const ls::LSValue* cell2, const ls::LSValue* ignored) {
 
 	const ls::LSNumber* n1 = dynamic_cast<const ls::LSNumber*>(cell1);
-	if (n1 == nullptr) return ls::LSNull::null_var;
+	if (n1 == nullptr) return ls::LSNull::get();
 	const Cell* c1 = Simulator::fight->map->int_to_cell(n1->value);
 
 	const ls::LSNumber* n2 = dynamic_cast<const ls::LSNumber*>(cell2);
-	if (n2 == nullptr) return ls::LSNull::null_var;
+	if (n2 == nullptr) return ls::LSNull::get();
 	const Cell* c2 = Simulator::fight->map->int_to_cell(n2->value);
 
-	if (c1 == nullptr or c2 == nullptr) return ls::LSNull::null_var;
+	if (c1 == nullptr or c2 == nullptr) return ls::LSNull::get();
 
 	// 0 if it's the same cells
 	if (c1 == c2) {
@@ -283,21 +283,21 @@ bool map__isOnSameLine(const ls::LSValue* cell1, const ls::LSValue* cell2) {
  * Null for invalid parameters, a boolean otherwise
  */
 ls::LSValue* map__lineOfSight(const ls::LSValue* cell1, const ls::LSValue* cell2) {
-	return map__lineOfSightIgnored(cell1, cell2, ls::LSNull::null_var);
+	return map__lineOfSightIgnored(cell1, cell2, ls::LSNull::get());
 }
 
 ls::LSValue* map__lineOfSightIgnored(const ls::LSValue* cell1, const ls::LSValue* cell2, const ls::LSValue* ignored) {
 
 	// If one of the cells is invalid, return NULL
 	const ls::LSNumber* n1 = dynamic_cast<const ls::LSNumber*>(cell1);
-	if (n1 == nullptr) return ls::LSNull::null_var;
+	if (n1 == nullptr) return ls::LSNull::get();
 	const Cell* c1 = Simulator::fight->map->int_to_cell(n1->value);
 
 	const ls::LSNumber* n2 = dynamic_cast<const ls::LSNumber*>(cell2);
-	if (n2 == nullptr) return ls::LSNull::null_var;
+	if (n2 == nullptr) return ls::LSNull::get();
 	const Cell* c2 = Simulator::fight->map->int_to_cell(n2->value);
 
-	if (c1 == nullptr or c2 == nullptr) return ls::LSNull::null_var;
+	if (c1 == nullptr or c2 == nullptr) return ls::LSNull::get();
 
 	vector<const Cell*> ignored_cells;
 

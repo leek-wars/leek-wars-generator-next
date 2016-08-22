@@ -11,10 +11,13 @@ const ls::LSClass* WeaponModule::weapon_clazz;
 const ls::Type WeaponModule::type(new WeaponType(), ls::Nature::POINTER, true);
 const ls::Type WeaponModule::array_type(ls::RawType::ARRAY, ls::Nature::POINTER, WeaponModule::type, true);
 
+jit_value_t Weapon_PISTOL(jit_function_t F) { return LS_CREATE_INTEGER(F, 37); }
+jit_value_t Weapon_LASER(jit_function_t F) { return LS_CREATE_INTEGER(F, 42); }
+
 WeaponModule::WeaponModule() : Module("Weapon") {
 
-	static_field("PISTOL", Type::INTEGER, "37");
-	static_field("LASER", Type::INTEGER, "42");
+	static_field("PISTOL", Type::INTEGER, (void*) &Weapon_PISTOL);
+	static_field("LASER", Type::INTEGER, (void*) &Weapon_LASER);
 }
 
 WeaponModule::~WeaponModule() {}

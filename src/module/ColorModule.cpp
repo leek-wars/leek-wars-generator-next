@@ -13,7 +13,7 @@ const ls::Type ColorModule::type_ptr(ColorModule::type, ls::Nature::POINTER);
 
 ColorModule::ColorModule() : Module("Color") {
 
-	static_field("BLACK", ColorModule::type_ptr, "0");
+	static_field("BLACK", ColorModule::type_ptr, nullptr);
 
 	field("r", Type::INTEGER_P);
 	field("g", Type::INTEGER_P);

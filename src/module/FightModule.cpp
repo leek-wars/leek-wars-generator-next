@@ -10,9 +10,11 @@
 #include "../entity/Entity.hpp"
 #include "../fight/Fight.hpp"
 
+jit_value_t Fight_MAX_TURNS(jit_function_t F) { return LS_CREATE_INTEGER(F, 64); }
+
 FightModule::FightModule() : Module("Fight") {
 
-	static_field("MAX_TURNS", Type::INTEGER_P, "64");
+	static_field("MAX_TURNS", Type::INTEGER, (void*) &Fight_MAX_TURNS);
 
 	static_method("getTurn", Type::INTEGER, {}, (void*) &fight_getTurn);
 	static_method("getEntity", EntityModule::type_ptr, {}, (void*) &fight_getEntity);

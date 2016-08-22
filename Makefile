@@ -5,8 +5,8 @@ BUILD_DIR := $(addprefix build/,$(SRC_DIR))
 SRC := $(foreach sdir,$(SRC_DIR),$(wildcard $(sdir)/*.cpp))
 OBJ := $(patsubst %.cpp,build/%.o,$(SRC))
 
-FLAGS := -std=c++11 -O3 -g3 -Wall -Wextra -Wno-pmf-conversions
-LIBS := -lleekscript
+FLAGS := -std=c++11 -O2 -g3 -Wall -Wextra -Wno-pmf-conversions
+LIBS := -ljit -lleekscript
 
 all: makedirs leek-wars-generator
 

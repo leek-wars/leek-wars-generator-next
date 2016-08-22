@@ -27,7 +27,7 @@ ls::LSValue* Color::attr(const ls::LSValue* key) const {
 	else if (k == "b") {
 		return ls::LSNumber::get(((unsigned int) value) & 0x0000FF);
 	}
-	return ls::LSNull::null_var;
+	return ls::LSNull::get();
 }
 
 std::ostream& Color::print(std::ostream& os) const {

@@ -11,9 +11,11 @@ const ls::LSClass* ChipModule::chip_clazz;
 const ls::Type ChipModule::type(new ChipType(), ls::Nature::POINTER, true);
 const ls::Type ChipModule::array_type(ls::RawType::ARRAY, ls::Nature::POINTER, ChipModule::type, true);
 
+jit_value_t Chip_SPARK(jit_function_t F) { return LS_CREATE_INTEGER(F, 1); }
+
 ChipModule::ChipModule() : Module("Chip") {
 
-	static_field("SPARK", Type::INTEGER_P, "1");
+	static_field("SPARK", Type::INTEGER, (void*) &Chip_SPARK);
 
 	/*
 	 * V1
@@ -118,7 +120,7 @@ ls::LSString* chip__getChipName(const ls::LSValue* chip) {
  * Deprecated, always null
  */
 ls::LSValue* chip__getCurrentCooldown(const ls::LSValue*) {
-	return ls::LSNull::null_var;
+	return ls::LSNull::get();
 }
 
 bool chip__isChip(const ls::LSValue* chip) {
