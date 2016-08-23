@@ -15,6 +15,6 @@ Weapon::Weapon(int id, std::string&& name, int cost, Attack&& attack)
 }
 
 Weapon::~Weapon() {
-	cout << "~Weapon()" << endl;
+//	cout << "~Weapon()" << endl;
 }
 

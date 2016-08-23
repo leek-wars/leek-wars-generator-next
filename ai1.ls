@@ -1,9 +1,20 @@
 
-print("salut ! €")
-
-
+System.print("salut ! €")
 
 let me = Fight.getEntity()
+
+System.print(me)
+
+System.print(me.name)
+
+let array = []
+System.print(array)
+
+System.print([].sum())
+
+System.print(me.getLife())
+
+/*
 let him = me.getClosestEnemy()
 
 print(him.name)

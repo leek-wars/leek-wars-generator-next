@@ -50,7 +50,7 @@ Map::Map(int width, int height, int obstacles_count, const std::vector<Team*>& t
 	visited.resize(cells.size());
 	opened.resize(cells.size());
 
-	cout << "map cells: " << cells.size() << endl;
+//	cout << "map cells: " << cells.size() << endl;
 
 	generate(obstacles_count, teams);
 }

@@ -21,6 +21,9 @@ void AI::compile(ls::VM& vm) {
 
 	program = new ls::Program(code);
 	program->compile(&vm, "{}", ls::ExecMode::NORMAL);
+
+	std::cout << "AI : ";
+	program->print(std::cout, true);
 }
 
 void AI::execute() {
