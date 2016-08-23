@@ -7,6 +7,8 @@
 
 #include "AI.hpp"
 
+#include "../module/EntityModule.hpp"
+
 AI::AI(std::string code) {
 
 	this->id = 12765;
@@ -20,7 +22,7 @@ AI::~AI() {}
 void AI::compile(ls::VM& vm) {
 
 	program = new ls::Program(code);
-	program->compile(&vm, "{}", ls::ExecMode::NORMAL);
+	program->compile(vm, "{}", ls::ExecMode::NORMAL);
 
 	std::cout << "AI : ";
 	program->print(std::cout, true);

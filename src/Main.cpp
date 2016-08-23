@@ -116,7 +116,6 @@ int main() {
 	report_file << report << std::endl;
 
 
-
 //	vector<Cell*> path2 = fight.map->get_path(fight.map->cells[51], {fight.map->cells[561]}, {});
 //	fight.map->draw_path(path2, fight.map->cells[51], fight.map->cells[561]);
 

@@ -11,7 +11,8 @@ class Effect;
 
 class EntityType : public ls::ObjectRawType {
 public:
-	const std::string getName() const { return "Entity"; };
+	virtual const std::string getName() const override { return "entity"; };
+	virtual const std::string getClass() const override { return "Entity"; };
 };
 
 class EntityModule : public ls::Module {

@@ -2,11 +2,14 @@
 System.print("salut ! €")
 
 let me = Fight.getEntity()
+let him = me.getClosestEnemy()
 
 System.print(me)
-
+System.print(him)
 System.print(me.name)
 
+
+/*
 let array = []
 System.print(array)
 
