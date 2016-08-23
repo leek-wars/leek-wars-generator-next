@@ -14,7 +14,7 @@
 #include "EffectRelativeShield.hpp"
 
 Effect::Effect() {
-
+	native = true;
 }
 
 Effect::~Effect() {}

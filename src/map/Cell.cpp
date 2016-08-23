@@ -35,8 +35,11 @@ Cell::Cell(Map* map, int id) {
 	this->x = (id - (map->width - 1) * this->y) / map->width;
 
 	this->values["id"] = ls::LSNumber::get(id);
+	this->values["id"]->native = true;
 	this->values["x"] = ls::LSNumber::get(x);
+	this->values["x"]->native = true;
 	this->values["y"] = ls::LSNumber::get(y);
+	this->values["y"]->native = true;
 	this->readonly = true;
 }
 

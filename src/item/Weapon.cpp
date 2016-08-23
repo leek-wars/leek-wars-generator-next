@@ -12,9 +12,17 @@ Weapon::Weapon(int id, std::string&& name, int cost, Attack&& attack)
 
 	readonly = true;
 	values["name"] = new ls::LSString(name);
+	values["name"]->native = true;
 }
 
 Weapon::~Weapon() {
 //	cout << "~Weapon()" << endl;
 }
 
+std::ostream& Weapon::print(std::ostream& os) const {
+	os << "<Weapon ";
+	const LSValue* v = values.at("name");
+	v->print(os);
+	os << ">";
+	return os;
+}

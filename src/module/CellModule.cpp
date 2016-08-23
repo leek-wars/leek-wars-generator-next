@@ -21,9 +21,9 @@ CellModule::CellModule() : Module("Cell") {
 
 	CellModule::cell_clazz = this->clazz;
 
-	field("x", Type::INTEGER_P);
-	field("y", Type::INTEGER_P);
-	field("id", Type::INTEGER_P);
+	field("x", Type::NUMBER);
+	field("y", Type::NUMBER);
+	field("id", Type::NUMBER);
 	field("entity", EntityModule::type_ptr);
 
 	method("isEmpty", CellModule::type, Type::BOOLEAN, {}, (void*) &Cell::isEmpty);

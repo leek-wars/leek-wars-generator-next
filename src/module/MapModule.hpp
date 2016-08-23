@@ -4,7 +4,6 @@
 #include <leekscript/src/leekscript.h>
 #include "CellModule.hpp"
 
-class MapType : public ls::Type {};
 
 class MapModule : public ls::Module {
 public:

@@ -135,7 +135,6 @@ public:
 
 	virtual ls::LSValue* getClass() const override;
 	virtual const ls::BaseRawType* getRawType() const override;
-	virtual bool native() const override;
 };
 
 #endif

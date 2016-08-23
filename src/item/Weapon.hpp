@@ -9,6 +9,8 @@ public:
 
 	Weapon(int id, std::string&& name, int cost, Attack&& attack);
 	virtual ~Weapon();
+
+	virtual std::ostream& print(std::ostream& os) const override;
 };
 
 #endif

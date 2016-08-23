@@ -21,6 +21,8 @@ int Entity::next_id = 0;
 Entity::Entity(Fight* fight, std::string name, int level)
 	: fight(fight), name(name), level(level) {
 
+	native = true;
+
 	id = Entity::next_id++;
 	ai = nullptr;
 	used_mp = 0;
@@ -35,6 +37,7 @@ Entity::Entity(Fight* fight, std::string name, int level)
 	cell = nullptr;
 
 	values["name"] = new ls::LSString(name);
+	values["name"]->native = true;
 	values["cell"] = ls::LSNull::get();
 }
 
@@ -80,6 +83,7 @@ void Entity::setCell(Cell* cell) {
 	//cout << "set cell " << endl;
 	this->cell = cell;
 	values["cell"] = (Cell*) cell;
+	values["cell"]->native = true;
 }
 
 Cell* Entity::getCell() {
@@ -88,14 +92,12 @@ Cell* Entity::getCell() {
 
 void Entity::setWeapons(std::vector<Weapon*>& weapons) {
 	this->weapons = weapons;
-	values["weapons"] = new ls::LSArray<Weapon*>(weapons);
-//	values["weapons"]->native = true;
+	this->weapons.native = true;
 }
 
 void Entity::setChips(std::vector<Chip*>& chips) {
 	this->chips = chips;
-	values["chips"] = new ls::LSArray<Chip*>(chips);
-//	values["chips"]->native = true;
+	this->chips.native = true;
 }
 
 const Weapon* Entity::getWeapon() {
@@ -123,7 +125,7 @@ void Entity::setWeaponInteger(int weapon) {
 }
 
 ls::LSArray<Chip*>* Entity::getChips() {
-	return (ls::LSArray<Chip*>*) values["chips"];
+	return &this->chips;
 }
 
 void Entity::setCharacteristics(Characteristics characs) {
@@ -339,8 +341,4 @@ ls::LSValue* Entity::getClass() const {
 
 const ls::BaseRawType* Entity::getRawType() const {
 	return EntityModule::type;
-}
-
-bool Entity::native() const {
-	return true;
 }

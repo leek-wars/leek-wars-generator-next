@@ -6,7 +6,8 @@
 
 class WeaponType : public ItemType {
 public:
-	const std::string getName() const { return "Weapon"; };
+	const std::string getName() const { return "weapon"; };
+	const std::string getClass() const { return "Weapon"; };
 };
 
 class WeaponModule : public ls::Module {

@@ -17,7 +17,16 @@ Chip::Chip(int id, std::string&& name, int cost, int cooldown,
 
 	readonly = true;
 	values["name"] = new ls::LSString(name);
+	values["name"]->native = true;
 }
 
 Chip::~Chip() {}
+
+std::ostream& Chip::print(std::ostream& os) const {
+	os << "<Chip ";
+	const LSValue* v = values.at("name");
+	v->print(os);
+	os << ">";
+	return os;
+}
 

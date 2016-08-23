@@ -7,7 +7,8 @@ class LSEntity;
 
 class CellType : public ls::ObjectRawType {
 public:
-	const std::string getName() const { return "Cell"; };
+	virtual const std::string getName() const override { return "cell"; };
+	virtual const std::string getClass() const override { return "Cell"; };
 };
 
 class CellModule : public ls::Module {

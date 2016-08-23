@@ -9,7 +9,7 @@
 
 using namespace std;
 
-MapModule::MapModule() : Module("Map") {
+MapModule::MapModule() : Module("FightMap") {
 
 	static_method("cell", CellModule::type, {Type::INTEGER, Type::INTEGER}, (void*) &map_cell);
 	static_method("lineOfSight", Type::BOOLEAN, {CellModule::type, CellModule::type}, (void*) &map_lineOfSight);

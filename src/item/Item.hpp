@@ -22,6 +22,8 @@ public:
 
 	Item(int id, std::string& name, int cost, Attack& attack);
 	virtual ~Item();
+
+	virtual std::ostream& print(std::ostream&) const = 0;
 };
 
 #endif

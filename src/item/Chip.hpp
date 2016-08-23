@@ -19,6 +19,8 @@ public:
 			bool team_cooldown, int initial_cooldown, Attack&& attack);
 
 	virtual ~Chip();
+
+	virtual std::ostream& print(std::ostream& os) const override;
 };
 
 #endif
