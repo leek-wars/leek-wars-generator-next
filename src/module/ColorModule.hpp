@@ -15,7 +15,8 @@
 
 class ColorType : public ls::IntegerRawType {
 public:
-	const std::string getName() const { return "Color"; };
+	const std::string getName() const { return "color"; };
+	const std::string getClass() const { return "Color"; };
 };
 
 class ColorModule : public ls::Module {
@@ -26,9 +27,13 @@ public:
 	static const ls::LSClass* color_clazz;
 	static const ColorType* const type;
 	static const ls::Type type_ptr;
+
+	static const Color* TRANSPARENT;
+	static const Color* BLACK;
+	static const Color* WHITE;
+	static const Color* RED;
+	static const Color* GREEN;
+	static const Color* BLUE;
 };
 
 #endif
-
-Color* color_rgb(ls::LSNumber* r, ls::LSNumber* g, ls::LSNumber* b);
-Color* color_rgba(ls::LSNumber* r, ls::LSNumber* g, ls::LSNumber* b, ls::LSNumber* a);

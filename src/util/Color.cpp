@@ -8,13 +8,14 @@
 #include <iomanip>
 #include "Color.hpp"
 
-Color::Color() {
+Color::Color() : Color(0) {}
 
+Color::Color(int color, bool native) {
+	this->value = color;
+	this->native = native;
 }
 
-Color::~Color() {
-	// TODO Auto-generated destructor stub
-}
+Color::~Color() {}
 
 ls::LSValue* Color::attr(const ls::LSValue* key) const {
 	std::string k = *((ls::LSString*) key);
@@ -26,6 +27,9 @@ ls::LSValue* Color::attr(const ls::LSValue* key) const {
 	}
 	else if (k == "b") {
 		return ls::LSNumber::get(((unsigned int) value) & 0x0000FF);
+	}
+	else if (k == "a") {
+		return ls::LSNumber::get((((unsigned int) value) & 0xFF000000) >> 24);
 	}
 	return ls::LSNull::get();
 }

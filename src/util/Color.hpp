@@ -13,6 +13,7 @@
 class Color : public ls::LSNumber {
 public:
 	Color();
+	Color(int color, bool native = false);
 	virtual ~Color();
 
 	ls::LSValue* attr(const ls::LSValue* key) const override;
@@ -20,4 +21,4 @@ public:
 	std::ostream& print(std::ostream& os) const;
 };
 
-#endif /* SRC_UTIL_COLOR_HPP_ */
+#endif
