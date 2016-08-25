@@ -44,10 +44,10 @@ public:
 	std::string team_name = "";
 
 	// Current effects on the entity
-	ls::LSArray<Effect*> effects;
+	ls::LSArray<LSValue*> effects;
 
 	// Effects created by the entity
-	ls::LSArray<Effect*> launched_effects;
+	ls::LSArray<LSValue*> launched_effects;
 
 	// Current cooldowns of the entity
 	std::map<int, int> cooldowns;
@@ -56,8 +56,8 @@ public:
 
 	AI* ai;
 
-	ls::LSArray<Chip*> chips;
-	ls::LSArray<Weapon*> weapons;
+	ls::LSArray<LSValue*> chips;
+	ls::LSArray<LSValue*> weapons;
 
 	const Weapon* weapon;
 	int used_tp;
@@ -82,12 +82,12 @@ public:
 
 	void setWeapons(std::vector<Weapon*>& weapons);
 	const Weapon* getWeapon();
-	ls::LSArray<Weapon*>* getWeapons();
+	ls::LSArray<ls::LSValue*>* getWeapons();
 	void setWeapon(const Weapon* weapon);
 	void setWeaponInteger(int weapon);
 
 	void setChips(std::vector<Chip*>& chips);
-	ls::LSArray<Chip*>* getChips();
+	ls::LSArray<ls::LSValue*>* getChips();
 
 	void setCharacteristics(Characteristics characs);
 	void updateCharacteristics();
@@ -127,8 +127,8 @@ public:
 	bool hasCooldown(int chipID) const;
 	int getCooldown(int chipID);
 
-	std::vector<Effect*> getEffects();
-	std::vector<Effect*> getLaunchedEffects();
+	ls::LSArray<ls::LSValue*> getEffects();
+	ls::LSArray<ls::LSValue*> getLaunchedEffects();
 	void addEffect(Effect* effect);
 	void addLaunchedEffect(Effect* effect);
 	void removeEffect(Effect* effect);

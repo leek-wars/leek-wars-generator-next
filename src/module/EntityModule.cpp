@@ -582,9 +582,9 @@ int entity__getLeek() {
 	return Simulator::entity->id;
 }
 
-ls::LSArray<ls::LSObject*>* entity__listen() {
+ls::LSArray<ls::LSValue*>* entity__listen() {
 	// TODO
-	return new ls::LSArray<ls::LSObject*>();
+	return new ls::LSArray<ls::LSValue*>();
 }
 
 bool entity__say(const ls::LSValue* message) {

@@ -38,6 +38,7 @@ Entity::Entity(Fight* fight, std::string name, int level)
 
 	values["name"] = new ls::LSString(name);
 	values["name"]->native = true;
+	values["name"]->refs = 1;
 	values["cell"] = ls::LSNull::get();
 }
 
@@ -84,6 +85,7 @@ void Entity::setCell(Cell* cell) {
 	this->cell = cell;
 	values["cell"] = (Cell*) cell;
 	values["cell"]->native = true;
+	values["cell"]->refs = 1;
 }
 
 Cell* Entity::getCell() {
@@ -91,12 +93,12 @@ Cell* Entity::getCell() {
 }
 
 void Entity::setWeapons(std::vector<Weapon*>& weapons) {
-	this->weapons = weapons;
+	this->weapons = std::vector<ls::LSValue*>(weapons.begin(), weapons.end());
 	this->weapons.native = true;
 }
 
 void Entity::setChips(std::vector<Chip*>& chips) {
-	this->chips = chips;
+	this->chips = std::vector<ls::LSValue*>(chips.begin(), chips.end());
 	this->chips.native = true;
 }
 
@@ -104,7 +106,7 @@ const Weapon* Entity::getWeapon() {
 	return this->weapon;
 }
 
-ls::LSArray<Weapon*>* Entity::getWeapons() {
+ls::LSArray<ls::LSValue*>* Entity::getWeapons() {
 	return &this->weapons;
 }
 
@@ -117,14 +119,15 @@ void Entity::setWeapon(const Weapon* weapon) {
 }
 
 void Entity::setWeaponInteger(int weapon) {
-	for (auto w : weapons) {
+	for (LSValue* v : weapons) {
+		Weapon* w = (Weapon*) v;
 		if (w->id == weapon) {
 			setWeapon(w);
 		}
 	}
 }
 
-ls::LSArray<Chip*>* Entity::getChips() {
+ls::LSArray<ls::LSValue*>* Entity::getChips() {
 	return &this->chips;
 }
 
@@ -142,7 +145,8 @@ void Entity::updateCharacteristics() {
 
 void Entity::updateBonusCharacteristics(Characteristic charac) {
 	bonus_characs.set(charac, 0);
-	for (Effect* effect : effects) {
+	for (LSValue* v : effects) {
+		Effect* effect = (Effect*) v;
 		bonus_characs.add(charac, effect->characs.get(charac));
 	}
 }
@@ -308,11 +312,11 @@ int Entity::getCooldown(int chipID) {
 	return cooldowns[chipID];
 }
 
-std::vector<Effect*> Entity::getEffects() {
+ls::LSArray<ls::LSValue*> Entity::getEffects() {
 	return effects;
 }
 
-std::vector<Effect*> Entity::getLaunchedEffects() {
+ls::LSArray<ls::LSValue*> Entity::getLaunchedEffects() {
 	return launched_effects;
 }
 

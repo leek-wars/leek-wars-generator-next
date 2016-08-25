@@ -62,10 +62,10 @@ void Effect::createEffect(Fight* fight, EffectType type, int turns, double power
 				|| type == EffectType::SHACKLE_MAGIC;
 
 		if (!stackable) {
-			vector<Effect*> effects = target->getEffects();
+			vector<ls::LSValue*> effects = target->getEffects();
 
 			for (unsigned i = 0; i < effects.size(); ++i) {
-				Effect* e = effects[i];
+				Effect* e = (Effect*) effects[i];
 				if (e->attackID == attack_id) {
 					target->removeEffect(e);
 					break;

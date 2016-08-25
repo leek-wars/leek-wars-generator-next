@@ -60,13 +60,19 @@ bool map_lineOfSight(const Cell* cell1, const Cell* cell2) {
 	return Simulator::fight->map->line_of_sight_ignored(cell1, cell2, vector<const Cell*>{});
 }
 
-ls::LSArray<const Cell*>* map_getPath(const Cell* cell1, const Cell* cell2) {
+ls::LSArray<ls::LSValue*>* map_getPath(const Cell* cell1, const Cell* cell2) {
 
 	if (cell1 == nullptr or cell2 == nullptr) {
-		return new ls::LSArray<const Cell*>();
+		return new ls::LSArray<ls::LSValue*>();
 	}
 	vector<const Cell*> path = Simulator::fight->map->get_path(cell1, vector<const Cell*>{cell2}, vector<const Cell*>{});
-	return new ls::LSArray<const Cell*>(path);
+
+	auto result = new ls::LSArray<ls::LSValue*>();
+	result->reserve(path.size());
+	for (const Cell* cell : path) {
+		result->push_back((ls::LSValue*) cell);
+	}
+	return result;
 }
 
 int map_getPathLength(const Cell* cell1, const Cell* cell2) {
@@ -78,8 +84,8 @@ int map_getType() {
 	return Simulator::fight->map->type;
 }
 
-ls::LSArray<Cell*>* map_getObstacles() {
-	return new ls::LSArray<Cell*>();
+ls::LSArray<ls::LSValue*>* map_getObstacles() {
+	return new ls::LSArray<ls::LSValue*>();
 }
 
 int map_getDistance(const Cell* cell1, const Cell* cell2) {

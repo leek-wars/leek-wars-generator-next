@@ -1,5 +1,6 @@
 let me = Fight.getEntity()
 
+System.print(me)
 System.print("I am " + me.name)
 System.print("I am on cell " + me.cell.id)
 
@@ -26,3 +27,4 @@ System.print("Path length: " + FightMap.getPath(me.cell, enemy.cell).size())
 
 let dist2 = (me.cell.x - enemy.cell.x).abs() + (me.cell.y - enemy.cell.y).abs()
 System.print("Handmade distance : " + dist2)
+
