@@ -10,6 +10,20 @@
 #include "../entity/Entity.hpp"
 #include "../fight/Fight.hpp"
 
+/*
+ * class Fight {
+ * 		enum Type {
+ * 			SOLO, FARMER, TEAM, BR
+ * 		}
+ * 		enum Context {
+ * 			TEST, GARDEN, CHALLENGE
+ * 		}
+ * }
+ *
+ * Fight.Type.SOLO
+ * let ctx = Fight.Context.GARDEN
+ */
+
 jit_value_t Fight_MAX_TURNS(jit_function_t F) { return LS_CREATE_INTEGER(F, 64); }
 
 FightModule::FightModule() : Module("Fight") {
