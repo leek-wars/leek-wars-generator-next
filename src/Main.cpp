@@ -60,7 +60,7 @@ int main() {
 	Team* team1 = new Team();
 
 	// Entity 1
-	AI* ai1 = new AI(Util::read_file("ai/basic.ls"));
+	AI* ai1 = new AI(Util::read_file("ai/hangry.ls"));
 	Leek* leek1 = new Leek(&fight, "Trevor", 300, ai1);
 	Characteristics characs1;
 	characs1.set(Characteristic::LIFE, 3200);
