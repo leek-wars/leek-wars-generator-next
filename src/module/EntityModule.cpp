@@ -19,23 +19,23 @@ EntityModule::EntityModule() : Module("Entity") {
 
 	field("name", Type::STRING);
 	field("cell", CellModule::type);
-	field("level", Type::INTEGER_P);
-	field("talent", Type::INTEGER_P);
+	field("level", Type::INTEGER);
+	field("talent", Type::INTEGER);
 
-	field("life", Type::INTEGER_P);
-	field("strength", Type::INTEGER_P);
-	field("agility", Type::INTEGER_P);
-	field("science", Type::INTEGER_P);
-	field("resistance", Type::INTEGER_P);
-	field("magic", Type::INTEGER_P);
-	field("frequency", Type::INTEGER_P);
-	field("tp", Type::INTEGER_P);
-	field("mp", Type::INTEGER_P);
-	field("relativeShield", Type::INTEGER_P);
-	field("absoluteShield", Type::INTEGER_P);
-	field("totalTP", Type::INTEGER_P);
-	field("totalMP", Type::INTEGER_P);
-	field("damageReturn", Type::INTEGER_P);
+	field("life", Type::INTEGER);
+	field("strength", Type::INTEGER);
+	field("agility", Type::INTEGER);
+	field("science", Type::INTEGER);
+	field("resistance", Type::INTEGER);
+	field("magic", Type::INTEGER);
+	field("frequency", Type::INTEGER);
+	field("tp", Type::INTEGER);
+	field("mp", Type::INTEGER);
+	field("relativeShield", Type::INTEGER);
+	field("absoluteShield", Type::INTEGER);
+	field("totalTP", Type::INTEGER);
+	field("totalMP", Type::INTEGER);
+	field("damageReturn", Type::INTEGER);
 
 	method("getLife", EntityModule::type_ptr, Type::INTEGER, {}, (void*) &Entity::getLife);
 	method("getTotalLife", EntityModule::type_ptr, Type::INTEGER, {}, (void*) &Entity::getStrength);

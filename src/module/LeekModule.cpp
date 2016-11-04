@@ -15,7 +15,7 @@ const ls::Type LeekModule::type_ptr(LeekModule::type, ls::Nature::POINTER);
 
 LeekModule::LeekModule() : Module("Leek") {
 
-	method("getFarmerID", LeekModule::type_ptr, Type::INTEGER_P, {LeekModule::type_ptr}, (void*) &leek_getFarmerID);
+	method("getFarmerID", LeekModule::type_ptr, Type::INTEGER, {LeekModule::type_ptr}, (void*) &leek_getFarmerID);
 	method("getFarmerName", LeekModule::type_ptr, Type::STRING, {LeekModule::type_ptr}, (void*) &leek_getFarmerName);
 
 	// V1 methods
@@ -39,8 +39,8 @@ LeekModule::LeekModule() : Module("Leek") {
 
 LeekModule::~LeekModule() {}
 
-const ls::LSNumber* leek_getFarmerID(Leek* leek) {
-	return (ls::LSNumber*) leek->values["farmerID"];
+int leek_getFarmerID(Leek* leek) {
+	return leek->farmer;
 }
 
 const ls::LSString* leek_getFarmerName(Leek* leek) {

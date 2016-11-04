@@ -20,7 +20,7 @@ public:
 	static const ls::Type type_ptr;
 };
 
-const ls::LSNumber* leek_getFarmerID(Leek* leek);
+int leek_getFarmerID(Leek* leek);
 const ls::LSString* leek_getFarmerName(Leek* leek);
 
 /*

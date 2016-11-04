@@ -7,6 +7,7 @@ OBJ := $(patsubst %.cpp,build/%.o,$(SRC))
 
 FLAGS := -std=c++11 -O0 -g3 -Wall -Wextra -Wno-pmf-conversions
 LIBS := -ljit -lleekscript
+MAKEFLAGS += --jobs=$(shell nproc)
 
 all: makedirs leek-wars-generator
 

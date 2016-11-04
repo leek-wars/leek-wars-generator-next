@@ -17,14 +17,14 @@ MapModule::MapModule() : Module("FightMap") {
 	static_method("getPathLength", Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getPathLength);
 	static_method("getCellContent", Type::INTEGER, {CellModule::type}, (void*) &map_getCellContent);
 	static_method("getDistance", Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getDistance);
-	static_method("getStraightDistance", Type::FLOAT, {CellModule::type}, (void*) &map_getStraightDistance);
+	static_method("getStraightDistance", Type::REAL, {CellModule::type}, (void*) &map_getStraightDistance);
 	static_method("getType", Type::INTEGER, {}, (void*) &map_getType);
 	static_method("getObstacles", Type::INTEGER, {}, (void*) &map_getObstacles);
 
 	// v1 functions
 	static_method("_getCellDistance", Type::INTEGER, {Type::POINTER, Type::POINTER}, (void*) &map__getCellDistance);
 	static_method("_getCellFromXY", Type::POINTER, {Type::POINTER, Type::POINTER}, (void*) &map__getCellFromXY);
-	static_method("_getDistance", Type::FLOAT, {Type::POINTER, Type::POINTER}, (void*) &map__getDistance);
+	static_method("_getDistance", Type::REAL, {Type::POINTER, Type::POINTER}, (void*) &map__getDistance);
 	static_method("_getMapType", Type::INTEGER, {}, (void*) &map__getMapType);
 	static_method("_getObstacles", Type::INT_ARRAY, {}, (void*) &map__getObstacles);
 	static_method("_getPath", {
