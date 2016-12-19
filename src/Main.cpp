@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <ctime>
 #include <chrono>
+#include <sstream>
 
 using namespace std;
 
@@ -25,6 +26,29 @@ using namespace std;
 #include "module/WeaponModule.hpp"
 #include "module/ColorModule.hpp"
 #include "module/ChipModule.hpp"
+
+string url_encode(const string &value) {
+    ostringstream escaped;
+    escaped.fill('0');
+    escaped << hex;
+
+    for (string::const_iterator i = value.begin(), n = value.end(); i != n; ++i) {
+        string::value_type c = (*i);
+
+        // Keep alphanumeric and other accepted characters intact
+        if (isalnum(c) || c == '-' || c == '_' || c == '.' || c == '~') {
+            escaped << c;
+            continue;
+        }
+
+        // Any other characters are percent-encoded
+        escaped << uppercase;
+        escaped << '%' << setw(2) << int((unsigned char) c);
+        escaped << nouppercase;
+    }
+
+    return escaped.str();
+}
 
 int main() {
 
@@ -65,7 +89,7 @@ int main() {
 	Characteristics characs1;
 	characs1.set(Characteristic::LIFE, 3200);
 	characs1.set(Characteristic::TP, 2000);
-	characs1.set(Characteristic::MP, 5);
+	characs1.set(Characteristic::MP, 100);
 	characs1.set(Characteristic::STRENGTH, 978);
 	leek1->setCharacteristics(characs1);
 	vector<Weapon*> weapons1 = {&pistol, &laser};
@@ -86,7 +110,7 @@ int main() {
 	Characteristics characs2;
 	characs2.set(Characteristic::LIFE, 3900);
 	characs2.set(Characteristic::TP, 2000);
-	characs2.set(Characteristic::MP, 5);
+	characs2.set(Characteristic::MP, 100);
 	characs2.set(Characteristic::STRENGTH, 470);
 	leek2->setCharacteristics(characs2);
 	vector<Weapon*> weapons2 = {&laser};
@@ -115,6 +139,7 @@ int main() {
 
 	report_file << report << std::endl;
 
+	system("chromium-browser http://localhost:8012/fight/local");
 
 //	vector<Cell*> path2 = fight.map->get_path(fight.map->cells[51], {fight.map->cells[561]}, {});
 //	fight.map->draw_path(path2, fight.map->cells[51], fight.map->cells[561]);
