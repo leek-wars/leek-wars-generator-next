@@ -44,6 +44,8 @@ public:
 
 	int useWeapon(Entity* launcher, Cell* target);
 	int useChip(Entity* caster, Cell* cell, Chip* chip);
+
+	Json entities_json() const;
 };
 
 #endif

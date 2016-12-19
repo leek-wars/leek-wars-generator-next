@@ -31,6 +31,7 @@ public:
 	string name;
 
 	Cell* cell;
+	Cell* start_cell;
 	Characteristics base_characs;
 	Characteristics bonus_characs;
 	int total_life;
@@ -135,6 +136,8 @@ public:
 
 	virtual ls::LSValue* getClass() const override;
 	virtual const ls::BaseRawType* getRawType() const override;
+
+	Json to_json() const;
 };
 
 #endif

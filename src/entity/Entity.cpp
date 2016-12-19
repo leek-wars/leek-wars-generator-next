@@ -40,6 +40,7 @@ Entity::Entity(Fight* fight, std::string name, int level)
 	values["name"]->native = true;
 	values["name"]->refs = 1;
 	values["cell"] = ls::LSNull::get();
+	weapons.refs = 10;
 }
 
 Entity::~Entity() {}
@@ -82,6 +83,9 @@ void Entity::addLife(int l) {
 
 void Entity::setCell(Cell* cell) {
 	//cout << "set cell " << endl;
+	if (this->cell == nullptr) {
+		this->start_cell = cell;
+	}
 	this->cell = cell;
 	values["cell"] = (Cell*) cell;
 	values["cell"]->native = true;
@@ -95,11 +99,15 @@ Cell* Entity::getCell() {
 void Entity::setWeapons(std::vector<Weapon*>& weapons) {
 	this->weapons = std::vector<ls::LSValue*>(weapons.begin(), weapons.end());
 	this->weapons.native = true;
+	this->weapons.refs = 1;
+
+	std::cout << "set weapons " << ((Weapon*) this->weapons[0])->id << '\n';
 }
 
 void Entity::setChips(std::vector<Chip*>& chips) {
 	this->chips = std::vector<ls::LSValue*>(chips.begin(), chips.end());
 	this->chips.native = true;
+	this->chips.refs = 1;
 }
 
 const Weapon* Entity::getWeapon() {
@@ -111,6 +119,8 @@ ls::LSArray<ls::LSValue*>* Entity::getWeapons() {
 }
 
 void Entity::setWeapon(const Weapon* weapon) {
+
+	std::cout << "Entity::setWeapon " << weapon->id << std::endl;
 
 	this->weapon = weapon;
 	useTP(1);
@@ -279,19 +289,24 @@ bool Entity::say(const LSValue* message) {
 
 int Entity::moveToward(Entity* target, int max_mp) {
 
-//	cout << "move toward " << target->cell->id << " from " << cell->id << endl;
+	cout << "move toward " << target->id << "(me: " << id << ")" << endl;
 
 	if (target == nullptr or target->isDead()) return 0;
 	if (max_mp <= 0 or getMP() <= 0) return 0;
 
 	int mp = max_mp == -1 ? getMP() : min(getMP(), max_mp);
 
-	vector<const Cell*> path = fight->map->get_path_between(cell, target->cell, vector<const Cell*> {});
+	std::cout << "path between " << cell->id << " and " << target->cell->id << std::endl;
+
+	vector<const Cell*> path = fight->map->get_path_between(target->cell, cell, vector<const Cell*> {});
 
 	cout << "path: " << path.size() << endl;
 
 //	return fight.moveEntity(this, path.size() > pm ? path.subList(0, pm) : path);
-	return fight->moveEntity(this, {path.begin(), path.begin() + min((int) path.size(), mp)} );
+	if (path.size() == 0) {
+		return 0;
+	}
+	return fight->moveEntity(this, {path.begin() + 1, path.begin() + min((int) path.size(), mp + 1)} );
 //	return 0;
 }
 
@@ -345,4 +360,28 @@ ls::LSValue* Entity::getClass() const {
 
 const ls::BaseRawType* Entity::getRawType() const {
 	return EntityModule::type;
+}
+
+Json Entity::to_json() const {
+	Json json;
+	json["id"] = id;
+	json["life"] = life;
+	json["tp"] = getTotalTP();
+	json["mp"] = getTotalMP();
+	json["name"] = name;
+	json["team"] = team + 1;
+	json["cellPos"] = start_cell->id;
+	json["appearence"] = 11;
+	json["skin"] = 9;
+	json["level"] = level;
+	json["type"] = 0;
+	json["strength"] = getStrength();
+	json["agility"] = getAgility();
+	json["resistance"] = getResistance();
+	json["magic"] = getMagic();
+	json["science"] = getScience();
+	json["frequency"] = getFrequency();
+	json["wisdom"] = getWisdom();
+	json["summon"] = false;
+	return json;
 }

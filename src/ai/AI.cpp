@@ -26,6 +26,7 @@ void AI::compile(ls::VM& vm) {
 
 	std::cout << "AI : ";
 	program->print(std::cout, true);
+	std::cout << std::endl;
 }
 
 void AI::execute() {

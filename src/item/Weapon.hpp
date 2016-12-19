@@ -10,6 +10,8 @@ public:
 	Weapon(int id, std::string&& name, int cost, Attack&& attack);
 	virtual ~Weapon();
 
+	int getTemplateID() const;
+
 	virtual std::ostream& print(std::ostream& os) const override;
 };
 

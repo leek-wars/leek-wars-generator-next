@@ -432,7 +432,7 @@ Json Map::json() const {
 
 	Json obstacles_json;
 	for (auto c : obstacles) {
-		obstacles_json.push_back(c->id);
+		obstacles_json[std::to_string(c->id)] = std::vector<int>{ c->obstacle, c->obstacle_size };
 	}
 
 	return {
@@ -447,5 +447,3 @@ std::ostream& operator << (std::ostream& os, const Map& map) {
 	os << "[" << map.width << " × " << map.height << "]";
 	return os;
 }
-
-

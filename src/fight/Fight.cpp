@@ -10,6 +10,7 @@
 #include "../entity/Team.hpp"
 #include "../util/Util.hpp"
 #include "../effect/Attack.hpp"
+#include "../action/ActionStartFight.hpp"
 #include "../action/ActionUseChip.hpp"
 #include "../action/ActionUseWeapon.hpp"
 #include "../action/ActionLoseMP.hpp"
@@ -41,7 +42,7 @@ Report* Fight::start(ls::VM& vm) {
 	auto start_time = chrono::high_resolution_clock::now();
 
 	// TODO
-//	actions.add(new ActionStartFight());
+	actions.add(new ActionStartFight());
 
 	for (turn = 1; turn <= MAX_TURNS; ++turn) {
 		for (Team* team : teams) {
@@ -216,4 +217,12 @@ int Fight::useChip(Entity* caster, Cell* target, Chip* chip) {
 	//logs.log(new ActionLoseTP(caster, chip->getCost()));
 
 	return result;
+}
+
+Json Fight::entities_json() const {
+	Json json;
+	for (const auto& e : entities) {
+		json.push_back(e.second->to_json());
+	}
+	return json;
 }
