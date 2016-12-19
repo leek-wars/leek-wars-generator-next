@@ -1,5 +1,4 @@
 
-
 System.print(Color)
 var c = Color.rgb(96, 171, 196)
 System.print(c)
