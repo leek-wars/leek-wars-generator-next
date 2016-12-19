@@ -36,6 +36,6 @@ ls::LSValue* Color::attr(const ls::LSValue* key) const {
 
 std::ostream& Color::print(std::ostream& os) const {
 
-	os << "#" << std::hex << std::setfill('0') << std::setw(8) << (unsigned int) value;
+	os << "#" << std::hex << std::setfill('0') << std::setw(8) << (unsigned int) value << std::dec;
 	return os;
 }
