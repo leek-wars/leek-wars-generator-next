@@ -17,7 +17,7 @@ int Actions::getNextId() {
 
 Json Actions::json() {
 
-	Json actions_json {};
+	Json actions_json { };
 	for (auto action : actions) {
 		actions_json.push_back(action->json());
 	}
