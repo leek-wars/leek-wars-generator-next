@@ -1,5 +1,5 @@
 # Leek Wars fight generator
 
-![Banner](https://github.com/leek-wars/leek-wars-generator/blob/master/banner.jpg)
+Leek Wars new fight generator, in C++, working with the new [LeekScript](https://github.com/leek-wars/leekscript).
 
-Leek Wars new fight generator
+![Banner](https://github.com/leek-wars/leek-wars-generator/blob/master/banner.jpg)
