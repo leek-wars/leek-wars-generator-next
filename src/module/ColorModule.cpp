@@ -18,12 +18,12 @@ const Color* ColorModule::RED = new Color(0xffff0000, true);
 const Color* ColorModule::GREEN = new Color(0xff00ff00, true);
 const Color* ColorModule::BLUE = new Color(0xff0000ff, true);
 
-jit_value_t Color_TRANSPARENT(jit_function_t F) { return LS_CREATE_POINTER(F, (void*) ColorModule::TRANSPARENT); }
-jit_value_t Color_BLACK(jit_function_t F) { return LS_CREATE_POINTER(F, (void*) ColorModule::BLACK); }
-jit_value_t Color_WHITE(jit_function_t F) { return LS_CREATE_POINTER(F, (void*) ColorModule::WHITE); }
-jit_value_t Color_RED(jit_function_t F) { return LS_CREATE_POINTER(F, (void*) ColorModule::RED); }
-jit_value_t Color_GREEN(jit_function_t F) { return LS_CREATE_POINTER(F, (void*) ColorModule::GREEN); }
-jit_value_t Color_BLUE(jit_function_t F) { return LS_CREATE_POINTER(F, (void*) ColorModule::BLUE); }
+ls::Compiler::value Color_TRANSPARENT(ls::Compiler& c) { return c.new_pointer((void*) ColorModule::TRANSPARENT); }
+ls::Compiler::value Color_BLACK(ls::Compiler& c) { return c.new_pointer((void*) ColorModule::BLACK); }
+ls::Compiler::value Color_WHITE(ls::Compiler& c) { return c.new_pointer((void*) ColorModule::WHITE); }
+ls::Compiler::value Color_RED(ls::Compiler& c) { return c.new_pointer((void*) ColorModule::RED); }
+ls::Compiler::value Color_GREEN(ls::Compiler& c) { return c.new_pointer((void*) ColorModule::GREEN); }
+ls::Compiler::value Color_BLUE(ls::Compiler& c) { return c.new_pointer((void*) ColorModule::BLUE); }
 
 Color* color_rgb(int r, int g, int b) {
 
