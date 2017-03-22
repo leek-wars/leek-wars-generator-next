@@ -59,16 +59,14 @@ ColorModule::ColorModule() : Module("Color") {
 	static_field("GREEN", ColorModule::type_ptr, (void*) &Color_GREEN);
 	static_field("BLUE", ColorModule::type_ptr, (void*) &Color_BLUE);
 
-	field("r", Type::INTEGER);
-	field("g", Type::INTEGER);
-	field("b", Type::INTEGER);
+	field("r", ls::Type::INTEGER);
+	field("g", ls::Type::INTEGER);
+	field("b", ls::Type::INTEGER);
 
-	static_method("rgb", ColorModule::type_ptr, {Type::INTEGER, Type::INTEGER, Type::INTEGER}, (void*) &color_rgb);
-	static_method("rgba", ColorModule::type_ptr, {Type::INTEGER, Type::INTEGER, Type::INTEGER, Type::INTEGER}, (void*) &color_rgba);
+	static_method("rgb", ColorModule::type_ptr, {ls::Type::INTEGER, ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &color_rgb);
+	static_method("rgba", ColorModule::type_ptr, {ls::Type::INTEGER, ls::Type::INTEGER, ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &color_rgba);
 
 	ColorModule::color_clazz = this->clazz;
 }
 
 ColorModule::~ColorModule() {}
-
-

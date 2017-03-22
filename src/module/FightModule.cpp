@@ -28,13 +28,13 @@ jit_value_t Fight_MAX_TURNS(jit_function_t F) { return LS_CREATE_INTEGER(F, 64);
 
 FightModule::FightModule() : Module("Fight") {
 
-	static_field("MAX_TURNS", Type::INTEGER, (void*) &Fight_MAX_TURNS);
+	static_field("MAX_TURNS", ls::Type::INTEGER, (void*) &Fight_MAX_TURNS);
 
-	static_method("getTurn", Type::INTEGER, {}, (void*) &fight_getTurn);
+	static_method("getTurn", ls::Type::INTEGER, {}, (void*) &fight_getTurn);
 	static_method("getEntity", EntityModule::type_ptr, {}, (void*) &fight_getEntity);
 
-	static_method("getType", Type::INTEGER, {}, (void*) &fight_getType);
-	static_method("getContext", Type::INTEGER, {}, (void*) &fight_getContext);
+	static_method("getType", ls::Type::INTEGER, {}, (void*) &fight_getType);
+	static_method("getContext", ls::Type::INTEGER, {}, (void*) &fight_getContext);
 }
 
 FightModule::~FightModule() {}

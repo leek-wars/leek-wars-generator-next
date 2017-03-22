@@ -11,34 +11,34 @@ using namespace std;
 
 MapModule::MapModule() : Module("FightMap") {
 
-	static_method("cell", CellModule::type, {Type::INTEGER, Type::INTEGER}, (void*) &map_cell);
-	static_method("lineOfSight", Type::BOOLEAN, {CellModule::type, CellModule::type}, (void*) &map_lineOfSight);
+	static_method("cell", CellModule::type, {ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &map_cell);
+	static_method("lineOfSight", ls::Type::BOOLEAN, {CellModule::type, CellModule::type}, (void*) &map_lineOfSight);
 	static_method("getPath", CellModule::array_type, {CellModule::type, CellModule::type}, (void*) &map_getPath);
-	static_method("getPathLength", Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getPathLength);
-	static_method("getCellContent", Type::INTEGER, {CellModule::type}, (void*) &map_getCellContent);
-	static_method("getDistance", Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getDistance);
-	static_method("getStraightDistance", Type::REAL, {CellModule::type}, (void*) &map_getStraightDistance);
-	static_method("getType", Type::INTEGER, {}, (void*) &map_getType);
-	static_method("getObstacles", Type::INTEGER, {}, (void*) &map_getObstacles);
+	static_method("getPathLength", ls::Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getPathLength);
+	static_method("getCellContent", ls::Type::INTEGER, {CellModule::type}, (void*) &map_getCellContent);
+	static_method("getDistance", ls::Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getDistance);
+	static_method("getStraightDistance", ls::Type::REAL, {CellModule::type}, (void*) &map_getStraightDistance);
+	static_method("getType", ls::Type::INTEGER, {}, (void*) &map_getType);
+	static_method("getObstacles", ls::Type::INTEGER, {}, (void*) &map_getObstacles);
 
 	// v1 functions
-	static_method("_getCellDistance", Type::INTEGER, {Type::POINTER, Type::POINTER}, (void*) &map__getCellDistance);
-	static_method("_getCellFromXY", Type::POINTER, {Type::POINTER, Type::POINTER}, (void*) &map__getCellFromXY);
-	static_method("_getDistance", Type::REAL, {Type::POINTER, Type::POINTER}, (void*) &map__getDistance);
-	static_method("_getMapType", Type::INTEGER, {}, (void*) &map__getMapType);
-	static_method("_getObstacles", Type::INT_ARRAY, {}, (void*) &map__getObstacles);
+	static_method("_getCellDistance", ls::Type::INTEGER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getCellDistance);
+	static_method("_getCellFromXY", ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getCellFromXY);
+	static_method("_getDistance", ls::Type::REAL, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getDistance);
+	static_method("_getMapType", ls::Type::INTEGER, {}, (void*) &map__getMapType);
+	static_method("_getObstacles", ls::Type::INT_ARRAY, {}, (void*) &map__getObstacles);
 	static_method("_getPath", {
-		{Type::POINTER, {Type::POINTER, Type::POINTER}, (void*) &map__getPath},
-		{Type::POINTER, {Type::POINTER, Type::POINTER, Type::POINTER}, (void*) &map__getPathIgnored}
+		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getPath},
+		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getPathIgnored}
 	});
 	static_method("_getPathLength", {
-		{Type::POINTER, {Type::POINTER, Type::POINTER}, (void*) &map__getPathLength},
-		{Type::POINTER, {Type::POINTER, Type::POINTER, Type::POINTER}, (void*) &map__getPathLengthIgnored}
+		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getPathLength},
+		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getPathLengthIgnored}
 	});
-	static_method("_isOnSameLine", Type::BOOLEAN, {Type::POINTER, Type::POINTER}, (void*) &map__isOnSameLine);
+	static_method("_isOnSameLine", ls::Type::BOOLEAN, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__isOnSameLine);
 	static_method("_lineOfSight", {
-		{Type::POINTER, {Type::POINTER, Type::POINTER}, (void*) &map__lineOfSight},
-		{Type::POINTER, {Type::POINTER, Type::POINTER}, (void*) &map__lineOfSightIgnored}
+		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__lineOfSight},
+		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__lineOfSightIgnored}
 	});
 }
 

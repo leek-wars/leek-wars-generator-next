@@ -15,30 +15,30 @@ jit_value_t Chip_SPARK(jit_function_t F) { return LS_CREATE_INTEGER(F, 1); }
 
 ChipModule::ChipModule() : Module("Chip") {
 
-	static_field("SPARK", Type::INTEGER, (void*) &Chip_SPARK);
+	static_field("SPARK", ls::Type::INTEGER, (void*) &Chip_SPARK);
 
 	/*
 	 * V1
 	 */
-	static_method("_canUseChip", Type::BOOLEAN, {Type::POINTER, Type::POINTER}, (void*) &chip__canUseChip);
-	static_method("_canUseChipOnCell", Type::BOOLEAN, {Type::POINTER, Type::POINTER}, (void*) &chip__canUseChipOnCell);
-	static_method("_chipNeedLos", Type::BOOLEAN, {Type::POINTER}, (void*) &chip__chipNeedLos);
-	static_method("_getChipArea", Type::POINTER, {Type::POINTER}, (void*) &chip__getChipArea);
-	static_method("_getChipCooldown", Type::INTEGER, {Type::POINTER}, (void*) &chip__getChipCooldown);
-	static_method("_getChipCost", Type::POINTER, {Type::POINTER}, (void*) &chip__getChipCost);
+	static_method("_canUseChip", ls::Type::BOOLEAN, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &chip__canUseChip);
+	static_method("_canUseChipOnCell", ls::Type::BOOLEAN, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &chip__canUseChipOnCell);
+	static_method("_chipNeedLos", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &chip__chipNeedLos);
+	static_method("_getChipArea", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipArea);
+	static_method("_getChipCooldown", ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &chip__getChipCooldown);
+	static_method("_getChipCost", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipCost);
 	static_method("_getChipEffectiveAreaCell", {
-		{Type::POINTER, {Type::POINTER}, (void*) &chip__getChipEffectiveArea},
-		{Type::POINTER, {Type::POINTER, Type::POINTER}, (void*) &chip__getChipEffectiveAreaCell},
-		{Type::POINTER, {Type::POINTER, Type::POINTER, Type::POINTER}, (void*) &chip__getChipEffectiveAreaCellFrom},
+		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipEffectiveArea},
+		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &chip__getChipEffectiveAreaCell},
+		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER, ls::Type::POINTER}, (void*) &chip__getChipEffectiveAreaCellFrom},
 	});
-	static_method("_getChipEffects", Type::POINTER, {Type::POINTER}, (void*) &chip__getChipEffects);
-	static_method("_getChipFailure", Type::INTEGER, {Type::POINTER}, (void*) &chip__getChipFailure);
-	static_method("_getChipMaxRange", Type::POINTER, {Type::POINTER}, (void*) &chip__getChipMaxRange);
-	static_method("_getChipMinRange", Type::POINTER, {Type::POINTER}, (void*) &chip__getChipMinRange);
-	static_method("_getChipName", Type::STRING, {Type::POINTER}, (void*) &chip__getChipName);
-	static_method("_getCurrentCooldown", Type::POINTER, {Type::POINTER}, (void*) &chip__getCurrentCooldown);
-	static_method("bool isChip", Type::BOOLEAN, {Type::POINTER}, (void*) &chip__isChip);
-	static_method("bool isInlineChip", Type::BOOLEAN, {Type::POINTER}, (void*) &chip__isInlineChip);
+	static_method("_getChipEffects", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipEffects);
+	static_method("_getChipFailure", ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &chip__getChipFailure);
+	static_method("_getChipMaxRange", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipMaxRange);
+	static_method("_getChipMinRange", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipMinRange);
+	static_method("_getChipName", ls::Type::STRING, {ls::Type::POINTER}, (void*) &chip__getChipName);
+	static_method("_getCurrentCooldown", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getCurrentCooldown);
+	static_method("bool isChip", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &chip__isChip);
+	static_method("bool isInlineChip", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &chip__isInlineChip);
 }
 
 ChipModule::~ChipModule() {}

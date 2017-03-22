@@ -21,24 +21,24 @@ CellModule::CellModule() : Module("Cell") {
 
 	CellModule::cell_clazz = this->clazz;
 
-	field("x", Type::NUMBER);
-	field("y", Type::NUMBER);
-	field("id", Type::NUMBER);
+	field("x", ls::Type::NUMBER);
+	field("y", ls::Type::NUMBER);
+	field("id", ls::Type::NUMBER);
 	field("entity", EntityModule::type_ptr);
 
-	method("isEmpty", CellModule::type, Type::BOOLEAN, {}, (void*) &Cell::isEmpty);
-	method("hasEntity", CellModule::type, Type::BOOLEAN, {}, (void*) &Cell::hasEntity);
-	method("isObstacle", CellModule::type, Type::BOOLEAN, {}, (void*) &Cell::isObstacle);
-	method("distance", CellModule::type, Type::INTEGER, {CellModule::type}, (void*) &Cell::distance);
+	method("isEmpty", CellModule::type, ls::Type::BOOLEAN, {}, (void*) &Cell::isEmpty);
+	method("hasEntity", CellModule::type, ls::Type::BOOLEAN, {}, (void*) &Cell::hasEntity);
+	method("isObstacle", CellModule::type, ls::Type::BOOLEAN, {}, (void*) &Cell::isObstacle);
+	method("distance", CellModule::type, ls::Type::INTEGER, {CellModule::type}, (void*) &Cell::distance);
 
 	// v1 functions
-	static_method("_isEmptyCell", Type::BOOLEAN, {Type::POINTER}, (void*) &cell__isEmptyCell);
-	static_method("_isLeek", Type::BOOLEAN, {Type::POINTER}, (void*) &cell__isLeek);
-	static_method("_isObstacle", Type::BOOLEAN, {Type::POINTER}, (void*) &cell__isObstacle);
-	static_method("_getX", Type::POINTER, {Type::POINTER}, (void*) &cell__getCellX);
-	static_method("_getY", Type::POINTER, {Type::POINTER}, (void*) &cell__getCellY);
-	static_method("_getLeekOnCell", Type::INTEGER, {Type::POINTER}, (void*) &cell__getLeekOnCell);
-	static_method("_getCellContent", Type::INTEGER, {Type::POINTER}, (void*) &cell__getCellContent);
+	static_method("_isEmptyCell", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &cell__isEmptyCell);
+	static_method("_isLeek", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &cell__isLeek);
+	static_method("_isObstacle", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &cell__isObstacle);
+	static_method("_getX", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &cell__getCellX);
+	static_method("_getY", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &cell__getCellY);
+	static_method("_getLeekOnCell", ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &cell__getLeekOnCell);
+	static_method("_getCellContent", ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &cell__getCellContent);
 }
 
 CellModule::~CellModule() {}
@@ -140,4 +140,3 @@ int cell__getCellContent(const ls::LSValue* cell) {
 
 	return c->getContent();
 }
-

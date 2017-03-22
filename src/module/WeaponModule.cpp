@@ -16,8 +16,8 @@ jit_value_t Weapon_LASER(jit_function_t F) { return LS_CREATE_INTEGER(F, 42); }
 
 WeaponModule::WeaponModule() : Module("Weapon") {
 
-	static_field("PISTOL", Type::INTEGER, (void*) &Weapon_PISTOL);
-	static_field("LASER", Type::INTEGER, (void*) &Weapon_LASER);
+	static_field("PISTOL", ls::Type::INTEGER, (void*) &Weapon_PISTOL);
+	static_field("LASER", ls::Type::INTEGER, (void*) &Weapon_LASER);
 }
 
 WeaponModule::~WeaponModule() {}
