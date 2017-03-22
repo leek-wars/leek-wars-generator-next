@@ -47,7 +47,6 @@ public:
 	bool isOnSameLine(const Cell*) const;
 
 	virtual ls::LSValue* getClass() const override;
-	virtual const ls::BaseRawType* getRawType() const override;
 	virtual std::ostream& print(std::ostream& os) const override;
 
 	friend std::ostream& operator << (std::ostream& os, const Cell* cell);

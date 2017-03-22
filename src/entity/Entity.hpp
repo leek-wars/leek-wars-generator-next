@@ -135,7 +135,6 @@ public:
 	void removeEffect(Effect* effect);
 
 	virtual ls::LSValue* getClass() const override;
-	virtual const ls::BaseRawType* getRawType() const override;
 
 	Json to_json() const;
 };

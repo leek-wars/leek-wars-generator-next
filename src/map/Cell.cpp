@@ -110,10 +110,6 @@ ls::LSValue* Cell::getClass() const {
 	return (LSValue*) CellModule::cell_clazz;
 }
 
-const ls::BaseRawType* Cell::getRawType() const {
-	return CellModule::type.raw_type;
-}
-
 std::ostream& Cell::print(std::ostream& os) const {
 	os << "<Cell " << id << ">";
 }
@@ -122,4 +118,3 @@ std::ostream& operator << (std::ostream& os, const Cell* cell) {
 	os << "[" << cell->x << ", " << cell->y << "]";
 	return os;
 }
-

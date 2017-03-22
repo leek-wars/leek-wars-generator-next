@@ -358,10 +358,6 @@ ls::LSValue* Entity::getClass() const {
 	return (ls::LSValue*) EntityModule::entity_clazz;
 }
 
-const ls::BaseRawType* Entity::getRawType() const {
-	return EntityModule::type;
-}
-
 Json Entity::to_json() const {
 	Json json;
 	json["id"] = id;
