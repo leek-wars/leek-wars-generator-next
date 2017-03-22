@@ -36,10 +36,11 @@ Entity::Entity(Fight* fight, std::string name, int level)
 	talent = 1000;
 	cell = nullptr;
 
-	values["name"] = new ls::LSString(name);
-	values["name"]->native = true;
-	values["name"]->refs = 1;
-	values["cell"] = ls::LSNull::get();
+	auto name_val = new ls::LSString(name);
+	name_val->native = true;
+	name_val->refs = 1;
+	addField("name", name_val);
+	addField("cell", ls::LSNull::get());
 	weapons.refs = 10;
 }
 

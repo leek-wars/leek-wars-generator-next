@@ -16,8 +16,9 @@ Chip::Chip(int id, std::string&& name, int cost, int cooldown,
 	this->initial_cooldown = initial_cooldown;
 
 	readonly = true;
-	values["name"] = new ls::LSString(name);
-	values["name"]->native = true;
+	auto name_val = new ls::LSString(name);
+	name_val->native = true;
+	addField("name", name_val);
 }
 
 Chip::~Chip() {}
@@ -29,4 +30,3 @@ std::ostream& Chip::print(std::ostream& os) const {
 	os << ">";
 	return os;
 }
-
