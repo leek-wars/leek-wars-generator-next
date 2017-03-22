@@ -16,7 +16,7 @@ public:
 	Color(int color, bool native = false);
 	virtual ~Color();
 
-	ls::LSValue* attr(const ls::LSValue* key) const override;
+	ls::LSValue* attr(const std::string& key) const override;
 
 	std::ostream& print(std::ostream& os) const;
 };
