@@ -4,12 +4,17 @@ var him = me.getClosestEnemy()
 var weapon = me.getWeapons()[0]
 System.print(weapon)
 
+var chip = me.getChips()[0]
+System.print(chip)
+
 System.print(me.getWeapons())
 
 me.say("Salut !")
 
+/*
 me.setWeapon(weapon)
 
+/*
 me.useWeapon(him)
 
 me.moveToward(him, 5)
