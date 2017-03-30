@@ -1,12 +1,5 @@
-/*
- * FightModule.cpp
- *
- *  Created on: Mar 31, 2016
- *      Author: pierre
- */
-
 #include "FightModule.hpp"
-#include "../Simulator.hpp"
+#include "../fight/Simulator.hpp"
 #include "../entity/Entity.hpp"
 #include "../fight/Fight.hpp"
 

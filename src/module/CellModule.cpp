@@ -1,11 +1,4 @@
-/*
- * CellModule.cpp
- *
- *  Created on: Apr 6, 2016
- *      Author: pierre
- */
-
-#include "../Simulator.hpp"
+#include "../fight/Simulator.hpp"
 #include "../fight/Fight.hpp"
 #include "CellModule.hpp"
 #include "EntityModule.hpp"

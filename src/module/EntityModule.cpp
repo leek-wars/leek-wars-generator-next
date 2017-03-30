@@ -3,7 +3,7 @@
 #include "../fight/Fight.hpp"
 #include "WeaponModule.hpp"
 #include "ChipModule.hpp"
-#include "../Simulator.hpp"
+#include "../fight/Simulator.hpp"
 #include "../item/Weapon.hpp"
 #include "../entity/Entity.hpp"
 #include "../entity/Team.hpp"

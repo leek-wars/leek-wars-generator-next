@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "../Simulator.hpp"
+#include "../fight/Simulator.hpp"
 #include "../map/Map.hpp"
 #include "../fight/Fight.hpp"
 #include "../entity/Entity.hpp"
