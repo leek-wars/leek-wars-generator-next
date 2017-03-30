@@ -286,6 +286,7 @@ bool Entity::say(const LSValue* message) {
 
 	fight->actions.add(new ActionSay(this, msg));
 	useTP(1);
+	return true;
 }
 
 int Entity::moveToward(Entity* target, int max_mp) {
