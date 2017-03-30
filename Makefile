@@ -69,9 +69,13 @@ coverage: build/leek-wars-generator-coverage
 valgrind: build/leek-wars-generator-test
 	valgrind --verbose --track-origins=yes --leak-check=full --show-leak-kinds=all build/leek-wars-generator-test
 
+# Line couning with cloc.
+# `apt-get install cloc`
+cloc:
+	cloc . --exclude-dir=.git,lib,build
+
 clean:
 	rm -rf build
 	@echo "----------------"
 	@echo "Project cleaned."
 	@echo "----------------"
-
