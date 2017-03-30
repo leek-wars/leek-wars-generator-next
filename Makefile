@@ -11,7 +11,8 @@ SRC_TEST := $(foreach d,$(TEST_DIR),$(wildcard $(d)/*.cpp))
 OBJ := $(patsubst %.cpp,build/default/%.o,$(SRC))
 OBJ_MAIN = build/default/src/Main.o
 OBJ_TEST := $(patsubst %.cpp,build/default/%.o,$(SRC_TEST))
-FLAGS := -std=c++11 -O0 -g3 -Wall -Wextra -Wno-pmf-conversions
+
+FLAGS := -std=c++11 -O2 -g3 -Wall -Wextra -Wno-pmf-conversions
 LIBS := -ljit -lleekscript
 MAKEFLAGS += --jobs=$(shell nproc)
 
