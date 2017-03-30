@@ -401,7 +401,7 @@ void Map::print() const {
 void Map::draw_path(const std::vector<const Cell*> path, const Cell* cell1, const Cell* cell2) const {
 
 	cout << "Draw path: [";
-	for (Cell* c : path) cout << c->id << " -> ";
+	for (const auto& c : path) cout << c->id << " -> ";
 	cout << "]" << endl;
 
 	for (int x = 0; x < sx; ++x) {
