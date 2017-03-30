@@ -4,9 +4,6 @@
 #include <ctime>
 #include <chrono>
 #include <sstream>
-
-using namespace std;
-
 #include <leekscript/src/leekscript.h>
 
 #include "../benchmark/Benchmark.hpp"
@@ -17,7 +14,6 @@ using namespace std;
 #include "entity/Leek.hpp"
 #include "item/Chip.hpp"
 #include "area/AreaSingleCell.hpp"
-
 #include "module/FightModule.hpp"
 #include "module/EntityModule.hpp"
 #include "module/MapModule.hpp"
@@ -26,6 +22,8 @@ using namespace std;
 #include "module/WeaponModule.hpp"
 #include "module/ColorModule.hpp"
 #include "module/ChipModule.hpp"
+
+using namespace std;
 
 string url_encode(const string &value) {
     ostringstream escaped;
