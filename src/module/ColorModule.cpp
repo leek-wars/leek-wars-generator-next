@@ -62,6 +62,7 @@ ColorModule::ColorModule() : Module("Color") {
 	field("r", ls::Type::INTEGER);
 	field("g", ls::Type::INTEGER);
 	field("b", ls::Type::INTEGER);
+	field("a", ls::Type::INTEGER);
 
 	static_method("rgb", {
 		{ColorModule::type_ptr, {ls::Type::INTEGER, ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &color_rgb, ls::Method::NATIVE}
