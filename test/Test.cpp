@@ -22,6 +22,13 @@ int main(int, char**) {
 
 void Test::tests() {
 
+	auto null_value = ls::LSNull::create();
+	auto true_value = ls::LSBoolean::create(true);
+	auto false_value = ls::LSBoolean::create(false);
+	ls::LSNull::set_null_value(null_value);
+	ls::LSBoolean::set_true_value(true_value);
+	ls::LSBoolean::set_false_value(false_value);
+
 	clock_t begin = clock();
 	exeTime = 0;
 
