@@ -18,6 +18,7 @@ FLAGS := -std=c++11 -O2 -g3 -Wall -Wextra -Wno-pmf-conversions
 LIBS := -ljit -lleekscript
 MAKEFLAGS += --jobs=$(shell nproc)
 
+.PHONY: test
 
 all: build/leek-wars-generator
 
