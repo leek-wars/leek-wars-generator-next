@@ -32,13 +32,9 @@ void Test::tests() {
 	clock_t begin = clock();
 	exeTime = 0;
 
-	/*
-	 * General
-	 */
-	header("General");
-
-	test("ai.ls", 12, 12);
-
+	test_map();
+	test_generateCritical();
+	test_fight();
 
 	double elapsed_secs = double(clock() - begin) / CLOCKS_PER_SEC;
 
