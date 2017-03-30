@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include <json.hpp>
+#include "../../lib/json.hpp"
 
 class Action;
 class Entity;

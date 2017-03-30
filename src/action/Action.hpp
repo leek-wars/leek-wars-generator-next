@@ -1,7 +1,7 @@
 #ifndef ACTION_HPP
 #define ACTION_HPP
 
-#include <json.hpp>
+#include "../../lib/json.hpp"
 
 enum class ActionType {
 	START_FIGHT = 0,

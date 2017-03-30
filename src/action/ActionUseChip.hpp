@@ -2,7 +2,7 @@
 #define ACTION_USE_CHIP_HPP
 
 #include <vector>
-#include <json.hpp>
+#include "../../lib/json.hpp"
 
 #include "Action.hpp"
 class Entity;
