@@ -16,7 +16,7 @@ public:
 	virtual ~AI();
 
 	void compile(ls::VM& vm);
-	void execute();
+	void execute(ls::VM& vm);
 };
 
 #endif

@@ -29,8 +29,8 @@ void AI::compile(ls::VM& vm) {
 	std::cout << std::endl;
 }
 
-void AI::execute() {
+void AI::execute(ls::VM& vm) {
 	if (program != nullptr) {
-		program->execute();
+		program->execute(vm);
 	}
 }

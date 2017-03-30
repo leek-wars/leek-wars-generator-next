@@ -27,6 +27,7 @@ Fight::~Fight() {}
 
 Report* Fight::start(ls::VM& vm) {
 
+	ls::VM::current_vm = &vm;
 	Simulator::fight = this;
 
 	for (Team* team : teams) {
@@ -48,7 +49,7 @@ Report* Fight::start(ls::VM& vm) {
 		for (Team* team : teams) {
 			for (Entity* entity : team->entities) {
 				Simulator::entity = entity;
-				entity->ai->execute();
+				entity->ai->execute(vm);
 			}
 		}
 	}
