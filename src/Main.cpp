@@ -139,12 +139,6 @@ int main() {
 	// Print the report
 	cout << report << endl;
 
-	std::ofstream report_file("fight.json");
-
-	report_file << report << std::endl;
-
-	system("chromium-browser http://localhost:8012/fight/local");
-
 //	vector<Cell*> path2 = fight.map->get_path(fight.map->cells[51], {fight.map->cells[561]}, {});
 //	fight.map->draw_path(path2, fight.map->cells[51], fight.map->cells[561]);
 
@@ -152,11 +146,15 @@ int main() {
 
 	// vm.execute("var l = {life: 12} Leek.getLife(l)", "{}", ExecMode::NORMAL);
 
-
 	auto end_time = chrono::high_resolution_clock::now();
 	long time_ns = chrono::duration_cast<chrono::nanoseconds>(end_time - start_time).count();
 	double time_ms = (((double) time_ns / 1000) / 1000);
 	cout << "total time: " << time_ms << " ms" << endl;
+
+	// Start a browser with the fight
+	std::ofstream report_file("fight.json");
+	report_file << report << std::endl;
+	system("chromium-browser http://localhost:8012/fight/local");
 
 //	Benchmark::pathfinding();
 
