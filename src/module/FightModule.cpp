@@ -31,7 +31,9 @@ FightModule::FightModule() : Module("Fight") {
 	static_field("MAX_TURNS", ls::Type::INTEGER, (void*) &Fight_MAX_TURNS);
 
 	static_method("getTurn", ls::Type::INTEGER, {}, (void*) &fight_getTurn);
-	static_method("getEntity", EntityModule::type_ptr, {}, (void*) &fight_getEntity);
+	static_method("getEntity", {
+		{EntityModule::type_ptr, {}, (void*) &fight_getEntity, ls::Method::NATIVE}
+	});
 
 	static_method("getType", ls::Type::INTEGER, {}, (void*) &fight_getType);
 	static_method("getContext", ls::Type::INTEGER, {}, (void*) &fight_getContext);

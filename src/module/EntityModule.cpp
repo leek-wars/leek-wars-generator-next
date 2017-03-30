@@ -37,53 +37,53 @@ EntityModule::EntityModule() : Module("Entity") {
 	field("totalMP", ls::Type::INTEGER);
 	field("damageReturn", ls::Type::INTEGER);
 
-	method("getLife", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getLife);
-	method("getTotalLife", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getStrength);
-	method("getStrength", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getStrength);
-	method("getAgility", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getAgility);
-	method("getScience", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getScience);
-	method("getMagic", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getMagic);
-	method("getWisdom", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getWisdom);
-	method("getFrequency", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getFrequency);
-	method("getResistance", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getResistance);
-	method("getTP", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getTP);
-	method("getRelativeShield", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getRelativeShield);
-	method("getAbsoluteShield", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getAbsoluteShield);
-	method("getTotalTP", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getTotalTP);
-	method("getTotalMP", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getTotalMP);
-	method("getDamageReturn", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getDamageReturn);
-	method("getCell", EntityModule::type_ptr, CellModule::type, {}, (void*) &Entity::getCell);
-	method("getClosestEnemy", EntityModule::type_ptr, EntityModule::type_ptr, {}, (void*) &entity_getClosestEnemy);
-	method("getWeapons", EntityModule::type_ptr, WeaponModule::array_type, {}, (void*) &Entity::getWeapons);
-	method("getWeapon", EntityModule::type_ptr, WeaponModule::type, {}, (void*) &Entity::getWeapon);
+	method("getLife", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getLife, ls::Method::NATIVE);
+	method("getTotalLife", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getStrength, ls::Method::NATIVE);
+	method("getStrength", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getStrength, ls::Method::NATIVE);
+	method("getAgility", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getAgility, ls::Method::NATIVE);
+	method("getScience", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getScience, ls::Method::NATIVE);
+	method("getMagic", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getMagic, ls::Method::NATIVE);
+	method("getWisdom", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getWisdom, ls::Method::NATIVE);
+	method("getFrequency", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getFrequency, ls::Method::NATIVE);
+	method("getResistance", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getResistance, ls::Method::NATIVE);
+	method("getTP", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getTP, ls::Method::NATIVE);
+	method("getRelativeShield", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getRelativeShield, ls::Method::NATIVE);
+	method("getAbsoluteShield", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getAbsoluteShield, ls::Method::NATIVE);
+	method("getTotalTP", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getTotalTP, ls::Method::NATIVE);
+	method("getTotalMP", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getTotalMP, ls::Method::NATIVE);
+	method("getDamageReturn", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getDamageReturn, ls::Method::NATIVE);
+	method("getCell", EntityModule::type_ptr, CellModule::type, {}, (void*) &Entity::getCell, ls::Method::NATIVE);
+	method("getClosestEnemy", EntityModule::type_ptr, EntityModule::type_ptr, {}, (void*) &entity_getClosestEnemy, ls::Method::NATIVE);
+	method("getWeapons", EntityModule::type_ptr, WeaponModule::array_type, {}, (void*) &Entity::getWeapons, ls::Method::NATIVE);
+	method("getWeapon", EntityModule::type_ptr, WeaponModule::type, {}, (void*) &Entity::getWeapon, ls::Method::NATIVE);
 
 	method("setWeapon", {
-		{EntityModule::type_ptr, ls::Type::NULLL, {WeaponModule::type}, (void*) &entity_setWeapon},
-		{EntityModule::type_ptr, ls::Type::NULLL, {ls::Type::INTEGER}, (void*) &Entity::setWeaponInteger}
+		{EntityModule::type_ptr, ls::Type::NULLL, {WeaponModule::type}, (void*) &entity_setWeapon, ls::Method::NATIVE},
+		{EntityModule::type_ptr, ls::Type::NULLL, {ls::Type::INTEGER}, (void*) &Entity::setWeaponInteger, ls::Method::NATIVE}
 	});
 
-	method("useChip", EntityModule::type_ptr, ls::Type::INTEGER, {ChipModule::type, EntityModule::type_ptr}, (void*) &Entity::useChip);
+	method("useChip", EntityModule::type_ptr, ls::Type::INTEGER, {ChipModule::type, EntityModule::type_ptr}, (void*) &Entity::useChip, ls::Method::NATIVE);
 
-	method("useWeapon", EntityModule::type_ptr, ls::Type::INTEGER, {EntityModule::type_ptr}, (void*) &Entity::useWeapon);
+	method("useWeapon", EntityModule::type_ptr, ls::Type::INTEGER, {EntityModule::type_ptr}, (void*) &Entity::useWeapon, ls::Method::NATIVE);
 
-	method("getChips", EntityModule::type_ptr, ChipModule::array_type, {}, (void*) &Entity::getChips);
+	method("getChips", EntityModule::type_ptr, ChipModule::array_type, {}, (void*) &Entity::getChips, ls::Method::NATIVE);
 
-	method("say", EntityModule::type_ptr, ls::Type::NULLL, {ls::Type::POINTER}, (void*) &Entity::say);
+	method("say", EntityModule::type_ptr, ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &Entity::say, ls::Method::NATIVE);
 
-	method("moveToward", EntityModule::type_ptr, ls::Type::INTEGER, {EntityModule::type_ptr, ls::Type::INTEGER}, (void*) &Entity::moveToward);
+	method("moveToward", EntityModule::type_ptr, ls::Type::INTEGER, {EntityModule::type_ptr, ls::Type::INTEGER}, (void*) &Entity::moveToward, ls::Method::NATIVE);
 
 	/*
 	 * V1 functions
 	 */
-	static_method("_getLeek", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getLeek);
+	static_method("_getLeek", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getLeek, ls::Method::NATIVE);
 
 	static_method("_getAbsoluteShield", {
-		{ls::Type::POINTER, {}, (void*) &entity__getAbsoluteShield},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getAbsoluteShieldEntity}
+		{ls::Type::POINTER, {}, (void*) &entity__getAbsoluteShield, ls::Method::NATIVE},
+		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getAbsoluteShieldEntity, ls::Method::NATIVE}
 	});
 	static_method("_getAgility", {
-		{ls::Type::POINTER, {}, (void*) &entity__getAgility},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getAgilityEntity}
+		{ls::Type::POINTER, {}, (void*) &entity__getAgility, ls::Method::NATIVE},
+		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getAgilityEntity, ls::Method::NATIVE}
 	});
 	static_method("_getBirthTurn", {
 		{ls::Type::INTEGER, {}, (void*) &entity__getBirthTurn},
