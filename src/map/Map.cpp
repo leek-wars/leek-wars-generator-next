@@ -387,11 +387,11 @@ void Map::print() const {
 		for (int y = 0; y < sy; ++y) {
 			Cell* c = coord[y][x];
 			if (c == nullptr) {
-				cout << " ";
+				cout << "  ";
 			} else if (c->walkable) {
-				cout << "░";
+				cout << "░░";
 			} else {
-				cout << "▓";
+				cout << "▓▓";
 			}
 		}
 		cout << endl;
