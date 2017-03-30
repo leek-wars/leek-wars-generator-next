@@ -70,7 +70,7 @@ public:
 	const Cell* int_to_cell(int cell);
 
 	void print() const;
-	void draw_path(const std::vector<Cell*> path, Cell* cell1, Cell* cell2) const;
+	void draw_path(const std::vector<const Cell*> path, const Cell* cell1, const Cell* cell2) const;
 
 	Json json() const;
 
