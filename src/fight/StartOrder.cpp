@@ -57,9 +57,6 @@ std::vector<Entity*> StartOrder::compute() {
 	}
 	psum = 1;
 
-	// Logger.log("Frequencies : " +
-	// Arrays.toString(frequencies.toArray()));
-
 	// Compute team order, example : [team3, team1, team2]
 	vector<int> teamOrder;
 	vector<int> remaining;
@@ -70,12 +67,6 @@ std::vector<Entity*> StartOrder::compute() {
 	for (unsigned t = 0; t < teams.size(); ++t) {
 
 		double v = (double) rand() / RAND_MAX;
-		// Logger.log("Remaining : " +
-		// Arrays.toString(remaining.toArray()));
-		// Logger.log("Probabilities : " +
-		// Arrays.toString(probas.toArray()));
-		// Logger.log("psum : " + psum);
-		// Logger.log("v : " + v);
 
 		for (unsigned i = 0; i < remaining.size(); ++i) {
 
@@ -90,14 +81,11 @@ std::vector<Entity*> StartOrder::compute() {
 			}
 			v -= p;
 		}
-
 		for (unsigned i = 0; i < teams.size(); ++i) {
 			probas[i] = probas[i] / psum;
 		}
 		psum = 1;
 	}
-
-	// Logger.log("Team order : " + Arrays.toString(teamOrder.toArray()));
 
 	// Compute entity order : [entity5, entity1, entity2, entity4, ...]
 	std::vector<Entity*> order;
@@ -111,11 +99,8 @@ std::vector<Entity*> StartOrder::compute() {
 			order.push_back(first);
 			teams[team].erase(teams[team].begin());
 		}
-
 		currentTeamI = (currentTeamI + 1) % teams.size();
 	}
-
-	// Logger.log("Order : " + Arrays.toString(order.toArray()));
 
 	return order;
 }
