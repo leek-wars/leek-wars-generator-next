@@ -51,7 +51,16 @@ Report* Fight::start(ls::VM& vm) {
 		for (Team* team : teams) {
 			for (Entity* entity : team->entities) {
 				Simulator::entity = entity;
-				entity->ai->execute(vm);
+				try {
+					entity->ai->execute(vm);
+				} catch (ls::VM::ExceptionObj* ex) {
+					vm.last_exception = nullptr;
+					std::cout << "LS Exception: " << ls::VM::exception_message(ex->type) << std::endl;
+					for (auto& l : ex->lines) {
+						std::cout << "  > line " << l << std::endl;
+					}
+					delete ex;
+				}
 			}
 		}
 	}
