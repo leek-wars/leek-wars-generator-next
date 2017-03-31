@@ -132,7 +132,7 @@ int Fight::useWeapon(Entity* launcher, Cell* target) {
 		return AttackResult::NOT_ENOUGH_TP;
 	}
 
-	if (!map->canUseAttack(launcher->cell, target, &weapon->attack)) {
+	if (!map->canUseAttack(launcher->cell, target, weapon->attack.get())) {
 		return AttackResult::INVALID_POSITION;
 	}
 
@@ -142,7 +142,7 @@ int Fight::useWeapon(Entity* launcher, Cell* target) {
 	ActionUseWeapon* action = new ActionUseWeapon(launcher, target, weapon, result);
 	actions.add(action);
 
-	vector<Entity*> target_entities  = weapon->attack.applyOnCell(this, launcher, target, weapon->id, critical);
+	vector<Entity*> target_entities  = weapon->attack.get()->applyOnCell(this, launcher, target, weapon->id, critical);
 
 	// TODO
 	//trophyManager.weaponUsed(launcher, weapon, target_entities);
@@ -176,7 +176,7 @@ int Fight::useChip(Entity* caster, Cell* target, Chip* chip) {
 	}
 	cout << "useChip() good cost" << endl;
 
-	if (!map->canUseAttack(caster->cell, target, &chip->attack)) {
+	if (!map->canUseAttack(caster->cell, target, chip->attack.get())) {
 		return AttackResult::INVALID_POSITION;
 	}
 
@@ -189,7 +189,7 @@ int Fight::useChip(Entity* caster, Cell* target, Chip* chip) {
 	cout << "useChip() valid" << endl;
 
 	// Summon (with no AI)
-	if (chip->attack.getEffectParametersByType(EffectType::SUMMON) != nullptr) {
+	if (chip->attack.get()->getEffectParametersByType(EffectType::SUMMON) != nullptr) {
 		// TODO
 		//return summonEntity(caster, target, chip, nullptr);
 	}
@@ -207,7 +207,7 @@ int Fight::useChip(Entity* caster, Cell* target, Chip* chip) {
 	ActionUseChip* action = new ActionUseChip(caster, target, chip, result);
 	actions.add(action);
 
-	vector<Entity*> target_leeks = chip->attack.applyOnCell(this, caster, target, chip->id, critical);
+	vector<Entity*> target_leeks = chip->attack.get()->applyOnCell(this, caster, target, chip->id, critical);
 
 	action->set_entities(target_leeks);
 
