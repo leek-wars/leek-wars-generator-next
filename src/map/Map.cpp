@@ -26,7 +26,7 @@ Map::Map(int width, int height, int obstacles_count, const std::vector<Team*>& t
 	nb_cells = (width * 2 - 1) * height - (width - 1);
 
 	for (int i = 0; i < nb_cells; i++) {
-		Cell* c = new Cell(this, i);
+		auto c = new Cell(this, i);
 		cells.push_back(c);
 		if (min_x == -1 || c->x < min_x) min_x = c->x;
 		if (max_x == -1 || c->x > max_x) max_x = c->x;
@@ -43,7 +43,7 @@ Map::Map(int width, int height, int obstacles_count, const std::vector<Team*>& t
 	}
 
 	for (int i = 0; i < nb_cells; i++) {
-		Cell* c = cells[i];
+		auto c = cells[i];
 		coord[c->x - min_x][c->y - min_y] = c;
 	}
 
@@ -56,7 +56,7 @@ Map::Map(int width, int height, int obstacles_count, const std::vector<Team*>& t
 }
 
 Map::~Map() {
-	for (Cell* c : cells) {
+	for (auto& c : cells) {
 		delete c;
 	}
 }
@@ -75,7 +75,7 @@ void Map::generate(int obstacles_count, const vector<Team*>& teams) {
 		for (int i = 0; i < obstacles_count; i++) {
 			//cout << "obstacle" << endl;
 
-			Cell* c = getCell(Util::rand_int(nb_cells));
+			auto c = getCell(Util::rand_int(nb_cells));
 			if (c != nullptr && c->available()) {
 				int size = Util::rand_int(1, 2);
 				int type = Util::rand_int(0, 2);
@@ -371,7 +371,7 @@ vector<const Cell*> Map::get_path(const Cell* c1, vector<const Cell*> end_cells,
 		}
 
 	}
-	cout << "[path] no path found!" << endl;
+	// cout << "[path] no path found!" << endl;
 	return {};
 }
 
