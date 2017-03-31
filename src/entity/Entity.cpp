@@ -272,8 +272,10 @@ void Entity::useMP(int mp) {
 
 bool Entity::say(const LSValue* message) {
 
-	if (getTP() < 1) return false;
-
+	if (getTP() < 1) {
+		ls::LSValue::delete_temporary(message);
+		return false;
+	}
 	ostringstream oss;
 	message->print(oss);
 
@@ -288,6 +290,7 @@ bool Entity::say(const LSValue* message) {
 
 	fight->actions.add(new ActionSay(this, msg));
 	useTP(1);
+	ls::LSValue::delete_temporary(message);
 	return true;
 }
 
