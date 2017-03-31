@@ -11,6 +11,7 @@ public:
 	std::string name;
 	std::string code;
 	ls::Program* program;
+	jit_context_t context;
 
 	AI(std::string code);
 	virtual ~AI();
