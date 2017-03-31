@@ -30,6 +30,7 @@ void Test::test_fight() {
 	Characteristics characs1;
 	characs1.set(Characteristic::LIFE, 3200);
 	characs1.set(Characteristic::TP, 2000);
+	characs1.set(Characteristic::MP, 10);
 	characs1.set(Characteristic::STRENGTH, 978);
 	leek1->setCharacteristics(characs1);
 	vector<Weapon*> weapons1 = {&pistol, &laser};
@@ -45,6 +46,8 @@ void Test::test_fight() {
 	Leek* leek2 = new Leek(&fight, "Franklin", 297, ai2);
 	Characteristics characs2;
 	characs2.set(Characteristic::LIFE, 3900);
+	characs2.set(Characteristic::TP, 2000);
+	characs2.set(Characteristic::MP, 10);
 	characs2.set(Characteristic::STRENGTH, 470);
 	leek2->setCharacteristics(characs2);
 	vector<Weapon*> weapons2 = {&laser};
@@ -53,6 +56,19 @@ void Test::test_fight() {
 	leek2->setChips(chips2);
 	team2->add_entity(leek2);
 	leek2->team = 1;
+	// Entity 3
+	auto ai3 = new AI(Util::read_file("test/ai/basic.ls"));
+ 	auto leek3 = new Leek(&fight, "Hodor", 297, ai3);
+	Characteristics characs3;
+	characs3.set(Characteristic::LIFE, 3900);
+	characs3.set(Characteristic::TP, 2000);
+	characs3.set(Characteristic::MP, 10);
+	characs3.set(Characteristic::STRENGTH, 470);
+	leek3->setCharacteristics(characs3);
+	leek3->setWeapons({&pistol, &laser});
+	leek3->setChips({&fortress});
+	team2->add_entity(leek3);
+	leek3->team = 1;
 
 	fight.teams = {team1, team2};
 
@@ -60,6 +76,7 @@ void Test::test_fight() {
 
 	// Run the fight
 	Report* report = fight.start(vm);
+	std::cout << "-------------- report ----------------" << std::endl;
 	std::cout << report << std::endl;
 }
 
