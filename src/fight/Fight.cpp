@@ -63,6 +63,7 @@ Report* Fight::start(ls::VM& vm) {
 	auto end_time = chrono::high_resolution_clock::now();
 	long time_ns = chrono::duration_cast<chrono::nanoseconds>(end_time - start_time).count();
 	double time_ms = (((double) time_ns / 1000) / 1000);
+	std::cout << "-------------- end of fight ----------------" << std::endl;
 	cout << "time: " << time_ms << " ms" << endl;
 
 	return report;
