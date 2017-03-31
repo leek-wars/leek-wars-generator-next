@@ -17,11 +17,11 @@ void Test::test_fight() {
 	Fight fight;
 
 	// Create some weapons
-	Weapon pistol(37, "Pistol", 3, Attack(1, 7, LaunchType::CIRCLE, AreaType::SINGLE_CELL, true, "1,15,5,0,31", AttackType::WEAPON));
-	Weapon laser(42, "Laser", 6, Attack(2, 7, LaunchType::LINE, AreaType::LASER_LINE, true, "1,43,16,0,31", AttackType::WEAPON));
+	Weapon pistol(37, "Pistol", 3, new Attack(1, 7, LaunchType::CIRCLE, AreaType::SINGLE_CELL, true, "1,15,5,0,31", AttackType::WEAPON));
+	Weapon laser(42, "Laser", 6, new Attack(2, 7, LaunchType::LINE, AreaType::LASER_LINE, true, "1,43,16,0,31", AttackType::WEAPON));
 
 	// Create some chips
-	Chip fortress(29, "Fortress", 6, 4, false, 0, Attack(0, 6, LaunchType::CIRCLE, AreaType::SINGLE_CELL, true, "5,10,5,3,31", AttackType::CHIP));
+	Chip fortress(29, "Fortress", 6, 4, false, 0, new Attack(0, 6, LaunchType::CIRCLE, AreaType::SINGLE_CELL, true, "5,10,5,3,31", AttackType::CHIP));
 
 	Team* team1 = new Team();
 	// Entity 1
