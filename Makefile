@@ -5,6 +5,7 @@ TEST_DIR := test
 BUILD_DIR := $(addprefix build/default/,$(SRC_DIR))
 BUILD_DIR += $(addprefix build/default/,$(TEST_DIR))
 BUILD_DIR += $(addprefix build/coverage/,$(SRC_DIR))
+BUILD_DIR += $(addprefix build/sanitized/,$(SRC_DIR))
 
 SRC := $(foreach d,$(SRC_DIR),$(wildcard $(d)/*.cpp))
 SRC_TEST := $(foreach d,$(TEST_DIR),$(wildcard $(d)/*.cpp))
@@ -13,8 +14,10 @@ OBJ := $(patsubst %.cpp,build/default/%.o,$(SRC))
 OBJ_MAIN = build/default/src/Main.o
 OBJ_TEST := $(patsubst %.cpp,build/default/%.o,$(SRC_TEST))
 OBJ_COVERAGE := $(patsubst %.cpp,build/coverage/%.o,$(SRC))
+OBJ_SANITIZED := $(patsubst %.cpp,build/sanitized/%.o,$(SRC))
 
 FLAGS := -std=c++11 -O2 -g3 -Wall -Wextra -Wno-pmf-conversions
+SANITIZE_FLAGS := -fsanitize=address -fno-omit-frame-pointer -fsanitize=undefined -fsanitize=float-divide-by-zero # -fsanitize=float-cast-overflow
 LIBS := -ljit -lleekscript
 MAKEFLAGS += --jobs=$(shell nproc)
 
@@ -27,6 +30,9 @@ build/default/%.o: %.cpp
 
 build/coverage/%.o: %.cpp
 	g++ -c $(FLAGS) -O0 -fprofile-arcs -ftest-coverage -o "$@" "$<"
+
+build/sanitized/%.o: %.cpp
+	g++ -c $(OPTIM) $(FLAGS) $(SANITIZE_FLAGS) -o "$@" "$<"
 
 $(BUILD_DIR):
 	@mkdir -p $@
@@ -68,6 +74,16 @@ coverage: build/leek-wars-generator-coverage
 # `apt install valgrind`
 valgrind: build/leek-wars-generator-test
 	valgrind --verbose --track-origins=yes --leak-check=full --show-leak-kinds=all build/leek-wars-generator-test
+
+# Build with sanitize flags enabled
+build/leek-wars-generator-sanitized: $(BUILD_DIR) $(OBJ_SANITIZED) $(OBJ_TEST)
+	g++ $(FLAGS) $(SANITIZE_FLAGS) -o build/leek-wars-generator-sanitized $(OBJ_SANITIZED) $(OBJ_TEST) $(LIBS)
+	@echo "--------------------------"
+	@echo "Build (sanitized) finished!"
+	@echo "--------------------------"
+
+sanitized: build/leek-wars-generator-sanitized
+	@build/leek-wars-generator-sanitized
 
 # Line couning with cloc.
 # `apt-get install cloc`
