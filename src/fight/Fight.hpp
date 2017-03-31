@@ -19,7 +19,7 @@ public:
 
 	static const int MAX_TURNS = 64;
 
-	Map* map;
+	std::unique_ptr<Map> map;
 	std::vector<Team*> teams;
 	std::map<int, Entity*> entities;
 	int turn;

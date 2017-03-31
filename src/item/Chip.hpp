@@ -16,7 +16,7 @@ public:
 	int initial_cooldown;
 
 	Chip(int id, std::string&& name, int cost, int cooldown,
-			bool team_cooldown, int initial_cooldown, Attack&& attack);
+			bool team_cooldown, int initial_cooldown, Attack* attack);
 
 	virtual ~Chip();
 

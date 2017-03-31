@@ -8,7 +8,7 @@
 #include "Chip.hpp"
 
 Chip::Chip(int id, std::string&& name, int cost, int cooldown,
-		bool team_cooldown, int initial_cooldown, Attack&& attack)
+		bool team_cooldown, int initial_cooldown, Attack* attack)
 	: Item(id, name, cost, attack) {
 
 	this->cooldown = cooldown;
@@ -21,7 +21,9 @@ Chip::Chip(int id, std::string&& name, int cost, int cooldown,
 	addField("name", name_val);
 }
 
-Chip::~Chip() {}
+Chip::~Chip() {
+	delete values["name"];
+}
 
 std::ostream& Chip::print(std::ostream& os) const {
 	os << "<Chip ";

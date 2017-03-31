@@ -16,6 +16,8 @@ class Actions {
 
 public:
 
+	~Actions();
+
 	/*
 	private final JSONArray leeks = new JSONArray();
 	private final JSONObject map = new JSONObject();

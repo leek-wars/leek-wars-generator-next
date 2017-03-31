@@ -55,7 +55,7 @@ public:
 
 	int team;
 
-	AI* ai;
+	std::unique_ptr<AI> ai;
 
 	ls::LSArray<LSValue*> chips;
 	ls::LSArray<LSValue*> weapons;
@@ -81,13 +81,13 @@ public:
 	void setCell(Cell* cell);
 	Cell* getCell();
 
-	void setWeapons(std::vector<Weapon*>& weapons);
+	void setWeapons(std::vector<Weapon*> weapons);
 	const Weapon* getWeapon();
 	ls::LSArray<ls::LSValue*>* getWeapons();
 	void setWeapon(const Weapon* weapon);
 	void setWeaponInteger(int weapon);
 
-	void setChips(std::vector<Chip*>& chips);
+	void setChips(std::vector<Chip*> chips);
 	ls::LSArray<ls::LSValue*>* getChips();
 
 	void setCharacteristics(Characteristics characs);

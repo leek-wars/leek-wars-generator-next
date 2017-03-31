@@ -44,7 +44,9 @@ Entity::Entity(Fight* fight, std::string name, int level)
 	weapons.refs = 10;
 }
 
-Entity::~Entity() {}
+Entity::~Entity() {
+	delete values["name"];
+}
 
 int Entity::getTeam() const {
 	return team;
@@ -97,7 +99,7 @@ Cell* Entity::getCell() {
 	return cell;
 }
 
-void Entity::setWeapons(std::vector<Weapon*>& weapons) {
+void Entity::setWeapons(std::vector<Weapon*> weapons) {
 	this->weapons = std::vector<ls::LSValue*>(weapons.begin(), weapons.end());
 	this->weapons.native = true;
 	this->weapons.refs = 1;
@@ -105,7 +107,7 @@ void Entity::setWeapons(std::vector<Weapon*>& weapons) {
 	std::cout << "set weapons " << ((Weapon*) this->weapons[0])->id << '\n';
 }
 
-void Entity::setChips(std::vector<Chip*>& chips) {
+void Entity::setChips(std::vector<Chip*> chips) {
 	this->chips = std::vector<ls::LSValue*>(chips.begin(), chips.end());
 	this->chips.native = true;
 	this->chips.refs = 1;

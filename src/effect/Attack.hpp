@@ -52,7 +52,7 @@ public:
 	int max_range;
 	bool need_los;
 	LaunchType launch_type;
-	Area* area;
+	std::unique_ptr<Area> area;
 	AttackType attack_type;
 	std::vector<EffectParameters> effects;
 

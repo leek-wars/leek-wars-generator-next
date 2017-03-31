@@ -7,7 +7,7 @@
 
 #include "Weapon.hpp"
 
-Weapon::Weapon(int id, std::string&& name, int cost, Attack&& attack)
+Weapon::Weapon(int id, std::string&& name, int cost, Attack* attack)
 	: Item(id, name, cost, attack) {
 
 	readonly = true;
@@ -20,7 +20,7 @@ Weapon::Weapon(int id, std::string&& name, int cost, Attack&& attack)
 }
 
 Weapon::~Weapon() {
-//	cout << "~Weapon()" << endl;
+	delete values["name"];
 }
 
 int Weapon::getTemplateID() const {

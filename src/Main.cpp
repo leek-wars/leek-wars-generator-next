@@ -123,7 +123,7 @@ int main() {
 
 	fight.teams = {team1, team2};
 
-	fight.map = new Map(18, 18, 30, {team1, team2});
+	fight.map.reset(new Map(18, 18, 30, {team1, team2}));
 
 //	vector<Cell*> path = fight.map->get_path(leek1->cell, {leek2->cell}, {});
 //	fight.map->draw_path(path, leek1->cell, leek2->cell);

@@ -7,7 +7,7 @@
 
 #include "Item.hpp"
 
-Item::Item(int id, std::string& name, int cost, Attack& attack)
+Item::Item(int id, std::string& name, int cost, Attack* attack)
 	: id(id), name(name), cost(cost), attack(attack) {
 	native = true;
 	refs = 1;

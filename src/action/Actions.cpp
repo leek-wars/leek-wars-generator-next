@@ -3,6 +3,12 @@
 
 using namespace std;
 
+Actions::~Actions() {
+	for (auto& a : actions) {
+		delete a;
+	}
+}
+
 int Actions::getEffectId() {
 	return effect_id++;
 }

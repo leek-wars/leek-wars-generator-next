@@ -10,7 +10,11 @@
 
 Team::Team() {}
 
-Team::~Team() {}
+Team::~Team() {
+	for (auto& entity : entities) {
+		delete entity;
+	}
+}
 
 void Team::add_entity(Entity* entity) {
 	entities.push_back(entity);

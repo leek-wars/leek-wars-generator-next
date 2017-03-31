@@ -23,7 +23,11 @@ Fight::Fight() {
 	turn = 0;
 }
 
-Fight::~Fight() {}
+Fight::~Fight() {
+	for (auto& team : teams) {
+		delete team;
+	}
+}
 
 Report* Fight::start(ls::VM& vm) {
 

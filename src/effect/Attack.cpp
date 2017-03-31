@@ -25,7 +25,7 @@ Attack::Attack(int min_range, int max_range, LaunchType launch_type, AreaType ar
 	this->min_range = min_range;
 	this->max_range = max_range;
 	this->launch_type = launch_type;
-	this->area = Attack::getArea(this, area_type);
+	this->area.reset(Attack::getArea(this, area_type));
 	this->need_los = los;
 	this->attack_type = attack_type;
 

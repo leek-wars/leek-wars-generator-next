@@ -7,7 +7,7 @@
 class Weapon : public Item {
 public:
 
-	Weapon(int id, std::string&& name, int cost, Attack&& attack);
+	Weapon(int id, std::string&& name, int cost, Attack* attack);
 	virtual ~Weapon();
 
 	int getTemplateID() const;

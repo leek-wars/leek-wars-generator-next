@@ -47,7 +47,9 @@ Cell::Cell(Map* map, int id) {
 }
 
 Cell::~Cell() {
-	// nothing to do
+	delete this->values["id"];
+	delete this->values["x"];
+	delete this->values["y"];
 }
 
 void Cell::setObstacle(int id, int size) {

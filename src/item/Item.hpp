@@ -18,9 +18,9 @@ public:
 	int id;
 	std::string name;
 	int cost;
-	Attack attack;
+	std::unique_ptr<Attack> attack;
 
-	Item(int id, std::string& name, int cost, Attack& attack);
+	Item(int id, std::string& name, int cost, Attack* attack);
 	virtual ~Item();
 
 	virtual std::ostream& print(std::ostream&) const = 0;

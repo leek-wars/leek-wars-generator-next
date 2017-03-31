@@ -17,7 +17,11 @@ AI::AI(std::string code) {
 	this->program = nullptr;
 }
 
-AI::~AI() {}
+AI::~AI() {
+	if (program != nullptr) {
+		delete program;
+	}
+}
 
 void AI::compile(ls::VM& vm) {
 
