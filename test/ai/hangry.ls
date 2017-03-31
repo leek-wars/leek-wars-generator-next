@@ -11,10 +11,10 @@ System.print(me.getWeapons())
 
 me.say("Salut !")
 
-/*
+me.moveToward(him, 5)
+
 me.setWeapon(weapon)
 
-/*
 me.useWeapon(him)
 
 me.moveToward(him, 5)
