@@ -31,6 +31,8 @@ Fight::~Fight() {
 
 Report* Fight::start(ls::VM& vm) {
 
+	auto start_time = chrono::high_resolution_clock::now();
+
 	ls::VM::current_vm = &vm;
 	Simulator::fight = this;
 
@@ -43,9 +45,6 @@ Report* Fight::start(ls::VM& vm) {
 
 	teams[0]->entities[0]->ai->compile(vm);
 	teams[1]->entities[0]->ai->compile(vm);
-
-	auto start_time = chrono::high_resolution_clock::now();
-
 	// TODO
 	actions.add(new ActionStartFight());
 
