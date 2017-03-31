@@ -78,6 +78,7 @@ void Test::test_fight() {
 	Report* report = fight.start(vm);
 	std::cout << "-------------- report ----------------" << std::endl;
 	std::cout << report << std::endl;
+	delete report;
 }
 
 void Test::test_generateCritical() {
@@ -97,4 +98,7 @@ void Test::test_generateCritical() {
 
 	assert(fight.generateCritical(leek1) == 0);
 	assert(fight.generateCritical(leek2) == 1);
+
+	delete leek1;
+	delete leek2;
 }
