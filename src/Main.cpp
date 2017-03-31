@@ -81,11 +81,7 @@ int main() {
 	// Create fight
 	Fight fight;
 
-	/*
-	 * Team 1
-	 */
 	Team* team1 = new Team();
-
 	// Entity 1
 	AI* ai1 = new AI(Util::read_file("ai/hangry.ls"));
 	Leek* leek1 = new Leek(&fight, "Trevor", 300, ai1);
@@ -102,9 +98,6 @@ int main() {
 	team1->add_entity(leek1);
 	leek1->team = 0;
 
-	/*
-	 * Team 2
-	 */
 	Team* team2 = new Team();
 
 	// Entity 2
@@ -125,25 +118,11 @@ int main() {
 
 	fight.map.reset(new Map(18, 18, 30, {team1, team2}));
 
-//	vector<Cell*> path = fight.map->get_path(leek1->cell, {leek2->cell}, {});
-//	fight.map->draw_path(path, leek1->cell, leek2->cell);
-
-
 	// Run the fight
 	Report* report = fight.start(vm);
 
-//	fight.map->print();
-//	cout << fight.map->line_of_sight(fight.map->cells[50], fight.map->cells[500], {}) << endl;
-
 	// Print the report
 	cout << report << endl;
-
-//	vector<Cell*> path2 = fight.map->get_path(fight.map->cells[51], {fight.map->cells[561]}, {});
-//	fight.map->draw_path(path2, fight.map->cells[51], fight.map->cells[561]);
-
-	// LeekModule().generate_doc(cout, string("src/doc/Leek_fr.json"));
-
-	// vm.execute("var l = {life: 12} Leek.getLife(l)", "{}", ExecMode::NORMAL);
 
 	auto end_time = chrono::high_resolution_clock::now();
 	long time_ns = chrono::duration_cast<chrono::nanoseconds>(end_time - start_time).count();
