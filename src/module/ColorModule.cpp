@@ -59,10 +59,10 @@ ColorModule::ColorModule() : Module("Color") {
 	static_field("GREEN", ColorModule::type_ptr, (void*) &Color_GREEN);
 	static_field("BLUE", ColorModule::type_ptr, (void*) &Color_BLUE);
 
-	field("r", ls::Type::INTEGER);
-	field("g", ls::Type::INTEGER);
-	field("b", ls::Type::INTEGER);
-	field("a", ls::Type::INTEGER);
+	field("r", ls::Type::NUMBER);
+	field("g", ls::Type::NUMBER);
+	field("b", ls::Type::NUMBER);
+	field("a", ls::Type::NUMBER);
 
 	static_method("rgb", {
 		{ColorModule::type_ptr, {ls::Type::INTEGER, ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &color_rgb, ls::Method::NATIVE}

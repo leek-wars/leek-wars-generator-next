@@ -20,3 +20,8 @@ System.print(c.a)
 var c2 = Color.rgba(96, 171, 196, 0)
 System.print(c2)
 System.print(c2.a)
+System.print(c2.a)
+
+Fight.getEntity().say(Color.rgb(155, 67, 211))
+
+throw 1289
