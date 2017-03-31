@@ -5,6 +5,7 @@
 
 #include "Test.hpp"
 #include <leekscript/src/leekscript.h>
+#include "../benchmark/Benchmark.hpp"
 
 using namespace std;
 
@@ -35,6 +36,12 @@ void Test::tests() {
 	test_map();
 	test_generateCritical();
 	test_fight();
+
+	///////////////
+	LeekModule().generate_doc(cout, string("doc/Leek_fr.json"));
+	// EntityModule().generate_doc(cout, string("doc/Leek_fr.json"));
+	Benchmark::pathfinding();
+	///////////////
 
 	double elapsed_secs = double(clock() - begin) / CLOCKS_PER_SEC;
 

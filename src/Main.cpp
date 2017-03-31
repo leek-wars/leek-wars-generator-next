@@ -6,7 +6,6 @@
 #include <sstream>
 #include <leekscript/src/leekscript.h>
 
-#include "../benchmark/Benchmark.hpp"
 #include "util/Util.hpp"
 #include "fight/Fight.hpp"
 #include "map/Map.hpp"
@@ -155,8 +154,6 @@ int main() {
 	std::ofstream report_file("fight.json");
 	report_file << report << std::endl;
 	system("chromium-browser http://localhost:8012/fight/local");
-
-//	Benchmark::pathfinding();
 
 	delete report;
 
