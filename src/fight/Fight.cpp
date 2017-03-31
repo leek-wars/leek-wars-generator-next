@@ -36,15 +36,14 @@ Report* Fight::start(ls::VM& vm) {
 	ls::VM::current_vm = &vm;
 	Simulator::fight = this;
 
-	for (Team* team : teams) {
-		for (Entity* entity : team->entities) {
+	for (auto& team : teams) {
+		for (auto& entity : team->entities) {
 			entities.insert({entity->id, entity});
 			order.addEntity(entity);
+			entity->ai->compile(vm);
 		}
 	}
 
-	teams[0]->entities[0]->ai->compile(vm);
-	teams[1]->entities[0]->ai->compile(vm);
 	// TODO
 	actions.add(new ActionStartFight());
 
