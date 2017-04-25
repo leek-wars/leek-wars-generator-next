@@ -89,6 +89,8 @@ sanitized: build/leek-wars-generator-sanitized
 # `apt-get install cloc`
 cloc:
 	cloc . --exclude-dir=.git,lib,build
+cloc-xml:
+	cloc --quiet --xml . --exclude-dir=.git,lib,build
 
 clean:
 	rm -rf build
