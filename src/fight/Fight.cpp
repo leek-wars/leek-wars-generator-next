@@ -52,6 +52,7 @@ Report* Fight::start(ls::VM& vm) {
 			for (Entity* entity : team->entities) {
 				Simulator::entity = entity;
 				try {
+					std::cout << "[[Turn of " << entity->name << ", AI " << entity->ai->name << "...]]" << std::endl;
 					entity->ai->execute(vm);
 				} catch (ls::VM::ExceptionObj* ex) {
 					vm.last_exception = nullptr;
