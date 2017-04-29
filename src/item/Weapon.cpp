@@ -21,6 +21,7 @@ Weapon::Weapon(int id, std::string&& name, int cost, Attack* attack)
 
 Weapon::~Weapon() {
 	delete values["name"];
+	values.erase("name");
 }
 
 int Weapon::getTemplateID() const {

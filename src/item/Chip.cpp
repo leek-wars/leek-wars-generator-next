@@ -16,6 +16,7 @@ Chip::Chip(int id, std::string&& name, int cost, int cooldown,
 
 Chip::~Chip() {
 	delete values["name"];
+	values.erase("name");
 }
 
 std::ostream& Chip::print(std::ostream& os) const {
