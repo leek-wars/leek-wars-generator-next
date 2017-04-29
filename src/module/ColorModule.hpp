@@ -1,10 +1,3 @@
-/*
- * ColorModule.hpp
- *
- *  Created on: Apr 26, 2016
- *      Author: pierre
- */
-
 #ifndef SRC_MODULE_COLORMODULE_HPP_
 #define SRC_MODULE_COLORMODULE_HPP_
 
