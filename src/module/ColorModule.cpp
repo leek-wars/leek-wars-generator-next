@@ -26,27 +26,14 @@ ls::Compiler::value Color_GREEN(ls::Compiler& c) { return c.new_pointer((void*) 
 ls::Compiler::value Color_BLUE(ls::Compiler& c) { return c.new_pointer((void*) ColorModule::BLUE); }
 
 Color* color_rgb(int r, int g, int b) {
-
-	Color* color = new Color();
-
-	unsigned int red = (r << 16) & 0x00FF0000;
-	unsigned int green = (g << 8) & 0x0000FF00;
-	unsigned int blue = b & 0x000000FF;
-
-	color->value = 0xFF000000 | red | green | blue;
+	auto color = new Color();
+	color->value = ((255 & 0xff) << 24) + ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 	return color;
 }
 
 Color* color_rgba(int r, int g, int b, int a) {
-
-	Color* color = new Color();
-
-	unsigned int alpha = (a << 24) & 0xFF000000;
-	unsigned int red = (r << 16) & 0x00FF0000;
-	unsigned int green = (g << 8) & 0x0000FF00;
-	unsigned int blue = b & 0x000000FF;
-
-	color->value = alpha | red | green | blue;
+	auto color = new Color();
+	color->value = ((a & 0xff) << 24) + ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 	return color;
 }
 
