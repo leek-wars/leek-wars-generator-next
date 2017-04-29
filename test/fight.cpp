@@ -25,7 +25,7 @@ void Test::test_fight() {
 
 	Team* team1 = new Team();
 	// Entity 1
-	AI* ai1 = new AI(Util::read_file("test/ai/color.ls"));
+	AI* ai1 = new AI(Util::read_file("test/ai/color.ls"), "color.ls");
 	Leek* leek1 = new Leek(&fight, "Trevor", 300, ai1);
 	Characteristics characs1;
 	characs1.set(Characteristic::LIFE, 3200);
@@ -42,7 +42,7 @@ void Test::test_fight() {
 
 	Team* team2 = new Team();
 	// Entity 2
-	AI* ai2 = new AI(Util::read_file("test/ai/hangry.ls"));
+	AI* ai2 = new AI(Util::read_file("test/ai/hangry.ls"), "hangry.ls");
 	Leek* leek2 = new Leek(&fight, "Franklin", 297, ai2);
 	Characteristics characs2;
 	characs2.set(Characteristic::LIFE, 3900);
@@ -57,7 +57,7 @@ void Test::test_fight() {
 	team2->add_entity(leek2);
 	leek2->team = 1;
 	// Entity 3
-	auto ai3 = new AI(Util::read_file("test/ai/basic.ls"));
+	auto ai3 = new AI(Util::read_file("test/ai/basic.ls"), "basic.ls");
  	auto leek3 = new Leek(&fight, "Hodor", 297, ai3);
 	Characteristics characs3;
 	characs3.set(Characteristic::LIFE, 3900);

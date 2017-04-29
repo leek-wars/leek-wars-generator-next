@@ -13,7 +13,7 @@ public:
 	ls::Program* program;
 	jit_context_t context;
 
-	AI(std::string code);
+	AI(std::string code, std::string name);
 	virtual ~AI();
 
 	void compile(ls::VM& vm);
