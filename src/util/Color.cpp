@@ -20,14 +20,11 @@ Color::~Color() {}
 ls::LSValue* Color::attr(const std::string& k) const {
 	if (k == "r") {
 		return ls::LSNumber::get((((unsigned int) value) & 0xFF0000) >> 16);
-	}
-	else if (k == "g") {
+	} else if (k == "g") {
 		return ls::LSNumber::get((((unsigned int) value) & 0x00FF00) >> 8);
-	}
-	else if (k == "b") {
+	} else if (k == "b") {
 		return ls::LSNumber::get(((unsigned int) value) & 0x0000FF);
-	}
-	else if (k == "a") {
+	} else if (k == "a") {
 		return ls::LSNumber::get((((unsigned int) value) & 0xFF000000) >> 24);
 	}
 	return ls::LSNull::get();
