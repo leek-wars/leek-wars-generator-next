@@ -46,6 +46,7 @@ Entity::Entity(Fight* fight, std::string name, int level)
 
 Entity::~Entity() {
 	delete values["name"];
+	values.erase("name");
 }
 
 int Entity::getTeam() const {
