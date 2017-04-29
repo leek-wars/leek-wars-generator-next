@@ -1,10 +1,3 @@
-/*
- * AI.cpp
- *
- *  Created on: 30 mars 2016
- *      Author: pierre
- */
-
 #include "AI.hpp"
 
 #include "../module/EntityModule.hpp"
