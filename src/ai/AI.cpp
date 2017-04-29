@@ -14,7 +14,6 @@ AI::~AI() {
 	if (program != nullptr) {
 		delete program;
 	}
-	jit_context_destroy(context);
 }
 
 void AI::compile(ls::VM& vm) {
@@ -25,7 +24,6 @@ void AI::compile(ls::VM& vm) {
 	std::cout << "AI [" << name << "] : ";
 	program->print(std::cout, true);
 	std::cout << std::endl;
-	this->context = vm.jit_context;
 }
 
 void AI::execute(ls::VM& vm) {
