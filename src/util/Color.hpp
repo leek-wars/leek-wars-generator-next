@@ -17,7 +17,7 @@ public:
 	virtual ~Color();
 
 	ls::LSValue* attr(const std::string& key) const override;
-
+	ls::LSValue* clone() const override;
 	std::ostream& print(std::ostream& os) const;
 };
 

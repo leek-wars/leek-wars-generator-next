@@ -30,8 +30,12 @@ ls::LSValue* Color::attr(const std::string& k) const {
 	return ls::LSNull::get();
 }
 
-std::ostream& Color::print(std::ostream& os) const {
+ls::LSValue* Color::clone() const {
+	if (native) return (ls::LSValue*) this;
+	return new Color(value, false);
+}
 
+std::ostream& Color::print(std::ostream& os) const {
 	os << "#" << std::hex << std::setfill('0') << std::setw(8) << (unsigned int) value << std::dec;
 	return os;
 }
