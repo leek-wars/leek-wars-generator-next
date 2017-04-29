@@ -22,6 +22,7 @@ Entity::Entity(Fight* fight, std::string name, int level)
 	: fight(fight), name(name), level(level) {
 
 	native = true;
+	refs = 1;
 
 	id = Entity::next_id++;
 	ai = nullptr;
