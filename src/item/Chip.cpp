@@ -1,10 +1,3 @@
-/*
- * Chip.cpp
- *
- *  Created on: 30 mars 2016
- *      Author: pierre
- */
-
 #include "Chip.hpp"
 
 Chip::Chip(int id, std::string&& name, int cost, int cooldown,
