@@ -10,9 +10,9 @@
 
 Color::Color() : Color(0) {}
 
-Color::Color(int color, bool native) : LSNumber(0) {
-	this->value = color;
+Color::Color(int color, bool native) : LSNumber(color) {
 	this->native = native;
+	refs = 1;
 }
 
 Color::~Color() {}
