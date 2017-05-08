@@ -6,6 +6,7 @@
 #include <sstream>
 #include <fstream>
 #include <queue>
+#include <algorithm>
 
 using namespace std;
 
@@ -31,6 +32,14 @@ vector<string> Util::split(const string& s, char delim) {
 	return elems;
 }
 
+std::string Util::toupper(const std::string& string) {
+	std::string result = string;
+	std::for_each(result.begin(), result.end(), [](char& in) {
+		in = ::toupper(in);
+	});
+	return result;
+}
+
 template <typename T>
 bool Util::contains(const std::vector<T>& vector, const T& element) {
 	return find(vector.begin(), vector.end(), element) != vector.end();
@@ -42,4 +51,3 @@ string Util::read_file(string file) {
 	ifs.close();
 	return content;
 }
-
