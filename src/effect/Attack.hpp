@@ -1,10 +1,3 @@
-/*
- * Attack.hpp
- *
- *  Created on: Apr 26, 2016
- *      Author: pierre
- */
-
 #ifndef SRC_EFFECT_ATTACK_HPP_
 #define SRC_EFFECT_ATTACK_HPP_
 

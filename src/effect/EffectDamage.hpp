@@ -1,10 +1,3 @@
-/*
- * EffectDamage.hpp
- *
- *  Created on: Apr 26, 2016
- *      Author: pierre
- */
-
 #ifndef SRC_EFFECT_EFFECTDAMAGE_HPP_
 #define SRC_EFFECT_EFFECTDAMAGE_HPP_
 
@@ -26,4 +19,4 @@ public:
 	virtual int getEffectValue() const override;
 };
 
-#endif /* SRC_EFFECT_EFFECTDAMAGE_HPP_ */
+#endif

@@ -1,10 +1,3 @@
-/*
- * Effect.cpp
- *
- *  Created on: 30 mars 2016
- *      Author: pierre
- */
-
 #include "../fight/Fight.hpp"
 #include "../effect/Effect.hpp"
 #include "../entity/Entity.hpp"

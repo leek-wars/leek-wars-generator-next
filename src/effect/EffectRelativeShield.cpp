@@ -1,21 +1,9 @@
-/*
- * EffectRelativeShield.cpp
- *
- *  Created on: May 17, 2016
- *      Author: pierre
- */
-
 #include "EffectRelativeShield.hpp"
 #include "../entity/Entity.hpp"
 
-EffectRelativeShield::EffectRelativeShield() {
-	// TODO Auto-generated constructor stub
+EffectRelativeShield::EffectRelativeShield() {}
 
-}
-
-EffectRelativeShield::~EffectRelativeShield() {
-	// TODO Auto-generated destructor stub
-}
+EffectRelativeShield::~EffectRelativeShield() {}
 
 void EffectRelativeShield::apply(Fight*) {
 

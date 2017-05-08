@@ -1,10 +1,3 @@
-/*
- * EffectDamage.cpp
- *
- *  Created on: Apr 26, 2016
- *      Author: pierre
- */
-
 #include <math.h>
 #include "EffectDamage.hpp"
 #include "../entity/Entity.hpp"
