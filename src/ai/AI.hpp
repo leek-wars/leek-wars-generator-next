@@ -11,8 +11,9 @@ public:
 	std::string name;
 	std::string code;
 	ls::Program* program;
+	bool v1 = false;
 
-	AI(std::string code, std::string name);
+	AI(std::string code, std::string name, bool v1 = false);
 	virtual ~AI();
 
 	void compile(ls::VM& vm);

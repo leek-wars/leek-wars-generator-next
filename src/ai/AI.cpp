@@ -2,12 +2,12 @@
 
 #include "../module/EntityModule.hpp"
 
-AI::AI(std::string code, std::string ai_name) {
-
+AI::AI(std::string code, std::string ai_name, bool v1) {
 	this->id = 12765;
 	this->name = ai_name;
 	this->code = code;
 	this->program = nullptr;
+	this->v1 = v1;
 }
 
 AI::~AI() {
