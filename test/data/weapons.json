@@ -1,0 +1,20 @@
+[
+	{
+		"name": "pistol",
+		"id": 37,
+		"cost": 3,
+		"min_range": 1,
+		"max_range": 7,
+		"effect": "1,15,5,0,31",
+		"area": 1
+	},
+	{
+		"name": "laser",
+		"id": 42,
+		"cost": 3,
+		"min_range": 2,
+		"max_range": 7,
+		"effect": "1,43,16,0,31",
+		"area": 2
+	}
+]

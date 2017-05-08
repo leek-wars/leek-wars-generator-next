@@ -4,16 +4,8 @@ void Test::test_fight() {
 
 	header("Fight");
 
-	ls::VM vm;
-	vm.add_module(new FightModule());
-	vm.add_module(new EntityModule());
-	vm.add_module(new LeekModule());
-	vm.add_module(new MapModule());
-	vm.add_module(new CellModule());
-	vm.add_module(new WeaponModule());
-	vm.add_module(new ColorModule());
-	vm.add_module(new ChipModule());
-
+	FightManager manager;
+	add_weapons(manager);
 	Fight fight;
 
 	// Create some weapons
@@ -33,7 +25,7 @@ void Test::test_fight() {
 	characs1.set(Characteristic::MP, 10);
 	characs1.set(Characteristic::STRENGTH, 978);
 	leek1->setCharacteristics(characs1);
-	vector<Weapon*> weapons1 = {&pistol, &laser};
+	vector<Weapon*> weapons1 = {manager.weapons["pistol"], manager.weapons["laser"]};
 	leek1->setWeapons(weapons1);
 	vector<Chip*> chips1 = {&fortress};
 	leek1->setChips(chips1);
@@ -50,7 +42,7 @@ void Test::test_fight() {
 	characs2.set(Characteristic::MP, 10);
 	characs2.set(Characteristic::STRENGTH, 470);
 	leek2->setCharacteristics(characs2);
-	vector<Weapon*> weapons2 = {&laser};
+	vector<Weapon*> weapons2 = {manager.weapons["laser"]};
 	leek2->setWeapons(weapons2);
 	vector<Chip*> chips2 = {&fortress};
 	leek2->setChips(chips2);
@@ -65,7 +57,7 @@ void Test::test_fight() {
 	characs3.set(Characteristic::MP, 10);
 	characs3.set(Characteristic::STRENGTH, 470);
 	leek3->setCharacteristics(characs3);
-	leek3->setWeapons({&pistol, &laser});
+	leek3->setWeapons({manager.weapons["pistol"], manager.weapons["laser"]});
 	leek3->setChips({&fortress});
 	team2->add_entity(leek3);
 	leek3->team = 1;
@@ -75,7 +67,7 @@ void Test::test_fight() {
 	fight.map.reset(new Map(18, 18, 25, {team1, team2}));
 
 	// Run the fight
-	Report* report = fight.start(vm);
+	auto report = manager.start(fight);
 	std::cout << "-------------- report ----------------" << std::endl;
 	std::cout << report << std::endl;
 	delete report;
@@ -107,25 +99,10 @@ void Test::test_fight_v1() {
 
 	header("Fight v1");
 
-	ls::VM vm(true);
-	vm.add_module(new FightModule());
-	vm.add_module(new EntityModule());
-	vm.add_module(new LeekModule());
-	vm.add_module(new MapModule());
-	vm.add_module(new CellModule());
-	vm.add_module(new WeaponModule());
-	vm.add_module(new ColorModule());
-	vm.add_module(new ChipModule());
-	auto p = ls::LSNumber::get(12);
-	p->refs = 1;
-	p->native = true;
-	vm.add_constant("WEAPON_PISTOL", ls::Type::NUMBER, p);
+	FightManager manager;
+	add_weapons(manager);
 
 	Fight fight;
-
-	// Create some weapons
-	Weapon pistol(37, "Pistol", 3, new Attack(1, 7, LaunchType::CIRCLE, AreaType::SINGLE_CELL, true, "1,15,5,0,31", AttackType::WEAPON));
-	Weapon laser(42, "Laser", 6, new Attack(2, 7, LaunchType::LINE, AreaType::LASER_LINE, true, "1,43,16,0,31", AttackType::WEAPON));
 
 	// Create some chips
 	Chip fortress(29, "Fortress", 6, 4, false, 0, new Attack(0, 6, LaunchType::CIRCLE, AreaType::SINGLE_CELL, true, "5,10,5,3,31", AttackType::CHIP));
@@ -140,7 +117,7 @@ void Test::test_fight_v1() {
 	characs1.set(Characteristic::MP, 10);
 	characs1.set(Characteristic::STRENGTH, 978);
 	leek1->setCharacteristics(characs1);
-	vector<Weapon*> weapons1 = {&pistol, &laser};
+	vector<Weapon*> weapons1 = {manager.weapons["pistol"], manager.weapons["laser"]};
 	leek1->setWeapons(weapons1);
 	vector<Chip*> chips1 = {&fortress};
 	leek1->setChips(chips1);
@@ -149,7 +126,7 @@ void Test::test_fight_v1() {
 
 	Team* team2 = new Team();
 	// Entity 2
-	AI* ai2 = new AI(Util::read_file("test/ai/v1/example_ai.leek"), "example_ai.leek");
+	AI* ai2 = new AI(Util::read_file("test/ai/v1/example_ai.leek"), "example_ai.leek", true);
 	Leek* leek2 = new Leek(&fight, "Franklin", 297, ai2);
 	Characteristics characs2;
 	characs2.set(Characteristic::LIFE, 3900);
@@ -157,7 +134,7 @@ void Test::test_fight_v1() {
 	characs2.set(Characteristic::MP, 10);
 	characs2.set(Characteristic::STRENGTH, 470);
 	leek2->setCharacteristics(characs2);
-	vector<Weapon*> weapons2 = {&laser};
+	vector<Weapon*> weapons2 = {manager.weapons["laser"]};
 	leek2->setWeapons(weapons2);
 	vector<Chip*> chips2 = {&fortress};
 	leek2->setChips(chips2);
@@ -169,7 +146,7 @@ void Test::test_fight_v1() {
 	fight.map.reset(new Map(18, 18, 25, {team1, team2}));
 
 	// Run the fight
-	Report* report = fight.start(vm);
+	auto report = manager.start(fight);
 	std::cout << "-------------- report ----------------" << std::endl;
 	std::cout << report << std::endl;
 	delete report;

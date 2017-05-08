@@ -14,14 +14,7 @@
 #include "../src/entity/Leek.hpp"
 #include "../src/item/Chip.hpp"
 #include "../src/area/AreaSingleCell.hpp"
-#include "../src/module/FightModule.hpp"
-#include "../src/module/EntityModule.hpp"
-#include "../src/module/MapModule.hpp"
-#include "../src/module/CellModule.hpp"
-#include "../src/module/LeekModule.hpp"
-#include "../src/module/WeaponModule.hpp"
-#include "../src/module/ColorModule.hpp"
-#include "../src/module/ChipModule.hpp"
+#include "../src/fight/FightManager.hpp"
 
 class Test {
 
@@ -41,6 +34,7 @@ public:
 
 	void tests();
 	void header(std::string);
+	void add_weapons(FightManager& vm);
 
 	template <typename T>
 	void test(std::string message, T expected, T value);
