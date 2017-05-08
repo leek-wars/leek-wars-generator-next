@@ -29,7 +29,7 @@ Fight::~Fight() {
 	}
 }
 
-Report* Fight::start(ls::VM& vm) {
+Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 
 	auto start_time = chrono::high_resolution_clock::now();
 
@@ -40,7 +40,7 @@ Report* Fight::start(ls::VM& vm) {
 		for (auto& entity : team->entities) {
 			entities.insert({entity->id, entity});
 			order.addEntity(entity);
-			entity->ai->compile(vm);
+			entity->ai->compile(vm, vm_v1);
 		}
 	}
 
@@ -53,7 +53,7 @@ Report* Fight::start(ls::VM& vm) {
 				Simulator::entity = entity;
 				try {
 					std::cout << "[[Turn of " << entity->name << ", AI " << entity->ai->name << "...]]" << std::endl;
-					entity->ai->execute(vm);
+					entity->ai->execute(vm, vm_v1);
 				} catch (ls::vm::ExceptionObj* ex) {
 					std::cout << ex->to_string(false);
 					// delete ex;

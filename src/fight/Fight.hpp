@@ -32,7 +32,7 @@ public:
 	Fight();
 	virtual ~Fight();
 
-	Report* start(ls::VM& vm);
+	Report* start(ls::VM& vm, ls::VM& vm_v1);
 
 	Entity* getEntity(int id);
 

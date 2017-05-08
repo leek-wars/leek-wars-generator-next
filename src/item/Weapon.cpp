@@ -7,7 +7,7 @@
 
 #include "Weapon.hpp"
 
-Weapon::Weapon(int id, std::string&& name, int cost, Attack* attack)
+Weapon::Weapon(int id, std::string name, int cost, Attack* attack)
 	: Item(id, name, cost, attack) {
 
 	readonly = true;

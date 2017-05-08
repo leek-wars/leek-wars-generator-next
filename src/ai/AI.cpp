@@ -16,18 +16,18 @@ AI::~AI() {
 	}
 }
 
-void AI::compile(ls::VM& vm) {
+void AI::compile(ls::VM& vm, ls::VM& vm_v1) {
 
 	program = new ls::Program(code, name);
-	program->compile(vm, "{}");
+	program->compile(v1 ? vm_v1 : vm, "{}");
 
 	std::cout << "AI [" << name << "] : ";
 	program->print(std::cout, true);
 	std::cout << std::endl;
 }
 
-void AI::execute(ls::VM& vm) {
+void AI::execute(ls::VM& vm, ls::VM& vm_v1) {
 	if (program != nullptr) {
-		program->execute(vm);
+		program->execute(v1 ? vm_v1 : vm);
 	}
 }
