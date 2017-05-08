@@ -1,0 +1,6 @@
+//--------------------------------
+//------- Code de base -----------
+//--------------------------------
+
+// On prend le pistolet
+WEAPON_PISTOL; // Attention : coûte 1 PT

@@ -36,6 +36,7 @@ void Test::tests() {
 	test_map();
 	test_generateCritical();
 	test_fight();
+	test_fight_v1();
 
 	///////////////
 	LeekModule().generate_doc(cout, string("doc/Leek_fr.json"));

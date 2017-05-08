@@ -35,6 +35,7 @@ public:
 	virtual ~Test();
 
 	void test_fight();
+	void test_fight_v1();
 	void test_generateCritical();
 	void test_map();
 
