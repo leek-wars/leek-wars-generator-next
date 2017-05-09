@@ -4,8 +4,6 @@ void Test::test_fight() {
 
 	header("Fight");
 
-	FightManager manager;
-	add_weapons(manager);
 	Fight fight;
 
 	// Create some weapons
@@ -98,9 +96,6 @@ void Test::test_generateCritical() {
 void Test::test_fight_v1() {
 
 	header("Fight v1");
-
-	FightManager manager;
-	add_weapons(manager);
 
 	Fight fight;
 

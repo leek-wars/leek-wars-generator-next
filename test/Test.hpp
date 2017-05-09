@@ -18,6 +18,7 @@
 
 class Test {
 
+	FightManager manager;
 	int total;
 	int success;
 	double exeTime;

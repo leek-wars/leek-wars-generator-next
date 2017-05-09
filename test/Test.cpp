@@ -14,6 +14,7 @@ Test::Test() {
 	total = 0;
 	success = 0;
 	exeTime = 0;
+	add_weapons(manager);
 }
 
 int main(int, char**) {
