@@ -258,7 +258,6 @@ const ls::LSNull* entity_setWeapon(Entity* entity, const Weapon* weapon) {
  * Number -> an entity id, try to get it
  */
 inline Entity* entity__getEntity(const ls::LSValue* entity) {
-
 	if (dynamic_cast<const ls::LSNull*>(entity)) {
 		return Simulator::entity;
 	}
@@ -606,10 +605,8 @@ bool entity__say(const ls::LSValue* message) {
 	return Simulator::entity->say(message);
 }
 
-bool entity__setWeapon(const ls::LSValue* weapon) {
-	// TODO
-	// Weapon is an int
-	return false;
+bool entity__setWeapon(void* fun, const ls::LSNumber* weapon) {
+	return Simulator::entity->setWeaponInteger(weapon->value);
 }
 
 /*
