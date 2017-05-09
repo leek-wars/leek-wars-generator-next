@@ -8,6 +8,7 @@
 #include "../action/ActionLoseMP.hpp"
 #include "../action/ActionSay.hpp"
 #include "../action/ActionSetWeapon.hpp"
+#include "Team.hpp"
 
 int Entity::next_id = 0;
 
@@ -300,7 +301,11 @@ bool Entity::say(const LSValue* message) {
 	return true;
 }
 
-int Entity::moveToward(Entity* target, int max_mp) {
+int Entity::moveToward(Entity* target) {
+	return moveTowardMP(target, getMP());
+}
+
+int Entity::moveTowardMP(Entity* target, int max_mp) {
 
 	cout << "move toward " << target->id << "(me: " << id << ")" << endl;
 

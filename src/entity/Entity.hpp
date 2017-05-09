@@ -125,7 +125,8 @@ public:
 
 	bool say(const ls::LSValue* message);
 
-	int moveToward(Entity* target, int max_mp);
+	int moveToward(Entity* target);
+	int moveTowardMP(Entity* target, int max_mp);
 
 	void addCooldown(Chip* chip, int cooldown);
 	bool hasCooldown(int chipID) const;
