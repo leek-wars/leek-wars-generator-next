@@ -4,7 +4,7 @@ setWeapon(WEAPON_LASER)
 
 var enemy = getNearestEnemy()
 
-debug(getName(enemy))
+//debug(getName(enemy))
 /*
 say("Salut à toi " + getName(enemy) + " !")
 /*
