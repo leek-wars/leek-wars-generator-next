@@ -108,6 +108,7 @@ bool entity__isEnemy(const ls::LSValue* entity);
 bool entity__isSummon();
 bool entity__isSummonEntity(const ls::LSValue* entity);
 ls::LSArray<ls::LSValue*>* entity__listen();
+int entity__moveToward(void*, const ls::LSValue* entity);
 bool entity__say(const ls::LSValue* message);
 bool entity__setWeapon(const ls::LSValue* weapon);
 

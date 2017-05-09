@@ -223,6 +223,7 @@ EntityModule::EntityModule() : Module("Entity") {
 	});
 
 	static_method("_listen", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__listen);
+	static_method("_moveToward", ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &entity__moveToward);
 	static_method("_say", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__say);
 	static_method("_setWeapon", ls::Type::BOOLEAN, {ls::Type::NUMBER}, (void*) &entity__setWeapon);
 }
@@ -590,6 +591,14 @@ int entity__getLeek() {
 ls::LSArray<ls::LSValue*>* entity__listen() {
 	// TODO
 	return new ls::LSArray<ls::LSValue*>();
+}
+
+int entity__moveToward(void*, const ls::LSValue* entity) {
+	auto e = entity__getEntity(entity);
+	if (e == nullptr) {
+		return 0;
+	}
+	return Simulator::entity->moveToward(e);
 }
 
 bool entity__say(const ls::LSValue* message) {
