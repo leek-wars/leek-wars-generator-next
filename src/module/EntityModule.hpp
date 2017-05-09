@@ -85,6 +85,7 @@ int entity__getLevel();
 ls::LSValue* entity__getLevelEntity(const ls::LSValue* entity);
 ls::LSString* entity__getName();
 ls::LSValue* entity__getNameEntity(const ls::LSValue* entity);
+int entity__getNearestEnemy(void*);
 ls::LSValue* entity__getSummoner();
 ls::LSValue* entity__getSummonerEntity(const ls::LSValue* entity);
 ls::LSValue* entity__getTeamID();

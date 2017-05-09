@@ -145,6 +145,9 @@ EntityModule::EntityModule() : Module("Entity") {
 		{ls::Type::STRING, {}, (void*) &entity__getName},
 		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getNameEntity}
 	});
+	static_method("_getNearestEnemy", {
+		{ls::Type::INTEGER, {}, (void*) &entity__getNearestEnemy}
+	});
 	static_method("_getRelativeShield", {
 		{ls::Type::INTEGER, {}, (void*) &entity__getRelativeShield},
 		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getRelativeShieldEntity}
@@ -477,6 +480,10 @@ ls::LSValue* entity__getNameEntity(const ls::LSValue* entity) {
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return new ls::LSString(e->name);
+}
+
+int entity__getNearestEnemy(void*) {
+	return Simulator::entity->getClosestEnemy()->id;
 }
 
 ls::LSValue* entity__getSummoner() {
