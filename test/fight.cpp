@@ -134,5 +134,8 @@ void Test::test_fight_v1() {
 	auto report = manager.start(fight);
 	std::cout << "-------------- report ----------------" << std::endl;
 	std::cout << report << std::endl;
+
+	run_fight_browser(report);
+
 	delete report;
 }

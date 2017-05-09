@@ -66,3 +66,9 @@ void Test::add_chips(FightManager& manager) {
 		manager.vm_v1.add_constant(std::string("CHIP_") + Util::toupper(name), ls::Type::NUMBER, p);
 	}
 }
+
+void Test::run_fight_browser(Report* report) {
+	std::ofstream report_file("fight.json");
+	report_file << report << std::endl;
+	system("chromium-browser http://localhost:8012/fight/local");
+}
