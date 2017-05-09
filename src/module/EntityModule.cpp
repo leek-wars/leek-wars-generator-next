@@ -282,202 +282,203 @@ inline ls::LSValue* entity__getCharacteristic(const ls::LSValue* entity, Charact
  * Characteristics methods, all the same
  * Null if invalid entity, int otherwise
  */
-int entity__getAbsoluteShield() {
+int entity__getAbsoluteShield(void*) {
 	return Simulator::entity->getAbsoluteShield();
 }
-ls::LSValue* entity__getAbsoluteShieldEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getAbsoluteShieldEntity(void*, const ls::LSValue* entity) {
 	return entity__getCharacteristic(entity, Characteristic::ABSOLUTE_SHIELD);
 }
-int entity__getAgility() {
+int entity__getAgility(void*) {
 	return Simulator::entity->getAgility();
 }
-ls::LSValue* entity__getAgilityEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getAgilityEntity(void*, const ls::LSValue* entity) {
 	return entity__getCharacteristic(entity, Characteristic::AGILITY);
 }
-int entity__getFrequency() {
+int entity__getFrequency(void*) {
 	return Simulator::entity->getFrequency();
 }
-ls::LSValue* entity__getFrequencyEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getFrequencyEntity(void*, const ls::LSValue* entity) {
 	return entity__getCharacteristic(entity, Characteristic::FREQUENCY);
 }
-int entity__getCores() {
+int entity__getCores(void*) {
 	return 0; // was already deprecated in v1
 }
-ls::LSValue* entity__getCoresEntity(const ls::LSValue*) {
+ls::LSValue* entity__getCoresEntity(void*, const ls::LSValue*) {
 	return ls::LSNumber::get(0); // was already deprecated in v1
 }
-int entity__getDamageReturn() {
+int entity__getDamageReturn(void*) {
 	return Simulator::entity->getDamageReturn();
 }
-ls::LSValue* entity__getDamageReturnEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getDamageReturnEntity(void*, const ls::LSValue* entity) {
 	return entity__getCharacteristic(entity, Characteristic::DAMAGE_RETURN);
 }
-int entity__getMagic() {
+int entity__getMagic(void*) {
 	return Simulator::entity->getMagic();
 }
-ls::LSValue* entity__getMagicEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getMagicEntity(void*, const ls::LSValue* entity) {
 	return entity__getCharacteristic(entity, Characteristic::MAGIC);
 }
-int entity__getRelativeShield() {
+int entity__getRelativeShield(void*) {
 	return Simulator::entity->getRelativeShield();
 }
-ls::LSValue* entity__getRelativeShieldEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getRelativeShieldEntity(void*, const ls::LSValue* entity) {
 	return entity__getCharacteristic(entity, Characteristic::RELATIVE_SHIELD);
 }
-int entity__getResistance() {
+int entity__getResistance(void*) {
 	return Simulator::entity->getResistance();
 }
-ls::LSValue* entity__getResistanceEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getResistanceEntity(void*, const ls::LSValue* entity) {
 	return entity__getCharacteristic(entity, Characteristic::RESISTANCE);
 }
-int entity__getScience() {
+int entity__getScience(void*) {
 	return Simulator::entity->getScience();
 }
-ls::LSValue* entity__getScienceEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getScienceEntity(void*, const ls::LSValue* entity) {
 	return entity__getCharacteristic(entity, Characteristic::SCIENCE);
 }
-int entity__getStrength() {
+int entity__getStrength(void*) {
 	return Simulator::entity->getStrength();
 }
-ls::LSValue* entity__getStrengthEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getStrengthEntity(void*, const ls::LSValue* entity) {
 	return entity__getCharacteristic(entity, Characteristic::STRENGTH);
 }
-int entity__getTotalLife() {
+int entity__getTotalLife(void*) {
 	return Simulator::entity->getTotalLife();
 }
-ls::LSValue* entity__getTotalLifeEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getTotalLifeEntity(void*, const ls::LSValue* entity) {
 	return entity__getCharacteristic(entity, Characteristic::LIFE);
 }
-int entity__getTotalMP() {
+int entity__getTotalMP(void*) {
 	return Simulator::entity->getTotalMP();
 }
-ls::LSValue* entity__getTotalMPEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getTotalMPEntity(void*, const ls::LSValue* entity) {
 	return entity__getCharacteristic(entity, Characteristic::MP);
 }
-int entity__getTotalTP() {
+int entity__getTotalTP(void*) {
 	return Simulator::entity->getTotalTP();
 }
-ls::LSValue* entity__getTotalTPEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getTotalTPEntity(void*, const ls::LSValue* entity) {
 	return entity__getCharacteristic(entity, Characteristic::TP);
 }
-int entity__getWisdom() {
+int entity__getWisdom(void*) {
 	return Simulator::entity->getWisdom();
 }
-ls::LSValue* entity__getWisdomEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getWisdomEntity(void*, const ls::LSValue* entity) {
 	return entity__getCharacteristic(entity, Characteristic::WISDOM);
 }
 
-int entity__getLife() {
+int entity__getLife(void*) {
 	return Simulator::entity->getLife();
 }
-ls::LSValue* entity__getLifeEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getLifeEntity(void*, const ls::LSValue* entity) {
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return ls::LSNumber::get(e->life);
 }
 
-int entity__getTP() {
+int entity__getTP(void*) {
 	return Simulator::entity->getTP();
 }
-ls::LSValue* entity__getTPEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getTPEntity(void*, const ls::LSValue* entity) {
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return ls::LSNumber::get(e->getTP());
 }
 
-int entity__getMP() {
+int entity__getMP(void*) {
 	return Simulator::entity->getMP();
 }
-ls::LSValue* entity__getMPEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getMPEntity(void*, const ls::LSValue* entity) {
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return ls::LSNumber::get(e->getMP());
 }
 
-int entity__getBirthTurn() {
+int entity__getBirthTurn(void*) {
 	return 0;
 }
-ls::LSValue* entity__getBirthTurnEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getBirthTurnEntity(void*, const ls::LSValue* entity) {
 	// TODO
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return ls::LSNumber::get(0);
 }
 
-int entity__getCell() {
+int entity__getCell(void*) {
 	return Simulator::entity->cell->id;
 }
-ls::LSValue* entity__getCellEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getCellEntity(void*, const ls::LSValue* entity) {
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return ls::LSNumber::get(e->cell->id);
 }
 
-ls::LSArray<int>* entity__getChips() {
+ls::LSArray<int>* entity__getChips(void*) {
 	// TODO Int array
 //	return Simulator::entity->chips.clone();
 }
-ls::LSValue* entity__getChipsEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getChipsEntity(void*, const ls::LSValue* entity) {
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return e->chips.clone();
 }
 
-ls::LSArray<ls::LSValue*>* entity__getEffects() {
+ls::LSArray<ls::LSValue*>* entity__getEffects(void*) {
 	// TODO
 //	return LSNull::null_var;
 }
-ls::LSValue* entity__getEffectsEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getEffectsEntity(void*, const ls::LSValue* entity) {
 	// TODO
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return ls::LSNull::get();
 }
 
-int entity__getEntityTurnOrder() {
+int entity__getEntityTurnOrder(void*) {
 	// TODO
 }
-ls::LSValue* entity__getEntityTurnOrderEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getEntityTurnOrderEntity(void*, const ls::LSValue* entity) {
 	// TODO
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return ls::LSNull::get();
 }
 
-ls::LSArray<ls::LSValue*>* entity__getLaunchedEffects() {
+ls::LSArray<ls::LSValue*>* entity__getLaunchedEffects(void*) {
 	// TODO
 //	return LSNull::null_var;
 }
-ls::LSValue* entity__getLaunchedEffectsEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getLaunchedEffectsEntity(void*, const ls::LSValue* entity) {
 	// TODO
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return ls::LSNull::get();
 }
 
-int entity__getLeekID() {
+int entity__getLeekID(void*) {
 	return Simulator::entity->id;
 }
-ls::LSValue* entity__getLeekIDEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getLeekIDEntity(void*, const ls::LSValue* entity) {
 	// TODO
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return ls::LSNull::get();
 }
 
-int entity__getLevel() {
+int entity__getLevel(void*) {
 	return Simulator::entity->level;
 }
-ls::LSValue* entity__getLevelEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getLevelEntity(void*, const ls::LSValue* entity) {
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return ls::LSNumber::get(e->level);
 }
 
-ls::LSString* entity__getName() {
-	return new ls::LSString(Simulator::entity->level);
+ls::LSString* entity__getName(void*) {
+	return new ls::LSString(Simulator::entity->name);
 }
-ls::LSValue* entity__getNameEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getNameEntity(void*, const ls::LSValue* entity) {
+	std::cout << "getName " << (void*)entity << std::endl;
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return new ls::LSString(e->name);
@@ -487,21 +488,21 @@ int entity__getNearestEnemy(void*) {
 	return Simulator::entity->getClosestEnemy()->id;
 }
 
-ls::LSValue* entity__getSummoner() {
+ls::LSValue* entity__getSummoner(void*) {
 	// TODO
 }
-ls::LSValue* entity__getSummonerEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getSummonerEntity(void*, const ls::LSValue* entity) {
 	// TODO
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return ls::LSNull::get();
 }
 
-ls::LSValue* entity__getTeamID() {
+ls::LSValue* entity__getTeamID(void*) {
 	// TODO
 //	return LSNumber::get(e->team_id);
 }
-ls::LSValue* entity__getTeamIDEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getTeamIDEntity(void*, const ls::LSValue* entity) {
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return ls::LSNumber::get(e->team_id);
@@ -510,85 +511,85 @@ ls::LSValue* entity__getTeamIDEntity(const ls::LSValue* entity) {
 /*
  * Null or string
  */
-ls::LSValue* entity__getTeamName() {
+ls::LSValue* entity__getTeamName(void*) {
 //	return new LSString(e->team_name);
 }
-ls::LSValue* entity__getTeamNameEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getTeamNameEntity(void*, const ls::LSValue* entity) {
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return new ls::LSString(e->team_name);
 }
 
-ls::LSValue* entity__getType() {
+ls::LSValue* entity__getType(void*) {
 	// TODO
 }
-ls::LSValue* entity__getTypeEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getTypeEntity(void*, const ls::LSValue* entity) {
 	// TODO
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return ls::LSNull::get();
 }
 
-ls::LSValue* entity__getWeapon() {
+ls::LSValue* entity__getWeapon(void*) {
 	// TODO
 }
-ls::LSValue* entity__getWeaponEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getWeaponEntity(void*, const ls::LSValue* entity) {
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return e->weapon->clone();
 }
 
-ls::LSArray<int>* entity__getWeapons() {
+ls::LSArray<int>* entity__getWeapons(void*) {
 	// TODO
 }
-ls::LSValue* entity__getWeaponsEntity(const ls::LSValue* entity) {
+ls::LSValue* entity__getWeaponsEntity(void*, const ls::LSValue* entity) {
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return e->weapons.clone();
 }
 
-bool entity__isAlive(const ls::LSValue* entity) {
+bool entity__isAlive(void*, const ls::LSValue* entity) {
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return e->isAlive();
 }
 
-bool entity__isDead(const ls::LSValue* entity) {
+bool entity__isDead(void*, const ls::LSValue* entity) {
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return e->isDead();
 }
 
-bool entity__isAlly(const ls::LSValue* entity) {
+bool entity__isAlly(void*, const ls::LSValue* entity) {
 	// TODO
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return ls::LSNull::get();
 }
 
-bool entity__isEnemy(const ls::LSValue* entity) {
+bool entity__isEnemy(void*, const ls::LSValue* entity) {
 	// TODO
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return ls::LSNull::get();
 }
 
-bool entity__isSummon() {
+bool entity__isSummon(void*) {
 	// TODO
 	return false;
 }
-bool entity__isSummonEntity(const ls::LSValue* entity) {
+bool entity__isSummonEntity(void*, const ls::LSValue* entity) {
 	// TODO
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return false;
 	return false;
 }
 
-int entity__getLeek() {
+int entity__getLeek(void*) {
 	return Simulator::entity->id;
 }
 
-ls::LSArray<ls::LSValue*>* entity__listen() {
+ls::LSArray<ls::LSValue*>* entity__listen(void*) {
 	// TODO
 	return new ls::LSArray<ls::LSValue*>();
 }
@@ -601,7 +602,7 @@ int entity__moveToward(void*, const ls::LSValue* entity) {
 	return Simulator::entity->moveToward(e);
 }
 
-bool entity__say(const ls::LSValue* message) {
+bool entity__say(void*, const ls::LSValue* message) {
 	return Simulator::entity->say(message);
 }
 
@@ -612,23 +613,23 @@ bool entity__setWeapon(void* fun, const ls::LSNumber* weapon) {
 /*
  * Null or int
  */
-ls::LSValue* entity__getCooldown(const ls::LSValue* chip) {
+ls::LSValue* entity__getCooldown(void*, const ls::LSValue* chip) {
 	// TODO
 }
-ls::LSValue* entity__getCooldownEntity(const ls::LSValue* chip, const ls::LSValue* entity) {
+ls::LSValue* entity__getCooldownEntity(void*, const ls::LSValue* chip, const ls::LSValue* entity) {
 	// TODO
 }
 
-ls::LSValue* entity__resurrect() {
+ls::LSValue* entity__resurrect(void*) {
 	// TODO
 }
-ls::LSValue* entity__summon() {
+ls::LSValue* entity__summon(void*) {
 	// TODO
 }
-ls::LSValue* entity__useChip() {
+ls::LSValue* entity__useChip(void*) {
 	// TODO
 }
-ls::LSValue* entity__useChipOnCell() {
+ls::LSValue* entity__useChipOnCell(void*) {
 	// TODO
 }
 
