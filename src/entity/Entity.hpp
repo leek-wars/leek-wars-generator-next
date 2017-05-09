@@ -84,8 +84,8 @@ public:
 	void setWeapons(std::vector<Weapon*> weapons);
 	const Weapon* getWeapon();
 	ls::LSArray<ls::LSValue*>* getWeapons();
-	void setWeapon(const Weapon* weapon);
-	void setWeaponInteger(int weapon);
+	bool setWeapon(const Weapon* weapon);
+	bool setWeaponInteger(int weapon);
 
 	void setChips(std::vector<Chip*> chips);
 	ls::LSArray<ls::LSValue*>* getChips();

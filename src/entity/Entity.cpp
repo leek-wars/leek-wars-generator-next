@@ -116,23 +116,24 @@ ls::LSArray<ls::LSValue*>* Entity::getWeapons() {
 	return &this->weapons;
 }
 
-void Entity::setWeapon(const Weapon* weapon) {
-
-	std::cout << "Entity::setWeapon " << weapon->id << std::endl;
-
+bool Entity::setWeapon(const Weapon* weapon) {
+	if (getTP() < 1) {
+		return false;
+	}
 	this->weapon = weapon;
 	useTP(1);
-
 	fight->actions.add(new ActionSetWeapon(this, weapon));
+	return true;
 }
 
-void Entity::setWeaponInteger(int weapon) {
+bool Entity::setWeaponInteger(int weapon) {
 	for (LSValue* v : weapons) {
 		Weapon* w = (Weapon*) v;
 		if (w->id == weapon) {
-			setWeapon(w);
+			return setWeapon(w);
 		}
 	}
+	return false;
 }
 
 ls::LSArray<ls::LSValue*>* Entity::getChips() {
