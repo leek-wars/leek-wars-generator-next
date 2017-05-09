@@ -15,6 +15,7 @@
 #include "../action/ActionUseWeapon.hpp"
 #include "../action/ActionLoseMP.hpp"
 #include "../action/ActionMove.hpp"
+#include "../action/ActionNewTurn.hpp"
 
 using namespace std;
 
@@ -46,18 +47,20 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 	// TODO
 	actions.add(new ActionStartFight());
 
-	for (turn = 1; turn <= MAX_TURNS; ++turn) {
-		for (Team* team : teams) {
-			for (Entity* entity : team->entities) {
-				Simulator::entity = entity;
-				try {
-					std::cout << "[[Turn of " << entity->name << ", AI " << entity->ai->name << "...]]" << std::endl;
-					entity->ai->execute(vm, vm_v1);
-				} catch (ls::vm::ExceptionObj* ex) {
-					std::cout << ex->to_string(true);
-					// delete ex;
-				}
-			}
+	while (order.getTurn() <= MAX_TURNS) {
+
+		auto entity = order.current();
+		Simulator::entity = entity;
+		try {
+			std::cout << "[[Turn of " << entity->name << " (" << entity->id << "), AI " << entity->ai->name << "...]]" << std::endl;
+			entity->ai->execute(vm, vm_v1);
+		} catch (ls::vm::ExceptionObj* ex) {
+			std::cout << ex->to_string(true);
+			// delete ex;
+		}
+		entity->endTurn();
+		if (order.next()) {
+			actions.add(new ActionNewTurn(order.getTurn()));
 		}
 	}
 
