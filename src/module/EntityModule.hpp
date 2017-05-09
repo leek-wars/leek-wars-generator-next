@@ -113,5 +113,6 @@ bool entity__say(const ls::LSValue* message);
 bool entity__setWeapon(const ls::LSValue* weapon);
 
 
+int entity__useWeapon(void*, ls::LSValue* target);
 
 #endif

@@ -226,6 +226,7 @@ EntityModule::EntityModule() : Module("Entity") {
 	static_method("_moveToward", ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &entity__moveToward);
 	static_method("_say", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__say);
 	static_method("_setWeapon", ls::Type::BOOLEAN, {ls::Type::NUMBER}, (void*) &entity__setWeapon);
+	static_method("_useWeapon", ls::Type::INTEGER, {ls::Type::NUMBER}, (void*) &entity__useWeapon);
 }
 
 EntityModule::~EntityModule() {}
@@ -632,4 +633,9 @@ ls::LSValue* entity__useChip() {
 }
 ls::LSValue* entity__useChipOnCell() {
 	// TODO
+}
+
+int entity__useWeapon(void*, ls::LSValue* target) {
+	auto e = entity__getEntity(target);
+	return Simulator::entity->useWeapon(e);
 }
