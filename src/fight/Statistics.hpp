@@ -1,10 +1,3 @@
-/*
- * Statistics.hpp
- *
- *  Created on: May 19, 2016
- *      Author: pierre
- */
-
 #ifndef SRC_FIGHT_STATISTICS_HPP_
 #define SRC_FIGHT_STATISTICS_HPP_
 

@@ -1,10 +1,3 @@
-/*
- * WeaponModule.cpp
- *
- *  Created on: Apr 14, 2016
- *      Author: pierre
- */
-
 #include "WeaponModule.hpp"
 
 const ls::LSClass* WeaponModule::weapon_clazz;

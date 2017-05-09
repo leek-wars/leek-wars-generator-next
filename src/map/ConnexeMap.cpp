@@ -1,10 +1,3 @@
-/*
- * ConnexeMap.cpp
- *
- *  Created on: Mar 30, 2016
- *      Author: pierre
- */
-
 #include "ConnexeMap.hpp"
 
 ConnexeMap::ConnexeMap(Map* map) {

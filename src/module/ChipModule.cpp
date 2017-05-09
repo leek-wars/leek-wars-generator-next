@@ -1,10 +1,3 @@
-/*
- * ChipModule.cpp
- *
- *  Created on: May 4, 2016
- *      Author: pierre
- */
-
 #include "ChipModule.hpp"
 
 const ls::LSClass* ChipModule::chip_clazz;

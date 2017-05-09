@@ -1,10 +1,3 @@
-/*
- * Order.hpp
- *
- *  Created on: Apr 28, 2016
- *      Author: pierre
- */
-
 #ifndef FIGHT_ORDER_HPP_
 #define FIGHT_ORDER_HPP_
 
@@ -38,4 +31,4 @@ public:
 
 std::ostream& operator << (std::ostream& os, Order& order);
 
-#endif /* FIGHT_ORDER_HPP_ */
+#endif

@@ -1,10 +1,3 @@
-/*
- * ColorModule.cpp
- *
- *  Created on: Apr 26, 2016
- *      Author: pierre
- */
-
 #include "ColorModule.hpp"
 
 const ls::LSClass* ColorModule::color_clazz;

@@ -1,10 +1,3 @@
-/*
- * StartOrder.cpp
- *
- *  Created on: Apr 26, 2016
- *      Author: pierre
- */
-
 #include <iterator>
 #include <algorithm>
 #include "StartOrder.hpp"

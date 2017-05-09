@@ -1,10 +1,3 @@
-/*
- * Summon.hpp
- *
- *  Created on: May 4, 2016
- *      Author: pierre
- */
-
 #ifndef ENTITY_SUMMON_HPP_
 #define ENTITY_SUMMON_HPP_
 
@@ -16,4 +9,4 @@ public:
 	virtual ~Summon();
 };
 
-#endif /* ENTITY_SUMMON_HPP_ */
+#endif

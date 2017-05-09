@@ -1,10 +1,3 @@
-/*
- * Benchmark.cpp
- *
- *  Created on: May 19, 2016
- *      Author: pierre
- */
-
 #include "Benchmark.hpp"
 #include <vector>
 #include <unistd.h>

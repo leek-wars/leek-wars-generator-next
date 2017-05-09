@@ -1,10 +1,3 @@
-/*
- * AreaCircle.cpp
- *
- *  Created on: Apr 26, 2016
- *      Author: pierre
- */
-
 #include "AreaCircle.hpp"
 #include "AreaMask.hpp"
 

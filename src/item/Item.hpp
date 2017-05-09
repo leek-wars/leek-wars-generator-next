@@ -1,10 +1,3 @@
-/*
- * Item.hpp
- *
- *  Created on: 15 avr. 2016
- *      Author: pierre
- */
-
 #ifndef ITEM_HPP_
 #define ITEM_HPP_
 

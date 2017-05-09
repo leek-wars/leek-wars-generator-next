@@ -1,10 +1,3 @@
-/*
- * Entity.cpp
- *
- *  Created on: Mar 30, 2016
- *      Author: pierre
- */
-
 #include <algorithm>
 
 #include "Entity.hpp"

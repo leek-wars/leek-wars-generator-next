@@ -1,10 +1,3 @@
-/*
- * AreaLaserLine.hpp
- *
- *  Created on: Apr 26, 2016
- *      Author: pierre
- */
-
 #ifndef SRC_AREA_AREALASERLINE_HPP_
 #define SRC_AREA_AREALASERLINE_HPP_
 
@@ -20,4 +13,4 @@ public:
 	virtual int getRadius() const override;
 };
 
-#endif /* SRC_AREA_AREALASERLINE_HPP_ */
+#endif

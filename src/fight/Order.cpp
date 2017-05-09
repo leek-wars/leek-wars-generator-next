@@ -1,10 +1,3 @@
-/*
- * Order.cpp
- *
- *  Created on: Apr 28, 2016
- *      Author: pierre
- */
-
 #include <algorithm>
 #include "Order.hpp"
 #include "../entity/Entity.hpp"

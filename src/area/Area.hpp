@@ -1,10 +1,3 @@
-/*
- * Area.hpp
- *
- *  Created on: Apr 26, 2016
- *      Author: pierre
- */
-
 #ifndef SRC_AREA_AREA_HPP_
 #define SRC_AREA_AREA_HPP_
 

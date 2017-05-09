@@ -1,10 +1,3 @@
-/*
- * AreaSingleCell.cpp
- *
- *  Created on: Apr 26, 2016
- *      Author: pierre
- */
-
 #include "AreaSingleCell.hpp"
 
 AreaSingleCell::AreaSingleCell(Attack* attack) : Area(attack) {}
