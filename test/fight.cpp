@@ -111,7 +111,7 @@ void Test::test_fight_v1() {
 
 	Team* team2 = new Team();
 	// Entity 2
-	AI* ai2 = new AI(Util::read_file("test/ai/v1/example_ai.leek"), "example_ai.leek", true);
+	AI* ai2 = new AI(Util::read_file("test/ai/v1/basic_ai.leek"), "basic_ai.leek", true);
 	Leek* leek2 = new Leek(&fight, "Franklin", 297, ai2);
 	Characteristics characs2;
 	characs2.set(Characteristic::LIFE, 3900);
@@ -119,7 +119,7 @@ void Test::test_fight_v1() {
 	characs2.set(Characteristic::MP, 3);
 	characs2.set(Characteristic::STRENGTH, 470);
 	leek2->setCharacteristics(characs2);
-	vector<Weapon*> weapons2 = {manager.weapons["pistol"]};
+	vector<Weapon*> weapons2 = {manager.weapons["laser"]};
 	leek2->setWeapons(weapons2);
 	vector<Chip*> chips2 = {manager.chips["fortress"]};
 	leek2->setChips(chips2);
@@ -135,7 +135,7 @@ void Test::test_fight_v1() {
 	std::cout << "-------------- report ----------------" << std::endl;
 	std::cout << report << std::endl;
 
-	run_fight_browser(report);
+	// run_fight_browser(report);
 
 	delete report;
 }

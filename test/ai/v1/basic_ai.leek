@@ -1,0 +1,15 @@
+debug("start")
+
+setWeapon(WEAPON_LASER)
+
+var enemy = getNearestEnemy()
+
+debug(getName(enemy))
+/*
+say("Salut à toi " + getName(enemy) + " !")
+/*
+debug("life: " + getLife(enemy))
+debug("tp: " + getTP(enemy))
+debug("mp: " + getMP(enemy))
+debug("strength: " + getStrength(enemy))
+debug("cell: " + getCell(enemy))
