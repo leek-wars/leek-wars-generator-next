@@ -221,9 +221,7 @@ EntityModule::EntityModule() : Module("Entity") {
 
 	static_method("_listen", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__listen);
 	static_method("_say", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__say);
-	static_method("_setWeapon", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__setWeapon);
-
-
+	static_method("_setWeapon", ls::Type::BOOLEAN, {ls::Type::NUMBER}, (void*) &entity__setWeapon);
 }
 
 EntityModule::~EntityModule() {}
