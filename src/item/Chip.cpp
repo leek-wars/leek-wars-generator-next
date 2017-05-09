@@ -1,6 +1,6 @@
 #include "Chip.hpp"
 
-Chip::Chip(int id, std::string&& name, int cost, int cooldown,
+Chip::Chip(int id, std::string name, int cost, int cooldown,
 		bool team_cooldown, int initial_cooldown, Attack* attack)
 	: Item(id, name, cost, attack) {
 
