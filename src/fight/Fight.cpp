@@ -33,7 +33,6 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 
 	auto start_time = chrono::high_resolution_clock::now();
 
-	ls::VM::current_vm = &vm;
 	Simulator::fight = this;
 
 	for (auto& team : teams) {

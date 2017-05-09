@@ -17,7 +17,8 @@ AI::~AI() {
 }
 
 void AI::compile(ls::VM& vm, ls::VM& vm_v1) {
-
+	
+	ls::VM::current_vm = v1 ? &vm_v1 : &vm;
 	program = new ls::Program(code, name);
 	program->compile(v1 ? vm_v1 : vm, "{}");
 
@@ -28,6 +29,7 @@ void AI::compile(ls::VM& vm, ls::VM& vm_v1) {
 
 void AI::execute(ls::VM& vm, ls::VM& vm_v1) {
 	if (program != nullptr) {
-		program->execute(v1 ? vm_v1 : vm);
+		ls::VM::current_vm = v1 ? &vm_v1 : &vm;
+		program->execute(*ls::VM::current_vm);
 	}
 }
