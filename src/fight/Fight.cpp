@@ -22,6 +22,7 @@ using namespace std;
 Fight::Fight() {
 	map = nullptr;
 	turn = 0;
+	Entity::next_id = 0;
 }
 
 Fight::~Fight() {
