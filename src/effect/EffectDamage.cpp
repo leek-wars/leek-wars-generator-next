@@ -63,7 +63,7 @@ void EffectDamage::apply(Fight* fight) {
 		}
 
 		if (return_damage > 0) {
-			fight->actions.add(new ActionLoseLife(caster, returnDamage));
+			fight->actions.add(new ActionLoseLife(caster, return_damage));
 			caster->removeLife(return_damage, target);
 		}
 	}
