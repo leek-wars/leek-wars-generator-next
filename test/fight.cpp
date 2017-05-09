@@ -99,7 +99,7 @@ void Test::test_fight_v1() {
 	Characteristics characs1;
 	characs1.set(Characteristic::LIFE, 3200);
 	characs1.set(Characteristic::TP, 2000);
-	characs1.set(Characteristic::MP, 10);
+	characs1.set(Characteristic::MP, 3);
 	characs1.set(Characteristic::STRENGTH, 978);
 	leek1->setCharacteristics(characs1);
 	vector<Weapon*> weapons1 = {manager.weapons["pistol"], manager.weapons["laser"]};
@@ -116,10 +116,10 @@ void Test::test_fight_v1() {
 	Characteristics characs2;
 	characs2.set(Characteristic::LIFE, 3900);
 	characs2.set(Characteristic::TP, 2000);
-	characs2.set(Characteristic::MP, 10);
+	characs2.set(Characteristic::MP, 3);
 	characs2.set(Characteristic::STRENGTH, 470);
 	leek2->setCharacteristics(characs2);
-	vector<Weapon*> weapons2 = {manager.weapons["laser"]};
+	vector<Weapon*> weapons2 = {manager.weapons["pistol"]};
 	leek2->setWeapons(weapons2);
 	vector<Chip*> chips2 = {manager.chips["fortress"]};
 	leek2->setChips(chips2);
