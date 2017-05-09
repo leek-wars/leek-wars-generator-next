@@ -1,24 +1,17 @@
-package com.leekwars.game.fight.action;
+#ifndef ACTION_LOSE_LIFE
+#define ACTION_LOSE_LIFE
 
-import com.alibaba.fastjson.JSONArray;
-import com.leekwars.game.fight.entity.Entity;
+#include "Action.hpp"
+#include "../entity/Entity.hpp"
 
-public class ActionLoseLife implements Action {
+class ActionLoseLife : public Action {
+	int target;
+	int life;
+public:
 
-	private final int target;
-	private final int pv;
+	ActionLoseLife(Entity* target, int life);
 
-	public ActionLoseLife(Entity target, int pv) {
-		this.target = target.getFId();
-		this.pv = pv;
-	}
+	virtual Json json() const override;
+};
 
-	@Override
-	public JSONArray getJSON() {
-		JSONArray retour = new JSONArray();
-		retour.add(Action.LOST_LIFE);
-		retour.add(target);
-		retour.add(pv);
-		return retour;
-	}
-}
+#endif

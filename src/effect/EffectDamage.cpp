@@ -1,14 +1,14 @@
 #include <math.h>
 #include "EffectDamage.hpp"
 #include "../entity/Entity.hpp"
+#include "../action/ActionLoseLife.hpp"
+#include "../fight/Fight.hpp"
 
 EffectDamage::EffectDamage() {}
 
 EffectDamage::~EffectDamage() {}
 
-void EffectDamage::apply(Fight*) {
-
-	cout << "apply EffectDamage" << endl;
+void EffectDamage::apply(Fight* fight) {
 
 	// Base damages
 	double d = (value1 + jet * value2) * (1 + max(0, caster->getStrength()) / 100.0) * power * critical_power;
@@ -39,8 +39,7 @@ void EffectDamage::apply(Fight*) {
 		// fight.getTrophyManager().roxxor(caster);
 	}
 
-	// TODO
-	// fight.log(new ActionLoseLife(target, damage));
+	fight->actions.add(new ActionLoseLife(target, damage));
 	target->removeLife(damage, caster);
 
 	// Life steal
@@ -64,8 +63,7 @@ void EffectDamage::apply(Fight*) {
 		}
 
 		if (return_damage > 0) {
-			// TODO
-			// fight.log(new ActionLoseLife(caster, returnDamage));
+			fight->actions.add(new ActionLoseLife(caster, returnDamage));
 			caster->removeLife(return_damage, target);
 		}
 	}
