@@ -54,7 +54,7 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 					std::cout << "[[Turn of " << entity->name << ", AI " << entity->ai->name << "...]]" << std::endl;
 					entity->ai->execute(vm, vm_v1);
 				} catch (ls::vm::ExceptionObj* ex) {
-					std::cout << ex->to_string(false);
+					std::cout << ex->to_string(true);
 					// delete ex;
 				}
 			}
