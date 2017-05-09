@@ -36,6 +36,7 @@ public:
 	void tests();
 	void header(std::string);
 	void add_weapons(FightManager& vm);
+	void add_chips(FightManager& vm);
 
 	template <typename T>
 	void test(std::string message, T expected, T value);
