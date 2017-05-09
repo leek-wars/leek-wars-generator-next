@@ -45,7 +45,6 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 		}
 	}
 
-	// TODO
 	actions.add(new ActionStartFight());
 
 	while (order.getTurn() <= MAX_TURNS) {
