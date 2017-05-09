@@ -117,6 +117,8 @@ public:
 	int useWeapon(Entity* target);
 	int useWeaponOnCell(Cell* cell);
 
+	Entity* getClosestEnemy() const;
+
 	void useTP(int tp);
 	void useMP(int mp);
 	void endTurn();

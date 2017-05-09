@@ -256,6 +256,11 @@ int Entity::useWeaponOnCell(Cell* cell) {
 	return fight->useWeapon(this, cell);
 }
 
+Entity* Entity::getClosestEnemy() const {
+	// TODO
+	return fight->teams[(team + 1) % 2]->entities[0];
+}
+
 void Entity::useTP(int tp) {
 	used_tp += tp;
 	fight->actions.add(new ActionLoseTP(this, tp));
