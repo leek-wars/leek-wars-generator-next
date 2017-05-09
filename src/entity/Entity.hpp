@@ -119,6 +119,7 @@ public:
 
 	void useTP(int tp);
 	void useMP(int mp);
+	void endTurn();
 
 	bool say(const ls::LSValue* message);
 

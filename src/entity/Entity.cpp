@@ -265,6 +265,11 @@ void Entity::useMP(int mp) {
 	fight->actions.add(new ActionLoseMP(this, mp));
 }
 
+void Entity::endTurn() {
+	used_tp = 0;
+	used_mp = 0;
+}
+
 bool Entity::say(const LSValue* message) {
 
 	if (getTP() < 1) {
