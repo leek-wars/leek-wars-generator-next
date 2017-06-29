@@ -21,6 +21,8 @@
 #include "module/WeaponModule.hpp"
 #include "module/ColorModule.hpp"
 #include "module/ChipModule.hpp"
+#include "fight/FightLoader.hpp"
+#include "fight/FightManager.hpp"
 
 using namespace std;
 
@@ -47,6 +49,13 @@ string url_encode(const string &value) {
     return escaped.str();
 }
 
+void load_fight() {
+	auto fight = FightLoader::load("test/fight/fight1.json");
+	auto report = FightManager().start(*fight);
+	std::cout << report << std::endl;
+	delete report;
+}
+
 int main() {
 
 	cout << "~~ leek-wars-simulator ~~" << endl;
@@ -61,6 +70,9 @@ int main() {
 	ls::LSNull::set_null_value(null_value);
 	ls::LSBoolean::set_true_value(true_value);
 	ls::LSBoolean::set_false_value(false_value);
+
+	load_fight();
+	return 0;
 
 	ls::VM vm;
 	vm.add_module(new FightModule());
