@@ -1,5 +1,5 @@
 #include "Util.hpp"
-
+#include <stdlib.h>
 #include <iostream>
 #include <stdlib.h>
 #include <ctime>
@@ -7,6 +7,7 @@
 #include <fstream>
 #include <queue>
 #include <algorithm>
+#include <iomanip>
 
 using namespace std;
 
@@ -50,4 +51,23 @@ string Util::read_file(string file) {
 	string content = string((istreambuf_iterator<char>(ifs)), (istreambuf_iterator<char>()));
 	ifs.close();
 	return content;
+}
+
+string Util::url_encode(const string& value) {
+	ostringstream escaped;
+	escaped.fill('0');
+	escaped << hex;
+	for (string::const_iterator i = value.begin(), n = value.end(); i != n; ++i) {
+		string::value_type c = (*i);
+		// Keep alphanumeric and other accepted characters intact
+		if (isalnum(c) || c == '-' || c == '_' || c == '.' || c == '~') {
+			escaped << c;
+			continue;
+		}
+		// Any other characters are percent-encoded
+		escaped << uppercase;
+		escaped << '%' << std::setw(2) << int((unsigned char) c);
+		escaped << nouppercase;
+	}
+	return escaped.str();
 }

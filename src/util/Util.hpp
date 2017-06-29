@@ -19,6 +19,8 @@ public:
 	static bool contains(const std::vector<T>& vector, const T& element);
 
 	static std::string read_file(std::string file);
+
+	static std::string url_encode(const std::string& value);
 };
 
 #endif
