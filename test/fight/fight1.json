@@ -1,6 +1,6 @@
 {	"teams": [
 		{	"entities": [
-				{	"ai": "ai/basic.ls",
+				{	"ai": "test/ai/basic.ls",
 					"name": "Poireau",
 					"level": 301,
 					"life": 5000,
@@ -9,7 +9,7 @@
 					"mp": 6,
 					"cell": 123
 				},
-				{	"ai": "ai/color.ls",
+				{	"ai": "test/ai/color.ls",
 					"name": "Yolo",
 					"level": 200,
 					"life": 3000,
@@ -21,7 +21,7 @@
 			]
 		},
 		{	"entities": [
-				{	"ai": "ai/hangry.ls",
+				{	"ai": "test/ai/hangry.ls",
 					"name": "Boss",
 					"level": 1000,
 					"life": 10000,
