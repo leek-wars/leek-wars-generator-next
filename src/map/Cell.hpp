@@ -42,9 +42,13 @@ public:
 
 	bool isEmpty() const;
 	bool isObstacle() const;
+	bool isWalkable() const;
 	bool hasEntity() const;
 	int getContent() const;
 	bool isOnSameLine(const Cell*) const;
+	Entity* getEntity() const;
+	int getX() const;
+	int getY() const;
 
 	virtual ls::LSValue* getClass() const override;
 	virtual std::ostream& print(std::ostream& os) const override;

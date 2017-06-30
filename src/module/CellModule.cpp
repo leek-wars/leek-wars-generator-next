@@ -18,11 +18,18 @@ CellModule::CellModule() : Module("Cell") {
 	field("y", ls::Type::NUMBER);
 	field("id", ls::Type::NUMBER);
 	field("entity", EntityModule::type_ptr);
+	field("obstacle", ls::Type::BOOLEAN_P);
+	field("walkable", ls::Type::BOOLEAN_P);
+	field("empty", ls::Type::BOOLEAN_P);
 
-	method("isEmpty", CellModule::type, ls::Type::BOOLEAN, {}, (void*) &Cell::isEmpty);
-	method("hasEntity", CellModule::type, ls::Type::BOOLEAN, {}, (void*) &Cell::hasEntity);
-	method("isObstacle", CellModule::type, ls::Type::BOOLEAN, {}, (void*) &Cell::isObstacle);
-	method("distance", CellModule::type, ls::Type::INTEGER, {CellModule::type}, (void*) &Cell::distance);
+	method("isEmpty", CellModule::type, ls::Type::BOOLEAN, {}, (void*) &Cell::isEmpty, ls::Method::NATIVE);
+	method("hasEntity", CellModule::type, ls::Type::BOOLEAN, {}, (void*) &Cell::hasEntity, ls::Method::NATIVE);
+	method("isObstacle", CellModule::type, ls::Type::BOOLEAN, {}, (void*) &Cell::isObstacle, ls::Method::NATIVE);
+	method("isWalkable", CellModule::type, ls::Type::BOOLEAN, {}, (void*) &Cell::isWalkable, ls::Method::NATIVE);
+	method("distance", CellModule::type, ls::Type::INTEGER, {CellModule::type}, (void*) &Cell::distance, ls::Method::NATIVE);
+	method("getX", CellModule::type, ls::Type::INTEGER, {}, (void*) &Cell::getX, ls::Method::NATIVE);
+	method("getY", CellModule::type, ls::Type::INTEGER, {}, (void*) &Cell::getY, ls::Method::NATIVE);
+	method("getEntity", CellModule::type, EntityModule::type_ptr, {}, (void*) &Cell::getEntity, ls::Method::NATIVE);
 
 	// v1 functions
 	static_method("_isEmptyCell", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &cell__isEmptyCell);

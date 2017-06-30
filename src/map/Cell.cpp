@@ -43,6 +43,11 @@ Cell::Cell(Map* map, int id) {
 	this->values["y"] = ls::LSNumber::get(this->y);
 	this->values["y"]->native = true;
 	this->values["y"]->refs = 1;
+	this->values["obstacle"] = ls::LSBoolean::get(false);
+	this->values["walkable"] = ls::LSBoolean::get(true);
+	this->values["empty"] = ls::LSBoolean::get(true);
+	this->values["entity"] = ls::LSNull::get();
+
 	this->readonly = true;
 }
 
@@ -57,6 +62,9 @@ void Cell::setObstacle(int id, int size) {
 	walkable = false;
 	obstacle = id;
 	obstacle_size = size;
+	this->values["obstacle"] = ls::LSBoolean::get(true);
+	this->values["walkable"] = ls::LSBoolean::get(false);
+	this->values["empty"] = ls::LSBoolean::get(false);
 }
 
 void Cell::setEntity(Entity* entity) {
@@ -66,10 +74,14 @@ void Cell::setEntity(Entity* entity) {
 	this->map->positionChanged();
 	if (entity == nullptr) {
 		this->entity = nullptr;
+		this->values["empty"] = ls::LSBoolean::get(walkable);
+		this->values["entity"] = ls::LSNull::get();
 		return;
 	}
 	entity->setCell(this);
 	this->entity = entity;
+	this->values["empty"] = ls::LSBoolean::get(false);
+	this->values["entity"] = entity;
 }
 
 bool Cell::available() const {
@@ -96,6 +108,9 @@ bool Cell::isEmpty() const {
 bool Cell::isObstacle() const {
 	return !walkable;
 }
+bool Cell::isWalkable() const {
+	return walkable;
+}
 
 bool Cell::hasEntity() const {
 	return entity != nullptr;
@@ -107,6 +122,17 @@ int Cell::getContent() const {
 
 bool Cell::isOnSameLine(const Cell* cell) const {
 	return x == cell->x or y == cell->y;
+}
+
+Entity* Cell::getEntity() const {
+	return entity == nullptr ? (Entity*)ls::LSNull::get() : entity;
+}
+
+int Cell::getX() const {
+	return x;
+}
+int Cell::getY() const {
+	return y;
 }
 
 ls::LSValue* Cell::getClass() const {
