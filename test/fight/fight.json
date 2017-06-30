@@ -9,7 +9,7 @@
 					"mp": 6,
 					"cell": 123
 				},
-				{	"ai": "test/ai/crashing.leek",
+				{	"ai": "test/ai/color.leek",
 					"name": "Yolo",
 					"level": 200,
 					"life": 3000,
@@ -50,19 +50,12 @@
 					"frequency": 100,
 					"cell": 566
 				},
-				{	"ai": "test/ai/cell.leek",
-					"name": "Joe",
+				{	"ai": "test/ai/items.leek",
+					"name": "Donald",
 					"level": 200,
 					"life": 3000,
-					"strength": 200,
-					"agility": 150,
 					"tp": 10,
-					"mp": 8,
-					"resistance": 67,
-					"science": 300,
-					"magic": 200,
-					"frequency": 100,
-					"cell": 566
+					"mp": 8
 				}
 			]
 		}
