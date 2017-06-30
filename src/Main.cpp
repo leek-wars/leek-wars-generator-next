@@ -45,7 +45,7 @@ void segfault_sigaction(int signal, siginfo_t* si, void* arg) {
 
 int main(int argc, char** argv) {
 
-	cout << "~~ leek-wars-simulator v1.0 ~~" << endl;
+	LOG << "~~ leek-wars-simulator v1.0 ~~" << endl;
 
 	// Load a fight file?
 	if (argc < 2) {
