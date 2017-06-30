@@ -52,7 +52,7 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 		auto entity = order.current();
 		Simulator::entity = entity;
 		try {
-			std::cout << "[[Turn of " << entity->name << " (" << entity->id << "), AI " << entity->ai->name << "...]]" << std::endl;
+			LOG << "Turn of " << entity->name << " (" << entity->id << "), AI " << entity->ai->name << "..." << std::endl;
 			entity->ai->execute(vm, vm_v1);
 		} catch (ls::vm::ExceptionObj* ex) {
 			std::cout << ex->to_string(true);
