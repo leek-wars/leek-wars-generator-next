@@ -38,7 +38,7 @@ EntityModule::EntityModule() : Module("Entity") {
 	field("damageReturn", ls::Type::INTEGER);
 
 	method("getLife", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getLife, ls::Method::NATIVE);
-	method("getTotalLife", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getStrength, ls::Method::NATIVE);
+	method("getTotalLife", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getTotalLife, ls::Method::NATIVE);
 	method("getStrength", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getStrength, ls::Method::NATIVE);
 	method("getAgility", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getAgility, ls::Method::NATIVE);
 	method("getScience", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getScience, ls::Method::NATIVE);
