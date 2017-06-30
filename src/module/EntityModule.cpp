@@ -47,6 +47,7 @@ EntityModule::EntityModule() : Module("Entity") {
 	method("getFrequency", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getFrequency, ls::Method::NATIVE);
 	method("getResistance", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getResistance, ls::Method::NATIVE);
 	method("getTP", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getTP, ls::Method::NATIVE);
+	method("getMP", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getMP, ls::Method::NATIVE);
 	method("getRelativeShield", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getRelativeShield, ls::Method::NATIVE);
 	method("getAbsoluteShield", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getAbsoluteShield, ls::Method::NATIVE);
 	method("getTotalTP", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getTotalTP, ls::Method::NATIVE);
