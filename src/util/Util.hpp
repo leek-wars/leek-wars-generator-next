@@ -8,6 +8,7 @@
 
 #define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 #define LOG std::cout << "[" << "\033[1;34m" << __FILENAME__ << ":" << __LINE__ << "\033[0m" << "] "
+#define LOGW std::cout << "[" << "\033[1;33m" << __FILENAME__ << ":" << __LINE__ << "\033[0m" << "] "
 
 class Util {
 public:
