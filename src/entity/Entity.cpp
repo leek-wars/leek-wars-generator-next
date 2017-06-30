@@ -10,6 +10,7 @@
 #include "../action/ActionSetWeapon.hpp"
 #include "Team.hpp"
 #include "../fight/Simulator.hpp"
+#include <leekscript/src/leekscript.h>
 
 int Entity::next_id = 0;
 
@@ -123,7 +124,7 @@ void Entity::setChips(std::vector<Chip*> chips) {
 }
 
 const Weapon* Entity::getWeapon() {
-	return this->weapon;
+	return this->weapon == nullptr ? (Weapon*)ls::LSNull::get() : this->weapon;
 }
 
 ls::LSArray<ls::LSValue*>* Entity::getWeapons() {
