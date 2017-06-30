@@ -111,6 +111,7 @@ public:
 	int getAbsoluteShield() const;
 	int getRelativeShield() const;
 	int getCharacteristic(Characteristic characteristic) const;
+	int getLevel() const;
 
 	int useChip(Chip* chip, Entity* target);
 	int useChipOnCell(Chip* chip, Cell* cell);

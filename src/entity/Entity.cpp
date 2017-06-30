@@ -229,6 +229,10 @@ int Entity::getCharacteristic(Characteristic characteristic) const {
 	return base_characs.get(characteristic) + bonus_characs.get(characteristic);
 }
 
+int Entity::getLevel() const {
+	return level;
+}
+
 int Entity::useChip(Chip* chip, Entity* target) {
 	if (chip == nullptr or target == nullptr) {
 		return -1;

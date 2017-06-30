@@ -57,6 +57,7 @@ EntityModule::EntityModule() : Module("Entity") {
 	method("getClosestEnemy", EntityModule::type_ptr, EntityModule::type_ptr, {}, (void*) &entity_getClosestEnemy, ls::Method::NATIVE);
 	method("getWeapons", EntityModule::type_ptr, WeaponModule::array_type, {}, (void*) &Entity::getWeapons, ls::Method::NATIVE);
 	method("getWeapon", EntityModule::type_ptr, WeaponModule::type, {}, (void*) &Entity::getWeapon, ls::Method::NATIVE);
+	method("getLevel", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getLevel, ls::Method::NATIVE);
 
 	method("setWeapon", {
 		{EntityModule::type_ptr, ls::Type::NULLL, {WeaponModule::type}, (void*) &entity_setWeapon, ls::Method::NATIVE},
