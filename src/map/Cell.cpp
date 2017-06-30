@@ -141,6 +141,7 @@ ls::LSValue* Cell::getClass() const {
 
 std::ostream& Cell::print(std::ostream& os) const {
 	os << "<Cell " << id << ">";
+	return os;
 }
 
 std::ostream& operator << (std::ostream& os, const Cell* cell) {
