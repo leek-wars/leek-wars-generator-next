@@ -55,6 +55,8 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 		} catch (ls::vm::ExceptionObj* ex) {
 			std::cout << ex->to_string(true);
 			// delete ex;
+			vm.last_exception = nullptr;
+			vm_v1.last_exception = nullptr;
 		}
 		entity->endTurn();
 		if (order.next()) {
