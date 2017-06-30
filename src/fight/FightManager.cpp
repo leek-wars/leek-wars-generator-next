@@ -10,6 +10,8 @@
 #include "../util/Util.hpp"
 #include "../entity/Entity.hpp"
 
+FightManager* FightManager::current;
+
 FightManager::FightManager() : vm(), vm_v1(true) {
 	// V2
 	vm.add_module(new FightModule());
@@ -42,17 +44,30 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 	}
 }
 
-Report* FightManager::start(Fight& fight) {
+void FightManager::start(Fight& fight, std::function<void(Report*)> callback) {
 
 	this->fight = &fight;
+	this->callback = callback;
+	FightManager::current = this;
 
-	return fight.start(vm, vm_v1);
+	// Register a segfault catcher
+	struct sigaction sa;
+	memset(&sa, 0, sizeof(struct sigaction));
+	sigemptyset(&sa.sa_mask);
+	sa.sa_sigaction = [](int signal, siginfo_t* si, void* arg) {
+		LOG << "Caught segfault at address " << si->si_addr << ", arg: " << arg << std::endl;
+		FightManager::current->crash();
+	};
+	sa.sa_flags = SA_SIGINFO;
+	sigaction(SIGSEGV, &sa, NULL);
+
+	callback(fight.start(vm, vm_v1));
 }
 
-Report* FightManager::crash() {
+void FightManager::crash() {
 
 	auto current_player = fight->order.current();
 	LOG << "Fight crashed while '" << current_player->name << "' was playing" << std::endl;
 
-	return fight->crash();
+	callback(fight->crash());
 }

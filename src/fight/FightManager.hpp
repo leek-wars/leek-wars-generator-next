@@ -4,9 +4,13 @@
 #include "../item/Weapon.hpp"
 #include "../item/Chip.hpp"
 #include "../fight/Fight.hpp"
+#include <functional>
 
 class FightManager {
 public:
+
+	static FightManager* current;
+	std::function<void(Report*)> callback;
 
 	FightManager();
 
@@ -16,8 +20,8 @@ public:
 	std::map<std::string, Chip*> chips;
 	Fight* fight;
 
-	Report* start(Fight& fight);
-	Report* crash();
+	void start(Fight& fight, std::function<void(Report*)> callback);
+	void crash();
 };
 
 #endif
