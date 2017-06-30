@@ -56,7 +56,7 @@ void FightManager::start(Fight& fight, std::function<void(Report*)> callback) {
 	memset(&sa, 0, sizeof(struct sigaction));
 	sigemptyset(&sa.sa_mask);
 	sa.sa_sigaction = [](int signal, siginfo_t* si, void* arg) {
-		LOGW << "Caught segfault at address " << si->si_addr << ", arg: " << arg << std::endl;
+		LOG_E << "Caught signal " << signal << " at address " << si->si_addr << ", arg: " << arg << std::endl;
 		FightManager::current->crash();
 	};
 	sa.sa_flags = SA_SIGINFO;
@@ -68,7 +68,7 @@ void FightManager::start(Fight& fight, std::function<void(Report*)> callback) {
 void FightManager::crash() {
 
 	auto current_player = fight->order.current();
-	LOG << "Fight crashed while '" << current_player->name << "' was playing" << std::endl;
+	LOG_W << "Fight crashed while '" << current_player->name << "' was playing" << std::endl;
 
 	end(fight->crash());
 }

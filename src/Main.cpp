@@ -44,12 +44,12 @@ int main(int argc, char** argv) {
  	LOG << "Load fight '" << fight_file << "'..." << std::endl;
 	auto fight = FightLoader::load(fight_file);
 	if (fight == nullptr) {
-		LOGW << "Fight failed to load!" << std::endl;
+		LOG_W << "Fight failed to load!" << std::endl;
 		return 0;
 	}
-	
+
 	FightManager().start(*fight, [](Report* report) {
-		LOG << "Fight generated!" << std::endl;
+		LOG_I << "Fight generated!" << std::endl;
 		// Display the report
 		std::cout << report << std::endl;
 		// Start a browser with the fight

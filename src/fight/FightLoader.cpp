@@ -41,17 +41,17 @@ Fight* FightLoader::load(std::string file) {
 
 			// Primay characteristics
 			if (e.find("life") == e.end()) {
-				LOGW << "Missing 'life' attribute!" << std::endl;
+				LOG_E << "Missing 'life' attribute!" << std::endl;
 				return nullptr;
 			}
 			characs.set(Characteristic::LIFE, e["life"]);
 			if (e.find("tp") == e.end()) {
-				LOGW << "Missing 'life' attribute!" << std::endl;
+				LOG_E << "Missing 'life' attribute!" << std::endl;
 				return nullptr;
 			}
 			characs.set(Characteristic::TP, e["tp"]);
 			if (e.find("mp") == e.end()) {
-				LOGW << "Missing 'mp' attribute!" << std::endl;
+				LOG_E << "Missing 'mp' attribute!" << std::endl;
 				return nullptr;
 			}
 			characs.set(Characteristic::MP, e["mp"]);
