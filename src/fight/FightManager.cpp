@@ -52,7 +52,7 @@ Report* FightManager::start(Fight& fight) {
 Report* FightManager::crash() {
 
 	auto current_player = fight->order.current();
-	LOG << "Fight crashed while this entity was playing: " << current_player->name << std::endl;
+	LOG << "Fight crashed while '" << current_player->name << "' was playing" << std::endl;
 
 	return fight->crash();
 }
