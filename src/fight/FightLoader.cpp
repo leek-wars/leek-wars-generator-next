@@ -38,10 +38,43 @@ Fight* FightLoader::load(std::string file) {
 			auto leek = new Leek(fight, e["name"], e["level"], ai);
 
 			Characteristics characs;
+
+			// Primay characteristics
+			if (e.find("life") == e.end()) {
+				LOGW << "Missing 'life' attribute!" << std::endl;
+				return nullptr;
+			}
 			characs.set(Characteristic::LIFE, e["life"]);
+			if (e.find("tp") == e.end()) {
+				LOGW << "Missing 'life' attribute!" << std::endl;
+				return nullptr;
+			}
 			characs.set(Characteristic::TP, e["tp"]);
+			if (e.find("mp") == e.end()) {
+				LOGW << "Missing 'mp' attribute!" << std::endl;
+				return nullptr;
+			}
 			characs.set(Characteristic::MP, e["mp"]);
-			characs.set(Characteristic::STRENGTH, e["strength"]);
+
+			// Secondary characteristics (not mandatory)
+			if (e.find("strength") != e.end()) {
+				characs.set(Characteristic::STRENGTH, e["strength"]);
+			}
+			if (e.find("agility") != e.end()) {
+				characs.set(Characteristic::AGILITY, e["agility"]);
+			}
+			if (e.find("science") != e.end()) {
+				characs.set(Characteristic::SCIENCE, e["science"]);
+			}
+			if (e.find("magic") != e.end()) {
+				characs.set(Characteristic::MAGIC, e["magic"]);
+			}
+			if (e.find("resistance") != e.end()) {
+				characs.set(Characteristic::RESISTANCE, e["resistance"]);
+			}
+			if (e.find("frequency") != e.end()) {
+				characs.set(Characteristic::FREQUENCY, e["frequency"]);
+			}
 			leek->setCharacteristics(characs);
 
 			vector<Weapon*> weapons;
