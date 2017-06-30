@@ -10,6 +10,10 @@ ChipModule::ChipModule() : Module("Chip") {
 
 	static_field("SPARK", ls::Type::INTEGER, (void*) &Chip_SPARK);
 
+	field("id", ls::Type::NUMBER);
+	field("cost", ls::Type::NUMBER);
+	field("name", ls::Type::STRING);
+
 	/*
 	 * V1
 	 */

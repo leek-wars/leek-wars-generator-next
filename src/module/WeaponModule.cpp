@@ -11,6 +11,10 @@ WeaponModule::WeaponModule() : Module("Weapon") {
 
 	static_field("PISTOL", ls::Type::INTEGER, (void*) &Weapon_PISTOL);
 	static_field("LASER", ls::Type::INTEGER, (void*) &Weapon_LASER);
+
+	field("id", ls::Type::NUMBER);
+	field("cost", ls::Type::NUMBER);
+	field("name", ls::Type::STRING);
 }
 
 WeaponModule::~WeaponModule() {}
