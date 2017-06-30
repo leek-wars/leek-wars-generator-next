@@ -37,10 +37,10 @@ Cell::Cell(Map* map, int id) {
 	this->values["id"] = ls::LSNumber::get(id);
 	this->values["id"]->native = true;
 	this->values["id"]->refs = 1;
-	this->values["x"] = ls::LSNumber::get(x);
+	this->values["x"] = ls::LSNumber::get(this->x);
 	this->values["x"]->native = true;
 	this->values["x"]->refs = 1;
-	this->values["y"] = ls::LSNumber::get(y);
+	this->values["y"] = ls::LSNumber::get(this->y);
 	this->values["y"]->native = true;
 	this->values["y"]->refs = 1;
 	this->readonly = true;
