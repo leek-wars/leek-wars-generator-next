@@ -23,8 +23,6 @@
 #include "fight/FightLoader.hpp"
 #include "fight/FightManager.hpp"
 
-using namespace std;
-
 FightManager fight_manager;
 
 void fight_finished(Report* report) {
