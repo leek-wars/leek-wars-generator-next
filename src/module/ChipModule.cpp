@@ -34,8 +34,8 @@ ChipModule::ChipModule() : Module("Chip") {
 	static_method("_getChipMinRange", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipMinRange);
 	static_method("_getChipName", ls::Type::STRING, {ls::Type::POINTER}, (void*) &chip__getChipName);
 	static_method("_getCurrentCooldown", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getCurrentCooldown);
-	static_method("bool isChip", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &chip__isChip);
-	static_method("bool isInlineChip", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &chip__isInlineChip);
+	static_method("_isChip", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &chip__isChip);
+	static_method("_isInlineChip", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &chip__isInlineChip);
 }
 
 ChipModule::~ChipModule() {}
