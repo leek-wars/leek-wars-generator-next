@@ -9,6 +9,7 @@
 #include "../action/ActionSay.hpp"
 #include "../action/ActionSetWeapon.hpp"
 #include "Team.hpp"
+#include "../fight/Simulator.hpp"
 
 int Entity::next_id = 0;
 
@@ -54,6 +55,18 @@ bool Entity::isAlive() const {
 
 bool Entity::isDead() const {
 	return life <= 0;
+}
+
+bool Entity::isAlly() const {
+	return Simulator::entity->team == team;
+}
+
+bool Entity::isEnemy() const {
+	return Simulator::entity->team != team;
+}
+
+bool Entity::isSummon() const {
+	return false;
 }
 
 void Entity::removeLife(int l, Entity* attacker) {
@@ -231,6 +244,10 @@ int Entity::getCharacteristic(Characteristic characteristic) const {
 
 int Entity::getLevel() const {
 	return level;
+}
+
+ls::LSString* Entity::getName() const {
+	return (ls::LSString*) ((Entity*) this)->values["name"];
 }
 
 int Entity::useChip(Chip* chip, Entity* target) {

@@ -69,6 +69,10 @@ EntityModule::EntityModule() : Module("Entity") {
 	method("moveToward", EntityModule::type_ptr, ls::Type::INTEGER, {EntityModule::type_ptr, ls::Type::INTEGER}, (void*) &Entity::moveToward, ls::Method::NATIVE);
 	method("isAlive", EntityModule::type_ptr, ls::Type::BOOLEAN, {}, (void*) &Entity::isAlive, ls::Method::NATIVE);
 	method("isDead", EntityModule::type_ptr, ls::Type::BOOLEAN, {}, (void*) &Entity::isDead, ls::Method::NATIVE);
+	method("isAlly", EntityModule::type_ptr, ls::Type::BOOLEAN, {}, (void*) &Entity::isAlly, ls::Method::NATIVE);
+	method("isEnemy", EntityModule::type_ptr, ls::Type::BOOLEAN, {}, (void*) &Entity::isEnemy, ls::Method::NATIVE);
+	method("isSummon", EntityModule::type_ptr, ls::Type::BOOLEAN, {}, (void*) &Entity::isSummon, ls::Method::NATIVE);
+	method("getName", EntityModule::type_ptr, ls::Type::STRING, {}, (void*) &Entity::getName, ls::Method::NATIVE);
 
 	/*
 	 * V1 functions

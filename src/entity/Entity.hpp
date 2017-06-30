@@ -75,6 +75,9 @@ public:
 
 	bool isAlive() const;
 	bool isDead() const;
+	bool isAlly() const;
+	bool isEnemy() const;
+	bool isSummon() const;
 	void addLife(int l);
 	void removeLife(int life, Entity* attacker);
 
@@ -112,6 +115,7 @@ public:
 	int getRelativeShield() const;
 	int getCharacteristic(Characteristic characteristic) const;
 	int getLevel() const;
+	ls::LSString* getName() const;
 
 	int useChip(Chip* chip, Entity* target);
 	int useChipOnCell(Chip* chip, Cell* cell);
