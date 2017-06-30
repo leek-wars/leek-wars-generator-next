@@ -7,20 +7,11 @@
 
 #include "Weapon.hpp"
 
-Weapon::Weapon(int id, std::string name, int cost, Attack* attack)
-	: Item(id, name, cost, attack) {
-
+Weapon::Weapon(int id, std::string name, int cost, Attack* attack) : Item(id, name, cost, attack) {
 	readonly = true;
-	auto name_val = new ls::LSString(name);
-	name_val->native = true;
-	name_val->refs = 1;
-	addField("name", name_val);
 }
 
-Weapon::~Weapon() {
-	delete values["name"];
-	values.erase("name");
-}
+Weapon::~Weapon() {}
 
 int Weapon::getTemplateID() const {
 	switch (id) {
