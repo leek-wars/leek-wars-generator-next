@@ -61,6 +61,7 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 		entity->endTurn();
 		if (order.next()) {
 			actions.add(new ActionNewTurn(order.getTurn()));
+			LOG << "Turn " << order.getTurn() << std::endl;
 		}
 	}
 
