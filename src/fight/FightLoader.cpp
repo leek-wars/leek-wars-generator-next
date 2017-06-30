@@ -31,6 +31,8 @@ Fight* FightLoader::load(std::string file) {
 
 		for (const auto& e : t["entities"]) {
 
+			LOG << "Load entity " << e["name"] << std::endl;
+
 			auto ai = new AI(Util::read_file(e["ai"]), e["ai"]);
 			auto leek = new Leek(fight, e["name"], e["level"], ai);
 
