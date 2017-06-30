@@ -36,7 +36,7 @@ void fight_finished(Report* report) {
 }
 
 void segfault_sigaction(int signal, siginfo_t* si, void* arg) {
-	printf("Caught segfault at address %p\n", si->si_addr);
+	std::cout << "Caught segfault at address " << si->si_addr << ", arg: " << arg << std::endl;
 	fight_finished(fight_manager.crash());
 	exit(0);
 }
