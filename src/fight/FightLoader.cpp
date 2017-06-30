@@ -18,7 +18,8 @@ Fight* FightLoader::load(std::string file) {
 	try {
 		json = Json::parse(str);
 	} catch (std::exception& e) { // LCOV_EXCL_LINE
-		assert(false); // LCOV_EXCL_LINE
+		LOG_E << "Invalid fight JSON syntax!" << std::endl;
+		return nullptr;
 	}
 
 	auto pistol = new Weapon(37, "Pistol", 3, new Attack(1, 7, LaunchType::CIRCLE, AreaType::SINGLE_CELL, true, "1,15,5,0,31", AttackType::WEAPON));
