@@ -35,12 +35,9 @@ int main(int argc, char** argv) {
 
 	// Global initialization
 	srand(time(NULL));
-	auto null_value = ls::LSNull::create();
-	auto true_value = ls::LSBoolean::create(true);
-	auto false_value = ls::LSBoolean::create(false);
-	ls::LSNull::set_null_value(null_value);
-	ls::LSBoolean::set_true_value(true_value);
-	ls::LSBoolean::set_false_value(false_value);
+	ls::LSNull::set_null_value(ls::LSNull::create());
+	ls::LSBoolean::set_true_value(ls::LSBoolean::create(true));
+	ls::LSBoolean::set_false_value(ls::LSBoolean::create(false));
 
 	// Start the fight
 	std::string fight_file(argv[1]);
