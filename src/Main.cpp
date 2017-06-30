@@ -26,21 +26,12 @@
 
 using namespace std;
 
-void load_fight() {
-	auto fight = FightLoader::load("test/fight/fight1.json");
-	auto report = FightManager().start(*fight);
-	std::cout << report << std::endl;
-	delete report;
-}
+int main(int argc, char** argv) {
 
-int main() {
+	cout << "~~ leek-wars-simulator v1.0 ~~" << endl;
 
-	cout << "~~ leek-wars-simulator ~~" << endl;
-
-	auto start_time = chrono::high_resolution_clock::now();
-
+	// Global initialization
 	srand(time(NULL));
-
 	auto null_value = ls::LSNull::create();
 	auto true_value = ls::LSBoolean::create(true);
 	auto false_value = ls::LSBoolean::create(false);
@@ -48,8 +39,18 @@ int main() {
 	ls::LSBoolean::set_true_value(true_value);
 	ls::LSBoolean::set_false_value(false_value);
 
-	load_fight();
-	return 0;
+	// Load a fight file?
+	if (argc == 2) {
+		std::string fight_file(argv[1]);
+		std::cout << "load fight '" << fight_file << "'..." << std::endl;
+		auto fight = FightLoader::load(fight_file);
+		auto report = FightManager().start(*fight);
+		std::cout << report << std::endl;
+		delete report;
+		return 0;
+	}
+
+	auto start_time = chrono::high_resolution_clock::now();
 
 	ls::VM vm;
 	vm.add_module(new FightModule());
