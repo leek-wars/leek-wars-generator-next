@@ -120,7 +120,7 @@ int Cell::getContent() const {
 	return !walkable ? 2 : (entity != nullptr ? 1 : 0);
 }
 
-bool Cell::isOnSameLine(const Cell* cell) const {
+bool Cell::isAligned(const Cell* cell) const {
 	return x == cell->x or y == cell->y;
 }
 

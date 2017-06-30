@@ -45,7 +45,7 @@ public:
 	bool isWalkable() const;
 	bool hasEntity() const;
 	int getContent() const;
-	bool isOnSameLine(const Cell*) const;
+	bool isAligned(const Cell*) const;
 	Entity* getEntity() const;
 	int getX() const;
 	int getY() const;

@@ -30,6 +30,7 @@ CellModule::CellModule() : Module("Cell") {
 	method("getX", CellModule::type, ls::Type::INTEGER, {}, (void*) &Cell::getX, ls::Method::NATIVE);
 	method("getY", CellModule::type, ls::Type::INTEGER, {}, (void*) &Cell::getY, ls::Method::NATIVE);
 	method("getEntity", CellModule::type, EntityModule::type_ptr, {}, (void*) &Cell::getEntity, ls::Method::NATIVE);
+	method("isAligned", CellModule::type, ls::Type::BOOLEAN, {CellModule::type}, (void*) &Cell::isAligned, ls::Method::NATIVE);
 
 	// v1 functions
 	static_method("_isEmptyCell", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &cell__isEmptyCell);

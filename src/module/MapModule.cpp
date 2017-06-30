@@ -282,7 +282,7 @@ bool map__isOnSameLine(const ls::LSValue* cell1, const ls::LSValue* cell2) {
 
 	if (c1 == nullptr or c2 == nullptr) return false;
 
-	return c1->isOnSameLine(c2);
+	return c1->isAligned(c2);
 }
 
 /*
