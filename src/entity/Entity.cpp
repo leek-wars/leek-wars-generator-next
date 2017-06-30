@@ -398,6 +398,11 @@ ls::LSValue* Entity::getClass() const {
 	return (ls::LSValue*) EntityModule::entity_clazz;
 }
 
+std::ostream& Entity::print(std::ostream& os) const {
+	os << "<Entity " << name << ">";
+	return os;
+}
+
 Json Entity::to_json() const {
 	Json json;
 	json["id"] = id;
