@@ -68,7 +68,7 @@ void Cell::setEntity(Entity* entity) {
 		this->entity = nullptr;
 		return;
 	}
-	entity->cell = this;
+	entity->setCell(this);
 	this->entity = entity;
 }
 

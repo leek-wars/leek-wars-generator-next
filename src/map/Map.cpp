@@ -113,8 +113,7 @@ void Map::generate(int obstacles_count, const vector<Team*>& teams) {
 				} else { // 2+ teams : random
 					c = getRandomCell();
 				}
-				c->entity = e;
-				e->setCell(c);
+				c->setEntity(e);
 				entities.push_back(e);
 			}
 		}
