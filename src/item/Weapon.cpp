@@ -15,8 +15,6 @@ Weapon::Weapon(int id, std::string name, int cost, Attack* attack)
 	name_val->native = true;
 	name_val->refs = 1;
 	addField("name", name_val);
-
-	std::cout << "Weapon::ctor " << id << ", " << this->id << '\n';
 }
 
 Weapon::~Weapon() {
