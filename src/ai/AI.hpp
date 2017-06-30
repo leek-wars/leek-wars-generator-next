@@ -12,6 +12,7 @@ public:
 	std::string code;
 	ls::Program* program;
 	bool v1 = false;
+	bool valid = true;
 
 	AI(std::string code, std::string name, bool v1 = false);
 	virtual ~AI();
