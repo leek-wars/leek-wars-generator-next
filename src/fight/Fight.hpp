@@ -33,6 +33,7 @@ public:
 	virtual ~Fight();
 
 	Report* start(ls::VM& vm, ls::VM& vm_v1);
+	Report* crash();
 
 	Entity* getEntity(int id);
 

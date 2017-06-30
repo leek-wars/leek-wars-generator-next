@@ -78,6 +78,13 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 	return report;
 }
 
+Report* Fight::crash() {
+
+	Report* report = new Report(this);
+	report->actions = &actions;
+	return report;
+}
+
 Entity* Fight::getEntity(int id) {
 	try {
 		return entities.at(id);
