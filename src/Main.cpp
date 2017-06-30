@@ -5,7 +5,6 @@
 #include <chrono>
 #include <sstream>
 #include <leekscript/src/leekscript.h>
-
 #include "util/Util.hpp"
 #include "fight/Fight.hpp"
 #include "map/Map.hpp"
@@ -26,9 +25,33 @@
 
 using namespace std;
 
+FightManager fight_manager;
+
+void fight_finished(Report* report) {
+	// Display the report
+	std::cout << report << std::endl;
+	// Start a browser with the fight
+	std::ofstream report_file("fight.json");
+	report_file << report << std::endl;
+	// system("chromium-browser http://localhost:8012/fight/local");
+	delete report;
+}
+
+void segfault_sigaction(int signal, siginfo_t* si, void* arg) {
+	printf("Caught segfault at address %p\n", si->si_addr);
+	fight_finished(fight_manager.crash());
+	exit(0);
+}
+
 int main(int argc, char** argv) {
 
 	cout << "~~ leek-wars-simulator v1.0 ~~" << endl;
+
+	// Load a fight file?
+	if (argc < 2) {
+		std::cout << "Missing fight input!" << std::endl << "Usage: leek-wars-generator fight.json" << std::endl;
+		return 1;
+	}
 
 	// Global initialization
 	srand(time(NULL));
@@ -39,17 +62,19 @@ int main(int argc, char** argv) {
 	ls::LSBoolean::set_true_value(true_value);
 	ls::LSBoolean::set_false_value(false_value);
 
-	// Load a fight file?
-	if (argc == 2) {
-		std::string fight_file(argv[1]);
-		std::cout << "load fight '" << fight_file << "'..." << std::endl;
-		auto fight = FightLoader::load(fight_file);
-		auto report = FightManager().start(*fight);
-		std::cout << report << std::endl;
-		delete report;
-		return 0;
-	}
+	// Register a segfault catcher
+	struct sigaction sa;
+	memset(&sa, 0, sizeof(struct sigaction));
+	sigemptyset(&sa.sa_mask);
+	sa.sa_sigaction = segfault_sigaction;
+	sa.sa_flags = SA_SIGINFO;
+	sigaction(SIGSEGV, &sa, NULL);
 
+	// Start the fight
+	std::string fight_file(argv[1]);
+ 	LOG << "Load fight '" << fight_file << "'..." << std::endl;
+	auto fight = FightLoader::load(fight_file);
+	fight_finished(fight_manager.start(*fight));
 
 	return 0;
 }

@@ -7,6 +7,8 @@
 #include "../module/WeaponModule.hpp"
 #include "../module/ColorModule.hpp"
 #include "../module/ChipModule.hpp"
+#include "../util/Util.hpp"
+#include "../entity/Entity.hpp"
 
 FightManager::FightManager() : vm(), vm_v1(true) {
 	// V2
@@ -41,5 +43,18 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 }
 
 Report* FightManager::start(Fight& fight) {
+
+	this->fight = &fight;
+
 	return fight.start(vm, vm_v1);
+}
+
+Report* FightManager::crash() {
+
+	auto current_player = fight->order.current();
+	LOG << "Fight crashed while this entity was playing: " << current_player->name << std::endl;
+
+	Report* report = new Report(fight);
+	report->actions = new Actions();
+	return report;
 }
