@@ -1,0 +1,15 @@
+let me = Fight.getEntity()
+
+// TODO bug in LS with this line:
+// System.print("me: " + me)
+
+System.print("life :" + me.getLife())
+System.print("total life: " + me.getTotalLife())
+System.print("strength: " + me.getStrength())
+System.print("agility: " + me.getAgility())
+System.print("mp: " + me.getMP())
+System.print("tp: " + me.getTP())
+System.print("resistance: " + me.getResistance())
+System.print("science: " + me.getScience())
+System.print("magic: " + me.getMagic())
+System.print("frequency: " + me.getFrequency())
