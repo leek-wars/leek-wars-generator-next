@@ -5,12 +5,14 @@
 #include "../item/Chip.hpp"
 #include "../fight/Fight.hpp"
 #include <functional>
+#include <chrono>
 
 class FightManager {
 public:
 
 	static FightManager* current;
 	std::function<void(Report*)> callback;
+	std::chrono::time_point<std::chrono::high_resolution_clock> start_time;
 
 	FightManager();
 
@@ -22,6 +24,7 @@ public:
 
 	void start(Fight& fight, std::function<void(Report*)> callback);
 	void crash();
+	void end(Report* report);
 };
 
 #endif

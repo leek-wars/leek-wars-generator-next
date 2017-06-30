@@ -46,6 +46,7 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 
 void FightManager::start(Fight& fight, std::function<void(Report*)> callback) {
 
+	this->start_time = chrono::high_resolution_clock::now();
 	this->fight = &fight;
 	this->callback = callback;
 	FightManager::current = this;
@@ -55,13 +56,13 @@ void FightManager::start(Fight& fight, std::function<void(Report*)> callback) {
 	memset(&sa, 0, sizeof(struct sigaction));
 	sigemptyset(&sa.sa_mask);
 	sa.sa_sigaction = [](int signal, siginfo_t* si, void* arg) {
-		LOG << "Caught segfault at address " << si->si_addr << ", arg: " << arg << std::endl;
+		LOGW << "Caught segfault at address " << si->si_addr << ", arg: " << arg << std::endl;
 		FightManager::current->crash();
 	};
 	sa.sa_flags = SA_SIGINFO;
 	sigaction(SIGSEGV, &sa, NULL);
 
-	callback(fight.start(vm, vm_v1));
+	end(fight.start(vm, vm_v1));
 }
 
 void FightManager::crash() {
@@ -69,5 +70,16 @@ void FightManager::crash() {
 	auto current_player = fight->order.current();
 	LOG << "Fight crashed while '" << current_player->name << "' was playing" << std::endl;
 
-	callback(fight->crash());
+	end(fight->crash());
+}
+
+void FightManager::end(Report* report) {
+
+	auto end_time = chrono::high_resolution_clock::now();
+	long time_ns = chrono::duration_cast<chrono::nanoseconds>(end_time - this->start_time).count();
+	double time_ms = (((double) time_ns / 1000) / 1000);
+	LOG << "-------------- end of fight ----------------" << std::endl;
+	LOG << "time: " << time_ms << " ms" << endl;
+
+	callback(report);
 }
