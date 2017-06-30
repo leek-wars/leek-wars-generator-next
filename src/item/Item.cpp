@@ -17,6 +17,16 @@ Item::Item(int id, std::string& name, int cost, Attack* attack)
 	name_val->native = true;
 	name_val->refs = 1;
 	addField("name", name_val);
+
+	auto id_val = ls::LSNumber::get(id);
+	id_val->native = true;
+	id_val->refs = 1;
+	addField("id", id_val);
+
+	auto cost_val = ls::LSNumber::get(cost);
+	cost_val->native = true;
+	cost_val->refs = 1;
+	addField("cost", cost_val);
 }
 
 Item::~Item() {
