@@ -1,6 +1,6 @@
 {	"teams": [
 		{	"entities": [
-				{	"ai": "test/ai/basic.ls",
+				{	"ai": "test/ai/hangry.ls",
 					"name": "Poireau",
 					"level": 301,
 					"life": 5000,
@@ -9,7 +9,7 @@
 					"mp": 6,
 					"cell": 123
 				},
-				{	"ai": "test/ai/color.ls",
+				{	"ai": "test/ai/crashing.leek",
 					"name": "Yolo",
 					"level": 200,
 					"life": 3000,
@@ -21,7 +21,7 @@
 			]
 		},
 		{	"entities": [
-				{	"ai": "test/ai/hangry.ls",
+				{	"ai": "test/ai/basic.ls",
 					"name": "Boss",
 					"level": 1000,
 					"life": 10000,
@@ -35,6 +35,34 @@
 					"chips": [
 						"stalactite", "fortress", "liberation"
 					]
+				},
+				{	"ai": "test/ai/entity.leek",
+					"name": "Bob",
+					"level": 200,
+					"life": 3000,
+					"strength": 200,
+					"agility": 150,
+					"tp": 10,
+					"mp": 8,
+					"resistance": 67,
+					"science": 300,
+					"magic": 200,
+					"frequency": 100,
+					"cell": 566
+				},
+				{	"ai": "test/ai/cell.leek",
+					"name": "Joe",
+					"level": 200,
+					"life": 3000,
+					"strength": 200,
+					"agility": 150,
+					"tp": 10,
+					"mp": 8,
+					"resistance": 67,
+					"science": 300,
+					"magic": 200,
+					"frequency": 100,
+					"cell": 566
 				}
 			]
 		}
