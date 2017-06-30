@@ -21,6 +21,7 @@ Fight* FightLoader::load(std::string file) {
 		assert(false); // LCOV_EXCL_LINE
 	}
 
+	auto pistol = new Weapon(37, "Pistol", 3, new Attack(1, 7, LaunchType::CIRCLE, AreaType::SINGLE_CELL, true, "1,15,5,0,31", AttackType::WEAPON));
 	auto laser = new Weapon(42, "Laser", 6, new Attack(2, 7, LaunchType::LINE, AreaType::LASER_LINE, true, "1,43,16,0,31", AttackType::WEAPON));
 	auto fortress = new Chip(29, "Fortress", 6, 4, false, 0, new Attack(0, 6, LaunchType::CIRCLE, AreaType::SINGLE_CELL, true, "5,10,5,3,31", AttackType::CHIP));
 
@@ -44,6 +45,7 @@ Fight* FightLoader::load(std::string file) {
 			leek->setCharacteristics(characs);
 
 			vector<Weapon*> weapons;
+			weapons.push_back(pistol);
 			weapons.push_back(laser);
 			leek->setWeapons(weapons);
 
