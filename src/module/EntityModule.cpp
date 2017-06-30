@@ -58,21 +58,17 @@ EntityModule::EntityModule() : Module("Entity") {
 	method("getWeapons", EntityModule::type_ptr, WeaponModule::array_type, {}, (void*) &Entity::getWeapons, ls::Method::NATIVE);
 	method("getWeapon", EntityModule::type_ptr, WeaponModule::type, {}, (void*) &Entity::getWeapon, ls::Method::NATIVE);
 	method("getLevel", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getLevel, ls::Method::NATIVE);
-
 	method("setWeapon", {
 		{EntityModule::type_ptr, ls::Type::NULLL, {WeaponModule::type}, (void*) &entity_setWeapon, ls::Method::NATIVE},
 		{EntityModule::type_ptr, ls::Type::NULLL, {ls::Type::INTEGER}, (void*) &Entity::setWeaponInteger, ls::Method::NATIVE}
 	});
-
 	method("useChip", EntityModule::type_ptr, ls::Type::INTEGER, {ChipModule::type, EntityModule::type_ptr}, (void*) &Entity::useChip, ls::Method::NATIVE);
-
 	method("useWeapon", EntityModule::type_ptr, ls::Type::INTEGER, {EntityModule::type_ptr}, (void*) &Entity::useWeapon, ls::Method::NATIVE);
-
 	method("getChips", EntityModule::type_ptr, ChipModule::array_type, {}, (void*) &Entity::getChips, ls::Method::NATIVE);
-
 	method("say", EntityModule::type_ptr, ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &Entity::say, ls::Method::NATIVE);
-
 	method("moveToward", EntityModule::type_ptr, ls::Type::INTEGER, {EntityModule::type_ptr, ls::Type::INTEGER}, (void*) &Entity::moveToward, ls::Method::NATIVE);
+	method("isAlive", EntityModule::type_ptr, ls::Type::BOOLEAN, {}, (void*) &Entity::isAlive, ls::Method::NATIVE);
+	method("isDead", EntityModule::type_ptr, ls::Type::BOOLEAN, {}, (void*) &Entity::isDead, ls::Method::NATIVE);
 
 	/*
 	 * V1 functions
