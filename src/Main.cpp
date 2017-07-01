@@ -25,16 +25,31 @@
 
 int main(int argc, char** argv) {
 
-	if (argc == 3 && std::string(argv[1]) == "-q") {
+	// Read options
+	bool quiet = false;
+	bool compile = false;
+	std::string input;
+	for (int i = 1; i < argc; ++i) {
+		std::string o(argv[i]);
+		if (o == "-q" or o == "-Q") quiet = true;
+		else if (o == "-c" or o == "-C") compile = true;
+		else input = o;
+	}
+	if (not input.size()) {
+		std::cout << "Missing input!" << std::endl << "Usage: leek-wars-generator [options] input" << std::endl;
+		return 1;
+	}
+
+	if (quiet) {
 		Util::log_enabled = false;
 	}
 
 	LOG << "~~ leek-wars-simulator v1.0 ~~" << endl;
 
-	// Load a fight file?
-	if (argc < 3) {
-		std::cout << "Missing fight input!" << std::endl << "Usage: leek-wars-generator fight.json" << std::endl;
-		return 1;
+	if (compile) {
+		auto res = FightManager().compile(input);
+		std::cout << res << std::endl;
+		return 0;
 	}
 
 	// Global initialization
