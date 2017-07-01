@@ -48,12 +48,12 @@ void AI::compile(ls::VM& vm, ls::VM& vm_v1) {
 		valid = false;
 	}
 
-	std::cout << "AI [" << name << "] : ";
-	if (result.lexical_errors.size() == 0) {
-		program->print(std::cout, true);
-		std::cout << std::endl;
+	LOG << "AI [" << name << "] : ";
+	if (result.lexical_errors.size() == 0 && result.syntaxical_errors.size() == 0) {
+		program->print(Util::log(), true);
+		LOG << std::endl;
 	} else {
-		std::cout << "ERROR" << std::endl;
+		LOG << "ERROR" << std::endl;
 	}
 }
 
