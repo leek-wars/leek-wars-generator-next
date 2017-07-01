@@ -66,7 +66,7 @@ EntityModule::EntityModule() : Module("Entity") {
 	method("useWeapon", EntityModule::type_ptr, ls::Type::INTEGER, {EntityModule::type_ptr}, (void*) &Entity::useWeapon, ls::Method::NATIVE);
 	method("getChips", EntityModule::type_ptr, ChipModule::array_type, {}, (void*) &Entity::getChips, ls::Method::NATIVE);
 	method("say", EntityModule::type_ptr, ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &Entity::say, ls::Method::NATIVE);
-	method("moveToward", EntityModule::type_ptr, ls::Type::INTEGER, {EntityModule::type_ptr, ls::Type::INTEGER}, (void*) &Entity::moveToward, ls::Method::NATIVE);
+	method("moveToward", EntityModule::type_ptr, ls::Type::INTEGER, {EntityModule::type_ptr, ls::Type::INTEGER}, (void*) &Entity::moveTowardMP, ls::Method::NATIVE);
 	method("isAlive", EntityModule::type_ptr, ls::Type::BOOLEAN, {}, (void*) &Entity::isAlive, ls::Method::NATIVE);
 	method("isDead", EntityModule::type_ptr, ls::Type::BOOLEAN, {}, (void*) &Entity::isDead, ls::Method::NATIVE);
 	method("isAlly", EntityModule::type_ptr, ls::Type::BOOLEAN, {}, (void*) &Entity::isAlly, ls::Method::NATIVE);
