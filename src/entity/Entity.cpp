@@ -113,8 +113,6 @@ void Entity::setWeapons(std::vector<Weapon*> weapons) {
 	this->weapons = std::vector<ls::LSValue*>(weapons.begin(), weapons.end());
 	this->weapons.native = true;
 	this->weapons.refs = 1;
-
-	std::cout << "set weapons " << ((Weapon*) this->weapons[0])->id << '\n';
 }
 
 void Entity::setChips(std::vector<Chip*> chips) {
