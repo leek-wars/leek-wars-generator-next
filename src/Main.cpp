@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
 	ls::LSBoolean::set_false_value(ls::LSBoolean::create(false));
 
 	// Start the fight
-	std::string fight_file(argv[2]);
+	std::string fight_file(input);
  	LOG << "Load fight '" << fight_file << "'..." << std::endl;
 	auto fight = FightLoader::load(fight_file);
 	if (fight == nullptr) {
