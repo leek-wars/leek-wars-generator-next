@@ -82,7 +82,7 @@ std::vector<Entity*> Attack::applyOnCell(Fight* fight, Entity* caster, Cell* tar
 	std::vector<Entity*> target_entities;
 
 	for (Cell* cell : target_cells) {
-		cout << "entity on cell " << cell->id << " : " << cell->entity << endl;
+		// cout << "entity on cell " << cell->id << " : " << cell->entity << endl;
 		if (cell->entity != nullptr) {
 			target_entities.push_back(cell->entity);
 		}

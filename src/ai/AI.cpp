@@ -41,7 +41,7 @@ void AI::compile(ls::VM& vm, ls::VM& vm_v1) {
 		LOG_W << result.semantical_errors.size() << " semantic error(s) in AI " << name << std::endl;
 		bool first = true;
 		for (const auto& e : result.semantical_errors) {
-			if (!first) std::cout << std::endl;
+			if (!first) LOG_W << std::endl;
 			LOG_W << e.file << ":" << e.location.start.line << ": " << e.underline_code << std::endl << "   ▶ " << e.message() << std::endl;
 			first = false;
 		}

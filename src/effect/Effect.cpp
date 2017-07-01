@@ -26,8 +26,6 @@ int Effect::getEffectValue() const {
 
 void Effect::createEffect(Fight* fight, EffectType type, int turns, double power, double value1, double value2, bool critical, Entity* target, Entity* caster, AttackType attack_type, int attack_id, double jet) {
 
-	cout << "create effect " << endl;
-
 	// Create the effect
 	Effect* effect = Effect::construct(type);
 	if (effect == nullptr) {

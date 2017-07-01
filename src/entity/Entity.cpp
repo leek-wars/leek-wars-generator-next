@@ -327,18 +327,18 @@ int Entity::moveToward(Entity* target) {
 
 int Entity::moveTowardMP(Entity* target, int max_mp) {
 
-	cout << "move toward " << target->id << "(me: " << id << ")" << endl;
+	// cout << "move toward " << target->id << "(me: " << id << ")" << endl;
 
 	if (target == nullptr or target->isDead()) return 0;
 	if (max_mp <= 0 or getMP() <= 0) return 0;
 
 	int mp = max_mp == -1 ? getMP() : min(getMP(), max_mp);
 
-	std::cout << "path between " << cell->id << " and " << target->cell->id << std::endl;
+	// std::cout << "path between " << cell->id << " and " << target->cell->id << std::endl;
 
 	vector<const Cell*> path = fight->map->get_path_between(target->cell, cell, vector<const Cell*> {});
 
-	cout << "path: " << path.size() << endl;
+	// cout << "path: " << path.size() << endl;
 
 //	return fight.moveEntity(this, path.size() > pm ? path.subList(0, pm) : path);
 	if (path.size() == 0) {

@@ -7,8 +7,6 @@ ActionUseChip::ActionUseChip(Entity* caster, Cell* cell, Chip* chip, int success
 	this->cell = cell->id;
 	this->chip = chip->id;
 	this->success = success;
-
-	cout << this->caster << endl;
 }
 
 void ActionUseChip::set_entities(vector<Entity*> entities) {

@@ -318,11 +318,11 @@ vector<const Cell*> Map::get_path_between(const Cell* start, const Cell* end, ve
 vector<const Cell*> Map::get_path(const Cell* c1, vector<const Cell*> end_cells, vector<const Cell*> ignored) const {
 
 	if (c1 == nullptr or end_cells.size() == 0) {
-		cout << "[path] invalid cells" << endl;
+		// cout << "[path] invalid cells" << endl;
 		return {};
 	}
 	if (find(end_cells.begin(), end_cells.end(), c1) != end_cells.end()) {
-		cout << "[path] already arrived" << endl;
+		// cout << "[path] already arrived" << endl;
 		return {};
 	}
 

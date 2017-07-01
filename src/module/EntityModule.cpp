@@ -480,7 +480,6 @@ ls::LSString* entity__getName(void*) {
 	return new ls::LSString(Simulator::entity->name);
 }
 ls::LSValue* entity__getNameEntity(void*, const ls::LSValue* entity) {
-	std::cout << "getName " << (void*)entity << std::endl;
 	Entity* e = entity__getEntity(entity);
 	if (e == nullptr) return ls::LSNull::get();
 	return new ls::LSString(e->name);

@@ -53,7 +53,7 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 			LOG << "Turn of " << entity->name << " (" << entity->id << "), AI " << entity->ai->name << "..." << std::endl;
 			entity->ai->execute(vm, vm_v1);
 		} catch (ls::vm::ExceptionObj* ex) {
-			std::cout << ex->to_string(true);
+			LOG << ex->to_string(true);
 			// delete ex;
 			vm.last_exception = nullptr;
 			vm_v1.last_exception = nullptr;
@@ -168,34 +168,34 @@ int Fight::useWeapon(Entity* launcher, Cell* target) {
 
 int Fight::useChip(Entity* caster, Cell* target, Chip* chip) {
 
-	cout << "useChip() start" << endl;
-
-	cout << "id : " << caster->id << endl;
-	cout << "cost : " << chip->cost << endl;
-	cout << "tp : " << caster->getTP() << endl;
+	// cout << "useChip() start" << endl;
+	//
+	// cout << "id : " << caster->id << endl;
+	// cout << "cost : " << chip->cost << endl;
+	// cout << "tp : " << caster->getTP() << endl;
 
 	if (order.current() != caster) {
 		return AttackResult::INVALID_TARGET;
 	}
 
-	cout << "useChip() good order" << endl;
+	// cout << "useChip() good order" << endl;
 
 	if (chip->cost > caster->getTP()) {
 		return AttackResult::NOT_ENOUGH_TP;
 	}
-	cout << "useChip() good cost" << endl;
+	// cout << "useChip() good cost" << endl;
 
 	if (!map->canUseAttack(caster->cell, target, chip->attack.get())) {
 		return AttackResult::INVALID_POSITION;
 	}
 
-	cout << "useChip() map config ok" << endl;
+	// cout << "useChip() map config ok" << endl;
 
 	if (hasCooldown(caster, chip)) {
 		return AttackResult::INVALID_COOLDOWN;
 	}
 
-	cout << "useChip() valid" << endl;
+	// cout << "useChip() valid" << endl;
 
 	// Summon (with no AI)
 	if (chip->attack.get()->getEffectParametersByType(EffectType::SUMMON) != nullptr) {
