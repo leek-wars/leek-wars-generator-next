@@ -11,6 +11,9 @@
 
 using namespace std;
 
+std::ostream Util::dummy_stream(0);
+bool Util::log_enabled = true;
+
 float Util::random() {
 	return (float) rand() / RAND_MAX;
 }

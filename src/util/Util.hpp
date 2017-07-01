@@ -5,12 +5,13 @@
 #include <vector>
 #include <queue>
 #include <string.h>
+#include <iostream>
 
 #define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
-#define LOG std::cout << "[" << "\033[1;34m" << __FILENAME__ << ":" << __LINE__ << "\033[0m" << "] "
-#define LOG_I std::cout << "[" << "\033[1;32m" << __FILENAME__ << ":" << __LINE__ << "\033[0m" << "] "
-#define LOG_W std::cout << "[" << "\033[1;33m" << __FILENAME__ << ":" << __LINE__ << "\033[0m" << "] "
-#define LOG_E std::cout << "[" << "\033[1;31m" << __FILENAME__ << ":" << __LINE__ << "\033[0m" << "] "
+#define LOG Util::log() << "[" << "\033[1;34m" << __FILENAME__ << ":" << __LINE__ << "\033[0m" << "] "
+#define LOG_I Util::log() << "[" << "\033[1;32m" << __FILENAME__ << ":" << __LINE__ << "\033[0m" << "] "
+#define LOG_W Util::log() << "[" << "\033[1;33m" << __FILENAME__ << ":" << __LINE__ << "\033[0m" << "] "
+#define LOG_E Util::log() << "[" << "\033[1;31m" << __FILENAME__ << ":" << __LINE__ << "\033[0m" << "] "
 
 class Util {
 public:
@@ -18,6 +19,8 @@ public:
 	static float random();
 	static int rand_int(int min);
 	static int rand_int(int min, int max);
+	static bool log_enabled;
+	static std::ostream dummy_stream;
 
 	static std::vector<std::string> split(const std::string& string, char separator);
 	static std::string toupper(const std::string& string);
@@ -28,6 +31,11 @@ public:
 	static std::string read_file(std::string file);
 
 	static std::string url_encode(const std::string& value);
+
+	static std::ostream& log() {
+		if (log_enabled) return std::cout;
+		else return Util::dummy_stream;
+	}
 };
 
 #endif

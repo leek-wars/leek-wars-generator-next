@@ -25,10 +25,14 @@
 
 int main(int argc, char** argv) {
 
+	if (argc == 3 && std::string(argv[1]) == "-q") {
+		Util::log_enabled = false;
+	}
+
 	LOG << "~~ leek-wars-simulator v1.0 ~~" << endl;
 
 	// Load a fight file?
-	if (argc < 2) {
+	if (argc < 3) {
 		std::cout << "Missing fight input!" << std::endl << "Usage: leek-wars-generator fight.json" << std::endl;
 		return 1;
 	}
@@ -40,7 +44,7 @@ int main(int argc, char** argv) {
 	ls::LSBoolean::set_false_value(ls::LSBoolean::create(false));
 
 	// Start the fight
-	std::string fight_file(argv[1]);
+	std::string fight_file(argv[2]);
  	LOG << "Load fight '" << fight_file << "'..." << std::endl;
 	auto fight = FightLoader::load(fight_file);
 	if (fight == nullptr) {
