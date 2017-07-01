@@ -22,6 +22,7 @@ public:
 	std::map<std::string, Chip*> chips;
 	Fight* fight;
 
+	std::string compile(std::string ai);
 	void start(Fight& fight, std::function<void(Report*)> callback);
 	void crash();
 	void end(Report* report);
