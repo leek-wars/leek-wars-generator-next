@@ -44,6 +44,30 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 	}
 }
 
+std::string FightManager::compile(std::string ai) {
+
+	LOG << "Compile AI " << ai << std::endl;
+
+	auto code = Util::read_file(ai);
+	auto name = ai;
+
+	ls::VM::current_vm = &vm;
+	auto program = new ls::Program(code, name);
+	auto result = program->compile(vm, "{}");
+
+	auto errors = Json::array();
+	for (const auto& e : result.lexical_errors) {
+		errors.push_back(e.json());
+	}
+	for (const auto& e : result.syntaxical_errors) {
+		errors.push_back(e.json());
+	}
+	for (const auto& e : result.semantical_errors) {
+		errors.push_back(e.json());
+	}
+	return errors.dump();
+}
+
 void FightManager::start(Fight& fight, std::function<void(Report*)> callback) {
 
 	this->start_time = chrono::high_resolution_clock::now();
