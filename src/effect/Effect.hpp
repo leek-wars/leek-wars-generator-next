@@ -32,7 +32,9 @@ enum class EffectType {
 	BUFF_RESISTANCE = 21,
 	BUFF_WISDOM = 22,
 	ANTIDOTE = 23,
-	SHACKLE_MAGIC = 24
+	SHACKLE_MAGIC = 24,
+	AFTEREFFECT = 25,
+	VULNERABILITY = 26
 };
 
 enum EffectTarget {
