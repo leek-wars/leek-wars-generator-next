@@ -7,7 +7,10 @@
 					"strength": 500,
 					"tp": 12,
 					"mp": 6,
-					"cell": 123
+					"cell": 123,
+					"weapons": [
+						"m_laser"
+					]
 				},
 				{	"ai": "test/ai/color.leek",
 					"name": "Yolo",
@@ -55,7 +58,13 @@
 					"level": 200,
 					"life": 3000,
 					"tp": 10,
-					"mp": 8
+					"mp": 8,
+					"weapons": [
+						"laser", "m_laser", "magnum"
+					],
+					"chips": [
+						"stalactite", "fortress", "liberation"
+					]
 				}
 			]
 		}
