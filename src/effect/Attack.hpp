@@ -52,7 +52,7 @@ public:
 	int healAttack = 0;
 	int dammageAttack = 0;
 
-	Attack(int min_range, int max_range, LaunchType launchType, AreaType area_type, bool los, std::string effects, AttackType attack_type);
+	Attack(int min_range, int max_range, LaunchType launchType, AreaType area_type, bool los, std::vector<EffectParameters> effects, AttackType attack_type);
 	virtual ~Attack();
 
 	const EffectParameters* getEffectParametersByType(const EffectType type) const;

@@ -13,7 +13,7 @@
 
 using namespace std;
 
-Attack::Attack(int min_range, int max_range, LaunchType launch_type, AreaType area_type, bool los, std::string effects, AttackType attack_type) {
+Attack::Attack(int min_range, int max_range, LaunchType launch_type, AreaType area_type, bool los, std::vector<EffectParameters> effects, AttackType attack_type) {
 
 	this->min_range = min_range;
 	this->max_range = max_range;
@@ -22,26 +22,13 @@ Attack::Attack(int min_range, int max_range, LaunchType launch_type, AreaType ar
 	this->need_los = los;
 	this->attack_type = attack_type;
 
-	for (string& effect : Util::split(effects, ';')) {
-
-		if (effect.length() == 0) {
-			continue;
+	for (const auto& e : effects) {
+		if (e.type == EffectType::HEAL) {
+			healAttack |= e.targets;
 		}
-		vector<string> parameters = Util::split(effect, ',');
-		if (parameters.size() != 5) {
-			continue;
+		if (e.type == EffectType::DAMAGE) {
+			dammageAttack |= e.targets;
 		}
-
-		EffectType type = (EffectType) stoi(parameters[0]);
-		if (type == EffectType::HEAL) {
-			healAttack |= stoi(parameters[4]);
-		}
-		if (type == EffectType::DAMAGE) {
-			dammageAttack |= stoi(parameters[4]);
-		}
-
-		this->effects.push_back(EffectParameters({type, stod(parameters[1]),
-			stod(parameters[2]), stoi(parameters[3]), stoi(parameters[4])}));
 	}
 }
 
