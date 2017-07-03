@@ -35,7 +35,7 @@ void Actions::add_entity_logs(Entity* entity) {
 			logs[std::to_string(id)] = {};
 		}
 		logs[std::to_string(id)][std::to_string(action_id)].push_back({id, debug});
-		*Simulator::entity->debug_output = std::ostringstream();
+		Simulator::entity->debug_output->str("");
 	}
 }
 
