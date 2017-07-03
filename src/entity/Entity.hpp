@@ -3,9 +3,8 @@
 
 #include <vector>
 #include <string>
-
+#include <ostream>
 #include <leekscript/src/leekscript.h>
-
 #include "../map/Cell.hpp"
 #include "../ai/AI.hpp"
 #include "Characteristics.hpp"
@@ -67,6 +66,8 @@ public:
 	bool has_moved = false;
 
 	// private Register mRegister = null;
+
+	std::ostringstream* debug_output;
 
 	Entity(Fight* fight, std::string name, int level);
 	virtual ~Entity();

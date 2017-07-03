@@ -39,6 +39,8 @@ Entity::Entity(Fight* fight, std::string name, int level)
 	addField("name", name_val);
 	addField("cell", ls::LSNull::get());
 	weapons.refs = 10;
+
+	debug_output = new std::ostringstream();
 }
 
 Entity::~Entity() {

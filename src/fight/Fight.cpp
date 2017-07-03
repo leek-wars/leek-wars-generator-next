@@ -49,6 +49,8 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 
 		auto entity = order.current();
 		Simulator::entity = entity;
+		vm.output = entity->debug_output;
+		vm_v1.output = entity->debug_output;
 		try {
 			LOG << "Turn of " << entity->name << " (" << entity->id << "), AI " << entity->ai->name << "..." << std::endl;
 			entity->ai->execute(vm, vm_v1);
