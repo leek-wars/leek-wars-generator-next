@@ -19,7 +19,7 @@
 
 using namespace std;
 
-Fight::Fight() {
+Fight::Fight() : actions(this) {
 	map = nullptr;
 	turn = 0;
 	Entity::next_id = 0;
@@ -68,9 +68,7 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 	}
 
 	Report* report = new Report(this);
-
 	report->actions = &actions;
-
 	return report;
 }
 

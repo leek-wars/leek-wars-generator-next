@@ -2,20 +2,21 @@
 #define ACTIONS_HPP
 
 #include <vector>
-
 #include "../../lib/json.hpp"
-
+class Fight;
 class Action;
 class Entity;
 class Map;
 
 class Actions {
-
-	std::vector<Action*> actions;
-	int effect_id = 0;
-
 public:
 
+	Fight* fight;
+	std::vector<Action*> actions;
+	int effect_id = 0;
+	Json logs = Json::object();
+
+	Actions(Fight* fight);
 	~Actions();
 
 	/*
@@ -28,6 +29,7 @@ public:
 	int getEffectId();
 
 	void add(Action* action);
+	void add_entity_logs(Entity* entity);
 
 	int getNextId();
 

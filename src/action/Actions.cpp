@@ -1,7 +1,11 @@
 #include "Actions.hpp"
 #include "Action.hpp"
+#include "../fight/Simulator.hpp"
+#include "../entity/Entity.hpp"
 
 using namespace std;
+
+Actions::Actions(Fight* fight) : fight(fight) {}
 
 Actions::~Actions() {
 	for (auto& a : actions) {
@@ -15,6 +19,24 @@ int Actions::getEffectId() {
 
 void Actions::add(Action* action) {
 	actions.push_back(action);
+
+	// Add personal logs
+	if (Simulator::entity) {
+		add_entity_logs(Simulator::entity);
+	}
+}
+
+void Actions::add_entity_logs(Entity* entity) {
+	auto debug = Simulator::entity->debug_output->str();
+	if (debug.size()) {
+		int action_id = actions.size() - 1;
+		int id = Simulator::entity->id;
+		if (logs[std::to_string(id)].is_null()) {
+			logs[std::to_string(id)] = {};
+		}
+		logs[std::to_string(id)][std::to_string(action_id)].push_back({id, debug});
+		*Simulator::entity->debug_output = std::ostringstream();
+	}
 }
 
 int Actions::getNextId() {
