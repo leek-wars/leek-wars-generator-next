@@ -16,6 +16,7 @@
 #include "../action/ActionLoseMP.hpp"
 #include "../action/ActionMove.hpp"
 #include "../action/ActionNewTurn.hpp"
+#include "../action/ActionEndTurn.hpp"
 
 using namespace std;
 
@@ -61,6 +62,7 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 			vm_v1.last_exception = nullptr;
 		}
 		entity->endTurn();
+		actions.add(new ActionEndTurn(entity));
 		if (order.next()) {
 			actions.add(new ActionNewTurn(order.getTurn()));
 			LOG << "Turn " << order.getTurn() << std::endl;
