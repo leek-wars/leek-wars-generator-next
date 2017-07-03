@@ -11,11 +11,7 @@ class EffectDamage : public Effect {
 
 public:
 
-	EffectDamage();
-	virtual ~EffectDamage();
-
 	virtual void apply(Fight* fight) override;
-
 	virtual int getEffectValue() const override;
 };
 

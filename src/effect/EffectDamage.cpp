@@ -5,10 +5,6 @@
 #include "../action/ActionHeal.hpp"
 #include "../fight/Fight.hpp"
 
-EffectDamage::EffectDamage() {}
-
-EffectDamage::~EffectDamage() {}
-
 void EffectDamage::apply(Fight* fight) {
 
 	// Base damages
