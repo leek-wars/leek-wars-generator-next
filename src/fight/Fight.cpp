@@ -105,8 +105,8 @@ int Fight::moveEntity(Entity* entity, const vector<const Cell*> path) {
 	actions.add(new ActionMove(entity, path));
 	actions.add(new ActionLoseMP(entity, size));
 
-	// TODO Statistics
-//	trophyManager.deplacement(entity.getFarmer(), path);
+	// TODO Statistics and trophy manager
+	// trophyManager.deplacement(entity.getFarmer(), path);
 
 	entity->useMP(size);
 	entity->has_moved = true;
@@ -159,15 +159,15 @@ int Fight::useWeapon(Entity* launcher, Cell* target) {
 
 	vector<Entity*> target_entities  = weapon->attack.get()->applyOnCell(this, launcher, target, weapon->id, critical);
 
-	// TODO
-	//trophyManager.weaponUsed(launcher, weapon, target_entities);
+	// TODO Trophy manager
+	// trophyManager.weaponUsed(launcher, weapon, target_entities);
 
 	action->set_entities(target_entities);
 
 	launcher->useTP(weapon->cost);
 
-	// TODO
-	//actions.log(new ActionLoseTP(launcher, weapon.getWeaponTemplate().getCost()));
+	// TODO Add ActionLoseTP action
+	// actions.log(new ActionLoseTP(launcher, weapon.getWeaponTemplate().getCost()));
 
 	return result;
 }
@@ -205,7 +205,7 @@ int Fight::useChip(Entity* caster, Cell* target, Chip* chip) {
 
 	// Summon (with no AI)
 	if (chip->attack.get()->getEffectParametersByType(EffectType::SUMMON) != nullptr) {
-		// TODO
+		// TODO Summon management
 		//return summonEntity(caster, target, chip, nullptr);
 	}
 
@@ -226,14 +226,16 @@ int Fight::useChip(Entity* caster, Cell* target, Chip* chip) {
 
 	action->set_entities(target_leeks);
 
-	// TODO
+	// TODO Trophy manager
 	// trophyManager.spellUsed(caster, chip, target_leeks);
 
 	if (chip->cooldown != 0) {
+		// TODO addCooldown
 		// addCooldown(caster, chip);
 	}
 
 	caster->useTP(chip->cost);
+	// TODO ActionLoseTP
 	//logs.log(new ActionLoseTP(caster, chip->getCost()));
 
 	return result;

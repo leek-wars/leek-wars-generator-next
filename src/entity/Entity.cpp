@@ -280,7 +280,7 @@ int Entity::useWeaponOnCell(Cell* cell) {
 }
 
 Entity* Entity::getClosestEnemy() const {
-	// TODO
+	// TODO Really implement the method
 	return fight->teams[(team + 1) % 2]->entities[0];
 }
 
@@ -297,6 +297,7 @@ void Entity::useMP(int mp) {
 void Entity::endTurn() {
 	used_tp = 0;
 	used_mp = 0;
+
 }
 
 bool Entity::say(const LSValue* message) {
@@ -314,7 +315,7 @@ bool Entity::say(const LSValue* message) {
 		msg = msg.substr(0, 500);
 	}
 
-	// TODO
+	// TODO Censor say string
 	// msg = Censorship.checkString(message);
 
 	fight->actions.add(new ActionSay(this, msg));
@@ -385,10 +386,10 @@ void Entity::addLaunchedEffect(Effect* effect) {
 
 void Entity::removeEffect(Effect* effect) {
 
-	// TODO
+	// TODO Add ActionRemoveEffect action
 	//fight.log(new ActionRemoveEffect(effect.getLogID()));
 
-//	effects.remove(effect);
+	// effects.remove(effect);
 	effects.erase(std::find(effects.begin(), effects.end(), effect));
 
 	// updateBuffStats();
