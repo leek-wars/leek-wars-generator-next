@@ -7,8 +7,9 @@
 #include "../entity/Characteristics.hpp"
 #include "../map/Map.hpp"
 #include "../area/Area.hpp"
+#include "FightManager.hpp"
 
-Fight* FightLoader::load(std::string file) {
+Fight* FightLoader::load(const FightManager& manager, std::string file) {
 
 	auto fight = new Fight();
 
@@ -21,10 +22,6 @@ Fight* FightLoader::load(std::string file) {
 		LOG_E << "Invalid fight JSON syntax!" << std::endl;
 		return nullptr;
 	}
-
-	auto pistol = new Weapon(37, "Pistol", 3, new Attack(1, 7, LaunchType::CIRCLE, AreaType::SINGLE_CELL, true, "1,15,5,0,31", AttackType::WEAPON));
-	auto laser = new Weapon(42, "Laser", 6, new Attack(2, 7, LaunchType::LINE, AreaType::LASER_LINE, true, "1,43,16,0,31", AttackType::WEAPON));
-	auto fortress = new Chip(29, "Fortress", 6, 4, false, 0, new Attack(0, 6, LaunchType::CIRCLE, AreaType::SINGLE_CELL, true, "5,10,5,3,31", AttackType::CHIP));
 
 	std::vector<Team*> teams;
 	for (const auto& t : json["teams"]) {
@@ -79,12 +76,19 @@ Fight* FightLoader::load(std::string file) {
 			leek->setCharacteristics(characs);
 
 			vector<Weapon*> weapons;
-			weapons.push_back(pistol);
-			weapons.push_back(laser);
+			if (e.find("weapons") != e.end()) {
+				for (const auto& w : e["weapons"]) {
+					weapons.push_back(manager.weapons.at(w));
+				}
+			}
 			leek->setWeapons(weapons);
-
+			
 			vector<Chip*> chips;
-			chips.push_back(fortress);
+			if (e.find("chips") != e.end()) {
+				for (const auto& c : e["chips"]) {
+					chips.push_back(manager.chips.at(c));
+				}
+			}
 			leek->setChips(chips);
 
 			leek->team = teams.size();

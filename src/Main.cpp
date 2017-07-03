@@ -58,16 +58,18 @@ int main(int argc, char** argv) {
 	ls::LSBoolean::set_true_value(ls::LSBoolean::create(true));
 	ls::LSBoolean::set_false_value(ls::LSBoolean::create(false));
 
+	FightManager manager;
+
 	// Start the fight
 	std::string fight_file(input);
  	LOG << "Load fight '" << fight_file << "'..." << std::endl;
-	auto fight = FightLoader::load(fight_file);
+	auto fight = FightLoader::load(manager, fight_file);
 	if (fight == nullptr) {
 		LOG_W << "Fight failed to load!" << std::endl;
 		return 0;
 	}
 
-	FightManager().start(*fight, [](Report* report) {
+	manager.start(*fight, [](Report* report) {
 		LOG_I << "Fight generated!" << std::endl;
 		// Display the report
 		std::cout << report << std::endl;

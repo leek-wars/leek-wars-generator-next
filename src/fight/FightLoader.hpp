@@ -2,12 +2,12 @@
 #define FIGHT_LOADER_HPP_
 
 #include <string>
-
+class FightManager;
 class Fight;
 
 class FightLoader {
 public:
-	static Fight* load(std::string file);
+	static Fight* load(const FightManager& manager, std::string file);
 };
 
 #endif
