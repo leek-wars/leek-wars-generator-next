@@ -2,8 +2,11 @@
 #include "Action.hpp"
 #include "../fight/Simulator.hpp"
 #include "../entity/Entity.hpp"
+#include "../util/Util.hpp"
 
 using namespace std;
+
+#define MAX_LOGS_ENTITY 50000
 
 Actions::Actions(Fight* fight) : fight(fight) {}
 
@@ -29,6 +32,10 @@ void Actions::add(Action* action) {
 void Actions::add_entity_logs(Entity* entity) {
 	auto debug = Simulator::entity->debug_output->str();
 	if (debug.size()) {
+		Simulator::entity->log_length += debug.size();
+		if (Simulator::entity->log_length > MAX_LOGS_ENTITY) {
+			return; // Log limit exceeded
+		}
 		int action_id = actions.size() - 2; // Link the logs to the previous action
 		int id = Simulator::entity->id;
 		if (logs[std::to_string(id)].is_null()) {

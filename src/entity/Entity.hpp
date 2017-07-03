@@ -68,6 +68,7 @@ public:
 	// private Register mRegister = null;
 
 	std::ostringstream* debug_output;
+	size_t log_length = 0;
 
 	Entity(Fight* fight, std::string name, int level);
 	virtual ~Entity();
