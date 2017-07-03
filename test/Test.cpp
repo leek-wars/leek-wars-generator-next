@@ -11,8 +11,6 @@ Test::Test() {
 	total = 0;
 	success = 0;
 	exeTime = 0;
-	add_weapons(manager);
-	add_chips(manager);
 }
 
 int main(int, char**) {
