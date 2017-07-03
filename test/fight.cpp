@@ -58,10 +58,11 @@ void Test::test_fight() {
 	fight.map.reset(new Map(18, 18, 25, {team1, team2}));
 
 	// Run the fight
-	auto report = manager.start(fight);
-	std::cout << "-------------- report ----------------" << std::endl;
-	std::cout << report << std::endl;
-	delete report;
+	manager.start(fight, [](Report* report) {
+		std::cout << "-------------- report ----------------" << std::endl;
+		std::cout << report << std::endl;
+		delete report;
+	});
 }
 
 void Test::test_generateCritical() {
@@ -131,11 +132,12 @@ void Test::test_fight_v1() {
 	fight.map.reset(new Map(18, 18, 25, {team1, team2}));
 
 	// Run the fight
-	auto report = manager.start(fight);
-	std::cout << "-------------- report ----------------" << std::endl;
-	std::cout << report << std::endl;
+	manager.start(fight, [](Report* report) {
+		std::cout << "-------------- report ----------------" << std::endl;
+		std::cout << report << std::endl;
 
-	// run_fight_browser(report);
+		// run_fight_browser(report);
 
-	delete report;
+		delete report;
+	});
 }
