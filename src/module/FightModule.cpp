@@ -17,11 +17,9 @@
  * let ctx = Fight.Context.GARDEN
  */
 
-jit_value_t Fight_MAX_TURNS(jit_function_t F) { return LS_CREATE_INTEGER(F, 64); }
-
 FightModule::FightModule() : Module("Fight") {
 
-	static_field("MAX_TURNS", ls::Type::INTEGER, (void*) &Fight_MAX_TURNS);
+	static_field("MAX_TURNS", ls::Type::INTEGER, [](ls::Compiler& c) { return c.new_integer(64); });
 
 	static_method("getTurn", ls::Type::INTEGER, {}, (void*) &fight_getTurn);
 	static_method("getEntity", {
