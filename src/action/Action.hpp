@@ -11,7 +11,7 @@ enum class ActionType {
 	END_FIGHT = 4,
 	PLAYER_DEAD = 5,
 	NEW_TURN = 6,
-	LEEK_TURN = 7,
+	ENTITY_TURN = 7,
 	END_TURN = 8,
 	SUMMON = 9,
 	MOVE_TO = 10,

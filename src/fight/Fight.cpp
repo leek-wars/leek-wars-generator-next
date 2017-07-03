@@ -17,6 +17,7 @@
 #include "../action/ActionMove.hpp"
 #include "../action/ActionNewTurn.hpp"
 #include "../action/ActionEndTurn.hpp"
+#include "../action/ActionEntityTurn.hpp"
 
 using namespace std;
 
@@ -52,8 +53,11 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 		Simulator::entity = entity;
 		vm.output = entity->debug_output;
 		vm_v1.output = entity->debug_output;
+
+		LOG << "Turn of " << entity->name << " (" << entity->id << "), AI " << entity->ai->name << "..." << std::endl;
+		actions.add(new ActionEntityTurn(entity));
+
 		try {
-			LOG << "Turn of " << entity->name << " (" << entity->id << "), AI " << entity->ai->name << "..." << std::endl;
 			entity->ai->execute(vm, vm_v1);
 		} catch (ls::vm::ExceptionObj* ex) {
 			LOG << ex->to_string(true);
