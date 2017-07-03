@@ -1,11 +1,5 @@
 #include "ItemModule.hpp"
 
-ItemModule::ItemModule() : Module("Item") {
-	// TODO Auto-generated constructor stub
+ItemModule::ItemModule() : Module("Item") {}
 
-}
-
-ItemModule::~ItemModule() {
-	// TODO Auto-generated destructor stub
-}
-
+ItemModule::~ItemModule() {}
