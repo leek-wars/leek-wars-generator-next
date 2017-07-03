@@ -34,7 +34,7 @@ void Actions::add_entity_logs(Entity* entity) {
 		if (logs[std::to_string(id)].is_null()) {
 			logs[std::to_string(id)] = {};
 		}
-		logs[std::to_string(id)][std::to_string(action_id)].push_back({id, debug});
+		logs[std::to_string(id)][std::to_string(action_id)].push_back({id, (int) LogType::STANDARD, debug});
 		Simulator::entity->debug_output->str("");
 	}
 }

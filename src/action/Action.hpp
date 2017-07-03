@@ -42,6 +42,17 @@ enum class ActionType {
 	AI_ERROR = 1002
 };
 
+enum class LogType {
+	STANDARD = 1,
+	WARNING = 2,
+	ERROR = 3,
+	MARK = 4,
+	PAUSE = 5,
+	SSTANDARD = 6,
+	SWARNING = 7,
+	SERROR = 8
+};
+
 class Action {
 public:
 	ActionType type;
