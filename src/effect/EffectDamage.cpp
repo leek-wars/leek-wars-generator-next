@@ -2,6 +2,7 @@
 #include "EffectDamage.hpp"
 #include "../entity/Entity.hpp"
 #include "../action/ActionLoseLife.hpp"
+#include "../action/ActionHeal.hpp"
 #include "../fight/Fight.hpp"
 
 EffectDamage::EffectDamage() {}
@@ -49,19 +50,16 @@ void EffectDamage::apply(Fight* fight) {
 			life_steal = caster->getTotalLife() - caster->getLife();
 		}
 		if (life_steal > 0) {
-			// TODO
-			// fight.log(new ActionHeal(caster, lifeSteal));
+			fight->actions.add(new ActionHeal(caster, life_steal));
 			caster->addLife(life_steal);
 		}
 	}
 
 	// Return damage (no return damage is the target is dead during the attack)
 	if (return_damage > 0 and target->isAlive()) {
-
 		if (caster->getLife() < return_damage) {
 			return_damage = caster->getLife();
 		}
-
 		if (return_damage > 0) {
 			fight->actions.add(new ActionLoseLife(caster, return_damage));
 			caster->removeLife(return_damage, target);
