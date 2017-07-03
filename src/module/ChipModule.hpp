@@ -1,10 +1,3 @@
-/*
- * ChipModule.hpp
- *
- *  Created on: May 4, 2016
- *      Author: pierre
- */
-
 #ifndef MODULE_CHIPMODULE_HPP_
 #define MODULE_CHIPMODULE_HPP_
 

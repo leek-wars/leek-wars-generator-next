@@ -1,10 +1,3 @@
-/*
- * Color.hpp
- *
- *  Created on: Apr 26, 2016
- *      Author: pierre
- */
-
 #ifndef SRC_UTIL_COLOR_HPP_
 #define SRC_UTIL_COLOR_HPP_
 

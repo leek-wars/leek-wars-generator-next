@@ -1,10 +1,3 @@
-/*
- * ItemModule.cpp
- *
- *  Created on: Apr 14, 2016
- *      Author: pierre
- */
-
 #include "ItemModule.hpp"
 
 ItemModule::ItemModule() : Module("Item") {
