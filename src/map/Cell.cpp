@@ -3,8 +3,6 @@
 #include "Map.hpp"
 #include "../entity/Entity.hpp"
 
-using namespace std;
-
 Cell::Cell(Map* map, int id) {
 
 	this->id = id;

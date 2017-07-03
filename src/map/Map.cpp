@@ -12,8 +12,6 @@
 #include "../effect/Attack.hpp"
 #include "../entity/Team.hpp"
 
-using namespace std;
-
 std::vector<Map::Node> Map::visited;
 std::vector<bool> Map::opened;
 

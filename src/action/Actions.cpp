@@ -4,8 +4,6 @@
 #include "../entity/Entity.hpp"
 #include "../util/Util.hpp"
 
-using namespace std;
-
 #define MAX_LOGS_ENTITY 50000
 
 Actions::Actions(Fight* fight) : fight(fight) {}

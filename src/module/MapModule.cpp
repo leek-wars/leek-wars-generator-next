@@ -5,8 +5,6 @@
 #include "../fight/Fight.hpp"
 #include "../entity/Entity.hpp"
 
-using namespace std;
-
 MapModule::MapModule() : Module("FightMap") {
 
 	static_method("cell", CellModule::type, {ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &map_cell);

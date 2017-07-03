@@ -1,7 +1,5 @@
 #include "ActionMove.hpp"
 
-using namespace std;
-
 ActionMove::ActionMove(Entity* entity, vector<const Cell*> path) {
 	this->entity = entity->id;
 	for (auto cell : path) {

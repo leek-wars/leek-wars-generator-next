@@ -8,8 +8,6 @@
 #include <iterator>
 #include <string>
 #include <chrono>
-using namespace std;
-
 #include "../src/map/Map.hpp"
 
 Benchmark::Benchmark() {}

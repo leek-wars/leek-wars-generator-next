@@ -2,7 +2,6 @@
 #include "Order.hpp"
 #include "../entity/Entity.hpp"
 #include "../entity/Summon.hpp"
-using namespace std;
 
 Order::Order() {}
 

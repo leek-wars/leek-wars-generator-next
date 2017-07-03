@@ -7,7 +7,7 @@ Characteristics::~Characteristics() {}
 int Characteristics::get(Characteristic characteristic) const {
 	try {
 		return characteristics.at((int) characteristic);
-	} catch (exception& e) {
+	} catch (std::exception& e) {
 		return 0;
 	}
 }

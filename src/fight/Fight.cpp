@@ -18,8 +18,6 @@
 #include "../action/ActionEndTurn.hpp"
 #include "../action/ActionEntityTurn.hpp"
 
-using namespace std;
-
 Fight::Fight() : actions(this) {
 	map = nullptr;
 	turn = 0;

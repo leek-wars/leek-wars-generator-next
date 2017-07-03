@@ -2,7 +2,6 @@
 #define CHARACTERISTICS_HPP_
 
 #include <map>
-using namespace std;
 
 enum class Characteristic;
 

@@ -9,8 +9,6 @@
 #include <algorithm>
 #include <iomanip>
 
-using namespace std;
-
 std::ostream Util::dummy_stream(0);
 bool Util::log_enabled = true;
 
@@ -26,10 +24,10 @@ int Util::rand_int(int min, int max) {
 	return min + rand() % (max - min + 1);
 }
 
-vector<string> Util::split(const string& s, char delim) {
-    vector<string> elems;
-    stringstream ss(s);
-    string item;
+std::vector<std::string> Util::split(const std::string& s, char delim) {
+	std::vector<std::string> elems;
+	std::stringstream ss(s);
+	std::string item;
 	while (std::getline(ss, item, delim)) {
 		elems.push_back(item);
 	}
@@ -49,28 +47,28 @@ bool Util::contains(const std::vector<T>& vector, const T& element) {
 	return find(vector.begin(), vector.end(), element) != vector.end();
 }
 
-string Util::read_file(string file) {
-	ifstream ifs(file.data());
-	string content = string((istreambuf_iterator<char>(ifs)), (istreambuf_iterator<char>()));
+std::string Util::read_file(std::string file) {
+	std::ifstream ifs(file.data());
+	std::string content = std::string((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
 	ifs.close();
 	return content;
 }
 
-string Util::url_encode(const string& value) {
-	ostringstream escaped;
+std::string Util::url_encode(const std::string& value) {
+	std::ostringstream escaped;
 	escaped.fill('0');
-	escaped << hex;
-	for (string::const_iterator i = value.begin(), n = value.end(); i != n; ++i) {
-		string::value_type c = (*i);
+	escaped << std::hex;
+	for (std::string::const_iterator i = value.begin(), n = value.end(); i != n; ++i) {
+		std::string::value_type c = (*i);
 		// Keep alphanumeric and other accepted characters intact
 		if (isalnum(c) || c == '-' || c == '_' || c == '.' || c == '~') {
 			escaped << c;
 			continue;
 		}
 		// Any other characters are percent-encoded
-		escaped << uppercase;
+		escaped << std::uppercase;
 		escaped << '%' << std::setw(2) << int((unsigned char) c);
-		escaped << nouppercase;
+		escaped << std::nouppercase;
 	}
 	return escaped.str();
 }

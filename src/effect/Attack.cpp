@@ -10,8 +10,6 @@
 #include "../area/AreaCircle.hpp"
 #include "../area/AreaLaserLine.hpp"
 
-using namespace std;
-
 Attack::Attack(int min_range, int max_range, LaunchType launch_type, AreaType area_type, bool los, std::vector<EffectParameters> effects, AttackType attack_type) {
 
 	this->min_range = min_range;

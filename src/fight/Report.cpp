@@ -3,8 +3,6 @@
 #include "Fight.hpp"
 #include "../map/Map.hpp"
 
-using namespace std;
-
 Report::Report(Fight* fight) : fight(fight) {
 	actions = nullptr;
 }
