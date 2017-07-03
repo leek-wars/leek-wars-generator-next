@@ -2,7 +2,6 @@
 #define FIGHT_HPP_
 
 #include <leekscript/src/leekscript.h>
-
 #include <vector>
 class Entity;
 class Team;

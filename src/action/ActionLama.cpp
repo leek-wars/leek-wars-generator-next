@@ -1,5 +1,4 @@
 ﻿#include "ActionLama.hpp"
-
 #include "../entity/Entity.hpp"
 
 ActionLama::ActionLama(Entity* caster) : caster(caster->id) {}

@@ -5,7 +5,6 @@
 #include <algorithm>
 #include <queue>
 #include <set>
-
 #include "Map.hpp"
 #include "../util/Util.hpp"
 #include "ConnexeMap.hpp"

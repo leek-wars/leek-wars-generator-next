@@ -3,7 +3,6 @@
 
 #include <vector>
 #include "../../lib/json.hpp"
-
 #include "Action.hpp"
 class Entity;
 class Chip;

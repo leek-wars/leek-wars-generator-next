@@ -8,7 +8,6 @@ public:
 	const std::string getName() const { return "Item"; };
 };
 
-
 class ItemModule : public ls::Module {
 public:
 	ItemModule();

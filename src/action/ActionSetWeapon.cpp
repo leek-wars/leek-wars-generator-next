@@ -1,5 +1,4 @@
 #include "ActionSetWeapon.hpp"
-
 #include "../entity/Entity.hpp"
 
 ActionSetWeapon::ActionSetWeapon(Entity* entity, const Weapon* weapon) {

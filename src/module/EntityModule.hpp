@@ -2,7 +2,6 @@
 #define CLASS_ENTITYMODULE_HPP_
 
 #include <leekscript/src/leekscript.h>
-
 class Entity;
 class Weapon;
 #include "CellModule.hpp"

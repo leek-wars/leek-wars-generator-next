@@ -1,7 +1,5 @@
 #include "MapModule.hpp"
-
 #include <vector>
-
 #include "../fight/Simulator.hpp"
 #include "../map/Map.hpp"
 #include "../fight/Fight.hpp"

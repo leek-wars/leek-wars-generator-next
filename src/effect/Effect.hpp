@@ -2,7 +2,6 @@
 #define EFFECT_HPP_
 
 #include <leekscript/src/leekscript.h>
-
 class Fight;
 class Entity;
 #include "../entity/Characteristics.hpp"

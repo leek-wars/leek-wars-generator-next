@@ -1,5 +1,4 @@
 #include "EntityModule.hpp"
-
 #include "../fight/Fight.hpp"
 #include "WeaponModule.hpp"
 #include "ChipModule.hpp"

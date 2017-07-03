@@ -3,7 +3,6 @@
 
 #include <ostream>
 #include <leekscript/src/leekscript.h>
-
 class Entity;
 class Map;
 

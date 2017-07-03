@@ -1,5 +1,4 @@
 ﻿#include "ActionAddEffect.hpp"
-
 #include "../effect/Attack.hpp"
 #include "../entity/Entity.hpp"
 

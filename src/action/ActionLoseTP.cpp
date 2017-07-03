@@ -1,5 +1,4 @@
 #include "ActionLoseTP.hpp"
-
 #include "../entity/Entity.hpp"
 
 ActionLoseTP::ActionLoseTP(Entity* target, int tp)

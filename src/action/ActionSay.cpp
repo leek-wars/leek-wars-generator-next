@@ -1,5 +1,4 @@
 #include "ActionSay.hpp"
-
 #include "../entity/Entity.hpp"
 
 ActionSay::ActionSay(Entity* entity, std::string& message)

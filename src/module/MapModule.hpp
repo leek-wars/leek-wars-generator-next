@@ -4,7 +4,6 @@
 #include <leekscript/src/leekscript.h>
 #include "CellModule.hpp"
 
-
 class MapModule : public ls::Module {
 public:
 	MapModule();
@@ -35,4 +34,3 @@ ls::LSValue* map__lineOfSight(const ls::LSValue* cell1, const ls::LSValue* cell2
 ls::LSValue* map__lineOfSightIgnored(const ls::LSValue* cell1, const ls::LSValue* cell2, const ls::LSValue* ignored);
 
 #endif
-

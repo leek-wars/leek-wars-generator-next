@@ -1,5 +1,4 @@
 #include <algorithm>
-
 #include "Entity.hpp"
 #include "../map/Map.hpp"
 #include "../module/WeaponModule.hpp"

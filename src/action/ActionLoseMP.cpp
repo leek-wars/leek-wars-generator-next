@@ -1,5 +1,4 @@
 #include "ActionLoseMP.hpp"
-
 #include "../entity/Entity.hpp"
 
 ActionLoseMP::ActionLoseMP(Entity* target, int mp)

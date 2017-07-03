@@ -1,5 +1,4 @@
 #include "Leek.hpp"
-
 #include "../module/LeekModule.hpp"
 
 Leek::Leek(Fight* fight, std::string name, int level, AI* ai)

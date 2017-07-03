@@ -1,5 +1,4 @@
 #include "ActionUseChip.hpp"
-
 #include "../entity/Entity.hpp"
 
 ActionUseChip::ActionUseChip(Entity* caster, Cell* cell, Chip* chip, int success) {

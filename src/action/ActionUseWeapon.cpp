@@ -1,5 +1,4 @@
 #include "ActionUseWeapon.hpp"
-
 #include "../entity/Entity.hpp"
 
 ActionUseWeapon::ActionUseWeapon(Entity* caster, Cell* cell, const Weapon* weapon, int success) {

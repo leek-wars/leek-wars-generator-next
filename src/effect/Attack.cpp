@@ -1,6 +1,5 @@
 #include <algorithm>
 #include <string>
-
 #include "Attack.hpp"
 #include "Effect.hpp"
 #include "../entity/Entity.hpp"
