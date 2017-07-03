@@ -2,8 +2,8 @@
 #include "../effect/Effect.hpp"
 #include "../entity/Entity.hpp"
 #include "../action/ActionAddEffect.hpp"
-
 #include "EffectDamage.hpp"
+#include "EffectHeal.hpp"
 #include "EffectRelativeShield.hpp"
 
 Effect::Effect() {
@@ -79,7 +79,7 @@ void Effect::createEffect(Fight* fight, EffectType type, int turns, double power
 Effect* Effect::construct(EffectType type) {
 	switch (type) {
 		case EffectType::DAMAGE: return new EffectDamage();
-		//case EffectType::HEAL: return new EffectHeal();
+		case EffectType::HEAL: return new EffectHeal();
 		case EffectType::RELATIVE_SHIELD: return new EffectRelativeShield();
 		default:
 			return nullptr;
