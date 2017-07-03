@@ -31,7 +31,7 @@ enum class AttackType {
 };
 
 struct EffectParameters {
-	EffectType id;
+	EffectType type;
 	double value1;
 	double value2;
 	int turns;

@@ -36,7 +36,7 @@ Attack::~Attack() {}
 
 const EffectParameters* Attack::getEffectParametersByType(const EffectType type) const {
 	for (const EffectParameters& ep : effects) {
-		if (ep.id == type) {
+		if (ep.type == type) {
 			return &ep;
 		}
 	}
@@ -47,7 +47,7 @@ std::vector<Entity*> Attack::applyOnCell(Fight* fight, Entity* caster, Cell* tar
 
 	std::vector<Entity*> return_entities;
 
-	if (effects.size() > 0 && effects[0].id == EffectType::TELEPORT) {
+	if (effects.size() > 0 && effects[0].type == EffectType::TELEPORT) {
 
 		caster->has_moved = true;
 		Cell* start = caster->cell;
@@ -95,7 +95,7 @@ std::vector<Entity*> Attack::applyOnCell(Fight* fight, Entity* caster, Cell* tar
 			}
 			double power = getPowerForCell(caster->cell, target, targetEntity->cell);
 
-			Effect::createEffect(fight, parameters.id, parameters.turns, power, parameters.value1, parameters.value2, critical, targetEntity, caster, attack_type, item_id, jet);
+			Effect::createEffect(fight, parameters.type, parameters.turns, power, parameters.value1, parameters.value2, critical, targetEntity, caster, attack_type, item_id, jet);
 		}
 	}
 	return return_entities;
