@@ -29,7 +29,7 @@ void Actions::add(Action* action) {
 void Actions::add_entity_logs(Entity* entity) {
 	auto debug = Simulator::entity->debug_output->str();
 	if (debug.size()) {
-		int action_id = actions.size() - 1;
+		int action_id = actions.size() - 2; // Link the logs to the previous action
 		int id = Simulator::entity->id;
 		if (logs[std::to_string(id)].is_null()) {
 			logs[std::to_string(id)] = {};
