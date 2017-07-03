@@ -1,21 +1,5 @@
-/*
- * Pathfinding.cpp
- *
- *  Created on: Mar 30, 2016
- *      Author: pierre
- */
-
 #include "Pathfinding.hpp"
 #include "Map.hpp"
-
-Pathfinding::Pathfinding() {
-	// TODO Auto-generated constructor stub
-
-}
-
-Pathfinding::~Pathfinding() {
-	// TODO Auto-generated destructor stub
-}
 
 Cell* Pathfinding::getCellByDir(Cell* cell, Direction dir) {
 

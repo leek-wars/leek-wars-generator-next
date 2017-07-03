@@ -8,9 +8,6 @@ enum class Direction { NORTH, EAST, SOUTH, WEST };
 class Pathfinding {
 public:
 
-	Pathfinding();
-	virtual ~Pathfinding();
-
 	static Cell* getCellByDir(Cell* cell, Direction dir);
 };
 
