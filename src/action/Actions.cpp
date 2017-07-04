@@ -28,19 +28,19 @@ void Actions::add(Action* action) {
 }
 
 void Actions::add_entity_logs(Entity* entity) {
-	auto debug = Simulator::entity->debug_output->str();
+	auto debug = entity->debug_output->str();
 	if (debug.size()) {
-		Simulator::entity->log_length += debug.size();
-		if (Simulator::entity->log_length > MAX_LOGS_ENTITY) {
+		entity->log_length += debug.size();
+		if (entity->log_length > MAX_LOGS_ENTITY) {
 			return; // Log limit exceeded
 		}
 		int action_id = actions.size() - 2; // Link the logs to the previous action
-		int id = Simulator::entity->id;
+		int id = entity->id;
 		if (logs[std::to_string(id)].is_null()) {
 			logs[std::to_string(id)] = {};
 		}
 		logs[std::to_string(id)][std::to_string(action_id)].push_back({id, (int) LogType::STANDARD, debug});
-		Simulator::entity->debug_output->str("");
+		entity->debug_output->str("");
 	}
 }
 
