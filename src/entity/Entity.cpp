@@ -10,6 +10,7 @@
 #include "Team.hpp"
 #include "../fight/Simulator.hpp"
 #include <leekscript/src/leekscript.h>
+#include "../util/Util.hpp"
 
 int Entity::next_id = 0;
 
@@ -337,25 +338,18 @@ int Entity::moveToward(Entity* target) {
 
 int Entity::moveTowardMP(Entity* target, int max_mp) {
 
-	// cout << "move toward " << target->id << "(me: " << id << ")" << endl;
+	LOG << name << " (" << id << ") move toward " << target->name << " (" << target->id << ")" << std::endl;
 
 	if (target == nullptr or target->isDead()) return 0;
 	if (max_mp <= 0 or getMP() <= 0) return 0;
 
 	int mp = max_mp == -1 ? getMP() : min(getMP(), max_mp);
 
-	// std::cout << "path between " << cell->id << " and " << target->cell->id << std::endl;
-
-	vector<const Cell*> path = fight->map->get_path_between(target->cell, cell, vector<const Cell*> {});
-
-	// cout << "path: " << path.size() << endl;
-
-//	return fight.moveEntity(this, path.size() > pm ? path.subList(0, pm) : path);
+	auto path = fight->map->get_path_between(target->cell, cell, {});
 	if (path.size() == 0) {
 		return 0;
 	}
 	return fight->moveEntity(this, {path.begin() + 1, path.begin() + min((int) path.size(), mp + 1)} );
-//	return 0;
 }
 
 void Entity::addCooldown(Chip* chip, int cooldown) {
