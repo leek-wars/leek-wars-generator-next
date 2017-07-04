@@ -275,25 +275,25 @@ inline const vector<const Cell*> Map::get_cells_around(const Cell* const c) cons
 
 	vector<const Cell*> cells;
 	if (c->x < max_x) {
-		Cell* v = coord[c->x - min_x + 1][c->y - min_y];
+		auto v = coord[c->x - min_x + 1][c->y - min_y];
 		if (v != nullptr and v->walkable) {
 			cells.push_back(v);
 		}
 	}
 	if (c->y < max_y) {
-		Cell* v = coord[c->x - min_x][c->y - min_y + 1];
+		auto v = coord[c->x - min_x][c->y - min_y + 1];
 		if (v != nullptr and v->walkable) {
 			cells.push_back(v);
 		}
 	}
 	if (c->x > min_x) {
-		Cell* v = coord[c->x - min_x - 1][c->y - min_y];
+		auto v = coord[c->x - min_x - 1][c->y - min_y];
 		if (v != nullptr and v->walkable) {
 			cells.push_back(v);
 		}
 	}
 	if (c->y > min_y) {
-		Cell* v = coord[c->x - min_x][c->y - min_y - 1];
+		auto v = coord[c->x - min_x][c->y - min_y - 1];
 		if (v != nullptr and v->walkable) {
 			cells.push_back(v);
 		}
@@ -329,14 +329,14 @@ vector<const Cell*> Map::get_path(const Cell* c1, vector<const Cell*> end_cells,
 
 	while (open.size() > 0) {
 
-		Node u = open.top();
+		auto u = open.top();
 		open.pop();
 		visited[u.cell->id] = u;
 
 		if (find(end_cells.begin(), end_cells.end(), u.cell) != end_cells.end()) {
 
 			vector<const Cell*> result;
-			Node* n = &u;
+			auto n = &u;
 			int s = u.cost;
 			while (s-- >= 0) {
 				result.push_back(n->cell);
@@ -377,7 +377,7 @@ void Map::print() const {
 
 	for (int x = 0; x < sx; ++x) {
 		for (int y = 0; y < sy; ++y) {
-			Cell* c = coord[y][x];
+			auto c = coord[y][x];
 			if (c == nullptr) {
 				cout << "  ";
 			} else if (c->walkable) {
