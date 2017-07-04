@@ -45,7 +45,6 @@ public:
 
 	void generate(int obstacles, const std::vector<Team*>& teams);
 	void clear();
-	void positionChanged();
 
 	void drawMap();
 	void drawMap(std::vector<Cell*> path);

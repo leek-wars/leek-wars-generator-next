@@ -69,7 +69,6 @@ void Cell::setEntity(Entity* entity) {
 	if (this->entity == entity) {
 		return;
 	}
-	this->map->positionChanged();
 	if (entity == nullptr) {
 		this->entity = nullptr;
 		this->values["empty"] = ls::LSBoolean::get(walkable);

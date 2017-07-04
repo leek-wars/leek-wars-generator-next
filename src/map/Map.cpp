@@ -168,10 +168,6 @@ Cell* Map::getRandomCell(int part) {
 	return c;
 }
 
-void Map::positionChanged() {
-	// mPathCache.clear();
-}
-
 bool Map::canUseAttack(const Cell* caster, const Cell* target, const Attack* attack) const {
 
 	if (target == nullptr || caster == nullptr) {
