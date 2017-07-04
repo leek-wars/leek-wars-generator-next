@@ -6,6 +6,7 @@
 #include "EffectDamage.hpp"
 #include "EffectHeal.hpp"
 #include "EffectRelativeShield.hpp"
+#include "EffectAbsoluteShield.hpp"
 #include "EffectPoison.hpp"
 
 Effect::Effect() {
@@ -78,6 +79,7 @@ Effect* Effect::construct(EffectType type) {
 		case EffectType::HEAL: return new EffectHeal();
 		case EffectType::POISON: return new EffectPoison();
 		case EffectType::RELATIVE_SHIELD: return new EffectRelativeShield();
+		case EffectType::ABSOLUTE_SHIELD: return new EffectAbsoluteShield();
 		default:
 			LOG_E << "No such effect!" << std::endl;
 			assert(false or "No such effect!");
