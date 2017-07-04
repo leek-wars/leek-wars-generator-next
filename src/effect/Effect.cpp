@@ -2,6 +2,7 @@
 #include "../effect/Effect.hpp"
 #include "../entity/Entity.hpp"
 #include "../action/ActionAddEffect.hpp"
+#include "../util/Util.hpp"
 #include "EffectDamage.hpp"
 #include "EffectHeal.hpp"
 #include "EffectRelativeShield.hpp"
@@ -78,6 +79,8 @@ Effect* Effect::construct(EffectType type) {
 		case EffectType::POISON: return new EffectPoison();
 		case EffectType::RELATIVE_SHIELD: return new EffectRelativeShield();
 		default:
+			LOG_E << "No such effect!" << std::endl;
+			assert(false or "No such effect!");
 			return nullptr;
 	}
 }
