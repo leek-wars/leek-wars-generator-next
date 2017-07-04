@@ -19,7 +19,7 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 	vm.add_module(new LeekModule());
 	vm.add_module(new MapModule());
 	vm.add_module(new CellModule());
-	vm.add_module(new WeaponModule());
+	vm.add_module(new WeaponModule(*this));
 	vm.add_module(new ColorModule());
 	vm.add_module(new ChipModule());
 
@@ -30,7 +30,7 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 	vm_v1.add_module(new LeekModule());
 	vm_v1.add_module(new MapModule());
 	vm_v1.add_module(new CellModule());
-	vm_v1.add_module(new WeaponModule());
+	vm_v1.add_module(new WeaponModule(*this));
 	vm_v1.add_module(new ColorModule());
 	vm_v1.add_module(new ChipModule());
 

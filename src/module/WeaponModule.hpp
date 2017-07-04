@@ -3,6 +3,7 @@
 
 #include <leekscript/src/leekscript.h>
 #include "ItemModule.hpp"
+#include "../fight/FightManager.hpp"
 
 class WeaponType : public ItemType {
 public:
@@ -12,7 +13,7 @@ public:
 
 class WeaponModule : public ls::Module {
 public:
-	WeaponModule();
+	WeaponModule(const FightManager& manager);
 	virtual ~WeaponModule();
 
 	static const ls::LSClass* weapon_clazz;

@@ -1,4 +1,5 @@
 #include "WeaponModule.hpp"
+#include "../util/Util.hpp"
 
 const ls::LSClass* WeaponModule::weapon_clazz;
 const ls::Type WeaponModule::type(new WeaponType(), ls::Nature::POINTER, true);
@@ -7,10 +8,13 @@ const ls::Type WeaponModule::array_type(ls::RawType::ARRAY, ls::Nature::POINTER,
 jit_value_t Weapon_PISTOL(jit_function_t F) { return LS_CREATE_INTEGER(F, 37); }
 jit_value_t Weapon_LASER(jit_function_t F) { return LS_CREATE_INTEGER(F, 42); }
 
-WeaponModule::WeaponModule() : Module("Weapon") {
+WeaponModule::WeaponModule(const FightManager& manager) : Module("Weapon") {
 
-	static_field("PISTOL", ls::Type::INTEGER, (void*) &Weapon_PISTOL);
-	static_field("LASER", ls::Type::INTEGER, (void*) &Weapon_LASER);
+	for (const auto& w : manager.weapons) {
+		static_field(Util::toupper(w.first), ls::Type::INTEGER, [&](ls::Compiler& c) {
+			return c.new_integer(w.second->id);
+		});
+	}
 
 	field("id", ls::Type::NUMBER);
 	field("cost", ls::Type::NUMBER);
