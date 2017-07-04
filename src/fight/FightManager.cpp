@@ -13,6 +13,30 @@
 FightManager* FightManager::current;
 
 FightManager::FightManager() : vm(), vm_v1(true) {
+
+	// Load items
+	auto build_attack = [](Json i, AttackType type) {
+		std::vector<EffectParameters> effects;
+		for (const auto& e : i["effects"]) {
+			effects.push_back({(EffectType) e["id"].get<int>(), e["value1"], e["value2"], e["turns"], e["targets"]});
+		}
+		return new Attack(i["min_range"], i["max_range"], (LaunchType) i["launch_type"].get<int>(), (AreaType) i["area"].get<int>(), i["los"].get<int>(), effects, AttackType::WEAPON);
+	};
+
+	// Load weapons
+	auto weapons_json = Json::parse(Util::read_file("data/weapons.json"));
+	for (const auto& w : weapons_json["weapons"]) {
+		auto weapon = new Weapon(w["id"], w["name"], w["cost"], build_attack(w, AttackType::WEAPON));
+		weapons.insert({w["name"].get<std::string>(), weapon});
+	}
+
+	// Load chips
+	auto chips_json = Json::parse(Util::read_file("data/chips.json"));
+	for (const auto& c : chips_json["chips"]) {
+		auto chip = new Chip(c["id"], c["name"], c["cost"], c["cooldown"], c["team_cooldown"].get<int>(), c["initial_cooldown"], build_attack(c, AttackType::CHIP));
+		chips.insert({c["name"].get<std::string>(), chip});
+	}
+
 	// V2
 	vm.add_module(new FightModule());
 	vm.add_module(new EntityModule());
@@ -41,29 +65,6 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 			fun->native = true;
 			vm_v1.add_constant(method.name.substr(1), method.impl[0].type, fun);
 		}
-	}
-
-	// Load items
-	auto build_attack = [](Json i, AttackType type) {
-		std::vector<EffectParameters> effects;
-		for (const auto& e : i["effects"]) {
-			effects.push_back({(EffectType) e["id"].get<int>(), e["value1"], e["value2"], e["turns"], e["targets"]});
-		}
-		return new Attack(i["min_range"], i["max_range"], (LaunchType) i["launch_type"].get<int>(), (AreaType) i["area"].get<int>(), i["los"].get<int>(), effects, AttackType::WEAPON);
-	};
-
-	// Load weapons
-	auto weapons_json = Json::parse(Util::read_file("data/weapons.json"));
-	for (const auto& w : weapons_json["weapons"]) {
-		auto weapon = new Weapon(w["id"], w["name"], w["cost"], build_attack(w, AttackType::WEAPON));
-		weapons.insert({w["name"].get<std::string>(), weapon});
-	}
-
-	// Load chips
-	auto chips_json = Json::parse(Util::read_file("data/chips.json"));
-	for (const auto& c : chips_json["chips"]) {
-		auto chip = new Chip(c["id"], c["name"], c["cost"], c["cooldown"], c["team_cooldown"].get<int>(), c["initial_cooldown"], build_attack(c, AttackType::CHIP));
-		chips.insert({c["name"].get<std::string>(), chip});
 	}
 }
 
