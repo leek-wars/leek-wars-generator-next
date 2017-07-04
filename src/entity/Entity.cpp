@@ -392,14 +392,10 @@ void Entity::addLaunchedEffect(Effect* effect) {
 }
 
 void Entity::removeEffect(Effect* effect) {
-
 	// TODO Add ActionRemoveEffect action
-	//fight.log(new ActionRemoveEffect(effect.getLogID()));
-
-	// effects.remove(effect);
+	// fight.log(new ActionRemoveEffect(effect.getLogID()));
 	effects.erase(std::find(effects.begin(), effects.end(), effect));
-
-	// updateBuffStats();
+	updateBonusCharacteristics();
 }
 
 void Entity::remove_launched_effect(Effect* effect) {
