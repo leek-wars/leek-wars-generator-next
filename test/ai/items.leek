@@ -25,3 +25,8 @@ System.print("chips ~~ x.name: " + chips ~~ x -> x.name)
 System.print("chips ~~ x.id: " + chips ~~ x -> x.id)
 System.print("chips ~~ x.cost: " + chips ~~ x -> x.cost)
 System.print("(chips ~~ x.cost).sum(): " + (chips ~~ x -> x.cost).sum())
+
+System.print(Weapon.LASER)
+System.print(Weapon.FLAME_THROWER)
+System.print(Chip.PROTEIN)
+System.print(Chip.SEVEN_LEAGUE_BOOTS)
