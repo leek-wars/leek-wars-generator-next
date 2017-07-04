@@ -12,11 +12,11 @@ Effect::Effect() {
 
 Effect::~Effect() {}
 
-void Effect::apply(Fight* fight) {
+void Effect::apply(Fight*) {
 	// nothing by default
 }
 
-void Effect::applyStartTurn(Fight* fight) {
+void Effect::applyStartTurn(Fight*) {
 	// nothing by default
 }
 
