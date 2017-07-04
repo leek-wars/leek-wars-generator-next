@@ -11,6 +11,8 @@
 #include "../fight/Simulator.hpp"
 #include <leekscript/src/leekscript.h>
 #include "../util/Util.hpp"
+#include "../action/ActionLoseMP.hpp"
+#include "../action/ActionMove.hpp"
 
 int Entity::next_id = 0;
 
@@ -259,6 +261,27 @@ ls::LSString* Entity::getName() const {
 	return (ls::LSString*) ((Entity*) this)->values["name"];
 }
 
+int Entity::move(const vector<const Cell*> path) {
+
+	int size = path.size();
+	if (size == 0 or size > getMP()) {
+		return 0;
+	}
+	fight->actions.add(new ActionMove(this, path));
+	fight->actions.add(new ActionLoseMP(this, size));
+
+	// TODO Statistics and trophy manager
+	// trophyManager.deplacement(entity.getFarmer(), path);
+
+	useMP(size);
+	has_moved = true;
+	// Clear previous cell
+	cell->setEntity(nullptr);
+	// Set new cell
+	((Cell*) path[path.size() - 1])->setEntity(this);
+	return path.size();
+}
+
 int Entity::useChip(Chip* chip, Entity* target) {
 	if (chip == nullptr or target == nullptr) {
 		return -1;
@@ -349,7 +372,7 @@ int Entity::moveTowardMP(Entity* target, int max_mp) {
 	if (path.size() == 0) {
 		return 0;
 	}
-	return fight->moveEntity(this, {path.begin() + 1, path.begin() + min((int) path.size(), mp + 1)} );
+	return move({path.begin() + 1, path.begin() + min((int) path.size(), mp + 1)});
 }
 
 void Entity::addCooldown(Chip* chip, int cooldown) {

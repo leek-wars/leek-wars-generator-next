@@ -12,8 +12,6 @@
 #include "../action/ActionStartFight.hpp"
 #include "../action/ActionUseChip.hpp"
 #include "../action/ActionUseWeapon.hpp"
-#include "../action/ActionLoseMP.hpp"
-#include "../action/ActionMove.hpp"
 #include "../action/ActionNewTurn.hpp"
 #include "../action/ActionEndTurn.hpp"
 #include "../action/ActionEntityTurn.hpp"
@@ -93,30 +91,6 @@ Entity* Fight::getEntity(int id) {
 	} catch (exception& e) {
 		return nullptr;
 	}
-}
-
-int Fight::moveEntity(Entity* entity, const vector<const Cell*> path) {
-
-	int size = path.size();
-	if (size == 0) {
-		return 0;
-	}
-	if (size > entity->getMP()) {
-		return 0;
-	}
-	actions.add(new ActionMove(entity, path));
-	actions.add(new ActionLoseMP(entity, size));
-
-	// TODO Statistics and trophy manager
-	// trophyManager.deplacement(entity.getFarmer(), path);
-
-	entity->useMP(size);
-	entity->has_moved = true;
-	entity->cell->setEntity(nullptr);
-	entity->setCell((Cell*) path[path.size() - 1]);
-	entity->cell->setEntity(entity);
-
-	return path.size();
 }
 
 bool Fight::hasCooldown(const Entity* entity, const Chip* chip) const {

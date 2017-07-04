@@ -120,6 +120,7 @@ public:
 	int getLevel() const;
 	ls::LSString* getName() const;
 
+	int move(const std::vector<const Cell*> path);
 	int useChip(Chip* chip, Entity* target);
 	int useChipOnCell(Chip* chip, Cell* cell);
 	int useWeapon(Entity* target);
