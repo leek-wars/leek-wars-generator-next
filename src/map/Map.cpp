@@ -98,9 +98,7 @@ void Map::generate(int obstacles_count, const vector<Team*>& teams) {
 
 		// Set entities positions
 		for (unsigned t = 0; t < teams.size(); ++t) {
-			//cout << "team" << endl;
 			for (Entity* e : teams[t]->entities) {
-				//cout << "entity pos" << endl;
 				Cell* c;
 				if (teams.size() == 2) { // 2 teams : 2 sides
 					c = getRandomCell(t == 0 ? 1 : 4);
@@ -122,7 +120,6 @@ void Map::generate(int obstacles_count, const vector<Team*>& teams) {
 		if (entities.size() > 0) {
 			int component = cm.getComponent(entities[0]->cell);
 			for (unsigned i = 1; i < entities.size(); i++) {
-				//cout << "entity" << endl;
 				if (component != cm.getComponent(entities[i]->cell)) {
 					valid = false;
 					break;
@@ -162,10 +159,8 @@ Cell* Map::getRandomCell(int part) {
 	Cell* c = nullptr;
 	int security = 0;
 	do {
-		//cout << "random cell" << endl;
 		int y = Util::rand_int(height - 1);
 		int x = Util::rand_int(width / 4);
-		//cout << x << " " << y << endl;
 		int cellid = y * (width * 2 - 1);
 		cellid += (part - 1) * width / 4 + x;
 		c = getCell(cellid);
