@@ -4,8 +4,8 @@ AreaSingleCell::AreaSingleCell(Attack* attack) : Area(attack) {}
 
 AreaSingleCell::~AreaSingleCell() {}
 
-std::vector<Cell*> AreaSingleCell::getArea(Cell* launch, Cell* target) const {
-	return std::vector<Cell*> { target };
+std::vector<Cell*> AreaSingleCell::getArea(Cell*, Cell* target) const {
+	return { target };
 }
 
 int AreaSingleCell::getRadius() const {
