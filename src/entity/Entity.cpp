@@ -394,6 +394,24 @@ void Entity::removeEffect(Effect* effect) {
 	// updateBuffStats();
 }
 
+void Entity::remove_launched_effect(Effect* effect) {
+	auto it = std::find(launched_effects.begin(), launched_effects.end(), effect);
+	if (it != launched_effects.end()) {
+		launched_effects.erase(it);
+	}
+}
+
+void Entity::clear_poisons() {
+	for (int i = 0; i < effects.size(); ++i) {
+		auto effect = (Effect*) effects[i];
+		if (effect->type == EffectType::POISON) {
+			effect->caster->remove_launched_effect(effect);
+			removeEffect(effect);
+			i--;
+		}
+	}
+}
+
 ls::LSValue* Entity::getClass() const {
 	return (ls::LSValue*) EntityModule::entity_clazz;
 }

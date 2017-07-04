@@ -144,6 +144,8 @@ public:
 	void addEffect(Effect* effect);
 	void addLaunchedEffect(Effect* effect);
 	void removeEffect(Effect* effect);
+	void remove_launched_effect(Effect* effect);
+	void clear_poisons();
 
 	virtual ls::LSValue* getClass() const override;
 
