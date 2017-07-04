@@ -8,6 +8,7 @@
 #include "EffectRelativeShield.hpp"
 #include "EffectAbsoluteShield.hpp"
 #include "EffectPoison.hpp"
+#include "EffectAntidote.hpp"
 
 Effect::Effect() {
 	native = true;
@@ -80,6 +81,7 @@ Effect* Effect::construct(EffectType type) {
 		case EffectType::POISON: return new EffectPoison();
 		case EffectType::RELATIVE_SHIELD: return new EffectRelativeShield();
 		case EffectType::ABSOLUTE_SHIELD: return new EffectAbsoluteShield();
+		case EffectType::ANTIDOTE: return new EffectAntidote();
 		default:
 			LOG_E << "No such effect!" << std::endl;
 			assert(false or "No such effect!");
