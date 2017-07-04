@@ -27,7 +27,7 @@ int Effect::getEffectValue() const {
 void Effect::createEffect(Fight* fight, EffectType type, int turns, double power, double value1, double value2, bool critical, Entity* target, Entity* caster, AttackType attack_type, int attack_id, double jet) {
 
 	// Create the effect
-	Effect* effect = Effect::construct(type);
+	auto effect = Effect::construct(type);
 	if (effect == nullptr) {
 		return;
 	}
@@ -53,17 +53,15 @@ void Effect::createEffect(Fight* fight, EffectType type, int turns, double power
 				|| type == EffectType::SHACKLE_MAGIC;
 
 		if (!stackable) {
-			vector<ls::LSValue*> effects = target->getEffects();
-
+			auto effects = target->getEffects();
 			for (unsigned i = 0; i < effects.size(); ++i) {
-				Effect* e = (Effect*) effects[i];
+				auto e = (Effect*) effects[i];
 				if (e->attackID == attack_id) {
 					target->removeEffect(e);
 					break;
 				}
 			}
 		}
-
 		target->addEffect(effect);
 		caster->addLaunchedEffect(effect);
 	}
@@ -71,9 +69,7 @@ void Effect::createEffect(Fight* fight, EffectType type, int turns, double power
 	// Compute the effect
 	effect->apply(fight);
 
-	fight->actions.add(new ActionAddEffect(attack_type, attack_id, caster,
-		target, type, fight->actions.getEffectId(), effect->getEffectValue(),
-		effect->turns));
+	fight->actions.add(new ActionAddEffect(attack_type, attack_id, caster, target, type, fight->actions.getEffectId(), effect->getEffectValue(), effect->turns));
 }
 
 Effect* Effect::construct(EffectType type) {
