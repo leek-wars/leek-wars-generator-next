@@ -1,4 +1,6 @@
 #include "ChipModule.hpp"
+#include "../fight/FightManager.hpp"
+#include "../util/Util.hpp"
 
 const ls::LSClass* ChipModule::chip_clazz;
 const ls::Type ChipModule::type(new ChipType(), ls::Nature::POINTER, true);
@@ -6,9 +8,13 @@ const ls::Type ChipModule::array_type(ls::RawType::ARRAY, ls::Nature::POINTER, C
 
 jit_value_t Chip_SPARK(jit_function_t F) { return LS_CREATE_INTEGER(F, 1); }
 
-ChipModule::ChipModule() : Module("Chip") {
+ChipModule::ChipModule(const FightManager& manager) : Module("Chip") {
 
-	static_field("SPARK", ls::Type::INTEGER, (void*) &Chip_SPARK);
+	for (const auto& w : manager.chips) {
+		static_field(Util::toupper(w.first), ls::Type::INTEGER, [&](ls::Compiler& c) {
+			return c.new_integer(w.second->id);
+		});
+	}
 
 	field("id", ls::Type::NUMBER);
 	field("cost", ls::Type::NUMBER);

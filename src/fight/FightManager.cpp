@@ -45,7 +45,7 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 	vm.add_module(new CellModule());
 	vm.add_module(new WeaponModule(*this));
 	vm.add_module(new ColorModule());
-	vm.add_module(new ChipModule());
+	vm.add_module(new ChipModule(*this));
 
 	// V1
 	auto entity_module = new EntityModule();
@@ -56,7 +56,7 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 	vm_v1.add_module(new CellModule());
 	vm_v1.add_module(new WeaponModule(*this));
 	vm_v1.add_module(new ColorModule());
-	vm_v1.add_module(new ChipModule());
+	vm_v1.add_module(new ChipModule(*this));
 
 	for (auto& method : entity_module->static_methods) {
 		if (method.name.at(0) == '_') {

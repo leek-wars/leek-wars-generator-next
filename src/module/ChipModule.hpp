@@ -3,16 +3,16 @@
 
 #include <leekscript/src/leekscript.h>
 #include "ItemModule.hpp"
+class FightManager;
 
 class ChipType : public ItemType {
 public:
 	const std::string getName() const { return "Chip"; };
 };
 
-
 class ChipModule : public ls::Module {
 public:
-	ChipModule();
+	ChipModule(const FightManager& manager);
 	virtual ~ChipModule();
 
 	static const ls::LSClass* chip_clazz;
