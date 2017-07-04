@@ -361,7 +361,6 @@ vector<const Cell*> Map::get_path(const Cell* c1, vector<const Cell*> end_cells,
 				}
 			}
 		}
-
 	}
 	// cout << "[path] no path found!" << endl;
 	return {};
@@ -373,60 +372,54 @@ const Cell* Map::int_to_cell(int cell) {
 }
 
 void Map::print() const {
-	cout << "print map " << sx << " " << sy << endl;
-
 	for (int x = 0; x < sx; ++x) {
 		for (int y = 0; y < sy; ++y) {
 			auto c = coord[y][x];
 			if (c == nullptr) {
-				cout << "  ";
+				LOG << "  ";
 			} else if (c->walkable) {
-				cout << "░░";
+				LOG << "░░";
 			} else {
-				cout << "▓▓";
+				LOG << "▓▓";
 			}
 		}
-		cout << endl;
+		LOG << endl;
 	}
 }
 
 void Map::draw_path(const std::vector<const Cell*> path, const Cell* cell1, const Cell* cell2) const {
 
-	cout << "Draw path: [";
-	for (const auto& c : path) cout << c->id << " -> ";
-	cout << "]" << endl;
+	LOG << "Draw path: [";
+	for (const auto& c : path) LOG << c->id << " -> ";
+	LOG << "]" << endl;
 
 	for (int x = 0; x < sx; ++x) {
 		for (int y = 0; y < sy; ++y) {
-			Cell* c = coord[y][x];
-
+			auto c = coord[y][x];
 			auto it = find(path.begin(), path.end(), c);
-
 			if (c == nullptr) {
-				cout << "  ";
+				LOG << "  ";
 			} else if (c == cell1) {
-				cout << "S ";
+				LOG << "S ";
 			} else if (c == cell2) {
-				cout << "E ";
+				LOG << "E ";
 			} else if (it != path.end()) {
-				cout << (char)('a' + (distance(path.begin(), it) % 26) ) << ' ';
+				LOG << (char)('a' + (distance(path.begin(), it) % 26) ) << ' ';
 			} else if (c->walkable) {
-				cout << "░░";
+				LOG << "░░";
 			} else {
-				cout << "▓▓";
+				LOG << "▓▓";
 			}
 		}
-		cout << endl;
+		LOG << endl;
 	}
 }
 
 Json Map::json() const {
-
 	Json obstacles_json;
 	for (auto c : obstacles) {
 		obstacles_json[std::to_string(c->id)] = std::vector<int>{ c->obstacle, c->obstacle_size };
 	}
-
 	return {
 		{"type", 1},
 		{"obstacles", obstacles_json},
