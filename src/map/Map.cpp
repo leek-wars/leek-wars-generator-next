@@ -63,15 +63,12 @@ void Map::generate(int obstacles_count, const vector<Team*>& teams) {
 	int nb = 0;
 	bool valid = false;
 
-	while (!valid && nb < 63) {
+	while (!valid && nb < 64) {
 
-		//cout << "generate" << endl;
-
+		valid = true;
 		type = Util::rand_int(0, 4);
 
 		for (int i = 0; i < obstacles_count; i++) {
-			//cout << "obstacle" << endl;
-
 			auto c = getCell(Util::rand_int(nb_cells));
 			if (c != nullptr && c->available()) {
 				int size = Util::rand_int(1, 2);
@@ -110,13 +107,18 @@ void Map::generate(int obstacles_count, const vector<Team*>& teams) {
 				} else { // 2+ teams : random
 					c = getRandomCell();
 				}
+				if (c == nullptr) {
+					// Enable to find a cell, rebuild the map
+					valid = false;
+					break;
+				}
 				c->setEntity(e);
 				entities.push_back(e);
 			}
 		}
+		if (!valid) break;
 
 		// Check paths
-		valid = true;
 		if (entities.size() > 0) {
 			int component = cm.getComponent(entities[0]->cell);
 			for (unsigned i = 1; i < entities.size(); i++) {
@@ -129,6 +131,7 @@ void Map::generate(int obstacles_count, const vector<Team*>& teams) {
 		}
 		nb++;
 	}
+	assert(valid || "Invalid map! Too much obstacles?");
 }
 
 Cell* Map::getCell(int id) {
@@ -148,14 +151,16 @@ std::vector<Cell*> Map::getObstacles() {
 
 Cell* Map::getRandomCell() {
 	Cell* c = nullptr;
+	int security = 0;
 	do {
 		c = getCell(Util::rand_int(nb_cells));
-	} while (!c->available());
+	} while (!c->available() && security++ < 512);
 	return c;
 }
 
 Cell* Map::getRandomCell(int part) {
 	Cell* c = nullptr;
+	int security = 0;
 	do {
 		//cout << "random cell" << endl;
 		int y = Util::rand_int(height - 1);
@@ -164,7 +169,7 @@ Cell* Map::getRandomCell(int part) {
 		int cellid = y * (width * 2 - 1);
 		cellid += (part - 1) * width / 4 + x;
 		c = getCell(cellid);
-	} while (!c->available());
+	} while (!c->available() && security++ < 512);
 	return c;
 }
 
