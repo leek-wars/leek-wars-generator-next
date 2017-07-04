@@ -5,6 +5,7 @@
 #include "EffectDamage.hpp"
 #include "EffectHeal.hpp"
 #include "EffectRelativeShield.hpp"
+#include "EffectPoison.hpp"
 
 Effect::Effect() {
 	native = true;
@@ -74,6 +75,7 @@ Effect* Effect::construct(EffectType type) {
 	switch (type) {
 		case EffectType::DAMAGE: return new EffectDamage();
 		case EffectType::HEAL: return new EffectHeal();
+		case EffectType::POISON: return new EffectPoison();
 		case EffectType::RELATIVE_SHIELD: return new EffectRelativeShield();
 		default:
 			return nullptr;
