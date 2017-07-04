@@ -62,6 +62,7 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 			vm.last_exception = nullptr;
 			vm_v1.last_exception = nullptr;
 		}
+		vm.operations = 0;
 		entity->endTurn();
 		actions.add(new ActionEndTurn(entity));
 		if (order.next()) {
