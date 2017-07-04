@@ -17,6 +17,7 @@
 #include "../action/ActionNewTurn.hpp"
 #include "../action/ActionEndTurn.hpp"
 #include "../action/ActionEntityTurn.hpp"
+#include "../action/ActionAIError.hpp"
 
 Fight::Fight() : actions(this) {
 	map = nullptr;
@@ -53,14 +54,17 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 
 		LOG << "Turn of " << entity->name << " (" << entity->id << "), AI " << entity->ai->name << "..." << std::endl;
 		actions.add(new ActionEntityTurn(entity));
-
 		try {
 			entity->ai->execute(vm, vm_v1);
 		} catch (ls::vm::ExceptionObj* ex) {
 			LOG << ex->to_string(true);
-			// delete ex;
 			vm.last_exception = nullptr;
 			vm_v1.last_exception = nullptr;
+			if (ex->type == ls::vm::Exception::OPERATION_LIMIT_EXCEEDED) {
+				actions.add(new ActionAIError(entity));
+				// TODO Add Breaker Trophy
+			}
+			// TODO delete ex
 		}
 		vm.operations = 0;
 		entity->endTurn();
