@@ -166,10 +166,18 @@ void Entity::updateCharacteristics() {
 	values["strength"] = ls::LSNumber::get(getStrength());
 }
 
+void Entity::updateBonusCharacteristics() {
+	bonus_characs.clear();
+	for (auto& v : effects) {
+		auto effect = (Effect*) v;
+		bonus_characs.add(effect->characs);
+	}
+}
+
 void Entity::updateBonusCharacteristics(Characteristic charac) {
 	bonus_characs.set(charac, 0);
-	for (LSValue* v : effects) {
-		Effect* effect = (Effect*) v;
+	for (auto& v : effects) {
+		auto effect = (Effect*) v;
 		bonus_characs.add(charac, effect->characs.get(charac));
 	}
 }

@@ -97,6 +97,7 @@ public:
 
 	void setCharacteristics(Characteristics characs);
 	void updateCharacteristics();
+	void updateBonusCharacteristics();
 	void updateBonusCharacteristics(Characteristic charac);
 
 	int getTP() const;
