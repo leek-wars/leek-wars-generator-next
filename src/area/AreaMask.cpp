@@ -5,7 +5,6 @@ AreaMask::AreaMask() {}
 AreaMask::~AreaMask() {}
 
 std::vector<std::pair<int, int>> AreaMask::generateCircleMask(int min, int max) {
-
 	if (min > max) {
 		return {};
 	}
@@ -29,7 +28,6 @@ std::vector<std::pair<int, int>> AreaMask::generateCircleMask(int min, int max) 
 		result[0] = { 0, 0 };
 		index++;
 	}
-
 	for (int size = (min < 1 ? 1 : min); size <= max; size++) {
 		for (int i = 0; i < size; i++) {
 			result[index] = { i, size - i };

@@ -15,12 +15,11 @@ std::vector<Cell*> AreaCircle::getArea(Cell* launchCell, Cell* targetCell) const
 	int x = targetCell->x;
 	int y = targetCell->y;
 	std::vector<Cell*> cells;
-
-	std::vector<std::pair<int, int>> area = area_cache[radius];
-	Map* map = launchCell->map;
+	auto area = area_cache[radius];
+	auto map = launchCell->map;
 
 	for (std::pair<int, int> v : area) {
-		Cell* c = map->getCell(x + v.first, y + v.second);
+		auto c = map->getCell(x + v.first, y + v.second);
 		if (c == nullptr || !c->walkable) {
 			continue;
 		}
