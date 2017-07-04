@@ -10,6 +10,9 @@
 					"cell": 123,
 					"weapons": [
 						"m_laser"
+					],
+					"chips": [
+						"protein"
 					]
 				},
 				{	"ai": "test/ai/color.leek",
