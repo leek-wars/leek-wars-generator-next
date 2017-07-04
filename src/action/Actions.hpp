@@ -19,13 +19,6 @@ public:
 	Actions(Fight* fight);
 	~Actions();
 
-	/*
-	private final JSONArray leeks = new JSONArray();
-	private final JSONObject map = new JSONObject();
-	private final JSONArray team1 = new JSONArray();
-	private final JSONArray team2 = new JSONArray();
-	*/
-
 	int getEffectId();
 
 	void add(Action* action);
