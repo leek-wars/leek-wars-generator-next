@@ -64,16 +64,14 @@ public:
 	Characteristics characs;
 	int logID = 0;
 
-
 	Effect();
 	virtual ~Effect();
 
 	// Abstract methods
 	virtual void apply(Fight* fight);
-
 	virtual void applyStartTurn(Fight* fight);
-
 	virtual int getEffectValue() const;
+	virtual bool stackable() const;
 
 	static Effect* construct(EffectType type);
 	static void createEffect(Fight* fight, EffectType id, int turns, double power, double value1, double value2, bool critical, Entity* target, Entity* caster, AttackType attack_type, int attack_id, double jet);

@@ -24,6 +24,10 @@ int Effect::getEffectValue() const {
 	return 0;
 }
 
+bool Effect::stackable() const {
+	return false;
+}
+
 void Effect::createEffect(Fight* fight, EffectType type, int turns, double power, double value1, double value2, bool critical, Entity* target, Entity* caster, AttackType attack_type, int attack_id, double jet) {
 
 	// Create the effect
@@ -46,13 +50,7 @@ void Effect::createEffect(Fight* fight, EffectType type, int turns, double power
 
 	// Add effect to the target and the caster
 	if (effect->turns > 0) {
-
-		// TODO : create a isStackable method
-		bool stackable = type == EffectType::POISON || type == EffectType::SHACKLE_MP
-				|| type == EffectType::SHACKLE_TP || type == EffectType::SHACKLE_STRENGTH
-				|| type == EffectType::SHACKLE_MAGIC;
-
-		if (!stackable) {
+		if (!effect->stackable()) {
 			auto effects = target->getEffects();
 			for (unsigned i = 0; i < effects.size(); ++i) {
 				auto e = (Effect*) effects[i];
