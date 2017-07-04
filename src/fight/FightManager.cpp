@@ -20,7 +20,7 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 		for (const auto& e : i["effects"]) {
 			effects.push_back({(EffectType) e["id"].get<int>(), e["value1"], e["value2"], e["turns"], e["targets"]});
 		}
-		return new Attack(i["min_range"], i["max_range"], (LaunchType) i["launch_type"].get<int>(), (AreaType) i["area"].get<int>(), i["los"].get<int>(), effects, AttackType::WEAPON);
+		return new Attack(i["min_range"], i["max_range"], (LaunchType) i["launch_type"].get<int>(), (AreaType) i["area"].get<int>(), i["los"].get<int>(), effects, type);
 	};
 
 	// Load weapons
