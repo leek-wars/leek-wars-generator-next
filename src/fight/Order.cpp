@@ -3,10 +3,6 @@
 #include "../entity/Entity.hpp"
 #include "../entity/Summon.hpp"
 
-Order::Order() {}
-
-Order::~Order() {}
-
 void Order::addEntity(Entity* entity) {
 	entities.push_back(entity);
 }

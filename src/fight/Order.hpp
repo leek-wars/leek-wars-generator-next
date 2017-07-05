@@ -13,9 +13,6 @@ public:
 	int position = 0;
 	unsigned int turn = 1;
 
-	Order();
-	virtual ~Order();
-
 	void addEntity(Entity* entity);
 	void addSummon(Entity* owner, Summon* invoc);
 	void addEntity(unsigned int index, Entity* invoc);
