@@ -4,7 +4,7 @@
 ActionUseChip::ActionUseChip(Entity* caster, Cell* cell, Chip* chip, int success) {
 	this->caster = caster->id;
 	this->cell = cell->id;
-	this->chip = chip->id;
+	this->chip = chip->template_id;
 	this->success = success;
 }
 

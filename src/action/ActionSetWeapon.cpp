@@ -3,7 +3,7 @@
 
 ActionSetWeapon::ActionSetWeapon(Entity* entity, const Weapon* weapon) {
 	this->entity = entity->id;
-	this->weapon = weapon->getTemplateID();
+	this->weapon = weapon->template_id;
 }
 
 Json ActionSetWeapon::json() const {
