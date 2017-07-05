@@ -1,6 +1,6 @@
 #include "ActionMove.hpp"
 
-ActionMove::ActionMove(Entity* entity, vector<const Cell*> path) {
+ActionMove::ActionMove(Entity* entity, std::vector<const Cell*> path) {
 	this->entity = entity->id;
 	for (auto cell : path) {
 		this->path.push_back(cell->id);

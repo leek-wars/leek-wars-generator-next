@@ -263,7 +263,7 @@ ls::LSString* Entity::getName() const {
 	return (ls::LSString*) ((Entity*) this)->values["name"];
 }
 
-int Entity::move(const vector<const Cell*> path) {
+int Entity::move(const std::vector<const Cell*> path) {
 
 	int size = path.size();
 	if (size == 0 or size > getMP()) {
@@ -338,10 +338,10 @@ bool Entity::say(const LSValue* message) {
 		ls::LSValue::delete_temporary(message);
 		return false;
 	}
-	ostringstream oss;
+	std::ostringstream oss;
 	message->print(oss);
 
-	string msg = oss.str();
+	std::string msg = oss.str();
 
 	if (msg.size() > 500) {
 		msg = msg.substr(0, 500);
@@ -367,13 +367,13 @@ int Entity::moveTowardMP(Entity* target, int max_mp) {
 	if (target == nullptr or target->isDead()) return 0;
 	if (max_mp <= 0 or getMP() <= 0) return 0;
 
-	int mp = max_mp == -1 ? getMP() : min(getMP(), max_mp);
+	int mp = max_mp == -1 ? getMP() : std::min(getMP(), max_mp);
 
 	auto path = fight->map->get_path_between(target->cell, cell, {});
 	if (path.size() == 0) {
 		return 0;
 	}
-	return move({path.begin() + 1, path.begin() + min((int) path.size(), mp + 1)});
+	return move({path.begin() + 1, path.begin() + std::min((int) path.size(), mp + 1)});
 }
 
 void Entity::addCooldown(Chip* chip, int cooldown) {

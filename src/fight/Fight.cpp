@@ -88,7 +88,7 @@ Report* Fight::crash() {
 Entity* Fight::getEntity(int id) {
 	try {
 		return entities.at(id);
-	} catch (exception& e) {
+	} catch (std::exception& e) {
 		return nullptr;
 	}
 }

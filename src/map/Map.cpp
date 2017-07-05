@@ -58,7 +58,7 @@ Map::~Map() {
 	}
 }
 
-void Map::generate(int obstacles_count, const vector<Team*>& teams) {
+void Map::generate(int obstacles_count, const std::vector<Team*>& teams) {
 
 	int nb = 0;
 	bool valid = false;
@@ -94,7 +94,7 @@ void Map::generate(int obstacles_count, const vector<Team*>& teams) {
 			}
 		}
 		ConnexeMap cm(this);
-		vector<Entity*> entities;
+		std::vector<Entity*> entities;
 
 		// Set entities positions
 		for (unsigned t = 0; t < teams.size(); ++t) {
@@ -179,7 +179,7 @@ bool Map::canUseAttack(const Cell* caster, const Cell* target, const Attack* att
 		if (attack->min_range > dist || attack->max_range < dist) {
 			return false;
 		}
-		return line_of_sight_attack(caster, target, attack, vector<const Cell*>{ caster });
+		return line_of_sight_attack(caster, target, attack, std::vector<const Cell*>{ caster });
 
 	} else if (attack->launch_type == LaunchType::LINE) {
 
@@ -190,7 +190,7 @@ bool Map::canUseAttack(const Cell* caster, const Cell* target, const Attack* att
 		if (attack->min_range > dist || attack->max_range < dist) {
 			return false;
 		}
-		return line_of_sight_attack(caster, target, attack, vector<const Cell*>{ caster });
+		return line_of_sight_attack(caster, target, attack, std::vector<const Cell*>{ caster });
 	}
 	return false;
 }
@@ -223,10 +223,10 @@ bool Map::line_of_sight(const Cell* start, const Cell* end) const {
 
 	if (!end->walkable) return false;
 
-	return line_of_sight_ignored(start, end, vector<const Cell*> {});
+	return line_of_sight_ignored(start, end, std::vector<const Cell*> {});
 }
 
-bool Map::line_of_sight_attack(const Cell* start, const Cell* end, const Attack* attack, vector<const Cell*> ignored) const {
+bool Map::line_of_sight_attack(const Cell* start, const Cell* end, const Attack* attack, std::vector<const Cell*> ignored) const {
 
 	if (!end->walkable) return false;
 
@@ -236,7 +236,7 @@ bool Map::line_of_sight_attack(const Cell* start, const Cell* end, const Attack*
 	return line_of_sight_ignored(start, end, ignored);
 }
 
-bool Map::line_of_sight_ignored(const Cell* start, const Cell* end, vector<const Cell*> ignored) const {
+bool Map::line_of_sight_ignored(const Cell* start, const Cell* end, std::vector<const Cell*> ignored) const {
 
 	auto check_cell = [&](Cell* cell) {
 		if (!cell->walkable) return false;
@@ -271,9 +271,9 @@ bool Map::line_of_sight_ignored(const Cell* start, const Cell* end, vector<const
 	return true;
 }
 
-inline const vector<const Cell*> Map::get_cells_around(const Cell* const c) const {
+inline const std::vector<const Cell*> Map::get_cells_around(const Cell* const c) const {
 
-	vector<const Cell*> cells;
+	std::vector<const Cell*> cells;
 	if (c->x < max_x) {
 		auto v = coord[c->x - min_x + 1][c->y - min_y];
 		if (v != nullptr and v->walkable) {
@@ -301,14 +301,14 @@ inline const vector<const Cell*> Map::get_cells_around(const Cell* const c) cons
 	return cells;
 }
 
-vector<const Cell*> Map::get_path_between(const Cell* start, const Cell* end, vector<const Cell*> ignored_cells) const {
+std::vector<const Cell*> Map::get_path_between(const Cell* start, const Cell* end, std::vector<const Cell*> ignored_cells) const {
 	if (start == nullptr || end == nullptr) {
 		return {};
 	}
-	return get_path(start, vector<const Cell*> {end}, ignored_cells);
+	return get_path(start, std::vector<const Cell*> {end}, ignored_cells);
 }
 
-vector<const Cell*> Map::get_path(const Cell* c1, vector<const Cell*> end_cells, vector<const Cell*> ignored) const {
+std::vector<const Cell*> Map::get_path(const Cell* c1, std::vector<const Cell*> end_cells, std::vector<const Cell*> ignored) const {
 
 	if (c1 == nullptr or end_cells.size() == 0) {
 		// cout << "[path] invalid cells" << endl;
@@ -319,7 +319,7 @@ vector<const Cell*> Map::get_path(const Cell* c1, vector<const Cell*> end_cells,
 		return {};
 	}
 
-	priority_queue<Node, vector<Node>, NodeComparator> open;
+	std::priority_queue<Node, std::vector<Node>, NodeComparator> open;
 
 	fill(visited.begin(), visited.end(), Node());
 	fill(opened.begin(), opened.end(), false);
@@ -335,7 +335,7 @@ vector<const Cell*> Map::get_path(const Cell* c1, vector<const Cell*> end_cells,
 
 		if (find(end_cells.begin(), end_cells.end(), u.cell) != end_cells.end()) {
 
-			vector<const Cell*> result;
+			std::vector<const Cell*> result;
 			auto n = &u;
 			int s = u.cost;
 			while (s-- >= 0) {
@@ -383,7 +383,7 @@ void Map::print() const {
 				LOG << "▓▓";
 			}
 		}
-		LOG << endl;
+		LOG << std::endl;
 	}
 }
 
@@ -391,7 +391,7 @@ void Map::draw_path(const std::vector<const Cell*> path, const Cell* cell1, cons
 
 	LOG << "Draw path: [";
 	for (const auto& c : path) LOG << c->id << " -> ";
-	LOG << "]" << endl;
+	LOG << "]" << std::endl;
 
 	for (int x = 0; x < sx; ++x) {
 		for (int y = 0; y < sy; ++y) {
@@ -411,7 +411,7 @@ void Map::draw_path(const std::vector<const Cell*> path, const Cell* cell1, cons
 				LOG << "▓▓";
 			}
 		}
-		LOG << endl;
+		LOG << std::endl;
 	}
 }
 

@@ -75,15 +75,15 @@ Fight* FightLoader::load(const FightManager& manager, std::string file) {
 			}
 			leek->setCharacteristics(characs);
 
-			vector<Weapon*> weapons;
+			std::vector<Weapon*> weapons;
 			if (e.find("weapons") != e.end()) {
 				for (const auto& w : e["weapons"]) {
 					weapons.push_back(manager.weapons.at(w));
 				}
 			}
 			leek->setWeapons(weapons);
-			
-			vector<Chip*> chips;
+
+			std::vector<Chip*> chips;
 			if (e.find("chips") != e.end()) {
 				for (const auto& c : e["chips"]) {
 					chips.push_back(manager.chips.at(c));

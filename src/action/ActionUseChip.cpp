@@ -8,7 +8,7 @@ ActionUseChip::ActionUseChip(Entity* caster, Cell* cell, Chip* chip, int success
 	this->success = success;
 }
 
-void ActionUseChip::set_entities(vector<Entity*> entities) {
+void ActionUseChip::set_entities(std::vector<Entity*> entities) {
 	for (auto e : entities) {
 		this->entities.push_back(e->id);
 	}

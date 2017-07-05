@@ -81,6 +81,6 @@ std::ostream& operator << (std::ostream& os, Order& order) {
 	for (Entity* e : order.entities) {
 		os << e->name << ", ";
 	}
-	os << "], pos = " << order.getPosition() << endl;
+	os << "], pos = " << order.getPosition() << std::endl;
 	return os;
 }

@@ -18,7 +18,7 @@ void StartOrder::addEntity(Entity* entity) {
 std::vector<Entity*> StartOrder::compute() {
 
 	// Sort entities inside team on their frequency
-	for (vector<Entity*> team : teams) {
+	for (std::vector<Entity*> team : teams) {
 		std::sort(team.begin(), team.end(), [](const Entity* a, const Entity* b) -> bool {
 		    return a->getFrequency() > b->getFrequency();
 		});
@@ -51,8 +51,8 @@ std::vector<Entity*> StartOrder::compute() {
 	psum = 1;
 
 	// Compute team order, example : [team3, team1, team2]
-	vector<int> teamOrder;
-	vector<int> remaining;
+	std::vector<int> teamOrder;
+	std::vector<int> remaining;
 	for (unsigned i = 0; i < teams.size(); ++i) {
 		remaining.push_back(i);
 	}

@@ -8,7 +8,7 @@
 void EffectDamage::apply(Fight* fight) {
 
 	// Base damages
-	double d = (value1 + jet * value2) * (1 + max(0, caster->getStrength()) / 100.0) * power * critical_power;
+	double d = (value1 + jet * value2) * (1 + std::max(0, caster->getStrength()) / 100.0) * power * critical_power;
 
 	// Return damage
 	if (target != caster) {
@@ -17,7 +17,7 @@ void EffectDamage::apply(Fight* fight) {
 
 	// Shields
 	d -= d * (target->getRelativeShield() / 100.0) + target->getAbsoluteShield();
-	d = max(0.0, d);
+	d = std::max(0.0, d);
 
 	damage = (int) round(d);
 

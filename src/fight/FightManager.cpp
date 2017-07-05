@@ -95,7 +95,7 @@ std::string FightManager::compile(std::string ai) {
 
 void FightManager::start(Fight& fight, std::function<void(Report*)> callback) {
 
-	this->start_time = chrono::high_resolution_clock::now();
+	this->start_time = std::chrono::high_resolution_clock::now();
 	this->fight = &fight;
 	this->callback = callback;
 	FightManager::current = this;
@@ -124,11 +124,11 @@ void FightManager::crash() {
 
 void FightManager::end(Report* report) {
 
-	auto end_time = chrono::high_resolution_clock::now();
-	long time_ns = chrono::duration_cast<chrono::nanoseconds>(end_time - this->start_time).count();
+	auto end_time = std::chrono::high_resolution_clock::now();
+	long time_ns = std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - this->start_time).count();
 	double time_ms = (((double) time_ns / 1000) / 1000);
 	LOG << "-------------- end of fight ----------------" << std::endl;
-	LOG << "time: " << time_ms << " ms" << endl;
+	LOG << "time: " << time_ms << " ms" << std::endl;
 
 	callback(report);
 }

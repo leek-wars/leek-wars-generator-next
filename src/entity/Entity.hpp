@@ -27,7 +27,7 @@ public:
 	Fight* fight;
 
 	int id;
-	string name;
+	std::string name;
 
 	Cell* cell;
 	Cell* start_cell;

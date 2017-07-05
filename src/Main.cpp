@@ -44,7 +44,7 @@ int main(int argc, char** argv) {
 		Util::log_enabled = false;
 	}
 
-	LOG << "~~ leek-wars-simulator v1.0 ~~" << endl;
+	LOG << "~~ leek-wars-simulator v1.0 ~~" << std::endl;
 
 	if (compile) {
 		auto res = FightManager().compile(input);
