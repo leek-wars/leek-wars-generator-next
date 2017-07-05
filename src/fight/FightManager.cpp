@@ -58,6 +58,7 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 	vm_v1.add_module(new ColorModule());
 	vm_v1.add_module(new ChipModule(*this));
 
+	// Add V1 methods (starting by '_')
 	for (auto& method : entity_module->static_methods) {
 		if (method.name.at(0) == '_') {
 			auto fun = new ls::LSFunction<ls::LSValue*>(method.impl[0].addr);
