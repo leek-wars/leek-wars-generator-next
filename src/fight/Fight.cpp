@@ -142,9 +142,6 @@ int Fight::useWeapon(Entity* launcher, Cell* target) {
 
 	launcher->useTP(weapon->cost);
 
-	// TODO Add ActionLoseTP action
-	// actions.log(new ActionLoseTP(launcher, weapon.getWeaponTemplate().getCost()));
-
 	return result;
 }
 
@@ -211,8 +208,6 @@ int Fight::useChip(Entity* caster, Cell* target, Chip* chip) {
 	}
 
 	caster->useTP(chip->cost);
-	// TODO ActionLoseTP
-	//logs.log(new ActionLoseTP(caster, chip->getCost()));
 
 	return result;
 }
