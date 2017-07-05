@@ -328,7 +328,6 @@ void Entity::useMP(int mp) {
 void Entity::endTurn() {
 	used_tp = 0;
 	used_mp = 0;
-
 }
 
 bool Entity::say(const LSValue* message) {
