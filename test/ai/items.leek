@@ -2,6 +2,7 @@ let me = Fight.getEntity()
 
 var weapons = me.getWeapons()
 System.print("weapons: " + weapons)
+System.print("weapons: " + me.weapons)
 var first_weapon = weapons.first()
 System.print("first weapon: " + first_weapon)
 System.print("first weapon name: " + first_weapon.name)
@@ -16,6 +17,7 @@ System.print("(weapons ~~ x.cost).average(): " + (weapons ~~ x -> x.cost).averag
 
 var chips = me.getChips()
 System.print("chips: " + chips)
+System.print("chips: " + me.chips)
 var first_chip = chips.first()
 System.print("first chip: " + first_chip)
 System.print("first chip name: " + first_chip.name)

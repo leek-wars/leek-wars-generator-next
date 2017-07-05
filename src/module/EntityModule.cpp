@@ -35,6 +35,8 @@ EntityModule::EntityModule() : Module("Entity") {
 	field("totalTP", ls::Type::INTEGER);
 	field("totalMP", ls::Type::INTEGER);
 	field("damageReturn", ls::Type::INTEGER);
+	field("weapons", WeaponModule::array_type);
+	field("chips", ChipModule::array_type);
 
 	method("getLife", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getLife, ls::Method::NATIVE);
 	method("getTotalLife", EntityModule::type_ptr, ls::Type::INTEGER, {}, (void*) &Entity::getTotalLife, ls::Method::NATIVE);
