@@ -111,18 +111,16 @@ bool Fight::generateCritical(Entity* entity) const {
 int Fight::useWeapon(Entity* launcher, Cell* target) {
 
 	if (order.current() != launcher || launcher->weapon == nullptr) {
+		LOG << launcher->name << " tries to shoot without a weapon" << std::endl;
 		return AttackResult::INVALID_TARGET;
 	}
+	auto weapon = launcher->weapon;
 
-	const Weapon* weapon = launcher->weapon;
-
-//	cout << "weapon cost : " << weapon->cost << endl;
-//	cout << "entity tp : " << launcher->getTP() << endl;
+	LOG << launcher->name << " (" << launcher->id << ") uses weapon " << weapon->name << " (" << weapon->id << ") : costs " << weapon->cost << ", tp: " << launcher->getTP() << std::endl;
 
 	if (weapon->cost > launcher->getTP()) {
 		return AttackResult::NOT_ENOUGH_TP;
 	}
-
 	if (!map->canUseAttack(launcher->cell, target, weapon->attack.get())) {
 		return AttackResult::INVALID_POSITION;
 	}
@@ -130,10 +128,10 @@ int Fight::useWeapon(Entity* launcher, Cell* target) {
 	bool critical = generateCritical(launcher);
 	AttackResult result = critical ? AttackResult::CRITICAL : AttackResult::SUCCESS;
 
-	ActionUseWeapon* action = new ActionUseWeapon(launcher, target, weapon, result);
+	auto action = new ActionUseWeapon(launcher, target, weapon, result);
 	actions.add(action);
 
-	vector<Entity*> target_entities  = weapon->attack.get()->applyOnCell(this, launcher, target, weapon->id, critical);
+	auto target_entities  = weapon->attack.get()->applyOnCell(this, launcher, target, weapon->id, critical);
 
 	// TODO Trophy manager
 	// trophyManager.weaponUsed(launcher, weapon, target_entities);
@@ -147,41 +145,25 @@ int Fight::useWeapon(Entity* launcher, Cell* target) {
 
 int Fight::useChip(Entity* caster, Cell* target, Chip* chip) {
 
-	// cout << "useChip() start" << endl;
-	//
-	// cout << "id : " << caster->id << endl;
-	// cout << "cost : " << chip->cost << endl;
-	// cout << "tp : " << caster->getTP() << endl;
+	LOG << caster->name << " (" << caster->id << ") uses chip " << chip->name << " (" << chip->id << ") : costs " << chip->cost << ", tp: " << caster->getTP() << std::endl;
 
 	if (order.current() != caster) {
 		return AttackResult::INVALID_TARGET;
 	}
-
-	// cout << "useChip() good order" << endl;
-
 	if (chip->cost > caster->getTP()) {
 		return AttackResult::NOT_ENOUGH_TP;
 	}
-	// cout << "useChip() good cost" << endl;
-
 	if (!map->canUseAttack(caster->cell, target, chip->attack.get())) {
 		return AttackResult::INVALID_POSITION;
 	}
-
-	// cout << "useChip() map config ok" << endl;
-
 	if (hasCooldown(caster, chip)) {
 		return AttackResult::INVALID_COOLDOWN;
 	}
-
-	// cout << "useChip() valid" << endl;
-
 	// Summon (with no AI)
 	if (chip->attack.get()->getEffectParametersByType(EffectType::SUMMON) != nullptr) {
 		// TODO Summon management
 		//return summonEntity(caster, target, chip, nullptr);
 	}
-
 	// Check destination cell in case of a teleportation
 	if (chip->id == ChipID::TELEPORTATION) {
 		if (!target->available()) {
@@ -192,10 +174,10 @@ int Fight::useChip(Entity* caster, Cell* target, Chip* chip) {
 	bool critical = generateCritical(caster);
 	int result = critical ? AttackResult::CRITICAL : AttackResult::SUCCESS;
 
-	ActionUseChip* action = new ActionUseChip(caster, target, chip, result);
+	auto action = new ActionUseChip(caster, target, chip, result);
 	actions.add(action);
 
-	vector<Entity*> target_leeks = chip->attack.get()->applyOnCell(this, caster, target, chip->id, critical);
+	auto target_leeks = chip->attack.get()->applyOnCell(this, caster, target, chip->id, critical);
 
 	action->set_entities(target_leeks);
 
