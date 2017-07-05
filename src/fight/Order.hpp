@@ -10,12 +10,12 @@ class Order {
 public:
 
 	std::vector<Entity*> entities;
-	int position = 0;
-	unsigned int turn = 1;
+	size_t position = 0;
+	int turn = 1;
 
 	void addEntity(Entity* entity);
 	void addSummon(Entity* owner, Summon* invoc);
-	void addEntity(unsigned int index, Entity* invoc);
+	void addEntity(size_t index, Entity* invoc);
 	void removeEntity(Entity* entity);
 	Entity* current();
 	int getTurn();

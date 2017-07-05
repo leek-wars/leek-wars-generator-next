@@ -15,7 +15,7 @@ void Order::addSummon(Entity* owner, Summon* summon) {
 	entities.insert(i + 1, summon);
 }
 
-void Order::addEntity(unsigned int index, Entity* entity) {
+void Order::addEntity(size_t index, Entity* entity) {
 	entities.insert(entities.begin() + index, entity);
 	if (index <= position) {
 		position++;
@@ -28,12 +28,13 @@ void Order::removeEntity(Entity* entity) {
 		return;
 	}
 	if (distance(entities.begin(), i) <= position) {
-		position--;
+		if (position > 0) {
+			position--;
+		} else {
+			position = entities.size() - 1;
+		}
 	}
 	entities.erase(i);
-	if (position < 0) {
-		position = entities.size() - 1;
-	}
 }
 
 Entity* Order::current() {
