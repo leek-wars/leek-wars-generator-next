@@ -65,6 +65,7 @@ public:
 	int life;
 	bool has_moved = false;
 
+	// TODO registers
 	// private Register mRegister = null;
 
 	std::ostringstream* debug_output;
