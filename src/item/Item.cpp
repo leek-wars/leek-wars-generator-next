@@ -1,7 +1,7 @@
 #include "Item.hpp"
 
-Item::Item(int id, std::string& name, int cost, Attack* attack)
-	: id(id), name(name), cost(cost), attack(attack) {
+Item::Item(int id, std::string& name, int cost, Attack* attack, int template_id)
+	: id(id), name(name), cost(cost), attack(attack), template_id(template_id) {
 
 	native = true;
 	refs = 1;

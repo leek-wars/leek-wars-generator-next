@@ -1,6 +1,6 @@
 #include "Weapon.hpp"
 
-Weapon::Weapon(int id, std::string name, int cost, Attack* attack) : Item(id, name, cost, attack) {
+Weapon::Weapon(int id, std::string name, int cost, Attack* attack, int template_id) : Item(id, name, cost, attack, template_id) {
 	readonly = true;
 }
 

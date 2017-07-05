@@ -11,8 +11,9 @@ public:
 	std::string name;
 	int cost;
 	std::unique_ptr<Attack> attack;
+	int template_id;
 
-	Item(int id, std::string& name, int cost, Attack* attack);
+	Item(int id, std::string& name, int cost, Attack* attack, int template_id);
 	virtual ~Item();
 
 	virtual std::ostream& print(std::ostream&) const = 0;
