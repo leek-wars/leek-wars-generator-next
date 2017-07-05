@@ -4,7 +4,7 @@
 ActionUseWeapon::ActionUseWeapon(Entity* caster, Cell* cell, const Weapon* weapon, int success) {
 	this->caster = caster->id;
 	this->cell = cell->id;
-	this->weapon = weapon->getTemplateID();
+	this->weapon = weapon->template_id;
 	this->success = success;
 }
 
