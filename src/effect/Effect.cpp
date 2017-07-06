@@ -12,6 +12,7 @@
 #include "EffectShackleMP.hpp"
 #include "EffectShackleTP.hpp"
 #include "EffectShackleMagic.hpp"
+#include "EffectShackleStrength.hpp"
 
 Effect::Effect() {
 	native = true;
@@ -88,6 +89,7 @@ Effect* Effect::construct(EffectType type) {
 		case EffectType::SHACKLE_MP: return new EffectShackleMP();
 		case EffectType::SHACKLE_TP: return new EffectShackleTP();
 		case EffectType::SHACKLE_MAGIC: return new EffectShackleMagic();
+		case EffectType::SHACKLE_STRENGTH: return new EffectShackleStrength();
 		default:
 			LOG_E << "No such effect!" << std::endl;
 			assert(false or "No such effect!");
