@@ -179,7 +179,7 @@ bool Map::canUseAttack(const Cell* caster, const Cell* target, const Attack* att
 		if (attack->min_range > dist || attack->max_range < dist) {
 			return false;
 		}
-		return line_of_sight_attack(caster, target, attack, std::vector<const Cell*>{ caster });
+		return line_of_sight_attack(caster, target, attack, {caster});
 
 	} else if (attack->launch_type == LaunchType::LINE) {
 
@@ -190,7 +190,7 @@ bool Map::canUseAttack(const Cell* caster, const Cell* target, const Attack* att
 		if (attack->min_range > dist || attack->max_range < dist) {
 			return false;
 		}
-		return line_of_sight_attack(caster, target, attack, std::vector<const Cell*>{ caster });
+		return line_of_sight_attack(caster, target, attack, {caster});
 	}
 	return false;
 }
@@ -223,7 +223,7 @@ bool Map::line_of_sight(const Cell* start, const Cell* end) const {
 
 	if (!end->walkable) return false;
 
-	return line_of_sight_ignored(start, end, std::vector<const Cell*> {});
+	return line_of_sight_ignored(start, end, {});
 }
 
 bool Map::line_of_sight_attack(const Cell* start, const Cell* end, const Attack* attack, std::vector<const Cell*> ignored) const {
@@ -305,7 +305,7 @@ std::vector<const Cell*> Map::get_path_between(const Cell* start, const Cell* en
 	if (start == nullptr || end == nullptr) {
 		return {};
 	}
-	return get_path(start, std::vector<const Cell*> {end}, ignored_cells);
+	return get_path(start, {end}, ignored_cells);
 }
 
 std::vector<const Cell*> Map::get_path(const Cell* c1, std::vector<const Cell*> end_cells, std::vector<const Cell*> ignored) const {
@@ -345,7 +345,7 @@ std::vector<const Cell*> Map::get_path(const Cell* c1, std::vector<const Cell*> 
 			return result;
 		}
 
-		for (const Cell* c : get_cells_around(u.cell)) {
+		for (auto& c : get_cells_around(u.cell)) {
 
 			if (c->entity == nullptr or find(ignored.begin(), ignored.end(), c) != ignored.end()
 				or find(end_cells.begin(), end_cells.end(), c) != end_cells.end()) {
