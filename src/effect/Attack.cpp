@@ -60,12 +60,12 @@ std::vector<Entity*> Attack::applyOnCell(Fight* fight, Entity* caster, Cell* tar
 	// launchType) a été vérifiée avant l'appel
 
 	// On récupère les cases cibles
-	std::vector<Cell*> target_cells = area->getArea(caster->cell, target);
+	auto target_cells = area->getArea(caster->cell, target);
 
 	// On trouve les poireaux sur ces cellules
 	std::vector<Entity*> target_entities;
 
-	for (Cell* cell : target_cells) {
+	for (auto& cell : target_cells) {
 		// cout << "entity on cell " << cell->id << " : " << cell->entity << endl;
 		if (cell->entity != nullptr) {
 			target_entities.push_back(cell->entity);
@@ -76,9 +76,9 @@ std::vector<Entity*> Attack::applyOnCell(Fight* fight, Entity* caster, Cell* tar
 	double jet = Util::random();
 
 	// Apply effects
-	for (EffectParameters parameters : effects) {
+	for (auto& parameters : effects) {
 
-		for (Entity* targetEntity : target_entities) {
+		for (auto& targetEntity : target_entities) {
 
 			if (targetEntity->isDead()) {
 				continue;
