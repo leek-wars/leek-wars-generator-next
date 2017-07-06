@@ -14,6 +14,7 @@
 #include "EffectShackleMagic.hpp"
 #include "EffectShackleStrength.hpp"
 #include "EffectKill.hpp"
+#include "EffectBuffStrength.hpp"
 
 Effect::Effect() {
 	native = true;
@@ -92,6 +93,7 @@ Effect* Effect::construct(EffectType type) {
 		case EffectType::SHACKLE_MAGIC: return new EffectShackleMagic();
 		case EffectType::SHACKLE_STRENGTH: return new EffectShackleStrength();
 		case EffectType::KILL: return new EffectKill();
+		case EffectType::BUFF_STRENGTH: return new EffectBuffStrength();
 		default:
 			LOG_E << "No such effect!" << std::endl;
 			assert(false or "No such effect!");
