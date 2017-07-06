@@ -5,9 +5,6 @@
 
 class EffectRelativeShield: public Effect {
 public:
-	EffectRelativeShield();
-	virtual ~EffectRelativeShield();
-
 	virtual void apply(Fight* fight) override;
 	virtual int getEffectValue() const override;
 };
