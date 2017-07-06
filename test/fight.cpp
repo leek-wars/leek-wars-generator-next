@@ -16,9 +16,9 @@ void Test::test_fight() {
 	characs1.set(Characteristic::MP, 10);
 	characs1.set(Characteristic::STRENGTH, 978);
 	leek1->setCharacteristics(characs1);
-	vector<Weapon*> weapons1 = {manager.weapons["pistol"], manager.weapons["laser"]};
+	std::vector<Weapon*> weapons1 = {manager.weapons["pistol"], manager.weapons["laser"]};
 	leek1->setWeapons(weapons1);
-	vector<Chip*> chips1 = {manager.chips["fortress"]};
+	std::vector<Chip*> chips1 = {manager.chips["fortress"]};
 	leek1->setChips(chips1);
 	team1->add_entity(leek1);
 	leek1->team = 0;
@@ -33,9 +33,9 @@ void Test::test_fight() {
 	characs2.set(Characteristic::MP, 10);
 	characs2.set(Characteristic::STRENGTH, 470);
 	leek2->setCharacteristics(characs2);
-	vector<Weapon*> weapons2 = {manager.weapons["laser"]};
+	std::vector<Weapon*> weapons2 = {manager.weapons["laser"]};
 	leek2->setWeapons(weapons2);
-	vector<Chip*> chips2 = {manager.chips["fortress"]};
+	std::vector<Chip*> chips2 = {manager.chips["fortress"]};
 	leek2->setChips(chips2);
 	team2->add_entity(leek2);
 	leek2->team = 1;
@@ -103,9 +103,9 @@ void Test::test_fight_v1() {
 	characs1.set(Characteristic::MP, 3);
 	characs1.set(Characteristic::STRENGTH, 978);
 	leek1->setCharacteristics(characs1);
-	vector<Weapon*> weapons1 = {manager.weapons["pistol"], manager.weapons["laser"]};
+	std::vector<Weapon*> weapons1 = {manager.weapons["pistol"], manager.weapons["laser"]};
 	leek1->setWeapons(weapons1);
-	vector<Chip*> chips1 = {manager.chips["fortress"]};
+	std::vector<Chip*> chips1 = {manager.chips["fortress"]};
 	leek1->setChips(chips1);
 	team1->add_entity(leek1);
 	leek1->team = 0;
@@ -120,9 +120,9 @@ void Test::test_fight_v1() {
 	characs2.set(Characteristic::MP, 3);
 	characs2.set(Characteristic::STRENGTH, 470);
 	leek2->setCharacteristics(characs2);
-	vector<Weapon*> weapons2 = {manager.weapons["laser"]};
+	std::vector<Weapon*> weapons2 = {manager.weapons["laser"]};
 	leek2->setWeapons(weapons2);
-	vector<Chip*> chips2 = {manager.chips["fortress"]};
+	std::vector<Chip*> chips2 = {manager.chips["fortress"]};
 	leek2->setChips(chips2);
 	team2->add_entity(leek2);
 	leek2->team = 1;

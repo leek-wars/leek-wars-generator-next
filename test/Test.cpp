@@ -37,33 +37,33 @@ void Test::tests() {
 	test_fight_v1();
 
 	///////////////
-	LeekModule().generate_doc(cout, string("doc/Leek_fr.json"));
+	LeekModule().generate_doc(std::cout, std::string("doc/Leek_fr.json"));
 	// EntityModule().generate_doc(cout, string("doc/Leek_fr.json"));
 	Benchmark::pathfinding();
 	///////////////
 
 	double elapsed_secs = double(clock() - begin) / CLOCKS_PER_SEC;
 
-	cout << endl;
-	cout << "------------------------------------------------" << endl;
-	cout << "Total : " << total << ", succès : " << success << ", erreurs : " << (total - success) << endl;
-	cout << "Total time : " << elapsed_secs * 1000 << " ms, execution time : " << (exeTime / CLOCKS_PER_SEC) * 1000 << " ms" << endl;
-	cout << "------------------------------------------------" << endl;
+	std::cout << std::endl;
+	std::cout << "------------------------------------------------" << std::endl;
+	std::cout << "Total : " << total << ", succès : " << success << ", erreurs : " << (total - success) << std::endl;
+	std::cout << "Total time : " << elapsed_secs * 1000 << " ms, execution time : " << (exeTime / CLOCKS_PER_SEC) * 1000 << " ms" << std::endl;
+	std::cout << "------------------------------------------------" << std::endl;
 }
 
-void Test::header(string text) {
-	cout << "----------------" << endl;
-	cout << text << endl;
-	cout << "----------------" << endl;
+void Test::header(std::string text) {
+	std::cout << "----------------" << std::endl;
+	std::cout << text << std::endl;
+	std::cout << "----------------" << std::endl;
 }
 
 template <typename T>
 void Test::test(std::string message, T expected, T res) {
 	total++;
 	if (expected != res) {
-		cout << "FAUX : " << message << "  =/=>  " << expected << "  got  " << res << endl;
+		std::cout << "FAUX : " << message << "  =/=>  " << expected << "  got  " << res << std::endl;
 	} else {
-		cout << "OK   : " << message << "  ===>  " << res << endl;
+		std::cout << "OK   : " << message << "  ===>  " << res << std::endl;
 		success++;
 	}
 }
