@@ -16,6 +16,7 @@
 #include "EffectKill.hpp"
 #include "EffectBuffStrength.hpp"
 #include "EffectBuffAgility.hpp"
+#include "EffectBuffTP.hpp"
 
 Effect::Effect() {
 	native = true;
@@ -96,6 +97,7 @@ Effect* Effect::construct(EffectType type) {
 		case EffectType::KILL: return new EffectKill();
 		case EffectType::BUFF_STRENGTH: return new EffectBuffStrength();
 		case EffectType::BUFF_AGILITY: return new EffectBuffAgility();
+		case EffectType::BUFF_TP: return new EffectBuffTP();
 		default:
 			LOG_E << "No such effect!" << std::endl;
 			assert(false or "No such effect!");
