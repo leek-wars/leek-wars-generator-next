@@ -5,6 +5,8 @@
 
 class EffectShackleStrength: public Effect {
 public:
+	int shackle;
+
 	virtual void apply(Fight* fight) override;
 	virtual int getEffectValue() const override;
 };
