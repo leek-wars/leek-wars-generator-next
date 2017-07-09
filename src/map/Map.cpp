@@ -367,7 +367,7 @@ std::vector<const Cell*> Map::get_path(const Cell* c1, std::vector<const Cell*> 
 }
 
 const Cell* Map::int_to_cell(int cell) {
-	if (cell < 0 or cell >= cells.size()) return nullptr;
+	if (cell < 0 or (size_t) cell >= cells.size()) return nullptr;
 	return cells[cell];
 }
 
