@@ -424,7 +424,7 @@ void Entity::remove_launched_effect(Effect* effect) {
 }
 
 void Entity::clear_poisons() {
-	for (int i = 0; i < effects.size(); ++i) {
+	for (size_t i = 0; i < effects.size(); ++i) {
 		auto effect = (Effect*) effects[i];
 		if (effect->type == EffectType::POISON) {
 			effect->caster->remove_launched_effect(effect);
