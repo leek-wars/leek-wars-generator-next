@@ -46,6 +46,8 @@ Cell::Cell(Map* map, int id) {
 	this->values["empty"] = ls::LSBoolean::get(true);
 	this->values["entity"] = ls::LSNull::get();
 
+	this->refs = 1;
+	this->native = true;
 	this->readonly = true;
 }
 
