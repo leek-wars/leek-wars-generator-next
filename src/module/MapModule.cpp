@@ -53,7 +53,7 @@ int map_getCellContent(const Cell* cell) {
 
 bool map_lineOfSight(const Cell* cell1, const Cell* cell2) {
 	// TODO check null cell
-	return Simulator::fight->map->line_of_sight_ignored(cell1, cell2, std::vector<const Cell*>{});
+	return Simulator::fight->map->line_of_sight_ignored(cell1, cell2, {});
 }
 
 ls::LSArray<ls::LSValue*>* map_getPath(const Cell* cell1, const Cell* cell2) {
@@ -61,11 +61,11 @@ ls::LSArray<ls::LSValue*>* map_getPath(const Cell* cell1, const Cell* cell2) {
 	if (cell1 == nullptr or cell2 == nullptr) {
 		return new ls::LSArray<ls::LSValue*>();
 	}
-	std::vector<const Cell*> path = Simulator::fight->map->get_path(cell1, std::vector<const Cell*>{cell2}, std::vector<const Cell*>{});
+	auto path = Simulator::fight->map->get_path(cell1, {cell2}, {});
 
 	auto result = new ls::LSArray<ls::LSValue*>();
 	result->reserve(path.size());
-	for (const Cell* cell : path) {
+	for (const auto& cell : path) {
 		result->push_back((ls::LSValue*) cell);
 	}
 	return result;
@@ -73,7 +73,7 @@ ls::LSArray<ls::LSValue*>* map_getPath(const Cell* cell1, const Cell* cell2) {
 
 int map_getPathLength(const Cell* cell1, const Cell* cell2) {
 	// TODO check null cell
-	return Simulator::fight->map->get_path(cell1, std::vector<const Cell*>{cell2}, std::vector<const Cell*>{}).size();
+	return Simulator::fight->map->get_path(cell1, {cell2}, {}).size();
 }
 
 int map_getType() {
@@ -211,8 +211,8 @@ ls::LSValue* map__getPathIgnored(const ls::LSValue* cell1, const ls::LSValue* ce
 	}
 
 	// TODO should be Null if there is no path
-	std::vector<const Cell*> path = Simulator::fight->map->get_path_between(c1, c2, ignored_cells);
-	ls::LSArray<int>* path_int = new ls::LSArray<int>();
+	auto& path = Simulator::fight->map->get_path_between(c1, c2, ignored_cells);
+	auto path_int = new ls::LSArray<int>();
 	for (auto c : path) {
 		path_int->push_clone(c->id);
 	}
