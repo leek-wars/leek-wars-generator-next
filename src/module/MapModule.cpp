@@ -211,7 +211,7 @@ ls::LSValue* map__getPathIgnored(const ls::LSValue* cell1, const ls::LSValue* ce
 	}
 
 	// TODO should be Null if there is no path
-	auto& path = Simulator::fight->map->get_path_between(c1, c2, ignored_cells);
+	auto path = Simulator::fight->map->get_path_between(c1, c2, ignored_cells);
 	auto path_int = new ls::LSArray<int>();
 	for (auto c : path) {
 		path_int->push_clone(c->id);
