@@ -27,7 +27,7 @@ void Order::removeEntity(Entity* entity) {
 	if (i == entities.end()) {
 		return;
 	}
-	if (distance(entities.begin(), i) <= position) {
+	if ((size_t) distance(entities.begin(), i) <= position) {
 		if (position > 0) {
 			position--;
 		} else {
