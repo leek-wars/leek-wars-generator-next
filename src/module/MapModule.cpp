@@ -7,34 +7,34 @@
 
 MapModule::MapModule() : Module("FightMap") {
 
-	method("cell", ls::Method::Static, {{CellModule::type, {ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &map_cell}});
-	method("lineOfSight", ls::Method::Static, {{ls::Type::BOOLEAN, {CellModule::type, CellModule::type}, (void*) &map_lineOfSight}});
-	method("getPath", ls::Method::Static, {{CellModule::array_type, {CellModule::type, CellModule::type}, (void*) &map_getPath}});
-	method("getPathLength", ls::Method::Static, {{ls::Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getPathLength}});
-	method("getCellContent", ls::Method::Static, {{ls::Type::INTEGER, {CellModule::type}, (void*) &map_getCellContent}});
-	method("getDistance", ls::Method::Static, {{ls::Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getDistance}});
-	method("getStraightDistance", ls::Method::Static, {{ls::Type::REAL, {CellModule::type}, (void*) &map_getStraightDistance}});
-	method("getType", ls::Method::Static, {{ls::Type::INTEGER, {}, (void*) &map_getType}});
-	method("getObstacles", ls::Method::Static, {{ls::Type::INTEGER, {}, (void*) &map_getObstacles}});
+	method("cell", ls::Method::Static, {{CellModule::type, {ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &map_cell, ls::Method::NATIVE}});
+	method("lineOfSight", ls::Method::Static, {{ls::Type::BOOLEAN, {CellModule::type, CellModule::type}, (void*) &map_lineOfSight, ls::Method::NATIVE}});
+	method("getPath", ls::Method::Static, {{CellModule::array_type, {CellModule::type, CellModule::type}, (void*) &map_getPath, ls::Method::NATIVE}});
+	method("getPathLength", ls::Method::Static, {{ls::Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getPathLength, ls::Method::NATIVE}});
+	method("getCellContent", ls::Method::Static, {{ls::Type::INTEGER, {CellModule::type}, (void*) &map_getCellContent, ls::Method::NATIVE}});
+	method("getDistance", ls::Method::Static, {{ls::Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getDistance, ls::Method::NATIVE}});
+	method("getStraightDistance", ls::Method::Static, {{ls::Type::REAL, {CellModule::type}, (void*) &map_getStraightDistance, ls::Method::NATIVE}});
+	method("getType", ls::Method::Static, {{ls::Type::INTEGER, {}, (void*) &map_getType, ls::Method::NATIVE}});
+	method("getObstacles", ls::Method::Static, {{ls::Type::INTEGER, {}, (void*) &map_getObstacles, ls::Method::NATIVE}});
 
 	// v1 functions
-	method("_getCellDistance", ls::Method::Static, {{ls::Type::INTEGER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getCellDistance}});
-	method("_getCellFromXY", ls::Method::Static, {{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getCellFromXY}});
-	method("_getDistance", ls::Method::Static, {{ls::Type::REAL, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getDistance}});
-	method("_getMapType", ls::Method::Static, {{ls::Type::INTEGER, {}, (void*) &map__getMapType}});
-	method("_getObstacles", ls::Method::Static, {{ls::Type::INT_ARRAY, {}, (void*) &map__getObstacles}});
+	method("_getCellDistance", ls::Method::Static, {{ls::Type::INTEGER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getCellDistance, ls::Method::NATIVE}});
+	method("_getCellFromXY", ls::Method::Static, {{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getCellFromXY, ls::Method::NATIVE}});
+	method("_getDistance", ls::Method::Static, {{ls::Type::REAL, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getDistance, ls::Method::NATIVE}});
+	method("_getMapType", ls::Method::Static, {{ls::Type::INTEGER, {}, (void*) &map__getMapType, ls::Method::NATIVE}});
+	method("_getObstacles", ls::Method::Static, {{ls::Type::INT_ARRAY, {}, (void*) &map__getObstacles, ls::Method::NATIVE}});
 	method("_getPath", ls::Method::Static, {
-		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getPath},
-		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getPathIgnored}
+		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getPath, ls::Method::NATIVE},
+		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getPathIgnored, ls::Method::NATIVE}
 	});
 	method("_getPathLength", ls::Method::Static, {
-		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getPathLength},
-		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getPathLengthIgnored}
+		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getPathLength, ls::Method::NATIVE},
+		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getPathLengthIgnored, ls::Method::NATIVE}
 	});
-	method("_isOnSameLine", ls::Method::Static, {{ls::Type::BOOLEAN, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__isOnSameLine}});
+	method("_isOnSameLine", ls::Method::Static, {{ls::Type::BOOLEAN, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__isOnSameLine, ls::Method::NATIVE}});
 	method("_lineOfSight", ls::Method::Static, {
-		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__lineOfSight},
-		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__lineOfSightIgnored}
+		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__lineOfSight, ls::Method::NATIVE},
+		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__lineOfSightIgnored, ls::Method::NATIVE}
 	});
 }
 
