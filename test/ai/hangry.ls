@@ -18,3 +18,7 @@ me.setWeapon(weapon)
 me.useWeapon(him)
 
 me.moveToward(him, 5)
+
+FightMap.cell(1, 1)
+FightMap.lineOfSight(me.cell, him.cell)
+FightMap.getPath(me.cell, him.cell)
