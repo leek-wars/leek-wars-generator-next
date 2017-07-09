@@ -23,25 +23,25 @@ ChipModule::ChipModule(const FightManager& manager) : Module("Chip") {
 	/*
 	 * V1
 	 */
-	static_method("_canUseChip", ls::Type::BOOLEAN, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &chip__canUseChip);
-	static_method("_canUseChipOnCell", ls::Type::BOOLEAN, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &chip__canUseChipOnCell);
-	static_method("_chipNeedLos", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &chip__chipNeedLos);
-	static_method("_getChipArea", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipArea);
-	static_method("_getChipCooldown", ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &chip__getChipCooldown);
-	static_method("_getChipCost", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipCost);
-	static_method("_getChipEffectiveAreaCell", {
+	method("_canUseChip", {{ls::Type::BOOLEAN, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &chip__canUseChip}});
+	method("_canUseChipOnCell", {{ls::Type::BOOLEAN, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &chip__canUseChipOnCell}});
+	method("_chipNeedLos", {{ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &chip__chipNeedLos}});
+	method("_getChipArea", {{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipArea}});
+	method("_getChipCooldown", {{ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &chip__getChipCooldown}});
+	method("_getChipCost", {{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipCost}});
+	method("_getChipEffectiveAreaCell", {
 		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipEffectiveArea},
 		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &chip__getChipEffectiveAreaCell},
 		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER, ls::Type::POINTER}, (void*) &chip__getChipEffectiveAreaCellFrom},
 	});
-	static_method("_getChipEffects", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipEffects);
-	static_method("_getChipFailure", ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &chip__getChipFailure);
-	static_method("_getChipMaxRange", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipMaxRange);
-	static_method("_getChipMinRange", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipMinRange);
-	static_method("_getChipName", ls::Type::STRING, {ls::Type::POINTER}, (void*) &chip__getChipName);
-	static_method("_getCurrentCooldown", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getCurrentCooldown);
-	static_method("_isChip", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &chip__isChip);
-	static_method("_isInlineChip", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &chip__isInlineChip);
+	method("_getChipEffects", {{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipEffects}});
+	method("_getChipFailure", {{ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &chip__getChipFailure}});
+	method("_getChipMaxRange", {{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipMaxRange}});
+	method("_getChipMinRange", {{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getChipMinRange}});
+	method("_getChipName", {{ls::Type::STRING, {ls::Type::POINTER}, (void*) &chip__getChipName}});
+	method("_getCurrentCooldown", {{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &chip__getCurrentCooldown}});
+	method("_isChip", {{ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &chip__isChip}});
+	method("_isInlineChip", {{ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &chip__isInlineChip}});
 }
 
 ChipModule::~ChipModule() {}

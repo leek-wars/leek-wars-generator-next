@@ -21,13 +21,13 @@ FightModule::FightModule() : Module("Fight") {
 
 	static_field("MAX_TURNS", ls::Type::INTEGER, [](ls::Compiler& c) { return c.new_integer(64); });
 
-	static_method("getTurn", ls::Type::INTEGER, {}, (void*) &fight_getTurn);
-	static_method("getEntity", {
+	method("getTurn", ls::Method::Static, {{ls::Type::INTEGER, {}, (void*) &fight_getTurn}});
+	method("getEntity", ls::Method::Static, {
 		{EntityModule::type_ptr, {}, (void*) &fight_getEntity, ls::Method::NATIVE}
 	});
 
-	static_method("getType", ls::Type::INTEGER, {}, (void*) &fight_getType);
-	static_method("getContext", ls::Type::INTEGER, {}, (void*) &fight_getContext);
+	method("getType", ls::Method::Static, {{ls::Type::INTEGER, {}, (void*) &fight_getType}});
+	method("getContext", ls::Method::Static, {{ls::Type::INTEGER, {}, (void*) &fight_getContext}});
 }
 
 FightModule::~FightModule() {}

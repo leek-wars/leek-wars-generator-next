@@ -22,24 +22,24 @@ CellModule::CellModule() : Module("Cell") {
 	field("walkable", ls::Type::BOOLEAN_P);
 	field("empty", ls::Type::BOOLEAN_P);
 
-	method("isEmpty", CellModule::type, ls::Type::BOOLEAN, {}, (void*) &Cell::isEmpty, ls::Method::NATIVE);
-	method("hasEntity", CellModule::type, ls::Type::BOOLEAN, {}, (void*) &Cell::hasEntity, ls::Method::NATIVE);
-	method("isObstacle", CellModule::type, ls::Type::BOOLEAN, {}, (void*) &Cell::isObstacle, ls::Method::NATIVE);
-	method("isWalkable", CellModule::type, ls::Type::BOOLEAN, {}, (void*) &Cell::isWalkable, ls::Method::NATIVE);
-	method("distance", CellModule::type, ls::Type::INTEGER, {CellModule::type}, (void*) &Cell::distance, ls::Method::NATIVE);
-	method("getX", CellModule::type, ls::Type::INTEGER, {}, (void*) &Cell::getX, ls::Method::NATIVE);
-	method("getY", CellModule::type, ls::Type::INTEGER, {}, (void*) &Cell::getY, ls::Method::NATIVE);
-	method("getEntity", CellModule::type, EntityModule::type_ptr, {}, (void*) &Cell::getEntity, ls::Method::NATIVE);
-	method("isAligned", CellModule::type, ls::Type::BOOLEAN, {CellModule::type}, (void*) &Cell::isAligned, ls::Method::NATIVE);
+	method("isEmpty", {{ls::Type::BOOLEAN, {CellModule::type}, (void*) &Cell::isEmpty, ls::Method::NATIVE}});
+	method("hasEntity", {{ls::Type::BOOLEAN, {CellModule::type}, (void*) &Cell::hasEntity, ls::Method::NATIVE}});
+	method("isObstacle", {{ls::Type::BOOLEAN, {CellModule::type}, (void*) &Cell::isObstacle, ls::Method::NATIVE}});
+	method("isWalkable", {{ls::Type::BOOLEAN, {CellModule::type}, (void*) &Cell::isWalkable, ls::Method::NATIVE}});
+	method("distance", {{ls::Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &Cell::distance, ls::Method::NATIVE}});
+	method("getX", {{ls::Type::INTEGER, {CellModule::type}, (void*) &Cell::getX, ls::Method::NATIVE}});
+	method("getY", {{ls::Type::INTEGER, {CellModule::type}, (void*) &Cell::getY, ls::Method::NATIVE}});
+	method("getEntity", {{EntityModule::type_ptr, {CellModule::type}, (void*) &Cell::getEntity, ls::Method::NATIVE}});
+	method("isAligned", {{ls::Type::BOOLEAN, {CellModule::type, CellModule::type}, (void*) &Cell::isAligned, ls::Method::NATIVE}});
 
 	// v1 functions
-	static_method("_isEmptyCell", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &cell__isEmptyCell);
-	static_method("_isLeek", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &cell__isLeek);
-	static_method("_isObstacle", ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &cell__isObstacle);
-	static_method("_getX", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &cell__getCellX);
-	static_method("_getY", ls::Type::POINTER, {ls::Type::POINTER}, (void*) &cell__getCellY);
-	static_method("_getLeekOnCell", ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &cell__getLeekOnCell);
-	static_method("_getCellContent", ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &cell__getCellContent);
+	method("_isEmptyCell", {{ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &cell__isEmptyCell}});
+	method("_isLeek", {{ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &cell__isLeek}});
+	method("_isObstacle", {{ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &cell__isObstacle}});
+	method("_getX", {{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &cell__getCellX}});
+	method("_getY", {{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &cell__getCellY}});
+	method("_getLeekOnCell", {{ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &cell__getLeekOnCell}});
+	method("_getCellContent", {{ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &cell__getCellContent}});
 }
 
 CellModule::~CellModule() {}

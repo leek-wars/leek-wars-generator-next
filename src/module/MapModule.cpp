@@ -7,32 +7,32 @@
 
 MapModule::MapModule() : Module("FightMap") {
 
-	static_method("cell", CellModule::type, {ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &map_cell);
-	static_method("lineOfSight", ls::Type::BOOLEAN, {CellModule::type, CellModule::type}, (void*) &map_lineOfSight);
-	static_method("getPath", CellModule::array_type, {CellModule::type, CellModule::type}, (void*) &map_getPath);
-	static_method("getPathLength", ls::Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getPathLength);
-	static_method("getCellContent", ls::Type::INTEGER, {CellModule::type}, (void*) &map_getCellContent);
-	static_method("getDistance", ls::Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getDistance);
-	static_method("getStraightDistance", ls::Type::REAL, {CellModule::type}, (void*) &map_getStraightDistance);
-	static_method("getType", ls::Type::INTEGER, {}, (void*) &map_getType);
-	static_method("getObstacles", ls::Type::INTEGER, {}, (void*) &map_getObstacles);
+	method("cell", {{CellModule::type, {ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &map_cell}});
+	method("lineOfSight", {{ls::Type::BOOLEAN, {CellModule::type, CellModule::type}, (void*) &map_lineOfSight}});
+	method("getPath", {{CellModule::array_type, {CellModule::type, CellModule::type}, (void*) &map_getPath}});
+	method("getPathLength", {{ls::Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getPathLength}});
+	method("getCellContent", {{ls::Type::INTEGER, {CellModule::type}, (void*) &map_getCellContent}});
+	method("getDistance", {{ls::Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getDistance}});
+	method("getStraightDistance", {{ls::Type::REAL, {CellModule::type}, (void*) &map_getStraightDistance}});
+	method("getType", {{ls::Type::INTEGER, {}, (void*) &map_getType}});
+	method("getObstacles", {{ls::Type::INTEGER, {}, (void*) &map_getObstacles}});
 
 	// v1 functions
-	static_method("_getCellDistance", ls::Type::INTEGER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getCellDistance);
-	static_method("_getCellFromXY", ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getCellFromXY);
-	static_method("_getDistance", ls::Type::REAL, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getDistance);
-	static_method("_getMapType", ls::Type::INTEGER, {}, (void*) &map__getMapType);
-	static_method("_getObstacles", ls::Type::INT_ARRAY, {}, (void*) &map__getObstacles);
-	static_method("_getPath", {
+	method("_getCellDistance", {{ls::Type::INTEGER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getCellDistance}});
+	method("_getCellFromXY", {{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getCellFromXY}});
+	method("_getDistance", {{ls::Type::REAL, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getDistance}});
+	method("_getMapType", {{ls::Type::INTEGER, {}, (void*) &map__getMapType}});
+	method("_getObstacles", {{ls::Type::INT_ARRAY, {}, (void*) &map__getObstacles}});
+	method("_getPath", {
 		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getPath},
 		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getPathIgnored}
 	});
-	static_method("_getPathLength", {
+	method("_getPathLength", {
 		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getPathLength},
 		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getPathLengthIgnored}
 	});
-	static_method("_isOnSameLine", ls::Type::BOOLEAN, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__isOnSameLine);
-	static_method("_lineOfSight", {
+	method("_isOnSameLine", {{ls::Type::BOOLEAN, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__isOnSameLine}});
+	method("_lineOfSight", {
 		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__lineOfSight},
 		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__lineOfSightIgnored}
 	});

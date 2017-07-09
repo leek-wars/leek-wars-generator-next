@@ -37,10 +37,10 @@ ColorModule::ColorModule() : Module("Color") {
 	field("b", ls::Type::NUMBER);
 	field("a", ls::Type::NUMBER);
 
-	static_method("rgb", {
+	method("rgb", {
 		{ColorModule::type_ptr, {ls::Type::INTEGER, ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &color_rgb, ls::Method::NATIVE}
 	});
-	static_method("rgba", {
+	method("rgba", {
 		{ColorModule::type_ptr, {ls::Type::INTEGER, ls::Type::INTEGER, ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &color_rgba, ls::Method::NATIVE}
 	});
 
