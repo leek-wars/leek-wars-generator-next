@@ -1,0 +1,3 @@
+[submodule "leekscript"]
+	path = leekscript
+	url = https://github.com/leek-wars/leekscript.git
