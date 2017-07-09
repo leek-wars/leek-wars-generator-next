@@ -16,9 +16,9 @@ OBJ_TEST := $(patsubst %.cpp,build/default/%.o,$(SRC_TEST))
 OBJ_COVERAGE := $(patsubst %.cpp,build/coverage/%.o,$(SRC))
 OBJ_SANITIZED := $(patsubst %.cpp,build/sanitized/%.o,$(SRC))
 
-FLAGS := -std=c++11 -O2 -g3 -Wall -Wextra -Wno-pmf-conversions
+FLAGS := -std=c++11 -O2 -g3 -Wall -Wextra -Wno-pmf-conversions -Ileekscript/src/
 SANITIZE_FLAGS := -fsanitize=address -fno-omit-frame-pointer -fsanitize=undefined -fsanitize=float-divide-by-zero # -fsanitize=float-cast-overflow
-LIBS := -ljit -lleekscript
+LIBS := -ljit -Lleekscript/build -lleekscript
 MAKEFLAGS += --jobs=$(shell nproc)
 
 .PHONY: test
@@ -37,14 +37,14 @@ build/sanitized/%.o: %.cpp
 $(BUILD_DIR):
 	@mkdir -p $@
 
-build/leek-wars-generator: $(BUILD_DIR) $(OBJ) $(OBJ_MAIN)
+build/leek-wars-generator: build/libleekscript.so $(BUILD_DIR) $(OBJ) $(OBJ_MAIN)
 	g++ $(FLAGS) -o build/leek-wars-generator $(OBJ) $(OBJ_MAIN) $(LIBS)
 	@echo "---------------"
 	@echo "Build finished!"
 	@echo "---------------"
 
 # Build test target
-build/leek-wars-generator-test: $(BUILD_DIR) $(OBJ) $(OBJ_TEST)
+build/leek-wars-generator-test: build/libleekscript.so $(BUILD_DIR) $(OBJ) $(OBJ_TEST)
 	g++ $(FLAGS) -o build/leek-wars-generator-test $(OBJ) $(OBJ_TEST) $(LIBS)
 	@echo "--------------------------"
 	@echo "Build (test) finished!"
@@ -54,8 +54,12 @@ build/leek-wars-generator-test: $(BUILD_DIR) $(OBJ) $(OBJ_TEST)
 test: build/leek-wars-generator-test
 	@build/leek-wars-generator-test
 
+build/libleekscript.so:
+	cd leekscript && make -j8 lib
+	cp leekscript/build/libleekscript.so build/libleekscript.so
+
 # Build with coverage flags enabled
-build/leek-wars-generator-coverage: $(BUILD_DIR) $(OBJ_COVERAGE) $(OBJ_TEST)
+build/leek-wars-generator-coverage: build/libleekscript.so $(BUILD_DIR) $(OBJ_COVERAGE) $(OBJ_TEST)
 	g++ $(FLAGS) -fprofile-arcs -ftest-coverage -o build/leek-wars-generator-coverage $(OBJ_COVERAGE) $(OBJ_TEST) $(LIBS)
 	@echo "--------------------------"
 	@echo "Build (coverage) finished!"
