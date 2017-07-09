@@ -1,7 +1,7 @@
 #ifndef MODULE_CHIPMODULE_HPP_
 #define MODULE_CHIPMODULE_HPP_
 
-#include <leekscript/src/leekscript.h>
+#include <leekscript.h>
 #include "ItemModule.hpp"
 class FightManager;
 

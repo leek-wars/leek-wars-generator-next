@@ -3,7 +3,7 @@
 #include <sstream>
 #include <fstream>
 #include "Test.hpp"
-#include <leekscript/src/leekscript.h>
+#include <leekscript.h>
 #include "../benchmark/Benchmark.hpp"
 #include "../src/module/LeekModule.hpp"
 

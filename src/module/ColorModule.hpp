@@ -1,7 +1,7 @@
 #ifndef SRC_MODULE_COLORMODULE_HPP_
 #define SRC_MODULE_COLORMODULE_HPP_
 
-#include <leekscript/src/leekscript.h>
+#include <leekscript.h>
 #include "../util/Color.hpp"
 #include "CellModule.hpp"
 

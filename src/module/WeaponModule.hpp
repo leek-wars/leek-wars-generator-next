@@ -1,7 +1,7 @@
 #ifndef CLASS_WEAPONMODULE_HPP_
 #define CLASS_WEAPONMODULE_HPP_
 
-#include <leekscript/src/leekscript.h>
+#include <leekscript.h>
 #include "ItemModule.hpp"
 #include "../fight/FightManager.hpp"
 

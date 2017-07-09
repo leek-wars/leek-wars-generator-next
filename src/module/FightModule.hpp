@@ -1,7 +1,7 @@
 #ifndef CLASS_FIGHTMODULE_HPP_
 #define CLASS_FIGHTMODULE_HPP_
 
-#include <leekscript/src/leekscript.h>
+#include <leekscript.h>
 class Fight;
 class Entity;
 

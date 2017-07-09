@@ -9,7 +9,7 @@
 #include "../action/ActionSetWeapon.hpp"
 #include "Team.hpp"
 #include "../fight/Simulator.hpp"
-#include <leekscript/src/leekscript.h>
+#include <leekscript.h>
 #include "../util/Util.hpp"
 #include "../action/ActionLoseMP.hpp"
 #include "../action/ActionMove.hpp"

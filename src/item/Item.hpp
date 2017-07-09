@@ -1,7 +1,7 @@
 #ifndef ITEM_HPP_
 #define ITEM_HPP_
 
-#include <leekscript/src/leekscript.h>
+#include <leekscript.h>
 #include "../effect/Attack.hpp"
 
 class Item : public ls::LSObject {

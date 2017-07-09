@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 #include <ostream>
-#include <leekscript/src/leekscript.h>
+#include <leekscript.h>
 #include "../map/Cell.hpp"
 #include "../ai/AI.hpp"
 #include "Characteristics.hpp"

@@ -4,7 +4,7 @@
 #include <ctime>
 #include <chrono>
 #include <sstream>
-#include <leekscript/src/leekscript.h>
+#include <leekscript.h>
 #include "util/Util.hpp"
 #include "fight/Fight.hpp"
 #include "map/Map.hpp"

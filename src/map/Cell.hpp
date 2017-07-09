@@ -2,7 +2,7 @@
 #define MAP_CELL_HPP_
 
 #include <ostream>
-#include <leekscript/src/leekscript.h>
+#include <leekscript.h>
 class Entity;
 class Map;
 

@@ -1,7 +1,7 @@
 #ifndef CLASS_MAPMODULE_HPP_
 #define CLASS_MAPMODULE_HPP_
 
-#include <leekscript/src/leekscript.h>
+#include <leekscript.h>
 #include "CellModule.hpp"
 
 class MapModule : public ls::Module {

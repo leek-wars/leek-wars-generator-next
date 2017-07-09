@@ -1,7 +1,7 @@
 #ifndef SRC_UTIL_COLOR_HPP_
 #define SRC_UTIL_COLOR_HPP_
 
-#include <leekscript/src/leekscript.h>
+#include <leekscript.h>
 
 class Color : public ls::LSNumber {
 public:

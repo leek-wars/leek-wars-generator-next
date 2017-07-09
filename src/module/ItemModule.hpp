@@ -1,7 +1,7 @@
 #ifndef CLASS_ITEMMODULE_HPP_
 #define CLASS_ITEMMODULE_HPP_
 
-#include <leekscript/src/leekscript.h>
+#include <leekscript.h>
 
 class ItemType : public ls::ObjectRawType {
 public:
