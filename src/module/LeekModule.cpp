@@ -23,19 +23,19 @@ LeekModule::LeekModule() : Module("Leek") {
 	});
 
 	// V1 methods
-	method("_getAIID", {
+	method("_getAIID", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &leek__getAIID, ls::Method::NATIVE},
 		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &leek__getAIIDEntity, ls::Method::NATIVE},
 	});
-	method("_getAIName", {
+	method("_getAIName", ls::Method::Static, {
 		{ls::Type::STRING, {}, (void*) &leek__getAIName, ls::Method::NATIVE},
 		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &leek__getAINameEntity, ls::Method::NATIVE},
 	});
-	method("_getFarmerID", {
+	method("_getFarmerID", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &leek__getFarmerID, ls::Method::NATIVE},
 		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &leek__getFarmerIDEntity, ls::Method::NATIVE},
 	});
-	method("_getFarmerName", {
+	method("_getFarmerName", ls::Method::Static, {
 		{ls::Type::STRING, {}, (void*) &leek__getFarmerName, ls::Method::NATIVE},
 		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &leek__getFarmerNameEntity, ls::Method::NATIVE},
 	});
