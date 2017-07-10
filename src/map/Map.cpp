@@ -424,7 +424,7 @@ void Map::draw_path(const std::vector<const Cell*> path, const Cell* cell1, cons
 	std::ostringstream oss;
 	oss << "Draw path: [";
 	for (const auto& c : path) oss << c->id << " -> ";
-	oss << "]" << std::endl;
+	oss << "] length " << path.size() << std::endl;
 
 	for (int x = 0; x < sx; ++x) {
 		for (int y = 0; y < sy; ++y) {
