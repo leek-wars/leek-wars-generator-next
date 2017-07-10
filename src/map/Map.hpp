@@ -52,7 +52,11 @@ public:
 	bool canUseAttack(const Cell* caster, const Cell* target, const Attack* attack) const;
 
 	int getDistance2(const Cell* c1, const Cell* c2) const;
+	float getDistance2_float(const Cell* c1, const Cell* c2) const;
+	float getDistance2_float(const Cell* c1, const std::vector<const Cell*> cells) const;
 	double getDistance(const Cell* c1, const Cell* c2) const;
+	float getDistance_float(const Cell* c1, const Cell* c2) const;
+	float getDistance_float(const Cell* c1, const std::vector<const Cell*> cells) const;
 	int getCellDistance(const Cell* c1, const Cell* c2) const;
 	int getCellDistance(const Cell* c1, const std::vector<const Cell*> cells) const;
 

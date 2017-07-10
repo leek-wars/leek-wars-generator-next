@@ -199,8 +199,38 @@ int Map::getDistance2(const Cell* c1, const Cell* c2) const {
 	return (c1->x - c2->x) * (c1->x - c2->x) + (c1->y - c2->y) * (c1->y - c2->y);
 }
 
+float Map::getDistance2_float(const Cell* c1, const Cell* c2) const {
+	return (c1->x - c2->x) * (c1->x - c2->x) + (c1->y - c2->y) * (c1->y - c2->y);
+}
+
+float Map::getDistance2_float(const Cell* c1, const std::vector<const Cell*> cells) const {
+	float dist = -1;
+	for (const auto& c2 : cells) {
+		auto d = getDistance2_float(c1, c2);
+		if (dist == -1 or d < dist) {
+			dist = d;
+		}
+	}
+	return dist;
+}
+
 double Map::getDistance(const Cell* c1, const Cell* c2) const {
 	return sqrt(getDistance2(c1, c2));
+}
+
+float Map::getDistance_float(const Cell* c1, const Cell* c2) const {
+	return sqrt(getDistance2_float(c1, c2));
+}
+
+float Map::getDistance_float(const Cell* c1, const std::vector<const Cell*> cells) const {
+	float dist = -1;
+	for (const auto& c2 : cells) {
+		auto d = getDistance(c1, c2);
+		if (dist == -1 or d < dist) {
+			dist = d;
+		}
+	}
+	return dist;
 }
 
 int Map::getCellDistance(const Cell* c1, const Cell* c2) const {
@@ -210,8 +240,7 @@ int Map::getCellDistance(const Cell* c1, const Cell* c2) const {
 int Map::getCellDistance(const Cell* c1, const std::vector<const Cell*> cells) const {
 	int dist = -1;
 	for (const Cell* c2 : cells) {
-		int d = getDistance2(c1, c2);
-//		int d = getCellDistance(c1, c2);
+		int d = getCellDistance(c1, c2);
 		if (dist == -1 || d < dist) {
 			dist = d;
 		}
