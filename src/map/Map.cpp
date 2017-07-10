@@ -294,17 +294,17 @@ bool Map::line_of_sight_ignored(const Cell* start, const Cell* end, std::vector<
 	return true;
 }
 
-inline const std::vector<const Cell*> Map::get_cells_around(const Cell* const c) const {
+inline const std::vector<Cell*> Map::get_cells_around(const Cell* const c) const {
 
-	std::vector<const Cell*> cells;
-	if (c->x < max_x) {
-		auto v = coord[c->x - min_x + 1][c->y - min_y];
+	std::vector<Cell*> cells;
+	if (c->y > min_y) {
+		auto v = coord[c->x - min_x][c->y - min_y - 1];
 		if (v != nullptr and v->walkable) {
 			cells.push_back(v);
 		}
 	}
-	if (c->y < max_y) {
-		auto v = coord[c->x - min_x][c->y - min_y + 1];
+	if (c->x < max_x) {
+		auto v = coord[c->x - min_x + 1][c->y - min_y];
 		if (v != nullptr and v->walkable) {
 			cells.push_back(v);
 		}
@@ -315,8 +315,8 @@ inline const std::vector<const Cell*> Map::get_cells_around(const Cell* const c)
 			cells.push_back(v);
 		}
 	}
-	if (c->y > min_y) {
-		auto v = coord[c->x - min_x][c->y - min_y - 1];
+	if (c->y < max_y) {
+		auto v = coord[c->x - min_x][c->y - min_y + 1];
 		if (v != nullptr and v->walkable) {
 			cells.push_back(v);
 		}
@@ -324,14 +324,14 @@ inline const std::vector<const Cell*> Map::get_cells_around(const Cell* const c)
 	return cells;
 }
 
-std::vector<const Cell*> Map::get_path_between(const Cell* start, const Cell* end, std::vector<const Cell*> ignored_cells) const {
+std::vector<const Cell*> Map::get_path_between(Cell* start, const Cell* end, std::vector<const Cell*> ignored_cells) const {
 	if (start == nullptr || end == nullptr) {
 		return {};
 	}
 	return get_path(start, {end}, ignored_cells);
 }
 
-std::vector<const Cell*> Map::get_path(const Cell* c1, std::vector<const Cell*> end_cells, std::vector<const Cell*> ignored) const {
+std::vector<const Cell*> Map::get_path(Cell* c1, std::vector<const Cell*> end_cells, std::vector<const Cell*> ignored) const {
 
 	if (c1 == nullptr or end_cells.size() == 0) {
 		// cout << "[path] invalid cells" << endl;

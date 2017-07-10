@@ -64,11 +64,11 @@ public:
 	bool line_of_sight_attack(const Cell* start, const Cell* end, const Attack* attack, const std::vector<const Cell*> ignoredCells) const;
 	bool line_of_sight_ignored(const Cell* start, const Cell* end, std::vector<const Cell*> ignored) const;
 
-	const std::vector<const Cell*> get_cells_around(const Cell* const c) const;
+	const std::vector<Cell*> get_cells_around(const Cell* const c) const;
 
-	std::vector<const Cell*> get_path_between(const Cell* start, const Cell* end, std::vector<const Cell*> ignored_cells) const;
+	std::vector<const Cell*> get_path_between(Cell* start, const Cell* end, std::vector<const Cell*> ignored_cells) const;
 
-	std::vector<const Cell*> get_path(const Cell* start, std::vector<const Cell*> end_cells, std::vector<const Cell*> ignored_cells) const;
+	std::vector<const Cell*> get_path(Cell* start, std::vector<const Cell*> end_cells, std::vector<const Cell*> ignored_cells) const;
 
 	const Cell* int_to_cell(int cell);
 
