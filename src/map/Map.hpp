@@ -78,24 +78,11 @@ public:
 	Json json() const;
 
 	friend std::ostream& operator << (std::ostream& os, const Map& map);
-
-	static std::vector<Node> visited;
-	static std::vector<bool> opened;
-};
-
-struct Map::Node {
-	const Cell* cell = nullptr;
-	unsigned short parent = 0;
-	unsigned short cost = std::numeric_limits<unsigned short>::max();
-	unsigned short weight = std::numeric_limits<unsigned short>::max();
-
-	Node() {};
-	Node(const Cell* cell, int cost) : cell(cell), cost(cost) {};
 };
 
 struct Map::NodeComparator {
-	bool operator () (const Node& o1, const Node& o2) {
-		return o1.weight > o2.weight;
+	bool operator () (const Cell* o1, const Cell* o2) {
+		return o1->weight > o2->weight;
 	}
 };
 

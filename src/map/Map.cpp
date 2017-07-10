@@ -12,9 +12,6 @@
 #include "../effect/Attack.hpp"
 #include "../entity/Team.hpp"
 
-std::vector<Map::Node> Map::visited;
-std::vector<bool> Map::opened;
-
 Map::Map(int width, int height, int obstacles_count, const std::vector<Team*>& teams) {
 
 	this->width = width;
@@ -43,9 +40,6 @@ Map::Map(int width, int height, int obstacles_count, const std::vector<Team*>& t
 		auto c = cells[i];
 		coord[c->x - min_x][c->y - min_y] = c;
 	}
-
-	visited.resize(cells.size());
-	opened.resize(cells.size());
 
 //	cout << "map cells: " << cells.size() << endl;
 
@@ -348,45 +342,51 @@ std::vector<const Cell*> Map::get_path(const Cell* c1, std::vector<const Cell*> 
 		return {};
 	}
 
-	std::priority_queue<Node, std::vector<Node>, NodeComparator> open;
+	for (auto& c : cells) {
+		c->visited = false;
+		c->closed = false;
+		c->cost = std::numeric_limits<unsigned short>::max();
+	}
 
-	fill(visited.begin(), visited.end(), Node());
-	fill(opened.begin(), opened.end(), false);
+	std::vector<Cell*> open;
+	NodeComparator comp;
 
-	open.push(Node(c1, 0));
-	opened[c1->id] = true;
+	c1->cost = 0;
+	c1->weight = 0;
+	c1->visited = true;
+	open.push_back(c1);
+	std::push_heap(open.begin(), open.end(), comp);
 
 	while (open.size() > 0) {
 
-		auto u = open.top();
-		open.pop();
-		visited[u.cell->id] = u;
+		std::pop_heap(open.begin(), open.end(), comp);
+		auto u = open.back();
+		open.pop_back();
+		u->closed = true;
 
-		if (find(end_cells.begin(), end_cells.end(), u.cell) != end_cells.end()) {
-
+		if (find(end_cells.begin(), end_cells.end(), u) != end_cells.end()) {
 			std::vector<const Cell*> result;
-			auto n = &u;
-			int s = u.cost;
+			int s = u->cost;
 			while (s-- >= 0) {
-				result.push_back(n->cell);
-				n = &visited[n->parent];
+				result.push_back(u);
+				u = u->parent;
 			}
 			return result;
 		}
 
-		for (auto& c : get_cells_around(u.cell)) {
+		for (auto& c : get_cells_around(u)) {
 
-			if (c->entity == nullptr or find(ignored.begin(), ignored.end(), c) != ignored.end()
-				or find(end_cells.begin(), end_cells.end(), c) != end_cells.end()) {
+			if (c->closed) continue;
+			if (c->entity != nullptr and find(ignored.begin(), ignored.end(), c) == ignored.end()) continue;
 
-				Node v(c, u.cost);
-				v.parent = u.cell->id;
-
-				if (u.cost < visited[c->id].cost and !opened[c->id]) {
-					v.cost = u.cost + 1;
-					v.weight = v.cost + getCellDistance(c, end_cells);
-					open.push(v);
-					opened[c->id] = true;
+			if (!c->visited or u->cost + 1 < c->cost) {
+				c->cost = u->cost + 1;
+				c->weight = c->cost + getDistance_float(c, end_cells);
+				c->parent = u;
+				if (!c->visited) {
+					open.push_back(c);
+					std::push_heap(open.begin(), open.end(), comp);
+					c->visited = true;
 				}
 			}
 		}

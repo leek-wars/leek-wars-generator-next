@@ -25,6 +25,12 @@ public:
 	bool east = true;
 	bool south = true;
 
+	Cell* parent = nullptr;
+	unsigned short cost = std::numeric_limits<unsigned short>::max();
+	float weight = std::numeric_limits<float>::max();
+	bool visited;
+	bool closed;
+
 	Cell(Map* map, int id);
 	virtual ~Cell();
 
