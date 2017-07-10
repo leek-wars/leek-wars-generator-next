@@ -372,47 +372,52 @@ const Cell* Map::int_to_cell(int cell) {
 }
 
 void Map::print() const {
+	std::ostringstream oss;
+	oss << "Map: " << std::endl;
 	for (int x = 0; x < sx; ++x) {
 		for (int y = 0; y < sy; ++y) {
 			auto c = coord[y][x];
 			if (c == nullptr) {
-				LOG << "  ";
+				oss << "  ";
 			} else if (c->walkable) {
-				LOG << "░░";
+				oss << "░░";
 			} else {
-				LOG << "▓▓";
+				oss << "▓▓";
 			}
 		}
-		LOG << std::endl;
+		oss << std::endl;
 	}
+	LOG << oss.str();
 }
 
 void Map::draw_path(const std::vector<const Cell*> path, const Cell* cell1, const Cell* cell2) const {
 
-	LOG << "Draw path: [";
-	for (const auto& c : path) LOG << c->id << " -> ";
-	LOG << "]" << std::endl;
+	std::ostringstream oss;
+	oss << "Draw path: [";
+	for (const auto& c : path) oss << c->id << " -> ";
+	oss << "]" << std::endl;
 
 	for (int x = 0; x < sx; ++x) {
 		for (int y = 0; y < sy; ++y) {
 			auto c = coord[y][x];
 			auto it = find(path.begin(), path.end(), c);
 			if (c == nullptr) {
-				LOG << "  ";
+				oss << "  ";
 			} else if (c == cell1) {
-				LOG << "S ";
+				oss << "S ";
 			} else if (c == cell2) {
-				LOG << "E ";
+				oss << "E ";
 			} else if (it != path.end()) {
-				LOG << (char)('a' + (distance(path.begin(), it) % 26) ) << ' ';
+				oss << (char)('a' + (distance(path.begin(), it) % 26) ) << ' ';
 			} else if (c->walkable) {
-				LOG << "░░";
+				oss << "░░";
 			} else {
-				LOG << "▓▓";
+				oss << "▓▓";
 			}
 		}
-		LOG << std::endl;
+		oss << std::endl;
 	}
+	LOG << oss.str();
 }
 
 Json Map::json() const {
