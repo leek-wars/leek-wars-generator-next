@@ -61,6 +61,7 @@ void Map::generate(int obstacles_count, const std::vector<Team*>& teams) {
 
 		valid = true;
 		type = Util::rand_int(0, 4);
+		obstacles.clear();
 
 		for (int i = 0; i < obstacles_count; i++) {
 			auto c = getCell(Util::rand_int(nb_cells));
