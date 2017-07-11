@@ -39,9 +39,6 @@ Map::Map(int width, int height, int obstacles_count, const std::vector<Team*>& t
 		auto c = cells[i];
 		coord[c->x - min_x][c->y - min_y] = c;
 	}
-
-//	cout << "map cells: " << cells.size() << endl;
-
 	generate(obstacles_count, teams);
 }
 
