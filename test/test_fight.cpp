@@ -7,7 +7,7 @@ void Test::test_fight() {
 
 	Fight fight;
 
-	Team* team1 = new Team();
+	Team* team1 = new Team(0);
 	// Entity 1
 	AI* ai1 = new AI(Util::read_file("test/ai/color.ls"), "color.ls");
 	Leek* leek1 = new Leek(&fight, "Trevor", 300, ai1);
@@ -22,9 +22,9 @@ void Test::test_fight() {
 	std::vector<Chip*> chips1 = {manager.chips["fortress"]};
 	leek1->setChips(chips1);
 	team1->add_entity(leek1);
-	leek1->team = 0;
+	leek1->team = team1;
 
-	Team* team2 = new Team();
+	Team* team2 = new Team(1);
 	// Entity 2
 	AI* ai2 = new AI(Util::read_file("test/ai/hangry.ls"), "hangry.ls");
 	Leek* leek2 = new Leek(&fight, "Franklin", 297, ai2);
@@ -39,7 +39,7 @@ void Test::test_fight() {
 	std::vector<Chip*> chips2 = {manager.chips["fortress"]};
 	leek2->setChips(chips2);
 	team2->add_entity(leek2);
-	leek2->team = 1;
+	leek2->team = team2;
 	// Entity 3
 	auto ai3 = new AI(Util::read_file("test/ai/basic.ls"), "basic.ls");
  	auto leek3 = new Leek(&fight, "Hodor", 297, ai3);
@@ -52,7 +52,7 @@ void Test::test_fight() {
 	leek3->setWeapons({manager.weapons["pistol"], manager.weapons["laser"]});
 	leek3->setChips({manager.chips["fortress"]});
 	team2->add_entity(leek3);
-	leek3->team = 1;
+	leek3->team = team2;
 
 	fight.teams = {team1, team2};
 
