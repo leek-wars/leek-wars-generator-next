@@ -32,8 +32,7 @@ void Test::tests() {
 	test_map();
 	test_generateCritical();
 	test_fight();
-	test_fight_v1();
-
+	// test_fight_v1();
 	///////////////
 	Benchmark::pathfinding();
 	///////////////

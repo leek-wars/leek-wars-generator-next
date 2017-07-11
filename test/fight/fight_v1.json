@@ -1,0 +1,51 @@
+{	"teams": [
+		{	"entities": [
+				{	"ai": "test/ai/v1/example_ai.leek",
+					"v1": true,
+					"name": "Trevor",
+					"level": 301,
+					"life": 5000,
+					"strength": 500,
+					"tp": 12,
+					"mp": 6,
+					"cell": 123,
+					"weapons": [
+						"laser", "m_laser", "magnum"
+					],
+					"chips": [
+						"stalactite", "fortress", "liberation"
+					]
+				}
+			]
+		},
+		{	"entities": [
+				{	"ai": "test/ai/v1/basic_ai.leek",
+					"v1": true,
+					"name": "Franklin",
+					"level": 1000,
+					"life": 10000,
+					"strength": 2000,
+					"tp": 50,
+					"mp": 6,
+					"cell": 301,
+					"weapons": [
+						"laser", "m_laser", "magnum"
+					],
+					"chips": [
+						"stalactite", "fortress", "liberation"
+					]
+				}
+			]
+		}
+	],
+	"map": {
+		"width": 17,
+		"height": 17,
+		"type": 3,
+		"obstacles": [
+			123, 54, 212, 561, 231, 678, 122, 545, 753, 321, 565, 89
+		]
+	},
+	"max_turns": 64,
+	"max_operations_per_entity": 20000000
+}

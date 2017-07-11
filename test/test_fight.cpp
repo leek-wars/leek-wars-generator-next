@@ -1,4 +1,5 @@
 #include "Test.hpp"
+#include "../src/fight/FightLoader.hpp"
 
 void Test::test_fight() {
 
@@ -85,54 +86,18 @@ void Test::test_generateCritical() {
 
 	delete leek1;
 	delete leek2;
+
+	std::cout << "OK" << std::endl;
 }
 
 void Test::test_fight_v1() {
 
 	header("Fight v1");
 
-	Fight fight;
-
-	Team* team1 = new Team();
-	// Entity 1
-	AI* ai1 = new AI(Util::read_file("test/ai/v1/example_ai.leek"), "example_ai.leek", true);
-	Leek* leek1 = new Leek(&fight, "Trevor", 300, ai1);
-	Characteristics characs1;
-	characs1.set(Characteristic::LIFE, 3200);
-	characs1.set(Characteristic::TP, 2000);
-	characs1.set(Characteristic::MP, 3);
-	characs1.set(Characteristic::STRENGTH, 978);
-	leek1->setCharacteristics(characs1);
-	std::vector<Weapon*> weapons1 = {manager.weapons["pistol"], manager.weapons["laser"]};
-	leek1->setWeapons(weapons1);
-	std::vector<Chip*> chips1 = {manager.chips["fortress"]};
-	leek1->setChips(chips1);
-	team1->add_entity(leek1);
-	leek1->team = 0;
-
-	Team* team2 = new Team();
-	// Entity 2
-	AI* ai2 = new AI(Util::read_file("test/ai/v1/basic_ai.leek"), "basic_ai.leek", true);
-	Leek* leek2 = new Leek(&fight, "Franklin", 297, ai2);
-	Characteristics characs2;
-	characs2.set(Characteristic::LIFE, 3900);
-	characs2.set(Characteristic::TP, 2000);
-	characs2.set(Characteristic::MP, 3);
-	characs2.set(Characteristic::STRENGTH, 470);
-	leek2->setCharacteristics(characs2);
-	std::vector<Weapon*> weapons2 = {manager.weapons["laser"]};
-	leek2->setWeapons(weapons2);
-	std::vector<Chip*> chips2 = {manager.chips["fortress"]};
-	leek2->setChips(chips2);
-	team2->add_entity(leek2);
-	leek2->team = 1;
-
-	fight.teams = {team1, team2};
-
-	fight.map.reset(new Map(18, 18, 25, {team1, team2}));
+	auto fight = FightLoader::load(manager, "test/fight/fight_v1.json");
 
 	// Run the fight
-	manager.start(fight, [](Report* report) {
+	manager.start(*fight, [](Report* report) {
 		std::cout << "-------------- report ----------------" << std::endl;
 		std::cout << report << std::endl;
 
