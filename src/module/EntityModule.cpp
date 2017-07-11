@@ -16,11 +16,11 @@ EntityModule::EntityModule() : Module("Entity") {
 
 	EntityModule::entity_clazz = this->clazz;
 
+	// TODO reorder fields
 	field("name", ls::Type::STRING);
 	field("cell", CellModule::type);
 	field("level", ls::Type::INTEGER);
 	field("talent", ls::Type::INTEGER);
-
 	field("life", ls::Type::INTEGER);
 	field("strength", ls::Type::INTEGER);
 	field("agility", ls::Type::INTEGER);
@@ -38,6 +38,7 @@ EntityModule::EntityModule() : Module("Entity") {
 	field("weapons", WeaponModule::array_type);
 	field("chips", ChipModule::array_type);
 
+	// TODO reorder methods
 	method("getLife", {{ls::Type::INTEGER, {EntityModule::type_ptr}, (void*) &Entity::getLife, ls::Method::NATIVE}});
 	method("getTotalLife", {{ls::Type::INTEGER, {EntityModule::type_ptr}, (void*) &Entity::getTotalLife, ls::Method::NATIVE}});
 	method("getStrength", {{ls::Type::INTEGER, {EntityModule::type_ptr}, (void*) &Entity::getStrength, ls::Method::NATIVE}});
@@ -75,6 +76,7 @@ EntityModule::EntityModule() : Module("Entity") {
 	method("isEnemy", {{ls::Type::BOOLEAN, {EntityModule::type_ptr}, (void*) &Entity::isEnemy, ls::Method::NATIVE}});
 	method("isSummon", {{ls::Type::BOOLEAN, {EntityModule::type_ptr}, (void*) &Entity::isSummon, ls::Method::NATIVE}});
 	method("getName", {{ls::Type::STRING, {EntityModule::type_ptr}, (void*) &Entity::getName, ls::Method::NATIVE}});
+	// TODO add getAlive/Dead_Enemies/Allies methods
 
 	/*
 	 * V1 functions
