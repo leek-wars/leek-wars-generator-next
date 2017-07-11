@@ -55,7 +55,7 @@ EntityModule::EntityModule() : Module("Entity") {
 	method("getTotalMP", {{ls::Type::INTEGER, {EntityModule::type_ptr}, (void*) &Entity::getTotalMP, ls::Method::NATIVE}});
 	method("getDamageReturn", {{ls::Type::INTEGER, {EntityModule::type_ptr}, (void*) &Entity::getDamageReturn, ls::Method::NATIVE}});
 	method("getCell", {{CellModule::type, {EntityModule::type_ptr}, (void*) &Entity::getCell, ls::Method::NATIVE}});
-	method("getClosestEnemy", {{EntityModule::type_ptr, {EntityModule::type_ptr}, (void*) &entity_getClosestEnemy, ls::Method::NATIVE}});
+	method("getClosestEnemy", {{EntityModule::type_ptr, {EntityModule::type_ptr}, (void*) &Entity::get_closest_enemy, ls::Method::NATIVE}});
 	method("getWeapons", {{WeaponModule::array_type, {EntityModule::type_ptr}, (void*) &Entity::getWeapons, ls::Method::NATIVE}});
 	method("getWeapon", {{ls::Type::POINTER, {EntityModule::type_ptr}, (void*) &Entity::getWeapon, ls::Method::NATIVE}});
 	method("getLevel", {{ls::Type::INTEGER, {EntityModule::type_ptr}, (void*) &Entity::getLevel, ls::Method::NATIVE}});
@@ -233,10 +233,6 @@ EntityModule::EntityModule() : Module("Entity") {
 }
 
 EntityModule::~EntityModule() {}
-
-const Entity* entity_getClosestEnemy(Entity* entity) {
-	return Simulator::fight->teams[(entity->team + 1) % 2]->entities[0];
-}
 
 const Weapon* entity_getWeapon(Entity* entity) {
 	return (Weapon*) entity->getWeapon();
@@ -487,7 +483,7 @@ ls::LSValue* entity__getNameEntity(void*, const ls::LSValue* entity) {
 }
 
 int entity__getNearestEnemy(void*) {
-	return Simulator::entity->getClosestEnemy()->id;
+	return Simulator::entity->get_closest_enemy()->id;
 }
 
 ls::LSValue* entity__getSummoner(void*) {
