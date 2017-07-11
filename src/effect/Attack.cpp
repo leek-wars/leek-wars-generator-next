@@ -137,7 +137,7 @@ double Attack::getPowerForCell(Cell*, Cell* target_cell, Cell* curent_cell) cons
 	if (area->getRadius() == 0) {
 		return 1.0;
 	}
-	int dist = target_cell->field->getCellDistance(target_cell, curent_cell);
+	int dist = target_cell->field->get_cell_distance(target_cell, curent_cell);
 	return (area->getRadius() - dist) / area->getRadius() * 0.5 + 0.5;
 }
 

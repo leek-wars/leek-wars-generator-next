@@ -111,7 +111,7 @@ std::vector<const Cell*> Field::get_path(Cell* c1, std::vector<const Cell*> end_
 
 			if (!c->visited or u->cost + 1 < c->cost) {
 				c->cost = u->cost + 1;
-				c->weight = c->cost + getDistance_float(c, end_cells);
+				c->weight = c->cost + get_distance_float(c, end_cells);
 				c->parent = u;
 				if (!c->visited) {
 					open.push_back(c);

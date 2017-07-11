@@ -21,7 +21,7 @@ std::vector<Cell*> AreaCircle::getArea(Cell* launchCell, Cell* targetCell) const
 	auto field = launchCell->field;
 
 	for (std::pair<int, int> v : area) {
-		auto c = field->getCell(x + v.first, y + v.second);
+		auto c = field->get_cell(x + v.first, y + v.second);
 		if (c == nullptr || !c->walkable) {
 			continue;
 		}

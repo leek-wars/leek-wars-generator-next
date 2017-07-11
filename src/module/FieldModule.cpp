@@ -43,7 +43,7 @@ FieldModule::~FieldModule() {}
 
 const Cell* map_cell(const int x, const int y) {
 	// TODO check null cell
-	return Simulator::fight->field->getCell(x, y);
+	return Simulator::fight->field->get_cell(x, y);
 }
 
 int map_getCellContent(const Cell* cell) {
@@ -115,7 +115,7 @@ int map__getCellDistance(const ls::LSValue* cell1, const ls::LSValue* cell2) {
 
 	if (c1 == nullptr or c2 == nullptr) return -1;
 
-	return Simulator::fight->field->getCellDistance(c1, c2);
+	return Simulator::fight->field->get_cell_distance(c1, c2);
 }
 
 /*
@@ -129,7 +129,7 @@ ls::LSValue* map__getCellFromXY(const ls::LSValue* x, const ls::LSValue* y) {
 	const ls::LSNumber* yn = dynamic_cast<const ls::LSNumber*>(y);
 	if (yn == nullptr) return ls::LSNull::get();
 
-	return ls::LSNumber::get(Simulator::fight->field->getCell(xn->value, yn->value)->id);
+	return ls::LSNumber::get(Simulator::fight->field->get_cell(xn->value, yn->value)->id);
 }
 
 /*
@@ -147,7 +147,7 @@ double map__getDistance(const ls::LSValue* cell1, const ls::LSValue* cell2) {
 
 	if (c1 == nullptr or c2 == nullptr) return -1;
 
-	return Simulator::fight->field->getDistance(c1, c2);
+	return Simulator::fight->field->get_distance(c1, c2);
 }
 
 /*

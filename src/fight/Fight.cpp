@@ -123,7 +123,7 @@ int Fight::useWeapon(Entity* launcher, Cell* target) {
 	if (weapon->cost > launcher->getTP()) {
 		return AttackResult::NOT_ENOUGH_TP;
 	}
-	if (!field->canUseAttack(launcher->cell, target, weapon->attack.get())) {
+	if (!field->can_use_attack(launcher->cell, target, weapon->attack.get())) {
 		return AttackResult::INVALID_POSITION;
 	}
 
@@ -155,7 +155,7 @@ int Fight::useChip(Entity* caster, Cell* target, Chip* chip) {
 	if (chip->cost > caster->getTP()) {
 		return AttackResult::NOT_ENOUGH_TP;
 	}
-	if (!field->canUseAttack(caster->cell, target, chip->attack.get())) {
+	if (!field->can_use_attack(caster->cell, target, chip->attack.get())) {
 		return AttackResult::INVALID_POSITION;
 	}
 	if (hasCooldown(caster, chip)) {

@@ -59,14 +59,14 @@ void Field::generate(int obstacles_count, const std::vector<Team*>& teams) {
 		obstacles.clear();
 
 		for (int i = 0; i < obstacles_count; i++) {
-			auto c = getCell(Util::rand_int(nb_cells));
+			auto c = get_cell(Util::rand_int(nb_cells));
 			if (c != nullptr && c->available()) {
 				int size = Util::rand_int(1, 2);
 				int type = Util::rand_int(0, 2);
 				if (size == 2) {
-					Cell* c2 = getCellByDir(c, Direction::EAST);
-					Cell* c3 = getCellByDir(c, Direction::SOUTH);
-					Cell* c4 = getCellByDir(c3, Direction::EAST);
+					Cell* c2 = get_cell_by_direction(c, Direction::EAST);
+					Cell* c3 = get_cell_by_direction(c, Direction::SOUTH);
+					Cell* c4 = get_cell_by_direction(c3, Direction::EAST);
 					if (c2 == nullptr || c3 == nullptr || c4 == nullptr
 						|| !c2->available() || !c3->available() || !c4->available())
 						size = 1;
@@ -91,9 +91,9 @@ void Field::generate(int obstacles_count, const std::vector<Team*>& teams) {
 			for (Entity* e : teams[t]->entities) {
 				Cell* c;
 				if (teams.size() == 2) { // 2 teams : 2 sides
-					c = getRandomCell(t == 0 ? 1 : 4);
+					c = get_random_cell(t == 0 ? 1 : 4);
 				} else { // 2+ teams : random
-					c = getRandomCell();
+					c = get_random_cell();
 				}
 				if (c == nullptr) {
 					// Enable to find a cell, rebuild the map
@@ -121,31 +121,31 @@ void Field::generate(int obstacles_count, const std::vector<Team*>& teams) {
 	assert(valid || "Invalid map! Too much obstacles?");
 }
 
-Cell* Field::getCell(int id) {
+Cell* Field::get_cell(int id) {
 	if (id < 0 or id >= (int) cells.size()) {
 		return nullptr;
 	}
 	return cells[id];
 }
 
-Cell* Field::getCell(int x, int y) {
+Cell* Field::get_cell(int x, int y) {
 	return coord[x - min_x][y - min_y];
 }
 
-std::vector<Cell*> Field::getObstacles() {
+std::vector<Cell*> Field::get_obstacles() {
 	return obstacles;
 }
 
-Cell* Field::getRandomCell() {
+Cell* Field::get_random_cell() {
 	Cell* c = nullptr;
 	int security = 0;
 	do {
-		c = getCell(Util::rand_int(nb_cells));
+		c = get_cell(Util::rand_int(nb_cells));
 	} while (!c->available() && security++ < 512);
 	return c;
 }
 
-Cell* Field::getRandomCell(int part) {
+Cell* Field::get_random_cell(int part) {
 	Cell* c = nullptr;
 	int security = 0;
 	do {
@@ -153,19 +153,19 @@ Cell* Field::getRandomCell(int part) {
 		int x = Util::rand_int(width / 4);
 		int cellid = y * (width * 2 - 1);
 		cellid += (part - 1) * width / 4 + x;
-		c = getCell(cellid);
+		c = get_cell(cellid);
 	} while (!c->available() && security++ < 512);
 	return c;
 }
 
-bool Field::canUseAttack(const Cell* caster, const Cell* target, const Attack* attack) const {
+bool Field::can_use_attack(const Cell* caster, const Cell* target, const Attack* attack) const {
 
 	if (target == nullptr || caster == nullptr) {
 		return false;
 	}
 	if (attack->launch_type == LaunchType::CIRCLE) {
 
-		int dist = getCellDistance(caster, target);
+		int dist = get_cell_distance(caster, target);
 		if (attack->min_range > dist || attack->max_range < dist) {
 			return false;
 		}
@@ -176,7 +176,7 @@ bool Field::canUseAttack(const Cell* caster, const Cell* target, const Attack* a
 		if (caster->x != target->x and caster->y != target->y) {
 			return false;
 		}
-		int dist = getCellDistance(caster, target);
+		int dist = get_cell_distance(caster, target);
 		if (attack->min_range > dist || attack->max_range < dist) {
 			return false;
 		}
@@ -185,18 +185,18 @@ bool Field::canUseAttack(const Cell* caster, const Cell* target, const Attack* a
 	return false;
 }
 
-int Field::getDistance2(const Cell* c1, const Cell* c2) const {
+int Field::get_distance2(const Cell* c1, const Cell* c2) const {
 	return (c1->x - c2->x) * (c1->x - c2->x) + (c1->y - c2->y) * (c1->y - c2->y);
 }
 
-float Field::getDistance2_float(const Cell* c1, const Cell* c2) const {
+float Field::get_distance2_float(const Cell* c1, const Cell* c2) const {
 	return (c1->x - c2->x) * (c1->x - c2->x) + (c1->y - c2->y) * (c1->y - c2->y);
 }
 
-float Field::getDistance2_float(const Cell* c1, const std::vector<const Cell*> cells) const {
+float Field::get_distance2_float(const Cell* c1, const std::vector<const Cell*> cells) const {
 	float dist = -1;
 	for (const auto& c2 : cells) {
-		auto d = getDistance2_float(c1, c2);
+		auto d = get_distance2_float(c1, c2);
 		if (dist == -1 or d < dist) {
 			dist = d;
 		}
@@ -204,18 +204,18 @@ float Field::getDistance2_float(const Cell* c1, const std::vector<const Cell*> c
 	return dist;
 }
 
-double Field::getDistance(const Cell* c1, const Cell* c2) const {
-	return sqrt(getDistance2(c1, c2));
+double Field::get_distance(const Cell* c1, const Cell* c2) const {
+	return sqrt(get_distance2(c1, c2));
 }
 
-float Field::getDistance_float(const Cell* c1, const Cell* c2) const {
-	return sqrt(getDistance2_float(c1, c2));
+float Field::get_distance_float(const Cell* c1, const Cell* c2) const {
+	return sqrt(get_distance2_float(c1, c2));
 }
 
-float Field::getDistance_float(const Cell* c1, const std::vector<const Cell*> cells) const {
+float Field::get_distance_float(const Cell* c1, const std::vector<const Cell*> cells) const {
 	float dist = -1;
 	for (const auto& c2 : cells) {
-		auto d = getDistance(c1, c2);
+		auto d = get_distance(c1, c2);
 		if (dist == -1 or d < dist) {
 			dist = d;
 		}
@@ -223,14 +223,14 @@ float Field::getDistance_float(const Cell* c1, const std::vector<const Cell*> ce
 	return dist;
 }
 
-int Field::getCellDistance(const Cell* c1, const Cell* c2) const {
+int Field::get_cell_distance(const Cell* c1, const Cell* c2) const {
 	return abs(c1->x - c2->y) + abs(c1->y - c2->y);
 }
 
-int Field::getCellDistance(const Cell* c1, const std::vector<const Cell*> cells) const {
+int Field::get_cell_distance(const Cell* c1, const std::vector<const Cell*> cells) const {
 	int dist = -1;
 	for (const Cell* c2 : cells) {
-		int d = getCellDistance(c1, c2);
+		int d = get_cell_distance(c1, c2);
 		if (dist == -1 || d < dist) {
 			dist = d;
 		}
@@ -239,7 +239,6 @@ int Field::getCellDistance(const Cell* c1, const std::vector<const Cell*> cells)
 }
 
 const std::vector<Cell*> Field::get_cells_around(const Cell* const c) const {
-
 	std::vector<Cell*> cells;
 	if (c->y > min_y) {
 		auto v = coord[c->x - min_x][c->y - min_y - 1];
@@ -268,8 +267,7 @@ const std::vector<Cell*> Field::get_cells_around(const Cell* const c) const {
 	return cells;
 }
 
-Cell* Field::getCellByDir(Cell* cell, Direction dir) {
-
+Cell* Field::get_cell_by_direction(Cell* cell, Direction dir) {
 	if (cell == nullptr) {
 		return nullptr;
 	}
