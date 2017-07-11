@@ -9,7 +9,7 @@ class Team;
 class Attack;
 #include "Cell.hpp"
 
-class Map {
+class Field {
 public:
 
 	struct Node;
@@ -34,8 +34,8 @@ public:
 	int min_y = -1;
 	int max_y = -1;
 
-	Map(int width, int height, int obstacles, const std::vector<Team*>& teams);
-	virtual ~Map();
+	Field(int width, int height, int obstacles, const std::vector<Team*>& teams);
+	virtual ~Field();
 
 	Cell* getCell(int id);
 	Cell* getCell(int x, int y);
@@ -77,10 +77,10 @@ public:
 
 	Json json() const;
 
-	friend std::ostream& operator << (std::ostream& os, const Map& map);
+	friend std::ostream& operator << (std::ostream& os, const Field& map);
 };
 
-struct Map::NodeComparator {
+struct Field::NodeComparator {
 	bool operator () (const Cell* o1, const Cell* o2) {
 		return o1->weight > o2->weight;
 	}

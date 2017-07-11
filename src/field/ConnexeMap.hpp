@@ -1,14 +1,14 @@
 #ifndef MAP_CONNEXEMAP_HPP_
 #define MAP_CONNEXEMAP_HPP_
 
-#include "Map.hpp"
+#include "Field.hpp"
 
 class ConnexeMap {
 public:
-	Map* map;
+	Field* field;
 	int** cells;
 
-	ConnexeMap(Map* map);
+	ConnexeMap(Field* field);
 	virtual ~ConnexeMap();
 
 	int getComponent(Cell* c);

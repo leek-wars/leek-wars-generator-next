@@ -9,6 +9,7 @@
 #include "../area/AreaSingleCell.hpp"
 #include "../area/AreaCircle.hpp"
 #include "../area/AreaLaserLine.hpp"
+#include "../field/Field.hpp"
 
 Attack::Attack(int min_range, int max_range, LaunchType launch_type, AreaType area_type, bool los, std::vector<EffectParameters> effects, AttackType attack_type) {
 
@@ -136,7 +137,7 @@ double Attack::getPowerForCell(Cell*, Cell* target_cell, Cell* curent_cell) cons
 	if (area->getRadius() == 0) {
 		return 1.0;
 	}
-	int dist = target_cell->map->getCellDistance(target_cell, curent_cell);
+	int dist = target_cell->field->getCellDistance(target_cell, curent_cell);
 	return (area->getRadius() - dist) / area->getRadius() * 0.5 + 0.5;
 }
 

@@ -7,7 +7,7 @@ class Entity;
 class Team;
 #include "Report.hpp"
 #include "Order.hpp"
-class Map;
+class Field;
 class Chip;
 class Cell;
 #include "../action/Actions.hpp"
@@ -18,7 +18,7 @@ public:
 
 	static const int MAX_TURNS = 64;
 
-	std::unique_ptr<Map> map;
+	std::unique_ptr<Field> field;
 	std::vector<Team*> teams;
 	std::map<int, Entity*> entities;
 	int turn;

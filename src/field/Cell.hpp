@@ -4,7 +4,7 @@
 #include <ostream>
 #include <leekscript.h>
 class Entity;
-class Map;
+class Field;
 
 class Cell : public ls::LSObject {
 
@@ -13,7 +13,7 @@ public:
 	int id;
 	int x, y;
 
-	Map* map;
+	Field* field;
 	Entity* entity;
 
 	bool walkable;
@@ -31,7 +31,7 @@ public:
 	bool visited;
 	bool closed;
 
-	Cell(Map* map, int id);
+	Cell(Field* field, int id);
 	virtual ~Cell();
 
 	void setObstacle(int id, int size);

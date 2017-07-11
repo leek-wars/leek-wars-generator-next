@@ -28,7 +28,7 @@ void Test::tests() {
 	exeTime = 0;
 
 	// Run tests
-	test_map();
+	test_field();
 	test_pathfinding();
 	test_line_of_sight();
 	test_generateCritical();

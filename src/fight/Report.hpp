@@ -1,10 +1,3 @@
-/*
- * Report.hpp
- *
- *  Created on: 31 mars 2016
- *      Author: pierre
- */
-
 #ifndef REPORT_HPP_
 #define REPORT_HPP_
 

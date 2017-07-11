@@ -9,7 +9,7 @@
 #include "../src/entity/Leek.hpp"
 #include "../src/util/Util.hpp"
 #include "../src/fight/Fight.hpp"
-#include "../src/map/Map.hpp"
+#include "../src/field/Field.hpp"
 #include "../src/entity/Team.hpp"
 #include "../src/entity/Leek.hpp"
 #include "../src/item/Chip.hpp"
@@ -31,7 +31,7 @@ public:
 	void test_fight();
 	void test_fight_v1();
 	void test_generateCritical();
-	void test_map();
+	void test_field();
 	void test_line_of_sight();
 	void test_pathfinding();
 	void test_doc();

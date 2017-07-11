@@ -5,14 +5,14 @@
 #include <algorithm>
 #include <queue>
 #include <set>
-#include "Map.hpp"
+#include "Field.hpp"
 #include "../util/Util.hpp"
 #include "ConnexeMap.hpp"
 #include "Pathfinding.hpp"
 #include "../effect/Attack.hpp"
 #include "../entity/Team.hpp"
 
-Map::Map(int width, int height, int obstacles_count, const std::vector<Team*>& teams) {
+Field::Field(int width, int height, int obstacles_count, const std::vector<Team*>& teams) {
 
 	this->width = width;
 	this->height = height;
@@ -42,13 +42,13 @@ Map::Map(int width, int height, int obstacles_count, const std::vector<Team*>& t
 	generate(obstacles_count, teams);
 }
 
-Map::~Map() {
+Field::~Field() {
 	for (auto& c : cells) {
 		delete c;
 	}
 }
 
-void Map::generate(int obstacles_count, const std::vector<Team*>& teams) {
+void Field::generate(int obstacles_count, const std::vector<Team*>& teams) {
 
 	int nb = 0;
 	bool valid = false;
@@ -122,22 +122,22 @@ void Map::generate(int obstacles_count, const std::vector<Team*>& teams) {
 	assert(valid || "Invalid map! Too much obstacles?");
 }
 
-Cell* Map::getCell(int id) {
+Cell* Field::getCell(int id) {
 	if (id < 0 or id >= (int) cells.size()) {
 		return nullptr;
 	}
 	return cells[id];
 }
 
-Cell* Map::getCell(int x, int y) {
+Cell* Field::getCell(int x, int y) {
 	return coord[x - min_x][y - min_y];
 }
 
-std::vector<Cell*> Map::getObstacles() {
+std::vector<Cell*> Field::getObstacles() {
 	return obstacles;
 }
 
-Cell* Map::getRandomCell() {
+Cell* Field::getRandomCell() {
 	Cell* c = nullptr;
 	int security = 0;
 	do {
@@ -146,7 +146,7 @@ Cell* Map::getRandomCell() {
 	return c;
 }
 
-Cell* Map::getRandomCell(int part) {
+Cell* Field::getRandomCell(int part) {
 	Cell* c = nullptr;
 	int security = 0;
 	do {
@@ -159,7 +159,7 @@ Cell* Map::getRandomCell(int part) {
 	return c;
 }
 
-bool Map::canUseAttack(const Cell* caster, const Cell* target, const Attack* attack) const {
+bool Field::canUseAttack(const Cell* caster, const Cell* target, const Attack* attack) const {
 
 	if (target == nullptr || caster == nullptr) {
 		return false;
@@ -186,15 +186,15 @@ bool Map::canUseAttack(const Cell* caster, const Cell* target, const Attack* att
 	return false;
 }
 
-int Map::getDistance2(const Cell* c1, const Cell* c2) const {
+int Field::getDistance2(const Cell* c1, const Cell* c2) const {
 	return (c1->x - c2->x) * (c1->x - c2->x) + (c1->y - c2->y) * (c1->y - c2->y);
 }
 
-float Map::getDistance2_float(const Cell* c1, const Cell* c2) const {
+float Field::getDistance2_float(const Cell* c1, const Cell* c2) const {
 	return (c1->x - c2->x) * (c1->x - c2->x) + (c1->y - c2->y) * (c1->y - c2->y);
 }
 
-float Map::getDistance2_float(const Cell* c1, const std::vector<const Cell*> cells) const {
+float Field::getDistance2_float(const Cell* c1, const std::vector<const Cell*> cells) const {
 	float dist = -1;
 	for (const auto& c2 : cells) {
 		auto d = getDistance2_float(c1, c2);
@@ -205,15 +205,15 @@ float Map::getDistance2_float(const Cell* c1, const std::vector<const Cell*> cel
 	return dist;
 }
 
-double Map::getDistance(const Cell* c1, const Cell* c2) const {
+double Field::getDistance(const Cell* c1, const Cell* c2) const {
 	return sqrt(getDistance2(c1, c2));
 }
 
-float Map::getDistance_float(const Cell* c1, const Cell* c2) const {
+float Field::getDistance_float(const Cell* c1, const Cell* c2) const {
 	return sqrt(getDistance2_float(c1, c2));
 }
 
-float Map::getDistance_float(const Cell* c1, const std::vector<const Cell*> cells) const {
+float Field::getDistance_float(const Cell* c1, const std::vector<const Cell*> cells) const {
 	float dist = -1;
 	for (const auto& c2 : cells) {
 		auto d = getDistance(c1, c2);
@@ -224,11 +224,11 @@ float Map::getDistance_float(const Cell* c1, const std::vector<const Cell*> cell
 	return dist;
 }
 
-int Map::getCellDistance(const Cell* c1, const Cell* c2) const {
+int Field::getCellDistance(const Cell* c1, const Cell* c2) const {
 	return abs(c1->x - c2->y) + abs(c1->y - c2->y);
 }
 
-int Map::getCellDistance(const Cell* c1, const std::vector<const Cell*> cells) const {
+int Field::getCellDistance(const Cell* c1, const std::vector<const Cell*> cells) const {
 	int dist = -1;
 	for (const Cell* c2 : cells) {
 		int d = getCellDistance(c1, c2);
@@ -239,14 +239,14 @@ int Map::getCellDistance(const Cell* c1, const std::vector<const Cell*> cells) c
 	return dist;
 }
 
-bool Map::line_of_sight(const Cell* start, const Cell* end) const {
+bool Field::line_of_sight(const Cell* start, const Cell* end) const {
 
 	if (!end->walkable) return false;
 
 	return line_of_sight_ignored(start, end, {});
 }
 
-bool Map::line_of_sight_attack(const Cell* start, const Cell* end, const Attack* attack, std::vector<const Cell*> ignored) const {
+bool Field::line_of_sight_attack(const Cell* start, const Cell* end, const Attack* attack, std::vector<const Cell*> ignored) const {
 
 	if (!end->walkable) return false;
 
@@ -256,7 +256,7 @@ bool Map::line_of_sight_attack(const Cell* start, const Cell* end, const Attack*
 	return line_of_sight_ignored(start, end, ignored);
 }
 
-bool Map::line_of_sight_ignored(const Cell* start, const Cell* end, std::vector<const Cell*> ignored) const {
+bool Field::line_of_sight_ignored(const Cell* start, const Cell* end, std::vector<const Cell*> ignored) const {
 
 	auto check_cell = [&](Cell* cell) {
 		if (cell == nullptr) return false;
@@ -292,7 +292,7 @@ bool Map::line_of_sight_ignored(const Cell* start, const Cell* end, std::vector<
 	return true;
 }
 
-inline const std::vector<Cell*> Map::get_cells_around(const Cell* const c) const {
+inline const std::vector<Cell*> Field::get_cells_around(const Cell* const c) const {
 
 	std::vector<Cell*> cells;
 	if (c->y > min_y) {
@@ -322,14 +322,14 @@ inline const std::vector<Cell*> Map::get_cells_around(const Cell* const c) const
 	return cells;
 }
 
-std::vector<const Cell*> Map::get_path_between(Cell* start, const Cell* end, std::vector<const Cell*> ignored_cells) const {
+std::vector<const Cell*> Field::get_path_between(Cell* start, const Cell* end, std::vector<const Cell*> ignored_cells) const {
 	if (start == nullptr || end == nullptr) {
 		return {};
 	}
 	return get_path(start, {end}, ignored_cells);
 }
 
-std::vector<const Cell*> Map::get_path(Cell* c1, std::vector<const Cell*> end_cells, std::vector<const Cell*> ignored) const {
+std::vector<const Cell*> Field::get_path(Cell* c1, std::vector<const Cell*> end_cells, std::vector<const Cell*> ignored) const {
 
 	if (c1 == nullptr or end_cells.size() == 0) {
 		// cout << "[path] invalid cells" << endl;
@@ -393,14 +393,14 @@ std::vector<const Cell*> Map::get_path(Cell* c1, std::vector<const Cell*> end_ce
 	return {};
 }
 
-const Cell* Map::int_to_cell(int cell) {
+const Cell* Field::int_to_cell(int cell) {
 	if (cell < 0 or (size_t) cell >= cells.size()) return nullptr;
 	return cells[cell];
 }
 
-void Map::print() const {
+void Field::print() const {
 	std::ostringstream oss;
-	oss << "Map: " << std::endl;
+	oss << "Field: " << std::endl;
 	for (int x = 0; x < sx; ++x) {
 		for (int y = 0; y < sy; ++y) {
 			auto c = coord[y][x];
@@ -417,7 +417,7 @@ void Map::print() const {
 	LOG << oss.str();
 }
 
-void Map::draw_path(const std::vector<const Cell*> path, const Cell* cell1, const Cell* cell2) const {
+void Field::draw_path(const std::vector<const Cell*> path, const Cell* cell1, const Cell* cell2) const {
 
 	std::ostringstream oss;
 	oss << "Draw path: [";
@@ -447,7 +447,7 @@ void Map::draw_path(const std::vector<const Cell*> path, const Cell* cell1, cons
 	LOG << oss.str();
 }
 
-Json Map::json() const {
+Json Field::json() const {
 	Json obstacles_json;
 	for (auto c : obstacles) {
 		obstacles_json[std::to_string(c->id)] = std::vector<int>{ c->obstacle, c->obstacle_size };
@@ -460,7 +460,7 @@ Json Map::json() const {
 	};
 }
 
-std::ostream& operator << (std::ostream& os, const Map& map) {
+std::ostream& operator << (std::ostream& os, const Field& map) {
 	os << "[" << map.width << " × " << map.height << "]";
 	return os;
 }

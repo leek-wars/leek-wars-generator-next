@@ -4,6 +4,7 @@
 #include "AreaSingleCell.hpp"
 #include "AreaCircle.hpp"
 #include "AreaLaserLine.hpp"
+#include "../field/Cell.hpp"
 
 Area::Area(Attack* attack) {
 	this->id = -1;

@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "Action.hpp"
-#include "../map/Cell.hpp"
+class Cell;
 #include "../entity/Entity.hpp"
 
 class ActionMove : public Action {

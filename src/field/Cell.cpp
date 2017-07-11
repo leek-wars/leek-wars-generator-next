@@ -1,36 +1,36 @@
 #include <iostream>
 #include "Cell.hpp"
-#include "Map.hpp"
+#include "Field.hpp"
 #include "../entity/Entity.hpp"
 
-Cell::Cell(Map* map, int id) {
+Cell::Cell(Field* field, int id) {
 
 	this->id = id;
-	this->map = map;
+	this->field = field;
 	this->walkable = true;
 	this->obstacle = 0;
 	this->entity = nullptr;
 	this->obstacle_size = 0;
 
-	int x = id % (map->width * 2 - 1);
-	int y = id / (map->width * 2 - 1);
-	if (y == 0 && x < map->width) {
+	int x = id % (field->width * 2 - 1);
+	int y = id / (field->width * 2 - 1);
+	if (y == 0 && x < field->width) {
 		north = false;
 		west = false;
-	} else if (y + 1 == map->height && x >= map->width) {
+	} else if (y + 1 == field->height && x >= field->width) {
 		east = false;
 		south = false;
 	}
 	if (x == 0) {
 		south = false;
 		west = false;
-	} else if (x + 1 == map->width) {
+	} else if (x + 1 == field->width) {
 		north = false;
 		east = false;
 	}
 
-	this->y = y - x % map->width;
-	this->x = (id - (map->width - 1) * this->y) / map->width;
+	this->y = y - x % field->width;
+	this->x = (id - (field->width - 1) * this->y) / field->width;
 
 	this->values["id"] = ls::LSNumber::get(id);
 	this->values["id"]->native = true;

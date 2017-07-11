@@ -1,6 +1,6 @@
 #include <algorithm>
 #include "Entity.hpp"
-#include "../map/Map.hpp"
+#include "../field/Field.hpp"
 #include "../module/WeaponModule.hpp"
 #include "../fight/Fight.hpp"
 #include "../action/ActionLoseTP.hpp"
@@ -369,7 +369,7 @@ int Entity::moveTowardMP(Entity* target, int max_mp) {
 
 	int mp = max_mp == -1 ? getMP() : std::min(getMP(), max_mp);
 
-	auto path = fight->map->get_path_between(target->cell, cell, {});
+	auto path = fight->field->get_path_between(target->cell, cell, {});
 	if (path.size() == 0) {
 		return 0;
 	}

@@ -1,7 +1,7 @@
 #include "FieldModule.hpp"
 #include <vector>
 #include "../fight/Simulator.hpp"
-#include "../map/Map.hpp"
+#include "../field/Field.hpp"
 #include "../fight/Fight.hpp"
 #include "../entity/Entity.hpp"
 
@@ -43,7 +43,7 @@ FieldModule::~FieldModule() {}
 
 const Cell* map_cell(const int x, const int y) {
 	// TODO check null cell
-	return Simulator::fight->map->getCell(x, y);
+	return Simulator::fight->field->getCell(x, y);
 }
 
 int map_getCellContent(const Cell* cell) {
@@ -53,7 +53,7 @@ int map_getCellContent(const Cell* cell) {
 
 bool map_lineOfSight(const Cell* cell1, const Cell* cell2) {
 	// TODO check null cell
-	return Simulator::fight->map->line_of_sight_ignored(cell1, cell2, {});
+	return Simulator::fight->field->line_of_sight_ignored(cell1, cell2, {});
 }
 
 ls::LSArray<ls::LSValue*>* map_getPath(Cell* cell1, const Cell* cell2) {
@@ -61,7 +61,7 @@ ls::LSArray<ls::LSValue*>* map_getPath(Cell* cell1, const Cell* cell2) {
 	if (cell1 == nullptr or cell2 == nullptr) {
 		return new ls::LSArray<ls::LSValue*>();
 	}
-	auto path = Simulator::fight->map->get_path(cell1, {cell2}, {});
+	auto path = Simulator::fight->field->get_path(cell1, {cell2}, {});
 
 	auto result = new ls::LSArray<ls::LSValue*>();
 	result->reserve(path.size());
@@ -73,16 +73,16 @@ ls::LSArray<ls::LSValue*>* map_getPath(Cell* cell1, const Cell* cell2) {
 
 int map_getPathLength(Cell* cell1, const Cell* cell2) {
 	// TODO check null cell
-	return Simulator::fight->map->get_path(cell1, {cell2}, {}).size();
+	return Simulator::fight->field->get_path(cell1, {cell2}, {}).size();
 }
 
 int map_getType() {
-	return Simulator::fight->map->type;
+	return Simulator::fight->field->type;
 }
 
 ls::LSArray<ls::LSValue*>* map_getObstacles() {
 	auto obstacles = new ls::LSArray<ls::LSValue*>();
-	for (auto& c : Simulator::fight->map->obstacles) {
+	for (auto& c : Simulator::fight->field->obstacles) {
 		obstacles->push_back(c);
 	}
 	return obstacles;
@@ -107,15 +107,15 @@ int map__getCellDistance(const ls::LSValue* cell1, const ls::LSValue* cell2) {
 
 	const ls::LSNumber* n1 = dynamic_cast<const ls::LSNumber*>(cell1);
 	if (n1 == nullptr) return -1;
-	const Cell* c1 = Simulator::fight->map->int_to_cell(n1->value);
+	const Cell* c1 = Simulator::fight->field->int_to_cell(n1->value);
 
 	const ls::LSNumber* n2 = dynamic_cast<const ls::LSNumber*>(cell2);
 	if (n2 == nullptr) return -1;
-	const Cell* c2 = Simulator::fight->map->int_to_cell(n2->value);
+	const Cell* c2 = Simulator::fight->field->int_to_cell(n2->value);
 
 	if (c1 == nullptr or c2 == nullptr) return -1;
 
-	return Simulator::fight->map->getCellDistance(c1, c2);
+	return Simulator::fight->field->getCellDistance(c1, c2);
 }
 
 /*
@@ -129,7 +129,7 @@ ls::LSValue* map__getCellFromXY(const ls::LSValue* x, const ls::LSValue* y) {
 	const ls::LSNumber* yn = dynamic_cast<const ls::LSNumber*>(y);
 	if (yn == nullptr) return ls::LSNull::get();
 
-	return ls::LSNumber::get(Simulator::fight->map->getCell(xn->value, yn->value)->id);
+	return ls::LSNumber::get(Simulator::fight->field->getCell(xn->value, yn->value)->id);
 }
 
 /*
@@ -139,15 +139,15 @@ double map__getDistance(const ls::LSValue* cell1, const ls::LSValue* cell2) {
 
 	const ls::LSNumber* n1 = dynamic_cast<const ls::LSNumber*>(cell1);
 	if (n1 == nullptr) return -1;
-	const Cell* c1 = Simulator::fight->map->int_to_cell(n1->value);
+	const Cell* c1 = Simulator::fight->field->int_to_cell(n1->value);
 
 	const ls::LSNumber* n2 = dynamic_cast<const ls::LSNumber*>(cell2);
 	if (n2 == nullptr) return -1;
-	const Cell* c2 = Simulator::fight->map->int_to_cell(n2->value);
+	const Cell* c2 = Simulator::fight->field->int_to_cell(n2->value);
 
 	if (c1 == nullptr or c2 == nullptr) return -1;
 
-	return Simulator::fight->map->getDistance(c1, c2);
+	return Simulator::fight->field->getDistance(c1, c2);
 }
 
 /*
@@ -178,11 +178,11 @@ ls::LSValue* map__getPathIgnored(ls::LSValue* cell1, const ls::LSValue* cell2, c
 
 	const ls::LSNumber* n1 = dynamic_cast<const ls::LSNumber*>(cell1);
 	if (n1 == nullptr) return ls::LSNull::get();
-	Cell* c1 = (Cell*) Simulator::fight->map->int_to_cell(n1->value);
+	Cell* c1 = (Cell*) Simulator::fight->field->int_to_cell(n1->value);
 
 	const ls::LSNumber* n2 = dynamic_cast<const ls::LSNumber*>(cell2);
 	if (n2 == nullptr) return ls::LSNull::get();
-	const Cell* c2 = Simulator::fight->map->int_to_cell(n2->value);
+	const Cell* c2 = Simulator::fight->field->int_to_cell(n2->value);
 
 	if (c1 == nullptr or c2 == nullptr) return ls::LSNull::get();
 
@@ -206,7 +206,7 @@ ls::LSValue* map__getPathIgnored(ls::LSValue* cell1, const ls::LSValue* cell2, c
 
 		for (auto v : *ignored_array) {
 			if (const ls::LSNumber* vn = dynamic_cast<const ls::LSNumber*>(v)) {
-				const Cell* c = Simulator::fight->map->int_to_cell(vn->value);
+				const Cell* c = Simulator::fight->field->int_to_cell(vn->value);
 				if (c != nullptr) {
 					ignored_cells.push_back(c);
 				}
@@ -215,7 +215,7 @@ ls::LSValue* map__getPathIgnored(ls::LSValue* cell1, const ls::LSValue* cell2, c
 	}
 
 	// TODO should be Null if there is no path
-	auto path = Simulator::fight->map->get_path_between(c1, c2, ignored_cells);
+	auto path = Simulator::fight->field->get_path_between(c1, c2, ignored_cells);
 	auto path_int = new ls::LSArray<int>();
 	for (auto c : path) {
 		path_int->push_clone(c->id);
@@ -234,11 +234,11 @@ ls::LSValue* map__getPathLengthIgnored(ls::LSValue* cell1, const ls::LSValue* ce
 
 	const ls::LSNumber* n1 = dynamic_cast<const ls::LSNumber*>(cell1);
 	if (n1 == nullptr) return ls::LSNull::get();
-	Cell* c1 = (Cell*) Simulator::fight->map->int_to_cell(n1->value);
+	Cell* c1 = (Cell*) Simulator::fight->field->int_to_cell(n1->value);
 
 	const ls::LSNumber* n2 = dynamic_cast<const ls::LSNumber*>(cell2);
 	if (n2 == nullptr) return ls::LSNull::get();
-	const Cell* c2 = Simulator::fight->map->int_to_cell(n2->value);
+	const Cell* c2 = Simulator::fight->field->int_to_cell(n2->value);
 
 	if (c1 == nullptr or c2 == nullptr) return ls::LSNull::get();
 
@@ -254,7 +254,7 @@ ls::LSValue* map__getPathLengthIgnored(ls::LSValue* cell1, const ls::LSValue* ce
 
 		for (auto v : *ignored_array) {
 			if (const ls::LSNumber* vn = dynamic_cast<const ls::LSNumber*>(v)) {
-				const Cell* c = Simulator::fight->map->int_to_cell(vn->value);
+				const Cell* c = Simulator::fight->field->int_to_cell(vn->value);
 				if (c != nullptr) {
 					ignored_cells.push_back(c);
 				}
@@ -262,7 +262,7 @@ ls::LSValue* map__getPathLengthIgnored(ls::LSValue* cell1, const ls::LSValue* ce
 		}
 	}
 
-	std::vector<const Cell*> path = Simulator::fight->map->get_path_between(c1, c2, ignored_cells);
+	std::vector<const Cell*> path = Simulator::fight->field->get_path_between(c1, c2, ignored_cells);
 	// TODO should be Null if there is no path
 	return ls::LSNumber::get(path.size());
 }
@@ -274,11 +274,11 @@ bool map__isOnSameLine(const ls::LSValue* cell1, const ls::LSValue* cell2) {
 
 	const ls::LSNumber* n1 = dynamic_cast<const ls::LSNumber*>(cell1);
 	if (n1 == nullptr) return false;
-	const Cell* c1 = Simulator::fight->map->int_to_cell(n1->value);
+	const Cell* c1 = Simulator::fight->field->int_to_cell(n1->value);
 
 	const ls::LSNumber* n2 = dynamic_cast<const ls::LSNumber*>(cell2);
 	if (n2 == nullptr) return false;
-	const Cell* c2 = Simulator::fight->map->int_to_cell(n2->value);
+	const Cell* c2 = Simulator::fight->field->int_to_cell(n2->value);
 
 	if (c1 == nullptr or c2 == nullptr) return false;
 
@@ -297,11 +297,11 @@ ls::LSValue* map__lineOfSightIgnored(const ls::LSValue* cell1, const ls::LSValue
 	// If one of the cells is invalid, return NULL
 	const ls::LSNumber* n1 = dynamic_cast<const ls::LSNumber*>(cell1);
 	if (n1 == nullptr) return ls::LSNull::get();
-	const Cell* c1 = Simulator::fight->map->int_to_cell(n1->value);
+	const Cell* c1 = Simulator::fight->field->int_to_cell(n1->value);
 
 	const ls::LSNumber* n2 = dynamic_cast<const ls::LSNumber*>(cell2);
 	if (n2 == nullptr) return ls::LSNull::get();
-	const Cell* c2 = Simulator::fight->map->int_to_cell(n2->value);
+	const Cell* c2 = Simulator::fight->field->int_to_cell(n2->value);
 
 	if (c1 == nullptr or c2 == nullptr) return ls::LSNull::get();
 
@@ -320,7 +320,7 @@ ls::LSValue* map__lineOfSightIgnored(const ls::LSValue* cell1, const ls::LSValue
 
 		for (auto v : *ignored_array) {
 			if (const ls::LSNumber* vn = dynamic_cast<const ls::LSNumber*>(v)) {
-				const Cell* c = Simulator::fight->map->int_to_cell(vn->value);
+				const Cell* c = Simulator::fight->field->int_to_cell(vn->value);
 				if (c != nullptr) {
 					ignored_cells.push_back(c);
 				}
@@ -338,5 +338,5 @@ ls::LSValue* map__lineOfSightIgnored(const ls::LSValue* cell1, const ls::LSValue
 	}
 
 	// Return a boolean
-	return ls::LSBoolean::get(Simulator::fight->map->line_of_sight_ignored(c1, c2, ignored_cells));
+	return ls::LSBoolean::get(Simulator::fight->field->line_of_sight_ignored(c1, c2, ignored_cells));
 }

@@ -1,5 +1,7 @@
 #include "AreaCircle.hpp"
 #include "AreaMask.hpp"
+#include "../field/Cell.hpp"
+#include "../field/Field.hpp"
 
 std::map<int, std::vector<std::pair<int, int>>> AreaCircle::area_cache;
 
@@ -16,10 +18,10 @@ std::vector<Cell*> AreaCircle::getArea(Cell* launchCell, Cell* targetCell) const
 	int y = targetCell->y;
 	std::vector<Cell*> cells;
 	auto area = area_cache[radius];
-	auto map = launchCell->map;
+	auto field = launchCell->field;
 
 	for (std::pair<int, int> v : area) {
-		auto c = map->getCell(x + v.first, y + v.second);
+		auto c = field->getCell(x + v.first, y + v.second);
 		if (c == nullptr || !c->walkable) {
 			continue;
 		}

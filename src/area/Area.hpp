@@ -2,7 +2,6 @@
 #define SRC_AREA_AREA_HPP_
 
 #include <vector>
-#include "../map/Map.hpp"
 #include "../effect/Attack.hpp"
 
 enum class AreaType {

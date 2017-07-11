@@ -56,7 +56,7 @@ void Test::test_fight() {
 
 	fight.teams = {team1, team2};
 
-	fight.map.reset(new Map(18, 18, 25, {team1, team2}));
+	fight.field.reset(new Field(18, 18, 25, {team1, team2}));
 
 	// Run the fight
 	manager.start(fight, [](Report* report) {

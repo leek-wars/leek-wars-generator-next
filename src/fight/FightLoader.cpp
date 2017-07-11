@@ -5,7 +5,7 @@
 #include "../entity/Team.hpp"
 #include "../entity/Leek.hpp"
 #include "../entity/Characteristics.hpp"
-#include "../map/Map.hpp"
+#include "../field/Field.hpp"
 #include "../area/Area.hpp"
 #include "FightManager.hpp"
 
@@ -103,7 +103,7 @@ Fight* FightLoader::load(const FightManager& manager, std::string file) {
 
 	fight->teams = teams;
 
-	fight->map.reset(new Map(18, 18, 30, teams));
+	fight->field.reset(new Field(18, 18, 30, teams));
 
 	return fight;
 }

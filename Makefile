@@ -1,5 +1,5 @@
 SRC_DIR := src/ai src/area src/effect src/doc src/entity src/fight \
-src/item src/map src/module src/util src/action benchmark
+src/item src/field src/module src/util src/action benchmark
 TEST_DIR := test
 
 BUILD_DIR := $(addprefix build/default/,$(SRC_DIR))

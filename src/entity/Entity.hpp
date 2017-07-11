@@ -5,7 +5,7 @@
 #include <string>
 #include <ostream>
 #include <leekscript.h>
-#include "../map/Cell.hpp"
+#include "../field/Cell.hpp"
 #include "../ai/AI.hpp"
 #include "Characteristics.hpp"
 #include "../item/Chip.hpp"

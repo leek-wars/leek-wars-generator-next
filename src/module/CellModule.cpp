@@ -2,8 +2,8 @@
 #include "../fight/Fight.hpp"
 #include "CellModule.hpp"
 #include "EntityModule.hpp"
-#include "../map/Map.hpp"
-#include "../map/Cell.hpp"
+#include "../field/Field.hpp"
+#include "../field/Cell.hpp"
 #include "../entity/Entity.hpp"
 
 const ls::LSClass* CellModule::cell_clazz;
@@ -55,7 +55,7 @@ bool cell__isEmptyCell(const ls::LSValue* cell) {
 
 	const ls::LSNumber* n = dynamic_cast<const ls::LSNumber*>(cell);
 	if (n == nullptr) return false;
-	const Cell* c = Simulator::fight->map->int_to_cell(n->value);
+	const Cell* c = Simulator::fight->field->int_to_cell(n->value);
 	if (c == nullptr) return false;
 
 	return c->isEmpty();
@@ -68,7 +68,7 @@ bool cell__isLeek(const ls::LSValue* cell) {
 
 	const ls::LSNumber* n = dynamic_cast<const ls::LSNumber*>(cell);
 	if (n == nullptr) return false;
-	const Cell* c = Simulator::fight->map->int_to_cell(n->value);
+	const Cell* c = Simulator::fight->field->int_to_cell(n->value);
 	if (c == nullptr) return false;
 
 	return c->hasEntity();
@@ -81,7 +81,7 @@ bool cell__isObstacle(const ls::LSValue* cell) {
 
 	const ls::LSNumber* n = dynamic_cast<const ls::LSNumber*>(cell);
 	if (n == nullptr) return false;
-	const Cell* c = Simulator::fight->map->int_to_cell(n->value);
+	const Cell* c = Simulator::fight->field->int_to_cell(n->value);
 	if (c == nullptr) return false;
 
 	return c->isObstacle();
@@ -94,7 +94,7 @@ ls::LSValue* cell__getCellX(const ls::LSValue* cell) {
 
 	const ls::LSNumber* n = dynamic_cast<const ls::LSNumber*>(cell);
 	if (n == nullptr) return ls::LSNull::get();
-	const Cell* c = Simulator::fight->map->int_to_cell(n->value);
+	const Cell* c = Simulator::fight->field->int_to_cell(n->value);
 	if (c == nullptr) return ls::LSNull::get();
 
 	return ls::LSNumber::get(c->x);
@@ -107,7 +107,7 @@ ls::LSValue* cell__getCellY(const ls::LSValue* cell) {
 
 	const ls::LSNumber* n = dynamic_cast<const ls::LSNumber*>(cell);
 	if (n == nullptr) return ls::LSNull::get();
-	const Cell* c = Simulator::fight->map->int_to_cell(n->value);
+	const Cell* c = Simulator::fight->field->int_to_cell(n->value);
 	if (c == nullptr) return ls::LSNull::get();
 
 	return ls::LSNumber::get(c->y);
@@ -120,7 +120,7 @@ int cell__getLeekOnCell(const ls::LSValue* cell) {
 
 	const ls::LSNumber* n = dynamic_cast<const ls::LSNumber*>(cell);
 	if (n == nullptr) return -1;
-	const Cell* c = Simulator::fight->map->int_to_cell(n->value);
+	const Cell* c = Simulator::fight->field->int_to_cell(n->value);
 	if (c == nullptr) return -1;
 
 	if (c->entity != nullptr) {
@@ -136,7 +136,7 @@ int cell__getCellContent(const ls::LSValue* cell) {
 
 	const ls::LSNumber* n = dynamic_cast<const ls::LSNumber*>(cell);
 	if (n == nullptr) return -1;
-	const Cell* c = Simulator::fight->map->int_to_cell(n->value);
+	const Cell* c = Simulator::fight->field->int_to_cell(n->value);
 	if (c == nullptr) return -1;
 
 	return c->getContent();

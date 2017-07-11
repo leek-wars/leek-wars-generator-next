@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Report.hpp"
 #include "Fight.hpp"
-#include "../map/Map.hpp"
+#include "../field/Field.hpp"
 
 Report::Report(Fight* fight) : fight(fight) {
 	actions = nullptr;
@@ -13,7 +13,7 @@ std::ostream& operator << (std::ostream& os, const Report* report) {
 
 	Json json = {
 		{"actions", report->actions->json()},
-		{"map", report->fight->map->json()},
+		{"map", report->fight->field->json()},
 		{"leeks", report->fight->entities_json()},
 		{"logs", report->fight->actions.logs}
 	};

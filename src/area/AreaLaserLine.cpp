@@ -1,4 +1,6 @@
 #include "AreaLaserLine.hpp"
+#include "../field/Cell.hpp"
+#include "../field/Field.hpp"
 
 AreaLaserLine::AreaLaserLine(Attack* attack) : Area(attack) {}
 
@@ -24,7 +26,7 @@ std::vector<Cell*> AreaLaserLine::getArea(Cell* launch_cell, Cell* target_cell) 
 	}
 	int x = launch_cell->x, y = launch_cell->y;
 	for (int i = attack->min_range; i <= attack->max_range; i++) {
-		auto* c = launch_cell->map->getCell(x + dx * i, y + dy * i);
+		auto* c = launch_cell->field->getCell(x + dx * i, y + dy * i);
 		if (c == nullptr or !c->walkable) {
 			break;
 		}
