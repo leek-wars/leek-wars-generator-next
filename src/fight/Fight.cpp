@@ -167,7 +167,7 @@ int Fight::useChip(Entity* caster, Cell* target, Chip* chip) {
 		//return summonEntity(caster, target, chip, nullptr);
 	}
 	// Check destination cell in case of a teleportation
-	if (chip->id == ChipID::TELEPORTATION) {
+	if (chip->attack->effects.size() && chip->attack->effects.at(0).type == EffectType::TELEPORT) {
 		if (!target->available()) {
 			return AttackResult::INVALID_TARGET;
 		}

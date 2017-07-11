@@ -4,10 +4,6 @@
 #include "../effect/Attack.hpp"
 #include "Item.hpp"
 
-enum ChipID {
-	TELEPORTATION = 12121212
-};
-
 class Chip : public Item {
 public:
 
