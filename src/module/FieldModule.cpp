@@ -1,11 +1,11 @@
-#include "MapModule.hpp"
+#include "FieldModule.hpp"
 #include <vector>
 #include "../fight/Simulator.hpp"
 #include "../map/Map.hpp"
 #include "../fight/Fight.hpp"
 #include "../entity/Entity.hpp"
 
-MapModule::MapModule() : Module("FightMap") {
+FieldModule::FieldModule() : Module("Field") {
 
 	method("cell", ls::Method::Static, {{CellModule::type, {ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &map_cell, ls::Method::NATIVE}});
 	method("lineOfSight", ls::Method::Static, {{ls::Type::BOOLEAN, {CellModule::type, CellModule::type}, (void*) &map_lineOfSight, ls::Method::NATIVE}});
@@ -38,7 +38,7 @@ MapModule::MapModule() : Module("FightMap") {
 	});
 }
 
-MapModule::~MapModule() {}
+FieldModule::~FieldModule() {}
 
 
 const Cell* map_cell(const int x, const int y) {

@@ -1,13 +1,13 @@
-#ifndef CLASS_MAPMODULE_HPP_
-#define CLASS_MAPMODULE_HPP_
+#ifndef FIELD_MODULE_HPP
+#define FIELD_MODULE_HPP
 
 #include <leekscript.h>
 #include "CellModule.hpp"
 
-class MapModule : public ls::Module {
+class FieldModule : public ls::Module {
 public:
-	MapModule();
-	virtual ~MapModule();
+	FieldModule();
+	virtual ~FieldModule();
 };
 
 const Cell* map_cell(const int x, const int y);

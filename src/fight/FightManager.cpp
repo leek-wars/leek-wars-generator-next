@@ -1,7 +1,7 @@
 #include "FightManager.hpp"
 #include "../module/FightModule.hpp"
 #include "../module/EntityModule.hpp"
-#include "../module/MapModule.hpp"
+#include "../module/FieldModule.hpp"
 #include "../module/CellModule.hpp"
 #include "../module/LeekModule.hpp"
 #include "../module/WeaponModule.hpp"
@@ -41,7 +41,7 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 	vm.add_module(new FightModule());
 	vm.add_module(new EntityModule());
 	vm.add_module(new LeekModule());
-	vm.add_module(new MapModule());
+	vm.add_module(new FieldModule());
 	vm.add_module(new CellModule());
 	vm.add_module(new WeaponModule(*this));
 	vm.add_module(new ColorModule());
@@ -52,7 +52,7 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 	vm_v1.add_module(new FightModule());
 	vm_v1.add_module(entity_module);
 	vm_v1.add_module(new LeekModule());
-	vm_v1.add_module(new MapModule());
+	vm_v1.add_module(new FieldModule());
 	vm_v1.add_module(new CellModule());
 	vm_v1.add_module(new WeaponModule(*this));
 	vm_v1.add_module(new ColorModule());
