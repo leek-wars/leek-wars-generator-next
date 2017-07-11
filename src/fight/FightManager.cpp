@@ -67,6 +67,19 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 			vm_v1.add_constant(method.name.substr(1), method.impl[0].type, fun);
 		}
 	}
+	// Add V1 weapons and chips constants
+	for (const auto& w : weapons) {
+		auto constant = ls::LSNumber::get(w.second->id);
+		constant->refs = 1;
+		constant->native = true;
+		vm_v1.add_constant(Util::toupper(w.first), ls::Type::NUMBER, constant);
+	}
+	for (const auto& c : chips) {
+		auto constant = ls::LSNumber::get(c.second->id);
+		constant->refs = 1;
+		constant->native = true;
+		vm_v1.add_constant(Util::toupper(c.first), ls::Type::NUMBER, constant);
+	}
 }
 
 std::string FightManager::compile(std::string ai) {
