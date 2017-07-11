@@ -30,7 +30,6 @@ Entity::Entity(Fight* fight, std::string name, int level)
 	farmer = -1;
 	life = 0;
 	total_life = 0;
-	team = -1;
 	team_id = 1212;
 	talent = 1000;
 	cell = nullptr;
@@ -50,7 +49,7 @@ Entity::~Entity() {
 	values.erase("name");
 }
 
-int Entity::getTeam() const {
+Team* Entity::getTeam() const {
 	return team;
 }
 

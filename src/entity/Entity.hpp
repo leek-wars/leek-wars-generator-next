@@ -13,6 +13,7 @@
 #include "../module/EntityModule.hpp"
 class Fight;
 class Effect;
+class Team;
 
 enum class Characteristic {
 	LIFE, TP, MP, STRENGTH, AGILITY, FREQUENCY, WISDOM, ABSOLUTE_SHIELD, RELATIVE_SHIELD,
@@ -52,7 +53,7 @@ public:
 	// Current cooldowns of the entity
 	std::map<int, int> cooldowns;
 
-	int team;
+	Team* team;
 
 	std::unique_ptr<AI> ai;
 
@@ -74,7 +75,7 @@ public:
 	Entity(Fight* fight, std::string name, int level);
 	virtual ~Entity();
 
-	int getTeam() const;
+	Team* getTeam() const;
 
 	bool isAlive() const;
 	bool isDead() const;

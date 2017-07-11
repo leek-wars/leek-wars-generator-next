@@ -95,7 +95,7 @@ Fight* FightLoader::load(const FightManager& manager, std::string file) {
 			}
 			leek->setChips(chips);
 
-			leek->team = teams.size();
+			leek->team = team;
 			team->add_entity(leek);
 		}
 		teams.push_back(team);
