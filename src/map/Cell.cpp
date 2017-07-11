@@ -142,6 +142,10 @@ std::ostream& Cell::print(std::ostream& os) const {
 	os << "<Cell " << id << ">";
 	return os;
 }
+std::ostream& Cell::dump(std::ostream& os, int level) const {
+	os << "<Cell " << id << ">";
+	return os;
+}
 
 std::ostream& operator << (std::ostream& os, const Cell* cell) {
 	os << "[" << cell->x << ", " << cell->y << "]";
