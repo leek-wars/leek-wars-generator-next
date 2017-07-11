@@ -346,6 +346,10 @@ Entity* Entity::get_closest_enemy() const {
 	return get_closest(get_enemies());
 }
 
+Entity* Entity::get_closest_ally() const {
+	return get_closest(get_allies());
+}
+
 void Entity::useTP(int tp) {
 	used_tp += tp;
 	fight->actions.add(new ActionLoseTP(this, tp));

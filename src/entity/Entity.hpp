@@ -132,6 +132,7 @@ public:
 	std::vector<Entity*> get_allies() const;
 	Entity* get_closest(std::vector<Entity*> entities) const;
 	Entity* get_closest_enemy() const;
+	Entity* get_closest_ally() const;
 
 	void useTP(int tp);
 	void useMP(int mp);
