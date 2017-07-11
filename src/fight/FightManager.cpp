@@ -117,7 +117,7 @@ void FightManager::start(Fight& fight, std::function<void(Report*)> callback) {
 void FightManager::crash() {
 
 	auto current_player = fight->order.current();
-	LOG_W << "Fight crashed while '" << current_player->name << "' was playing" << std::endl;
+	LOG_W << "Fight crashed while '" << current_player->name << "' was playing with AI '" << current_player->ai->name << "'" << std::endl;
 
 	end(fight->crash());
 }
