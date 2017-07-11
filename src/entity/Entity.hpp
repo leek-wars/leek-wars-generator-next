@@ -128,6 +128,8 @@ public:
 	int useWeapon(Entity* target);
 	int useWeaponOnCell(Cell* cell);
 
+	std::vector<Entity*> get_enemies() const;
+	std::vector<Entity*> get_allies() const;
 	Entity* getClosestEnemy() const;
 
 	void useTP(int tp);

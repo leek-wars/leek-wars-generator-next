@@ -314,6 +314,19 @@ int Entity::useWeaponOnCell(Cell* cell) {
 Entity* Entity::getClosestEnemy() const {
 	// TODO Really implement the method
 	return fight->teams[(team + 1) % 2]->entities[0];
+
+std::vector<Entity*> Entity::get_enemies() const {
+	std::vector<Entity*> enemies;
+	for (const auto& team : fight->teams) {
+		if (team != this->team) {
+			enemies.insert(enemies.end(), team->entities.begin(), team->entities.end());
+		}
+	}
+	return enemies;
+}
+
+std::vector<Entity*> Entity::get_allies() const {
+	return team->entities;
 }
 
 void Entity::useTP(int tp) {
