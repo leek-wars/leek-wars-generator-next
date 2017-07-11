@@ -15,7 +15,7 @@ MapModule::MapModule() : Module("FightMap") {
 	method("getDistance", ls::Method::Static, {{ls::Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getDistance, ls::Method::NATIVE}});
 	method("getStraightDistance", ls::Method::Static, {{ls::Type::REAL, {CellModule::type}, (void*) &map_getStraightDistance, ls::Method::NATIVE}});
 	method("getType", ls::Method::Static, {{ls::Type::INTEGER, {}, (void*) &map_getType, ls::Method::NATIVE}});
-	method("getObstacles", ls::Method::Static, {{ls::Type::INTEGER, {}, (void*) &map_getObstacles, ls::Method::NATIVE}});
+	method("getObstacles", ls::Method::Static, {{CellModule::array_type, {}, (void*) &map_getObstacles, ls::Method::NATIVE}});
 
 	// v1 functions
 	method("_getCellDistance", ls::Method::Static, {{ls::Type::INTEGER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getCellDistance, ls::Method::NATIVE}});
@@ -81,7 +81,11 @@ int map_getType() {
 }
 
 ls::LSArray<ls::LSValue*>* map_getObstacles() {
-	return new ls::LSArray<ls::LSValue*>();
+	auto obstacles = new ls::LSArray<ls::LSValue*>();
+	for (auto& c : Simulator::fight->map->obstacles) {
+		obstacles->push_back(c);
+	}
+	return obstacles;
 }
 
 int map_getDistance(const Cell* cell1, const Cell* cell2) {
