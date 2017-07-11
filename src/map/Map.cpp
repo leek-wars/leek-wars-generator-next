@@ -33,9 +33,8 @@ Map::Map(int width, int height, int obstacles_count, const std::vector<Team*>& t
 
 	coord.resize(sx);
 	for (int i = 0; i < sx; ++i) {
-		coord[i].resize(sy);
+		coord[i].resize(sy, nullptr);
 	}
-
 	for (int i = 0; i < nb_cells; i++) {
 		auto c = cells[i];
 		coord[c->x - min_x][c->y - min_y] = c;
@@ -263,6 +262,7 @@ bool Map::line_of_sight_attack(const Cell* start, const Cell* end, const Attack*
 bool Map::line_of_sight_ignored(const Cell* start, const Cell* end, std::vector<const Cell*> ignored) const {
 
 	auto check_cell = [&](Cell* cell) {
+		if (cell == nullptr) return false;
 		if (!cell->walkable) return false;
 		if (!cell->available()) {
 			if (cell == end) return true;
