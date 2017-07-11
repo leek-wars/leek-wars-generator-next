@@ -342,6 +342,52 @@ std::vector<Entity*> Entity::get_allies() const {
 	return team->entities;
 }
 
+std::vector<Entity*> Entity::get_alive_enemies() const {
+	std::vector<Entity*> enemies;
+	for (const auto& team : fight->teams) {
+		if (team == this->team) continue;
+		for (const auto& entity : team->entities) {
+			if (entity->isAlive()) {
+				enemies.push_back(entity);
+			}
+		}
+	}
+	return enemies;
+}
+
+std::vector<Entity*> Entity::get_alive_allies() const {
+	std::vector<Entity*> allies;
+	for (const auto& entity : team->entities) {
+		if (entity->isAlive()) {
+			allies.push_back(entity);
+		}
+	}
+	return allies;
+}
+
+std::vector<Entity*> Entity::get_dead_enemies() const {
+	std::vector<Entity*> enemies;
+	for (const auto& team : fight->teams) {
+		if (team == this->team) continue;
+		for (const auto& entity : team->entities) {
+			if (entity->isAlive()) {
+				enemies.push_back(entity);
+			}
+		}
+	}
+	return enemies;
+}
+
+std::vector<Entity*> Entity::get_dead_allies() const {
+	std::vector<Entity*> allies;
+	for (const auto& entity : team->entities) {
+		if (entity->isDead()) {
+			allies.push_back(entity);
+		}
+	}
+	return allies;
+}
+
 Entity* Entity::get_closest_enemy() const {
 	return get_closest(get_enemies());
 }

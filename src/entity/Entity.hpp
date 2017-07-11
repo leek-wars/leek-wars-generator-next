@@ -161,6 +161,10 @@ public:
 	 */
 	std::vector<Entity*> get_enemies() const;
 	std::vector<Entity*> get_allies() const;
+	std::vector<Entity*> get_alive_enemies() const;
+	std::vector<Entity*> get_alive_allies() const;
+	std::vector<Entity*> get_dead_enemies() const;
+	std::vector<Entity*> get_dead_allies() const;
 	Entity* get_closest(std::vector<Entity*> entities) const;
 	Entity* get_closest_enemy() const;
 	Entity* get_closest_ally() const;
