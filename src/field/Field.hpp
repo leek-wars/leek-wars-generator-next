@@ -15,6 +15,8 @@ public:
 	struct Node;
 	struct NodeComparator;
 
+	enum class Direction { NORTH, EAST, SOUTH, WEST };
+
 	std::vector<Cell*> cells;
 	int height;
 	int width;
@@ -65,6 +67,7 @@ public:
 	bool line_of_sight_ignored(const Cell* start, const Cell* end, std::vector<const Cell*> ignored) const;
 
 	const std::vector<Cell*> get_cells_around(const Cell* const c) const;
+	Cell* getCellByDir(Cell* cell, Direction dir);
 
 	std::vector<const Cell*> get_path_between(Cell* start, const Cell* end, std::vector<const Cell*> ignored_cells) const;
 
