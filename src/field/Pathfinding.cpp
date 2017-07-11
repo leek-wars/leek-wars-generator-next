@@ -21,13 +21,9 @@ bool Field::line_of_sight_attack(const Cell* start, const Cell* end, const Attac
 bool Field::line_of_sight_ignored(const Cell* start, const Cell* end, std::vector<const Cell*> ignored) const {
 
 	auto check_cell = [&](Cell* cell) {
-		if (cell == nullptr) return false;
-		if (!cell->walkable) return false;
-		if (!cell->available()) {
-			if (cell == end) return true;
-			return find(ignored.begin(), ignored.end(), cell) != ignored.end();
-		}
-		return true;
+		if (cell == nullptr || !cell->walkable) return false;
+		if (cell->available() || cell == end) return true;
+		return find(ignored.begin(), ignored.end(), cell) != ignored.end();
 	};
 	int x1 = start->x - min_x;
 	int y1 = start->y - min_y;
