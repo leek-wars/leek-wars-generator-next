@@ -51,9 +51,14 @@ void Test::tests() {
 }
 
 void Test::header(std::string text) {
-	std::cout << "----------------" << std::endl;
-	std::cout << text << std::endl;
-	std::cout << "----------------" << std::endl;
+	std::cout << "╔";
+	for (unsigned i = 0; i < text.size() + 2; ++i) std::cout << "═";
+	std::cout << "╗" << std::endl;
+	std::cout << "║ " << text << " ║" << std::endl;
+	std::cout << "╚";
+	for (unsigned i = 0; i < text.size() + 2; ++i) std::cout << "═";
+	std::cout << "╝";
+	std::cout << std::endl;
 }
 
 template <typename T>
