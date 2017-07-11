@@ -32,7 +32,11 @@ Fight* FightLoader::load(const FightManager& manager, std::string file) {
 
 			LOG << "Load entity " << e["name"] << std::endl;
 
-			auto ai = new AI(Util::read_file(e["ai"]), e["ai"]);
+			auto v1 = false;
+			if (e.find("v1") != e.end()) {
+				v1 = e["v1"];
+			}
+			auto ai = new AI(Util::read_file(e["ai"]), e["ai"], v1);
 			auto leek = new Leek(fight, e["name"], e["level"], ai);
 
 			Characteristics characs;
