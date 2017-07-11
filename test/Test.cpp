@@ -31,7 +31,7 @@ void Test::tests() {
 	test_map();
 	test_generateCritical();
 	test_fight();
-	// test_fight_v1();
+	test_fight_v1();
 	test_doc();
 
 	double elapsed_secs = double(clock() - begin) / CLOCKS_PER_SEC;
