@@ -4,8 +4,6 @@
 #include <fstream>
 #include "Test.hpp"
 #include <leekscript.h>
-#include "../benchmark/Benchmark.hpp"
-#include "../src/module/LeekModule.hpp"
 
 Test::Test() {
 	total = 0;
@@ -29,13 +27,11 @@ void Test::tests() {
 	clock_t begin = clock();
 	exeTime = 0;
 
+	// Run tests
 	test_map();
 	test_generateCritical();
 	test_fight();
 	// test_fight_v1();
-	///////////////
-	Benchmark::pathfinding();
-	///////////////
 	test_doc();
 
 	double elapsed_secs = double(clock() - begin) / CLOCKS_PER_SEC;
