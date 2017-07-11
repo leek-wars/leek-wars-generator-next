@@ -72,13 +72,13 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 		auto constant = ls::LSNumber::get(w.second->id);
 		constant->refs = 1;
 		constant->native = true;
-		vm_v1.add_constant(Util::toupper(w.first), ls::Type::NUMBER, constant);
+		vm_v1.add_constant(Util::toupper("weapon_" + w.first), ls::Type::NUMBER, constant);
 	}
 	for (const auto& c : chips) {
 		auto constant = ls::LSNumber::get(c.second->id);
 		constant->refs = 1;
 		constant->native = true;
-		vm_v1.add_constant(Util::toupper(c.first), ls::Type::NUMBER, constant);
+		vm_v1.add_constant(Util::toupper("chip_" + c.first), ls::Type::NUMBER, constant);
 	}
 }
 
