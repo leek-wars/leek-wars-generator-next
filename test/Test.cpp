@@ -29,6 +29,7 @@ void Test::tests() {
 
 	// Run tests
 	test_map();
+	test_pathfinding();
 	test_generateCritical();
 	test_fight();
 	test_fight_v1();
