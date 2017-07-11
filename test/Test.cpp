@@ -35,11 +35,9 @@ void Test::tests() {
 	test_fight_v1();
 
 	///////////////
-	LeekModule().generate_doc(std::cout, std::string("doc/Leek_fr.json"));
-	std::cout << std::endl;
-	// EntityModule().generate_doc(cout, string("doc/Leek_fr.json"));
 	Benchmark::pathfinding();
 	///////////////
+	test_doc();
 
 	double elapsed_secs = double(clock() - begin) / CLOCKS_PER_SEC;
 
