@@ -78,7 +78,6 @@ public:
 	/*
 	 * General information
 	 */
-	Team* getTeam() const;
 	bool isAlive() const;
 	bool isDead() const;
 	bool isAlly() const;

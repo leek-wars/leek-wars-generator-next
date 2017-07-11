@@ -49,10 +49,6 @@ Entity::~Entity() {
 	values.erase("name");
 }
 
-Team* Entity::getTeam() const {
-	return team;
-}
-
 bool Entity::isAlive() const {
 	return life > 0;
 }

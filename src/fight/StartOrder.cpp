@@ -9,10 +9,10 @@ StartOrder::~StartOrder() {}
 
 void StartOrder::addEntity(Entity* entity) {
 
-	while (teams.size() < (unsigned) entity->getTeam()->id + 1) {
+	while (teams.size() < (unsigned) entity->team->id + 1) {
 		teams.push_back(std::vector<Entity*>());
 	}
-	teams[entity->getTeam()->id].push_back(entity);
+	teams[entity->team->id].push_back(entity);
 	total_entities++;
 }
 
