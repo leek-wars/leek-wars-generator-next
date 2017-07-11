@@ -100,7 +100,7 @@ bool Fight::hasCooldown(const Entity* entity, const Chip* chip) const {
 		return false;
 	}
 	if (chip->team_cooldown) {
-		return teams[entity->team]->hasCooldown(chip->id);
+		return entity->team->hasCooldown(chip->id);
 	} else {
 		return entity->hasCooldown(chip->id);
 	}

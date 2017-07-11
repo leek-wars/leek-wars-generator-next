@@ -1,7 +1,7 @@
 #include "Team.hpp"
 #include "../fight/Fight.hpp"
 
-Team::Team() {}
+Team::Team(int id) : id(id) {}
 
 Team::~Team() {
 	for (auto& entity : entities) {

@@ -1,6 +1,7 @@
 #include <iterator>
 #include <algorithm>
 #include "StartOrder.hpp"
+#include "../entity/Team.hpp"
 
 StartOrder::StartOrder() {}
 
@@ -8,10 +9,10 @@ StartOrder::~StartOrder() {}
 
 void StartOrder::addEntity(Entity* entity) {
 
-	while (teams.size() < (unsigned) entity->getTeam() + 1) {
+	while (teams.size() < (unsigned) entity->getTeam()->id + 1) {
 		teams.push_back(std::vector<Entity*>());
 	}
-	teams[entity->getTeam()].push_back(entity);
+	teams[entity->getTeam()->id].push_back(entity);
 	total_entities++;
 }
 

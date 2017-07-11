@@ -26,7 +26,7 @@ Fight* FightLoader::load(const FightManager& manager, std::string file) {
 	std::vector<Team*> teams;
 	for (const auto& t : json["teams"]) {
 
-		auto team = new Team();
+		auto team = new Team(teams.size());
 
 		for (const auto& e : t["entities"]) {
 

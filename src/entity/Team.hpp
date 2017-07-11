@@ -10,9 +10,10 @@ class Team {
 
 public:
 
+	int id;
 	std::vector<Entity*> entities;
 
-	Team();
+	Team(int id);
 	virtual ~Team();
 
 	void add_entity(Entity* entity);
