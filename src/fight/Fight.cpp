@@ -73,6 +73,8 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 		}
 	}
 
+	Simulator::entity = nullptr;
+
 	Report* report = new Report(this);
 	report->actions = &actions;
 	return report;
