@@ -50,3 +50,25 @@ void Test::test_pathfinding() {
 	double exe_time_ms = (((double) exe_time_ns / 1000) / 1000);
 	std::cout << "pathfinding 1000 paths: " << exe_time_ms << " ms" << std::endl;
 }
+
+void Test::test_line_of_sight() {
+
+	header("Pathfinding line_of_sight");
+
+	Map map(17, 17, 60, {});
+	auto cells = map.cells.size();
+	auto samples = 1000000;
+
+	auto exe_start = std::chrono::high_resolution_clock::now();
+
+	for (int i = 0; i < samples; ++i) {
+		int c1 = rand() % cells;
+		int c2 = rand() % cells;
+		map.line_of_sight(map.cells[c1], map.cells[c2]);
+	}
+
+	auto exe_end = std::chrono::high_resolution_clock::now();
+	long exe_time_ns = std::chrono::duration_cast<std::chrono::nanoseconds>(exe_end - exe_start).count();
+	double exe_time_ms = (((double) exe_time_ns / 1000) / 1000);
+	std::cout << std::to_string(samples) << " lines of sight: " << exe_time_ms << " ms" << std::endl;
+}

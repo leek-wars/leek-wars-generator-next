@@ -30,6 +30,7 @@ void Test::tests() {
 	// Run tests
 	test_map();
 	test_pathfinding();
+	test_line_of_sight();
 	test_generateCritical();
 	test_fight();
 	test_fight_v1();

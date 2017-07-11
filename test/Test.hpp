@@ -32,6 +32,7 @@ public:
 	void test_fight_v1();
 	void test_generateCritical();
 	void test_map();
+	void test_line_of_sight();
 	void test_pathfinding();
 	void test_doc();
 
