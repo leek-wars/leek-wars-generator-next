@@ -103,7 +103,7 @@ Fight* FightLoader::load(const FightManager& manager, std::string file) {
 
 	fight->teams = teams;
 
-	fight->field.reset(new Field(18, 18, 30, teams));
+	fight->field.reset(new Field(17, 17, 30, teams));
 
 	return fight;
 }
