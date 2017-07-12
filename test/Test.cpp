@@ -15,6 +15,7 @@ Test::Test() {
 
 int main(int, char**) {
 	srand(time(0));
+	Util::log_enabled = false;
 	Test().tests();
 	return 0;
 }
