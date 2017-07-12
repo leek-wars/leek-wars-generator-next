@@ -45,11 +45,13 @@ void Test::test_fight_v1() {
 	auto fight = FightLoader::load(manager, "test/fight/fight_v1.json");
 
 	// Run the fight
-	manager.start(*fight, [](Report* report) {
+	manager.start(*fight, [&](Report* report) {
 		// std::cout << "-------------- report ----------------" << std::endl;
 		// std::cout << report << std::endl;
 
 		// run_fight_browser(report);
+
+		test("report != nullptr", report != nullptr, true);
 
 		delete report;
 	});
