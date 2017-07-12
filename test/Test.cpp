@@ -4,6 +4,7 @@
 #include <fstream>
 #include "Test.hpp"
 #include <leekscript.h>
+#include "../src/colors.h"
 
 Test::Test() {
 	total = 0;
@@ -57,12 +58,12 @@ void Test::header(std::string text) {
 }
 
 template <typename T>
-void Test::test(std::string message, T expected, T res) {
+void Test::test(std::string code, T expected, T res) {
 	total++;
 	if (expected != res) {
-		std::cout << "FAUX : " << message << "  =/=>  " << expected << "  got  " << res << std::endl;
+		std::cout << RED << "FAUX" << END_COLOR << " : " << code << "  =/=>  " << expected << "  got  " << res << std::endl;
 	} else {
-		std::cout << "OK   : " << message << "  ===>  " << res << std::endl;
+		std::cout << GREEN << "OK" << END_COLOR << "   : " << code << "  ===>  " << res << std::endl;
 		success++;
 	}
 }
