@@ -59,6 +59,8 @@ EntityModule::EntityModule() : Module("Entity") {
 	method("getCell", {{CellModule::type, {EntityModule::type_ptr}, (void*) &Entity::getCell, ls::Method::NATIVE}});
 	method("getClosestEnemy", {{EntityModule::type_ptr, {EntityModule::type_ptr}, (void*) &Entity::get_closest_enemy, ls::Method::NATIVE}});
 	method("getClosestAlly", {{EntityModule::type_ptr, {EntityModule::type_ptr}, (void*) &Entity::get_closest_ally, ls::Method::NATIVE}});
+	method("getFarthestEnemy", {{EntityModule::type_ptr, {EntityModule::type_ptr}, (void*) &Entity::get_farthest_enemy, ls::Method::NATIVE}});
+	method("getFarthestAlly", {{EntityModule::type_ptr, {EntityModule::type_ptr}, (void*) &Entity::get_farthest_ally, ls::Method::NATIVE}});
 	method("getWeapons", {{WeaponModule::array_type, {EntityModule::type_ptr}, (void*) &Entity::getWeapons, ls::Method::NATIVE}});
 	method("getWeapon", {{ls::Type::POINTER, {EntityModule::type_ptr}, (void*) &Entity::getWeapon, ls::Method::NATIVE}});
 	method("getLevel", {{ls::Type::INTEGER, {EntityModule::type_ptr}, (void*) &Entity::getLevel, ls::Method::NATIVE}});

@@ -324,6 +324,23 @@ Entity* Entity::get_closest(ls::LSArray<ls::LSValue*> entities) const {
 	return (Entity*) closest;
 }
 
+Entity* Entity::get_farthest(ls::LSArray<ls::LSValue*> entities) const {
+	if (entities.size() == 0) {
+		return nullptr;
+	}
+	auto i = entities.begin();
+	auto farthest = *i;
+	int max_distance = cell->distance(((Entity*) farthest)->cell);
+	for (; i != entities.end(); ++i) {
+		int distance = cell->distance(((Entity*) (*i))->cell);
+		if (distance > max_distance) {
+			max_distance = distance;
+			farthest = *i;
+		}
+	}
+	return (Entity*) farthest;
+}
+
 ls::LSArray<ls::LSValue*> Entity::get_enemies() const {
 	ls::LSArray<ls::LSValue*> enemies;
 	for (const auto& team : fight->teams) {
@@ -390,6 +407,14 @@ Entity* Entity::get_closest_enemy() const {
 
 Entity* Entity::get_closest_ally() const {
 	return get_closest(get_allies());
+}
+
+Entity* Entity::get_farthest_enemy() const {
+	return get_farthest(get_enemies());
+}
+
+Entity* Entity::get_farthest_ally() const {
+	return get_farthest(get_allies());
 }
 
 void Entity::useTP(int tp) {

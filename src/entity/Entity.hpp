@@ -167,6 +167,9 @@ public:
 	Entity* get_closest(ls::LSArray<ls::LSValue*> entities) const;
 	Entity* get_closest_enemy() const;
 	Entity* get_closest_ally() const;
+	Entity* get_farthest(ls::LSArray<ls::LSValue*> entities) const;
+	Entity* get_farthest_enemy() const;
+	Entity* get_farthest_ally() const;
 
 	/*
 	 * LeekScript overrides
