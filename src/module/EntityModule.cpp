@@ -11,6 +11,7 @@
 const ls::LSClass* EntityModule::entity_clazz;
 const EntityType* const EntityModule::type = new EntityType();
 const ls::Type EntityModule::type_ptr(EntityModule::type, ls::Nature::POINTER, true);
+const ls::Type EntityModule::array_type(ls::RawType::ARRAY, ls::Nature::POINTER, EntityModule::type);
 
 EntityModule::EntityModule() : Module("Entity") {
 

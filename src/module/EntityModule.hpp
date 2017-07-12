@@ -22,6 +22,7 @@ public:
 	static const ls::LSClass* entity_clazz;
 	static const EntityType* const type;
 	static const ls::Type type_ptr; // TODO just 'type' instead of 'type_ptr'
+	static const ls::Type array_type;
 };
 
 const Entity* entity_getClosestEnemy(Entity* entity);
