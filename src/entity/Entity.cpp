@@ -257,6 +257,9 @@ int Entity::getLevel() const {
 ls::LSString* Entity::getName() const {
 	return (ls::LSString*) ((Entity*) this)->values["name"];
 }
+int Entity::getTalent() const {
+	return 1000;
+}
 
 int Entity::move(const std::vector<const Cell*> path) {
 

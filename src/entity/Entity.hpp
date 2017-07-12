@@ -87,6 +87,7 @@ public:
 	Cell* getCell();
 	int getLevel() const;
 	ls::LSString* getName() const;
+	int getTalent() const;
 
 	/*
 	 * Items
