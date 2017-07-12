@@ -16,6 +16,9 @@ void Test::test_fight() {
 	test_ai(fight, entity, "Fight.getEntity().level", "301");
 	test_ai(fight, entity, "Fight.getEntity().cell.class", "<class Cell>");
 	test_ai(fight, entity, "Fight.getEntity().weapons", "[<Weapon m_laser>]");
+	test_ai(fight, entity, "Fight.getEntity().weapons.first()", "<Weapon m_laser>");
+	test_ai(fight, entity, "Fight.getEntity().weapons.size()", "1");
+	test_ai(fight, entity, "Fight.getEntity().weapons ~~ x -> x.name", "['m_laser']");
 	test_ai(fight, entity, "Fight.getEntity().weapon", "null");
 	test_ai(fight, entity, "Fight.getEntity().chips", "[<Chip protein>]");
 	test_ai(fight, entity, "Fight.getEntity().damageReturn", "0");
