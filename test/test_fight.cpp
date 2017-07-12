@@ -9,9 +9,24 @@ void Test::test_fight() {
 	auto fight = FightLoader::load(manager, "test/fight/fight.json");
 	auto entity = fight->teams[0]->entities[0];
 	test_ai(fight, entity, "Fight.getEntity().name", "'Poireau'");
-	test_ai(fight, entity, "Fight.getEntity().life", "500");
+	test_ai(fight, entity, "Fight.getEntity().life", "5000");
+	test_ai(fight, entity, "Fight.getEntity().tp", "12");
+	test_ai(fight, entity, "Fight.getEntity().mp", "6");
+	test_ai(fight, entity, "Fight.getEntity().strength", "500");
+	test_ai(fight, entity, "Fight.getEntity().level", "301");
+	test_ai(fight, entity, "Fight.getEntity().cell.class", "<class Cell>");
 	test_ai(fight, entity, "Fight.getEntity().weapons", "[<Weapon m_laser>]");
+	test_ai(fight, entity, "Fight.getEntity().weapon", "null");
 	test_ai(fight, entity, "Fight.getEntity().chips", "[<Chip protein>]");
+	test_ai(fight, entity, "Fight.getEntity().damageReturn", "0");
+	test_ai(fight, entity, "Fight.getEntity().frequency", "0");
+	test_ai(fight, entity, "Fight.getEntity().relativeShield", "0");
+	test_ai(fight, entity, "Fight.getEntity().absoluteShield", "0");
+	test_ai(fight, entity, "Fight.getEntity().science", "0");
+	test_ai(fight, entity, "Fight.getEntity().resistance", "0");
+	test_ai(fight, entity, "Fight.getEntity().magic", "0");
+	test_ai(fight, entity, "Fight.getEntity().wisdom", "0");
+	test_ai(fight, entity, "Fight.getEntity().agility", "0");
 }
 
 void Test::test_generateCritical() {
