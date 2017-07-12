@@ -18,7 +18,7 @@ public:
 	virtual ~AI();
 
 	void compile(ls::VM& vm, ls::VM& vm_v1);
-	void execute(ls::VM& vm, ls::VM& vm_v1);
+	std::string execute(ls::VM& vm, ls::VM& vm_v1);
 };
 
 #endif

@@ -57,11 +57,12 @@ void AI::compile(ls::VM& vm, ls::VM& vm_v1) {
 	}
 }
 
-void AI::execute(ls::VM& vm, ls::VM& vm_v1) {
+std::string AI::execute(ls::VM& vm, ls::VM& vm_v1) {
 	if (program != nullptr && valid) {
 		ls::VM::current_vm = v1 ? &vm_v1 : &vm;
-		program->execute(*ls::VM::current_vm);
+		return program->execute(*ls::VM::current_vm);
 	} else {
 		LOG_W << "AI " << name << " invalid, excution skipped!" << std::endl;
+		return {};
 	}
 }
