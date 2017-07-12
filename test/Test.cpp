@@ -65,6 +65,7 @@ void Test::test_ai(Fight* fight, Entity* entity, std::string code, std::string e
 	auto ai = new AI(code, "ai", false);
 	entity->ai.reset(ai);
 	entity->ai->compile(manager.vm, manager.vm_v1);
+	Simulator::fight = fight;
 	Simulator::entity = entity;
 	manager.vm.output = entity->debug_output;
 	manager.vm_v1.output = entity->debug_output;
