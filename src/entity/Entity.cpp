@@ -119,7 +119,7 @@ void Entity::setChips(std::vector<Chip*> chips) {
 	this->chips = std::vector<ls::LSValue*>(chips.begin(), chips.end());
 	this->chips.native = true;
 	this->chips.refs = 1;
-	values["chips"] = &this->weapons;
+	values["chips"] = &this->chips;
 }
 
 const Weapon* Entity::getWeapon() {
