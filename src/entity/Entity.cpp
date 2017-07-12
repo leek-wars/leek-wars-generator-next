@@ -307,7 +307,7 @@ int Entity::useWeaponOnCell(Cell* cell) {
 	return fight->useWeapon(this, cell);
 }
 
-Entity* Entity::get_closest(std::vector<Entity*> entities) const {
+Entity* Entity::get_closest(ls::LSArray<ls::LSValue*> entities) const {
 	if (entities.size() == 0) {
 		return nullptr;
 	}
@@ -315,17 +315,17 @@ Entity* Entity::get_closest(std::vector<Entity*> entities) const {
 	auto i = entities.begin();
 	auto closest = *i;
 	for (; i != entities.end(); ++i) {
-		int distance = cell->distance((*i)->cell);
+		int distance = cell->distance(((Entity*) (*i))->cell);
 		if (distance < min_distance) {
 			min_distance = distance;
 			closest = *i;
 		}
 	}
-	return closest;
+	return (Entity*) closest;
 }
 
-std::vector<Entity*> Entity::get_enemies() const {
-	std::vector<Entity*> enemies;
+ls::LSArray<ls::LSValue*> Entity::get_enemies() const {
+	ls::LSArray<ls::LSValue*> enemies;
 	for (const auto& team : fight->teams) {
 		if (team != this->team) {
 			enemies.insert(enemies.end(), team->entities.begin(), team->entities.end());
@@ -334,12 +334,12 @@ std::vector<Entity*> Entity::get_enemies() const {
 	return enemies;
 }
 
-std::vector<Entity*> Entity::get_allies() const {
-	return team->entities;
+ls::LSArray<ls::LSValue*> Entity::get_allies() const {
+	return std::vector<ls::LSValue*>(team->entities.begin(), team->entities.end());
 }
 
-std::vector<Entity*> Entity::get_alive_enemies() const {
-	std::vector<Entity*> enemies;
+ls::LSArray<ls::LSValue*> Entity::get_alive_enemies() const {
+	ls::LSArray<ls::LSValue*> enemies;
 	for (const auto& team : fight->teams) {
 		if (team == this->team) continue;
 		for (const auto& entity : team->entities) {
@@ -351,8 +351,8 @@ std::vector<Entity*> Entity::get_alive_enemies() const {
 	return enemies;
 }
 
-std::vector<Entity*> Entity::get_alive_allies() const {
-	std::vector<Entity*> allies;
+ls::LSArray<ls::LSValue*> Entity::get_alive_allies() const {
+	ls::LSArray<ls::LSValue*> allies;
 	for (const auto& entity : team->entities) {
 		if (entity->isAlive()) {
 			allies.push_back(entity);
@@ -361,8 +361,8 @@ std::vector<Entity*> Entity::get_alive_allies() const {
 	return allies;
 }
 
-std::vector<Entity*> Entity::get_dead_enemies() const {
-	std::vector<Entity*> enemies;
+ls::LSArray<ls::LSValue*> Entity::get_dead_enemies() const {
+	ls::LSArray<ls::LSValue*> enemies;
 	for (const auto& team : fight->teams) {
 		if (team == this->team) continue;
 		for (const auto& entity : team->entities) {
@@ -374,8 +374,8 @@ std::vector<Entity*> Entity::get_dead_enemies() const {
 	return enemies;
 }
 
-std::vector<Entity*> Entity::get_dead_allies() const {
-	std::vector<Entity*> allies;
+ls::LSArray<ls::LSValue*> Entity::get_dead_allies() const {
+	ls::LSArray<ls::LSValue*> allies;
 	for (const auto& entity : team->entities) {
 		if (entity->isDead()) {
 			allies.push_back(entity);
