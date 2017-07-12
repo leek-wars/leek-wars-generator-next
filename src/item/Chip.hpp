@@ -16,6 +16,7 @@ public:
 	virtual ~Chip();
 
 	virtual std::ostream& print(std::ostream& os) const override;
+	virtual std::ostream& dump(std::ostream& os, int level) const override;
 };
 
 #endif

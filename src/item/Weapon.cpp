@@ -10,7 +10,14 @@ std::ostream& Weapon::print(std::ostream& os) const {
 	os << "<Weapon ";
 	const LSValue* v = values.at("name");
 	v->print(os);
-	os << " " << id;
+	os << ">";
+	return os;
+}
+
+std::ostream& Weapon::dump(std::ostream& os, int) const {
+	os << "<Weapon ";
+	const LSValue* v = values.at("name");
+	v->print(os);
 	os << ">";
 	return os;
 }

@@ -19,3 +19,11 @@ std::ostream& Chip::print(std::ostream& os) const {
 	os << ">";
 	return os;
 }
+
+std::ostream& Chip::dump(std::ostream& os, int) const {
+	os << "<Chip ";
+	const LSValue* v = values.at("name");
+	v->print(os);
+	os << ">";
+	return os;
+}
