@@ -5,7 +5,6 @@
 #include "Test.hpp"
 #include <leekscript.h>
 #include "../src/fight/Simulator.hpp"
-#include "../src/colors.h"
 
 Test::Test() {
 	total = 0;
@@ -43,6 +42,11 @@ void Test::tests() {
 	std::cout << "------------------------------------------------" << std::endl;
 	std::cout << "Total : " << total << ", succès : " << success << ", erreurs : " << (total - success) << std::endl;
 	std::cout << "Total time : " << elapsed_secs * 1000 << " ms, execution time : " << (exeTime / CLOCKS_PER_SEC) * 1000 << " ms" << std::endl;
+	if ((total - success) == 0) {
+		std::cout << GREEN << "GOOD! ✔" << END_COLOR << std::endl;
+	} else {
+		std::cout << RED << "BAD! : " << (total - success) << " error(s) ✘" << END_COLOR << std::endl;
+	}
 	std::cout << "------------------------------------------------" << std::endl;
 }
 
