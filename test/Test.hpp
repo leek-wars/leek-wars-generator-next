@@ -4,7 +4,6 @@
 #include <iostream>
 #include <string>
 #include <chrono>
-
 #include "../src/fight/Fight.hpp"
 #include "../src/entity/Leek.hpp"
 #include "../src/util/Util.hpp"
@@ -15,6 +14,7 @@
 #include "../src/item/Chip.hpp"
 #include "../src/area/AreaSingleCell.hpp"
 #include "../src/fight/FightManager.hpp"
+#include "../src/colors.h"
 
 class Test {
 
@@ -43,7 +43,15 @@ public:
 	void run_fight_browser(Report* report);
 
 	template <typename T>
-	void test(std::string message, T expected, T value);
+	void test(std::string code, T expected, T res) {
+		total++;
+		if (expected != res) {
+			std::cout << RED << "FAUX" << END_COLOR << " : " << code << "  =/=>  " << expected << "  got  " << res << std::endl;
+		} else {
+			std::cout << GREEN << "OK" << END_COLOR << "   : " << code << "  ===>  " << res << std::endl;
+			success++;
+		}
+	}
 	void test_ai(Fight* fight, Entity* entity, std::string code, std::string expected);
 };
 

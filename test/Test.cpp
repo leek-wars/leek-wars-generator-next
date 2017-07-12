@@ -70,15 +70,4 @@ void Test::test_ai(Fight* fight, Entity* entity, std::string code, std::string e
 	test(code, expected, actual);
 }
 
-template <typename T>
-void Test::test(std::string code, T expected, T res) {
-	total++;
-	if (expected != res) {
-		std::cout << RED << "FAUX" << END_COLOR << " : " << code << "  =/=>  " << expected << "  got  " << res << std::endl;
-	} else {
-		std::cout << GREEN << "OK" << END_COLOR << "   : " << code << "  ===>  " << res << std::endl;
-		success++;
-	}
-}
-
 Test::~Test() {}
