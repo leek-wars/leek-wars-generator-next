@@ -27,6 +27,17 @@ void Test::test_fight() {
 	test_ai(fight, entity, "Fight.getEntity().magic", "0");
 	test_ai(fight, entity, "Fight.getEntity().wisdom", "0");
 	test_ai(fight, entity, "Fight.getEntity().agility", "0");
+
+	header("Fight > field");
+	test_ai(fight, entity, "Field", "<class Field>");
+	test_ai(fight, entity, "Field.getObstacles().class", "<class Array>");
+	test_ai(fight, entity, "Field.getObstacles().size() in [30..100]", "true");
+	test_ai(fight, entity, "Field.cell(0, 0)", "<Cell 306>");
+	test_ai(fight, entity, "Field.cell(-17, 0)", "<Cell 595>");
+	test_ai(fight, entity, "Field.cell(17, 0)", "<Cell 17>");
+	test_ai(fight, entity, "Field.cell(0, 17)", "<Cell 612>");
+	test_ai(fight, entity, "Field.cell(0, -17)", "<Cell 0>");
+	test_ai(fight, entity, "let me = Fight.getEntity() Field.lineOfSight(me.cell, me.getClosestEnemy().cell).class", "<class Boolean>");
 }
 
 void Test::test_generateCritical() {
