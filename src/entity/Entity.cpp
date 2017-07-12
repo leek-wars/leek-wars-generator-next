@@ -314,34 +314,34 @@ Entity* Entity::get_closest(ls::LSArray<ls::LSValue*> entities) const {
 	if (entities.size() == 0) {
 		return nullptr;
 	}
-	auto i = entities.begin();
-	auto closest = *i;
-	int min_distance = cell->distance(((Entity*) closest)->cell);
-	for (; i != entities.end(); ++i) {
-		int distance = cell->distance(((Entity*) (*i))->cell);
+	Entity* closest = nullptr;
+	int min_distance = std::numeric_limits<int>::max();
+	for (auto& entity : entities) {
+		if (entity == this) continue;
+		int distance = cell->distance(((Entity*) entity)->cell);
 		if (distance < min_distance) {
 			min_distance = distance;
-			closest = *i;
+			closest = (Entity*) entity;
 		}
 	}
-	return (Entity*) closest;
+	return closest;
 }
 
 Entity* Entity::get_farthest(ls::LSArray<ls::LSValue*> entities) const {
 	if (entities.size() == 0) {
 		return nullptr;
 	}
-	auto i = entities.begin();
-	auto farthest = *i;
-	int max_distance = cell->distance(((Entity*) farthest)->cell);
-	for (; i != entities.end(); ++i) {
-		int distance = cell->distance(((Entity*) (*i))->cell);
+	Entity* farthest = nullptr;
+	int max_distance = std::numeric_limits<int>::max();
+	for (auto& entity : entities) {
+		if (entity == this) continue;
+		int distance = cell->distance(((Entity*) entity)->cell);
 		if (distance > max_distance) {
 			max_distance = distance;
-			farthest = *i;
+			farthest = (Entity*) entity;
 		}
 	}
-	return (Entity*) farthest;
+	return farthest;
 }
 
 ls::LSArray<ls::LSValue*> Entity::get_enemies() const {
