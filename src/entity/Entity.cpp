@@ -311,9 +311,9 @@ Entity* Entity::get_closest(ls::LSArray<ls::LSValue*> entities) const {
 	if (entities.size() == 0) {
 		return nullptr;
 	}
-	int min_distance = 0;
 	auto i = entities.begin();
 	auto closest = *i;
+	int min_distance = cell->distance(((Entity*) closest)->cell);
 	for (; i != entities.end(); ++i) {
 		int distance = cell->distance(((Entity*) (*i))->cell);
 		if (distance < min_distance) {
