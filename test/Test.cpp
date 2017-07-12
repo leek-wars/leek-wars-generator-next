@@ -64,7 +64,10 @@ void Test::header(std::string text) {
 void Test::test_ai(Fight* fight, Entity* entity, std::string code, std::string expected) {
 	auto ai = new AI(code, "ai", false);
 	entity->ai.reset(ai);
-	entity->ai->compile(manager.vm, manager.vm_v1);
+	int errors = entity->ai->compile(manager.vm, manager.vm_v1);
+	if (errors > 0) {
+		std::cout << errors << " error(s) in AI!" << std::endl;
+	}
 	Simulator::fight = fight;
 	Simulator::entity = entity;
 	manager.vm.output = entity->debug_output;
