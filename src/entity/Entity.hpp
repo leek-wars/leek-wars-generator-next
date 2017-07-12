@@ -177,6 +177,7 @@ public:
 	 */
 	virtual ls::LSValue* getClass() const override;
 	virtual std::ostream& print(std::ostream& os) const override;
+	virtual std::ostream& dump(std::ostream& os, int level) const override;
 
 	/*
 	 * Export to JSON format

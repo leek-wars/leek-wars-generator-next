@@ -546,6 +546,11 @@ std::ostream& Entity::print(std::ostream& os) const {
 	return os;
 }
 
+std::ostream& Entity::dump(std::ostream& os, int) const {
+	os << "<Entity " << name << ">";
+	return os;
+}
+
 Json Entity::to_json() const {
 	Json json;
 	json["id"] = id;
