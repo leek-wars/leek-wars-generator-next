@@ -23,6 +23,7 @@ void Test::test_field() {
 	field.draw_path(path, field.int_to_cell(c1), field.int_to_cell(c2));
 
 	// Benchmark multiple paths
+	Util::log_enabled = false;
 	int samples = 1000;
 	auto exe_start = std::chrono::high_resolution_clock::now();
 
