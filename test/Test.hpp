@@ -44,6 +44,7 @@ public:
 
 	template <typename T>
 	void test(std::string message, T expected, T value);
+	void test_ai(Fight* fight, Entity* entity, std::string code, std::string expected);
 };
 
 #endif

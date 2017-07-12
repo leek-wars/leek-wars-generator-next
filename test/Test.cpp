@@ -4,6 +4,7 @@
 #include <fstream>
 #include "Test.hpp"
 #include <leekscript.h>
+#include "../src/fight/Simulator.hpp"
 #include "../src/colors.h"
 
 Test::Test() {
@@ -55,6 +56,17 @@ void Test::header(std::string text) {
 	for (unsigned i = 0; i < text.size() + 2; ++i) std::cout << "═";
 	std::cout << "╝";
 	std::cout << std::endl;
+}
+
+void Test::test_ai(Fight* fight, Entity* entity, std::string code, std::string expected) {
+	auto ai = new AI(code, "ai", false);
+	entity->ai.reset(ai);
+	entity->ai->compile(manager.vm, manager.vm_v1);
+	Simulator::entity = entity;
+	manager.vm.output = entity->debug_output;
+	manager.vm_v1.output = entity->debug_output;
+	auto actual = entity->ai->execute(manager.vm, manager.vm_v1);
+	test(code, expected, actual);
 }
 
 template <typename T>
