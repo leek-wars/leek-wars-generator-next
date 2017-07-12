@@ -16,11 +16,12 @@ AI::~AI() {
 	}
 }
 
-void AI::compile(ls::VM& vm, ls::VM& vm_v1) {
+int AI::compile(ls::VM& vm, ls::VM& vm_v1) {
 
 	ls::VM::current_vm = v1 ? &vm_v1 : &vm;
 	program = new ls::Program(code, name);
 	auto result = program->compile(v1 ? vm_v1 : vm, "{}");
+	int errors = 0;
 
 	if (result.lexical_errors.size()) {
 		LOG_W << result.lexical_errors.size() << " lexical error(s) in AI " << name << std::endl;
@@ -28,6 +29,7 @@ void AI::compile(ls::VM& vm, ls::VM& vm_v1) {
 			LOG_W << "Line " << e.line << ": " << e.message() << std::endl;
 		}
 		valid = false;
+		errors += result.lexical_errors.size();
 	}
 	if (result.syntaxical_errors.size()) {
 		LOG_W << result.syntaxical_errors.size() << " syntaxic error(s) in AI " << name << std::endl;
@@ -35,6 +37,7 @@ void AI::compile(ls::VM& vm, ls::VM& vm_v1) {
 			LOG_W << "Line " << e.token->location.start.line << ": " << e.message() << std::endl;
 		}
 		valid = false;
+		errors += result.syntaxical_errors.size();
 	}
 
 	if (result.semantical_errors.size()) {
@@ -46,6 +49,7 @@ void AI::compile(ls::VM& vm, ls::VM& vm_v1) {
 			first = false;
 		}
 		valid = false;
+		errors += result.semantical_errors.size();
 	}
 
 	LOG << "AI [" << name << "] : ";
@@ -55,6 +59,7 @@ void AI::compile(ls::VM& vm, ls::VM& vm_v1) {
 	} else {
 		LOG << "ERROR" << std::endl;
 	}
+	return errors;
 }
 
 std::string AI::execute(ls::VM& vm, ls::VM& vm_v1) {

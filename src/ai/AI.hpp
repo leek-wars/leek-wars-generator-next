@@ -17,7 +17,7 @@ public:
 	AI(std::string code, std::string name, bool v1 = false);
 	virtual ~AI();
 
-	void compile(ls::VM& vm, ls::VM& vm_v1);
+	int compile(ls::VM& vm, ls::VM& vm_v1);
 	std::string execute(ls::VM& vm, ls::VM& vm_v1);
 };
 
