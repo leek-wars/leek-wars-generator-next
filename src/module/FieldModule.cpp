@@ -53,7 +53,7 @@ int map_getCellContent(const Cell* cell) {
 
 bool map_lineOfSight(const Cell* cell1, const Cell* cell2) {
 	// TODO check null cell
-	return Simulator::fight->field->line_of_sight_ignored(cell1, cell2, {});
+	return Simulator::fight->field->line_of_sight(cell1, cell2);
 }
 
 ls::LSArray<ls::LSValue*>* map_getPath(Cell* cell1, const Cell* cell2) {
