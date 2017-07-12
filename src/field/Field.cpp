@@ -16,30 +16,30 @@ Field::Field(int width, int height, int obstacles_count, const std::vector<Team*
 
 	this->width = width;
 	this->height = height;
-
-	nb_cells = (width * 2 - 1) * height - (width - 1);
-
-	for (int i = 0; i < nb_cells; i++) {
-		auto c = new Cell(this, i);
-		cells.push_back(c);
-		if (min_x == -1 || c->x < min_x) min_x = c->x;
-		if (max_x == -1 || c->x > max_x) max_x = c->x;
-		if (min_y == -1 || c->y < min_y) min_y = c->y;
-		if (max_y == -1 || c->y > max_y) max_y = c->y;
-	}
-
-	sx = max_x - min_x + 1;
-	sy = max_y - min_y + 1;
+	min_x = -width;
+	min_y = -width;
+	max_x = width;
+	max_y = width;
+	sx = width * 2 + 1;
+	sy = width * 2 + 1;
 
 	coord.resize(sx);
 	for (int i = 0; i < sx; ++i) {
 		coord[i].resize(sy, nullptr);
 	}
-	for (int i = 0; i < nb_cells; i++) {
-		auto c = cells[i];
-		coord[c->x - min_x][c->y - min_y] = c;
+
+	for (int x = -width; x <= width; x++) {
+		for (int y = -width; y <= width; y++) {
+			if (abs(x) + abs(y) > width) continue;
+			int id = (width + 1) * width + (width + 1) * y - width * x;
+			auto cell = new Cell(this, id, x, y);
+			cells.push_back(cell);
+			coord[cell->x - min_x][cell->y - min_y] = cell;
+		}
 	}
 	generate(obstacles_count, teams);
+
+	LOG << "Map generated: " << cells.size() << " cells, " << obstacles.size() << " obstacles" << std::endl;
 }
 
 Field::~Field() {
@@ -60,7 +60,7 @@ void Field::generate(int obstacles_count, const std::vector<Team*>& teams) {
 		obstacles.clear();
 
 		for (int i = 0; i < obstacles_count; i++) {
-			auto c = get_cell(Util::rand_int(nb_cells));
+			auto c = get_cell(Util::rand_int(cells.size()));
 			if (c != nullptr && c->available()) {
 				int size = Util::rand_int(1, 2);
 				int type = Util::rand_int(0, 2);
@@ -141,7 +141,7 @@ Cell* Field::get_random_cell() {
 	Cell* c = nullptr;
 	int security = 0;
 	do {
-		c = get_cell(Util::rand_int(nb_cells));
+		c = get_cell(Util::rand_int(cells.size()));
 	} while (!c->available() && security++ < 512);
 	return c;
 }

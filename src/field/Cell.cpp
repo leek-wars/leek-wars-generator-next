@@ -3,7 +3,7 @@
 #include "Field.hpp"
 #include "../entity/Entity.hpp"
 
-Cell::Cell(Field* field, int id) {
+Cell::Cell(Field* field, int id, int x, int y) {
 
 	this->id = id;
 	this->field = field;
@@ -11,9 +11,9 @@ Cell::Cell(Field* field, int id) {
 	this->obstacle = 0;
 	this->entity = nullptr;
 	this->obstacle_size = 0;
+	this->x = x;
+	this->y = y;
 
-	int x = id % (field->width * 2 - 1);
-	int y = id / (field->width * 2 - 1);
 	if (y == 0 && x < field->width) {
 		north = false;
 		west = false;
@@ -28,9 +28,6 @@ Cell::Cell(Field* field, int id) {
 		north = false;
 		east = false;
 	}
-
-	this->y = y - x % field->width;
-	this->x = (id - (field->width - 1) * this->y) / field->width;
 
 	this->values["id"] = ls::LSNumber::get(id);
 	this->values["id"]->native = true;

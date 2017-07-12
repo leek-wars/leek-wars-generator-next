@@ -31,7 +31,7 @@ public:
 	bool visited;
 	bool closed;
 
-	Cell(Field* field, int id);
+	Cell(Field* field, int id, int x, int y);
 	virtual ~Cell();
 
 	void setObstacle(int id, int size);

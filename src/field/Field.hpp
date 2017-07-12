@@ -22,15 +22,9 @@ public:
 	int width;
 	int sx;
 	int sy;
-
-	std::map<std::string, std::vector<Cell*>> path_cache;
-
-	int nb_cells;
 	int type;
-
 	std::vector<std::vector<Cell*>> coord;
 	std::vector<Cell*> obstacles;
-
 	int min_x = -1;
 	int max_x = -1;
 	int min_y = -1;
