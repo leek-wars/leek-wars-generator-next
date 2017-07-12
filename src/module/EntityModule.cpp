@@ -17,26 +17,28 @@ EntityModule::EntityModule() : Module("Entity") {
 
 	EntityModule::entity_clazz = this->clazz;
 
-	field("absoluteShield", ls::Type::INTEGER);
-	field("agility", ls::Type::INTEGER);
-	field("cell", CellModule::type);
-	field("chips", ChipModule::array_type);
-	field("damageReturn", ls::Type::INTEGER);
-	field("frequency", ls::Type::INTEGER);
-	field("level", ls::Type::INTEGER);
-	field("life", ls::Type::INTEGER);
-	field("name", ls::Type::STRING);
-	field("magic", ls::Type::INTEGER);
-	field("mp", ls::Type::INTEGER);
-	field("relativeShield", ls::Type::INTEGER);
-	field("resistance", ls::Type::INTEGER);
-	field("science", ls::Type::INTEGER);
-	field("strength", ls::Type::INTEGER);
-	field("talent", ls::Type::INTEGER);
-	field("totalMP", ls::Type::INTEGER);
-	field("totalTP", ls::Type::INTEGER);
-	field("tp", ls::Type::INTEGER);
-	field("weapons", WeaponModule::array_type);
+	field("absoluteShield", ls::Type::INTEGER, (void*) &Entity::getAbsoluteShield);
+	field("agility", ls::Type::INTEGER, (void*) &Entity::getAgility);
+	field("cell", CellModule::type, (void*) &Entity::getCell);
+	field("chips", ChipModule::array_type, (void*) &Entity::getChips);
+	field("damageReturn", ls::Type::INTEGER, (void*) &Entity::getDamageReturn);
+	field("frequency", ls::Type::INTEGER, (void*) &Entity::getFrequency);
+	field("level", ls::Type::INTEGER, (void*) &Entity::getLevel);
+	field("life", ls::Type::INTEGER, (void*) &Entity::getLife);
+	field("name", ls::Type::STRING, (void*) &Entity::getName);
+	field("magic", ls::Type::INTEGER, (void*) &Entity::getMagic);
+	field("mp", ls::Type::INTEGER, (void*) &Entity::getMP);
+	field("relativeShield", ls::Type::INTEGER, (void*) &Entity::getRelativeShield);
+	field("resistance", ls::Type::INTEGER, (void*) &Entity::getResistance);
+	field("science", ls::Type::INTEGER, (void*) &Entity::getScience);
+	field("strength", ls::Type::INTEGER, (void*) &Entity::getStrength);
+	field("talent", ls::Type::INTEGER, (void*) &Entity::getTalent);
+	field("totalMP", ls::Type::INTEGER, (void*) &Entity::getTotalMP);
+	field("totalTP", ls::Type::INTEGER, (void*) &Entity::getTotalTP);
+	field("tp", ls::Type::INTEGER, (void*) &Entity::getTP);
+	field("weapon", WeaponModule::type, (void*) &Entity::getWeapon);
+	field("weapons", WeaponModule::array_type, (void*) &Entity::getWeapons);
+	field("wisdom", ls::Type::INTEGER, (void*) &Entity::getWisdom);
 
 	method("getAliveAllies", {{EntityModule::array_type, {EntityModule::type_ptr}, (void*) &Entity::get_alive_allies, ls::Method::NATIVE}});
 	method("getAliveEnemies", {{EntityModule::array_type, {EntityModule::type_ptr}, (void*) &Entity::get_alive_enemies, ls::Method::NATIVE}});
