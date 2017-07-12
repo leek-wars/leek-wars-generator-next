@@ -77,7 +77,12 @@ EntityModule::EntityModule() : Module("Entity") {
 	method("isEnemy", {{ls::Type::BOOLEAN, {EntityModule::type_ptr}, (void*) &Entity::isEnemy, ls::Method::NATIVE}});
 	method("isSummon", {{ls::Type::BOOLEAN, {EntityModule::type_ptr}, (void*) &Entity::isSummon, ls::Method::NATIVE}});
 	method("getName", {{ls::Type::STRING, {EntityModule::type_ptr}, (void*) &Entity::getName, ls::Method::NATIVE}});
-	// TODO add getAlive/Dead_Enemies/Allies methods
+	method("getAllies", {{EntityModule::array_type, {EntityModule::type_ptr}, (void*) &Entity::get_allies, ls::Method::NATIVE}});
+	method("getEnemies", {{EntityModule::array_type, {EntityModule::type_ptr}, (void*) &Entity::get_enemies, ls::Method::NATIVE}});
+	method("getAliveAllies", {{EntityModule::array_type, {EntityModule::type_ptr}, (void*) &Entity::get_alive_allies, ls::Method::NATIVE}});
+	method("getAliveEnemies", {{EntityModule::array_type, {EntityModule::type_ptr}, (void*) &Entity::get_alive_enemies, ls::Method::NATIVE}});
+	method("getDeadAllies", {{EntityModule::array_type, {EntityModule::type_ptr}, (void*) &Entity::get_alive_allies, ls::Method::NATIVE}});
+	method("getDeadEnemies", {{EntityModule::array_type, {EntityModule::type_ptr}, (void*) &Entity::get_alive_enemies, ls::Method::NATIVE}});
 
 	/*
 	 * V1 functions
