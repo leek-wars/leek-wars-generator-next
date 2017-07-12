@@ -1,13 +1,13 @@
 var me = Fight.getEntity()
 var him = me.getClosestEnemy()
 
-var weapon = me.getWeapons()[0]
+var weapon = me.weapons[0]
 System.print(weapon)
 
-var chip = me.getChips()[0]
+var chip = me.chips[0]
 System.print(chip)
 
-System.print(me.getWeapons())
+System.print(me.weapons)
 
 me.say("Salut !")
 
