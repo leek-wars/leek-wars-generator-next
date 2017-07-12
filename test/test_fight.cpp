@@ -16,7 +16,8 @@ void Test::test_fight() {
 
 void Test::test_generateCritical() {
 
-	header("generateCritical");
+	header("Fight > generateCritical");
+	Util::log_enabled = true;
 
 	Fight fight;
 	auto leek1 = new Leek(&fight, "Franklin", 297, nullptr);
@@ -34,20 +35,19 @@ void Test::test_generateCritical() {
 
 	delete leek1;
 	delete leek2;
-
-	std::cout << "OK" << std::endl;
 }
 
 void Test::test_fight_v1() {
 
-	header("Fight v1");
+	header("Fight > v1");
+	Util::log_enabled = false;
 
 	auto fight = FightLoader::load(manager, "test/fight/fight_v1.json");
 
 	// Run the fight
 	manager.start(*fight, [](Report* report) {
-		std::cout << "-------------- report ----------------" << std::endl;
-		std::cout << report << std::endl;
+		// std::cout << "-------------- report ----------------" << std::endl;
+		// std::cout << report << std::endl;
 
 		// run_fight_browser(report);
 
