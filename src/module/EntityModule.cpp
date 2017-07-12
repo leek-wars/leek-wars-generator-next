@@ -17,27 +17,26 @@ EntityModule::EntityModule() : Module("Entity") {
 
 	EntityModule::entity_clazz = this->clazz;
 
-	// TODO reorder fields
-	field("name", ls::Type::STRING);
-	field("cell", CellModule::type);
-	field("level", ls::Type::INTEGER);
-	field("talent", ls::Type::INTEGER);
-	field("life", ls::Type::INTEGER);
-	field("strength", ls::Type::INTEGER);
+	field("absoluteShield", ls::Type::INTEGER);
 	field("agility", ls::Type::INTEGER);
-	field("science", ls::Type::INTEGER);
-	field("resistance", ls::Type::INTEGER);
-	field("magic", ls::Type::INTEGER);
+	field("cell", CellModule::type);
+	field("chips", ChipModule::array_type);
+	field("damageReturn", ls::Type::INTEGER);
 	field("frequency", ls::Type::INTEGER);
-	field("tp", ls::Type::INTEGER);
+	field("level", ls::Type::INTEGER);
+	field("life", ls::Type::INTEGER);
+	field("name", ls::Type::STRING);
+	field("magic", ls::Type::INTEGER);
 	field("mp", ls::Type::INTEGER);
 	field("relativeShield", ls::Type::INTEGER);
-	field("absoluteShield", ls::Type::INTEGER);
-	field("totalTP", ls::Type::INTEGER);
+	field("resistance", ls::Type::INTEGER);
+	field("science", ls::Type::INTEGER);
+	field("strength", ls::Type::INTEGER);
+	field("talent", ls::Type::INTEGER);
 	field("totalMP", ls::Type::INTEGER);
-	field("damageReturn", ls::Type::INTEGER);
+	field("totalTP", ls::Type::INTEGER);
+	field("tp", ls::Type::INTEGER);
 	field("weapons", WeaponModule::array_type);
-	field("chips", ChipModule::array_type);
 
 	method("getAbsoluteShield", {{ls::Type::INTEGER, {EntityModule::type_ptr}, (void*) &Entity::getAbsoluteShield, ls::Method::NATIVE}});
 	method("getAgility", {{ls::Type::INTEGER, {EntityModule::type_ptr}, (void*) &Entity::getAgility, ls::Method::NATIVE}});
