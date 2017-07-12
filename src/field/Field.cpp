@@ -10,6 +10,7 @@
 #include "ConnexeMap.hpp"
 #include "../effect/Attack.hpp"
 #include "../entity/Team.hpp"
+#include "../colors.h"
 
 Field::Field(int width, int height, int obstacles_count, const std::vector<Team*>& teams) {
 
@@ -325,7 +326,7 @@ void Field::draw_path(const std::vector<const Cell*> path, const Cell* cell1, co
 			} else if (c == cell2) {
 				oss << "E ";
 			} else if (it != path.end()) {
-				oss << (char)('a' + (distance(path.begin(), it) % 26) ) << ' ';
+				oss << GREEN << "▓▓" << END_COLOR;
 			} else if (c->walkable) {
 				oss << "░░";
 			} else {
