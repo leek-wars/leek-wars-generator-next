@@ -30,8 +30,8 @@ void Test::test_generateCritical() {
 	characs2.set(Characteristic::AGILITY, 1000);
 	leek2->setCharacteristics(characs2);
 
-	assert(fight.generateCritical(leek1) == 0);
-	assert(fight.generateCritical(leek2) == 1);
+	test("fight.generateCritical(leek1)", fight.generateCritical(leek1), false);
+	test("fight.generateCritical(leek2)", fight.generateCritical(leek2), true);
 
 	delete leek1;
 	delete leek2;
