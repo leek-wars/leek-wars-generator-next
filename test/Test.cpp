@@ -68,7 +68,14 @@ void Test::test_ai(Fight* fight, Entity* entity, std::string code, std::string e
 	Simulator::entity = entity;
 	manager.vm.output = entity->debug_output;
 	manager.vm_v1.output = entity->debug_output;
-	auto actual = entity->ai->execute(manager.vm, manager.vm_v1);
+	std::string actual;
+	try {
+		actual = entity->ai->execute(manager.vm, manager.vm_v1);
+	} catch (ls::vm::ExceptionObj* ex) {
+		std::cout << "Exception thrown! " << ls::vm::ExceptionObj::exception_message(ex->type) << std::endl;
+		manager.vm.last_exception = nullptr;
+		manager.vm_v1.last_exception = nullptr;
+	}
 	test(code, expected, actual);
 }
 
