@@ -11,7 +11,10 @@ FieldModule::FieldModule() : Module("Field") {
 	static_field("cells", CellModule::array_type, (void*) &map_getCells);
 	static_field("type", ls::Type::INTEGER, (void*) &map_getType);
 
-	method("cell", ls::Method::Static, {{CellModule::type, {ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &map_cell, ls::Method::NATIVE}});
+	method("cell", ls::Method::Static, {
+		{CellModule::type, {ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &map_cell, ls::Method::NATIVE},
+		{CellModule::type, {ls::Type::INTEGER}, (void*) &map_cell1, ls::Method::NATIVE}
+	});
 	method("lineOfSight", ls::Method::Static, {{ls::Type::BOOLEAN, {CellModule::type, CellModule::type}, (void*) &map_lineOfSight, ls::Method::NATIVE}});
 	method("path", ls::Method::Static, {{CellModule::array_type, {CellModule::type, CellModule::type}, (void*) &map_getPath, ls::Method::NATIVE}});
 	method("distance", ls::Method::Static, {{ls::Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getDistance, ls::Method::NATIVE}});
@@ -44,6 +47,10 @@ FieldModule::~FieldModule() {}
 const Cell* map_cell(const int x, const int y) {
 	// TODO check null cell
 	return Simulator::fight->field->get_cell(x, y);
+}
+const Cell* map_cell1(const int id) {
+	// TODO check null cell
+	return Simulator::fight->field->get_cell(id);
 }
 
 int map_getCellContent(const Cell* cell) {

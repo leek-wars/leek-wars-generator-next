@@ -11,6 +11,7 @@ public:
 };
 
 const Cell* map_cell(const int x, const int y);
+const Cell* map_cell1(const int id);
 int map_getCellContent(const Cell* cell);
 bool map_lineOfSight(const Cell* cell1, const Cell* cell2);
 ls::LSArray<ls::LSValue*>* map_getPath(Cell* cell1, const Cell* cell2);
