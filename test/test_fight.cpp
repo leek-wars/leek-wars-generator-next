@@ -48,6 +48,7 @@ void Test::test_fight() {
 	test_ai(fight, entity, "Field.cell(0, -17)", "<Cell 0>");
 	test_ai(fight, entity, "let me = Fight.getEntity() Field.lineOfSight(me.cell, me.getClosestEnemy().cell).class", "<class Boolean>");
 	test_ai(fight, entity, "let path = Field.path(Fight.getEntity().cell, Field.cell(0, 0)) path.size() == 0 || path.first() == Fight.getEntity().cell", "true");
+	test_ai(fight, entity, "Field.cells.size()", "613");
 
 	header("Fight > movement");
 	test_ai(fight, entity, "var me = Fight.getEntity(), e = me.getClosestEnemy(), d = me.cell.distance(e.cell) me.moveToward(e) me.cell.distance(e.cell) <= d", "true");
