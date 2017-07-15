@@ -30,6 +30,7 @@ public:
 
 	void test_fight();
 	void test_fight_v1();
+	void test_censor();
 	void test_generateCritical();
 	void test_field();
 	void test_doc();

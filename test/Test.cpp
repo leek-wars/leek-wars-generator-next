@@ -32,6 +32,7 @@ void Test::tests() {
 	// Run tests
 	test_field();
 	test_generateCritical();
+	test_censor();
 	test_fight();
 	test_fight_v1();
 	test_doc();
