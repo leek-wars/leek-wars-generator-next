@@ -54,6 +54,7 @@ public:
 	Entity* getEntity() const;
 	int getX() const;
 	int getY() const;
+	int getId() const;
 
 	virtual ls::LSValue* getClass() const override;
 	virtual std::ostream& print(std::ostream& os) const override;

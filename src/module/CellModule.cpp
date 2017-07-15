@@ -14,22 +14,15 @@ CellModule::CellModule() : Module("Cell") {
 
 	CellModule::cell_clazz = this->clazz;
 
-	field("x", ls::Type::NUMBER);
-	field("y", ls::Type::NUMBER);
-	field("id", ls::Type::NUMBER);
-	field("entity", EntityModule::type);
-	field("obstacle", ls::Type::BOOLEAN_P);
-	field("walkable", ls::Type::BOOLEAN_P);
-	field("empty", ls::Type::BOOLEAN_P);
+	field("x", ls::Type::INTEGER, (void*) &Cell::getX);
+	field("y", ls::Type::INTEGER, (void*) &Cell::getY);
+	field("id", ls::Type::INTEGER, (void*) &Cell::getId);
+	field("entity", EntityModule::type, (void*) &Cell::getEntity);
+	field("obstacle", ls::Type::BOOLEAN, (void*) &Cell::isObstacle);
+	field("walkable", ls::Type::BOOLEAN, (void*) &Cell::isWalkable);
+	field("empty", ls::Type::BOOLEAN, (void*) &Cell::isEmpty);
 
-	method("isEmpty", {{ls::Type::BOOLEAN, {CellModule::type}, (void*) &Cell::isEmpty, ls::Method::NATIVE}});
-	method("hasEntity", {{ls::Type::BOOLEAN, {CellModule::type}, (void*) &Cell::hasEntity, ls::Method::NATIVE}});
-	method("isObstacle", {{ls::Type::BOOLEAN, {CellModule::type}, (void*) &Cell::isObstacle, ls::Method::NATIVE}});
-	method("isWalkable", {{ls::Type::BOOLEAN, {CellModule::type}, (void*) &Cell::isWalkable, ls::Method::NATIVE}});
 	method("distance", {{ls::Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &Cell::distance, ls::Method::NATIVE}});
-	method("getX", {{ls::Type::INTEGER, {CellModule::type}, (void*) &Cell::getX, ls::Method::NATIVE}});
-	method("getY", {{ls::Type::INTEGER, {CellModule::type}, (void*) &Cell::getY, ls::Method::NATIVE}});
-	method("getEntity", {{EntityModule::type, {CellModule::type}, (void*) &Cell::getEntity, ls::Method::NATIVE}});
 	method("isAligned", {{ls::Type::BOOLEAN, {CellModule::type, CellModule::type}, (void*) &Cell::isAligned, ls::Method::NATIVE}});
 
 	// v1 functions

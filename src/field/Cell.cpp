@@ -29,39 +29,17 @@ Cell::Cell(Field* field, int id, int x, int y) {
 		east = false;
 	}
 
-	this->values["id"] = ls::LSNumber::get(id);
-	this->values["id"]->native = true;
-	this->values["id"]->refs = 1;
-	this->values["x"] = ls::LSNumber::get(this->x);
-	this->values["x"]->native = true;
-	this->values["x"]->refs = 1;
-	this->values["y"] = ls::LSNumber::get(this->y);
-	this->values["y"]->native = true;
-	this->values["y"]->refs = 1;
-	this->values["obstacle"] = ls::LSBoolean::get(false);
-	this->values["walkable"] = ls::LSBoolean::get(true);
-	this->values["empty"] = ls::LSBoolean::get(true);
-	this->values["entity"] = ls::LSNull::get();
-
 	this->refs = 1;
 	this->native = true;
 	this->readonly = true;
 }
 
-Cell::~Cell() {
-	delete values["id"];
-	delete values["x"];
-	delete values["y"];
-	values.clear();
-}
+Cell::~Cell() {}
 
 void Cell::setObstacle(int id, int size) {
 	walkable = false;
 	obstacle = id;
 	obstacle_size = size;
-	this->values["obstacle"] = ls::LSBoolean::get(true);
-	this->values["walkable"] = ls::LSBoolean::get(false);
-	this->values["empty"] = ls::LSBoolean::get(false);
 }
 
 void Cell::setEntity(Entity* entity) {
@@ -70,14 +48,10 @@ void Cell::setEntity(Entity* entity) {
 	}
 	if (entity == nullptr) {
 		this->entity = nullptr;
-		this->values["empty"] = ls::LSBoolean::get(walkable);
-		this->values["entity"] = ls::LSNull::get();
 		return;
 	}
 	entity->setCell(this);
 	this->entity = entity;
-	this->values["empty"] = ls::LSBoolean::get(false);
-	this->values["entity"] = entity;
 }
 
 bool Cell::available() const {
@@ -129,6 +103,9 @@ int Cell::getX() const {
 }
 int Cell::getY() const {
 	return y;
+}
+int Cell::getId() const {
+	return id;
 }
 
 ls::LSValue* Cell::getClass() const {
