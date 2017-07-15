@@ -34,20 +34,10 @@ Entity::Entity(Fight* fight, std::string name, int level)
 	talent = 1000;
 	cell = nullptr;
 
-	auto name_val = new ls::LSString(name);
-	name_val->native = true;
-	name_val->refs = 1;
-	addField("name", name_val);
-	addField("cell", ls::LSNull::get());
-	weapons.refs = 10;
-
 	debug_output = new std::ostringstream();
 }
 
-Entity::~Entity() {
-	delete values["name"];
-	values.erase("name");
-}
+Entity::~Entity() {}
 
 bool Entity::isAlive() const {
 	return life > 0;
@@ -99,9 +89,6 @@ void Entity::setCell(Cell* cell) {
 		this->start_cell = cell;
 	}
 	this->cell = cell;
-	values["cell"] = (Cell*) cell;
-	values["cell"]->native = true;
-	values["cell"]->refs = 1;
 }
 
 Cell* Entity::getCell() {
@@ -112,14 +99,12 @@ void Entity::setWeapons(std::vector<Weapon*> weapons) {
 	this->weapons = std::vector<ls::LSValue*>(weapons.begin(), weapons.end());
 	this->weapons.native = true;
 	this->weapons.refs = 1;
-	values["weapons"] = &this->weapons;
 }
 
 void Entity::setChips(std::vector<Chip*> chips) {
 	this->chips = std::vector<ls::LSValue*>(chips.begin(), chips.end());
 	this->chips.native = true;
 	this->chips.refs = 1;
-	values["chips"] = &this->chips;
 }
 
 const Weapon* Entity::getWeapon() {
@@ -156,14 +141,8 @@ ls::LSArray<ls::LSValue*>* Entity::getChips() {
 
 void Entity::setCharacteristics(Characteristics characs) {
 	base_characs = characs;
-	updateCharacteristics();
 	total_life = characs.get(Characteristic::LIFE);
 	life = total_life;
-}
-
-void Entity::updateCharacteristics() {
-	values["life"] = ls::LSNumber::get(getLife());
-	values["strength"] = ls::LSNumber::get(getStrength());
 }
 
 void Entity::updateBonusCharacteristics() {
@@ -255,7 +234,7 @@ int Entity::getLevel() const {
 }
 
 ls::LSString* Entity::getName() const {
-	return (ls::LSString*) ((Entity*) this)->values["name"];
+	return new ls::LSString(name);
 }
 int Entity::getTalent() const {
 	return 1000;

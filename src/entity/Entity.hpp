@@ -107,7 +107,6 @@ public:
  	void removeLife(int life, Entity* attacker);
 	void setCharacteristics(Characteristics characs);
 	int getCharacteristic(Characteristic characteristic) const;
-	void updateCharacteristics();
 	void updateBonusCharacteristics();
 	void updateBonusCharacteristics(Characteristic charac);
 	int getTP() const;
