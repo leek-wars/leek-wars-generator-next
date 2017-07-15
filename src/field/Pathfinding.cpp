@@ -97,6 +97,7 @@ std::vector<const Cell*> Field::get_path(Cell* c1, std::vector<const Cell*> end_
 				result.push_back(u);
 				u = u->parent;
 			}
+			std::reverse(result.begin(), result.end());
 			return result;
 		}
 
