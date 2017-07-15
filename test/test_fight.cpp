@@ -39,8 +39,8 @@ void Test::test_fight() {
 
 	header("Fight > field");
 	test_ai(fight, entity, "Field", "<class Field>");
-	test_ai(fight, entity, "Field.obstacles().class", "<class Array>");
-	test_ai(fight, entity, "Field.obstacles().size() in [30..100]", "true");
+	test_ai(fight, entity, "Field.obstacles.class", "<class Array>");
+	test_ai(fight, entity, "Field.obstacles.size() in [30..100]", "true");
 	test_ai(fight, entity, "Field.cell(0, 0)", "<Cell 306>");
 	test_ai(fight, entity, "Field.cell(-17, 0)", "<Cell 595>");
 	test_ai(fight, entity, "Field.cell(17, 0)", "<Cell 17>");

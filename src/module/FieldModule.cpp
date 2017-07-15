@@ -7,13 +7,14 @@
 
 FieldModule::FieldModule() : Module("Field") {
 
+	static_field("obstacles", CellModule::array_type, (void*) &map_getObstacles);
+	static_field("type", ls::Type::INTEGER, (void*) &map_getType);
+
 	method("cell", ls::Method::Static, {{CellModule::type, {ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &map_cell, ls::Method::NATIVE}});
 	method("lineOfSight", ls::Method::Static, {{ls::Type::BOOLEAN, {CellModule::type, CellModule::type}, (void*) &map_lineOfSight, ls::Method::NATIVE}});
 	method("path", ls::Method::Static, {{CellModule::array_type, {CellModule::type, CellModule::type}, (void*) &map_getPath, ls::Method::NATIVE}});
 	method("distance", ls::Method::Static, {{ls::Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getDistance, ls::Method::NATIVE}});
 	method("straightDistance", ls::Method::Static, {{ls::Type::REAL, {CellModule::type}, (void*) &map_getStraightDistance, ls::Method::NATIVE}});
-	method("type", ls::Method::Static, {{ls::Type::INTEGER, {}, (void*) &map_getType, ls::Method::NATIVE}});
-	method("obstacles", ls::Method::Static, {{CellModule::array_type, {}, (void*) &map_getObstacles, ls::Method::NATIVE}});
 
 	// v1 functions
 	method("_getCellDistance", ls::Method::Static, {{ls::Type::INTEGER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getCellDistance, ls::Method::NATIVE}});
