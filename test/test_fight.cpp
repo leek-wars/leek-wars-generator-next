@@ -3,11 +3,13 @@
 
 void Test::test_fight() {
 
-	header("Fight > general");
+	header("Fight");
 	Util::log_enabled = false;
 
 	auto fight = FightLoader::load(manager, "test/fight/fight.json");
 	auto entity = fight->teams[0]->entities[0];
+
+	header("Fight > entity");
 	test_ai(fight, entity, "Fight.getEntity().name", "'Poireau'");
 	test_ai(fight, entity, "Fight.getEntity().life", "5000");
 	test_ai(fight, entity, "Fight.getEntity().tp", "12");
@@ -31,6 +33,10 @@ void Test::test_fight() {
 	test_ai(fight, entity, "Fight.getEntity().wisdom", "0");
 	test_ai(fight, entity, "Fight.getEntity().agility", "0");
 
+	header("Fight > fight functions");
+	test_ai(fight, entity, "Fight.getEntity().getClosestEnemy().name in ['Bob', 'Boss', 'Donald']", "true");
+	test_ai(fight, entity, "Fight.getEntity().getClosestAlly().name", "'Yolo'");
+
 	header("Fight > field");
 	test_ai(fight, entity, "Field", "<class Field>");
 	test_ai(fight, entity, "Field.obstacles().class", "<class Array>");
@@ -41,6 +47,10 @@ void Test::test_fight() {
 	test_ai(fight, entity, "Field.cell(0, 17)", "<Cell 612>");
 	test_ai(fight, entity, "Field.cell(0, -17)", "<Cell 0>");
 	test_ai(fight, entity, "let me = Fight.getEntity() Field.lineOfSight(me.cell, me.getClosestEnemy().cell).class", "<class Boolean>");
+	test_ai(fight, entity, "let path = Field.path(Fight.getEntity().cell, Field.cell(0, 0)) path.size() == 0 || path.first() == Fight.getEntity().cell", "true");
+
+	header("Fight > movement");
+	test_ai(fight, entity, "var me = Fight.getEntity(), e = me.getClosestEnemy(), d = me.cell.distance(e.cell) me.moveToward(e, 100) me.cell.distance(e.cell) <= d", "true");
 }
 
 void Test::test_generateCritical() {
