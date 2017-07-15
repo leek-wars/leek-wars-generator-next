@@ -52,7 +52,12 @@ EntityModule::EntityModule() : Module("Entity") {
 	method("getFarthestEnemy", {{EntityModule::type_ptr, {EntityModule::type_ptr}, (void*) &Entity::get_farthest_enemy, ls::Method::NATIVE}});
 	method("isAlly", {{ls::Type::BOOLEAN, {EntityModule::type_ptr}, (void*) &Entity::isAlly, ls::Method::NATIVE}});
 	method("isEnemy", {{ls::Type::BOOLEAN, {EntityModule::type_ptr}, (void*) &Entity::isEnemy, ls::Method::NATIVE}});
-	method("moveToward", {{ls::Type::INTEGER, {EntityModule::type_ptr, EntityModule::type_ptr, ls::Type::INTEGER}, (void*) &Entity::moveTowardMP, ls::Method::NATIVE}});
+	method("moveToward", {
+		{ls::Type::INTEGER, {EntityModule::type_ptr, EntityModule::type_ptr, ls::Type::INTEGER}, (void*) &Entity::moveTowardMP, ls::Method::NATIVE},
+		{ls::Type::INTEGER, {EntityModule::type_ptr, EntityModule::type_ptr}, (void*) &Entity::moveToward, ls::Method::NATIVE},
+		{ls::Type::INTEGER, {EntityModule::type_ptr, CellModule::type, ls::Type::INTEGER}, (void*) &Entity::moveTowardCellMP, ls::Method::NATIVE},
+		{ls::Type::INTEGER, {EntityModule::type_ptr, CellModule::type}, (void*) &Entity::moveTowardCell, ls::Method::NATIVE},
+	});
 	method("useChip", {{ls::Type::INTEGER, {EntityModule::type_ptr, ChipModule::type, EntityModule::type_ptr}, (void*) &Entity::useChip, ls::Method::NATIVE}});
 	method("useWeapon", {{ls::Type::INTEGER, {EntityModule::type_ptr, EntityModule::type_ptr}, (void*) &Entity::useWeapon, ls::Method::NATIVE}});
 	method("say", {{ls::Type::BOOLEAN, {EntityModule::type_ptr, ls::Type::POINTER}, (void*) &Entity::say, ls::Method::NATIVE}});

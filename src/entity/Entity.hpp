@@ -136,6 +136,8 @@ public:
 	int move(const std::vector<const Cell*> path);
 	int moveToward(Entity* target);
 	int moveTowardMP(Entity* target, int max_mp);
+	int moveTowardCell(Cell* target);
+	int moveTowardCellMP(Cell* target, int max_mp);
 	int useChip(Chip* chip, Entity* target);
 	int useChipOnCell(Chip* chip, Cell* cell);
 	int useWeapon(Entity* target);

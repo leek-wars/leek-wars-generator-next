@@ -468,11 +468,23 @@ int Entity::moveTowardMP(Entity* target, int max_mp) {
 	LOG << name << " (" << id << ") move toward " << target->name << " (" << target->id << ")" << std::endl;
 
 	if (target == nullptr or target->isDead()) return 0;
+
+	return moveTowardCellMP(target->cell, max_mp);
+}
+
+int Entity::moveTowardCell(Cell* target) {
+	return moveTowardCellMP(target, getMP());
+}
+
+int Entity::moveTowardCellMP(Cell* target, int max_mp) {
+
+	LOG << name << " (" << id << ") move toward " << target->id << std::endl;
+
 	if (max_mp <= 0 or getMP() <= 0) return 0;
 
 	int mp = max_mp == -1 ? getMP() : std::min(getMP(), max_mp);
 
-	auto path = fight->field->get_path_between(cell, target->cell, {});
+	auto path = fight->field->get_path_between(cell, target, {});
 	if (path.size() == 0) {
 		return 0;
 	}
