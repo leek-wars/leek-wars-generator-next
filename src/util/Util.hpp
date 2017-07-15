@@ -24,6 +24,7 @@ public:
 
 	static std::vector<std::string> split(const std::string& string, char separator);
 	static std::string toupper(const std::string& string);
+	static std::string tolower(const std::string& string);
 
 	template <typename T>
 	static bool contains(const std::vector<T>& vector, const T& element);

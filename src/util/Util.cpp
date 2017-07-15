@@ -42,6 +42,14 @@ std::string Util::toupper(const std::string& string) {
 	return result;
 }
 
+std::string Util::tolower(const std::string& string) {
+	std::string result = string;
+	std::for_each(result.begin(), result.end(), [](char& in) {
+		in = ::tolower(in);
+	});
+	return result;
+}
+
 template <typename T>
 bool Util::contains(const std::vector<T>& vector, const T& element) {
 	return find(vector.begin(), vector.end(), element) != vector.end();
