@@ -104,7 +104,7 @@ std::vector<const Cell*> Field::get_path(Cell* c1, std::vector<const Cell*> end_
 		for (auto& c : get_cells_around(u)) {
 
 			if (c->closed) continue;
-			if (c->entity != nullptr and find(ignored.begin(), ignored.end(), c) == ignored.end()) continue;
+			if (c->entity != nullptr and find(ignored.begin(), ignored.end(), c) == ignored.end() and find(end_cells.begin(), end_cells.end(), c) == end_cells.end()) continue;
 
 			if (!c->visited or u->cost + 1 < c->cost) {
 				c->cost = u->cost + 1;
