@@ -80,6 +80,9 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 		constant->native = true;
 		vm_v1.add_constant(Util::toupper("chip_" + c.first), ls::Type::NUMBER, constant);
 	}
+
+	// Load forbidden words
+	censor.load("data/forbidden_words.txt");
 }
 
 std::string FightManager::compile(std::string ai) {

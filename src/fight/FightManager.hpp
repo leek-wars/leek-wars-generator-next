@@ -6,6 +6,7 @@
 #include "../fight/Fight.hpp"
 #include <functional>
 #include <chrono>
+#include "../entity/Censor.hpp"
 
 class FightManager {
 public:
@@ -21,6 +22,7 @@ public:
 	std::map<std::string, Weapon*> weapons;
 	std::map<std::string, Chip*> chips;
 	Fight* fight;
+	Censor censor;
 
 	std::string compile(std::string ai);
 	void start(Fight& fight, std::function<void(Report*)> callback);
