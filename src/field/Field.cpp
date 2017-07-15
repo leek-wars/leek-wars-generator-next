@@ -37,6 +37,9 @@ Field::Field(int width, int height, int obstacles_count, const std::vector<Team*
 			coord[cell->x - min_x][cell->y - min_y] = cell;
 		}
 	}
+	std::sort(cells.begin(), cells.end(), [](const Cell* a, const Cell* b) {
+		return a->id < b->id;
+	});
 	generate(obstacles_count, teams);
 
 	LOG << "Map generated: " << cells.size() << " cells, " << obstacles.size() << " obstacles" << std::endl;
