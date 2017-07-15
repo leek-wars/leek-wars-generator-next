@@ -46,6 +46,10 @@ void Test::test_fight() {
 	test_ai(fight, entity, "Field.cell(17, 0)", "<Cell 17>");
 	test_ai(fight, entity, "Field.cell(0, 17)", "<Cell 612>");
 	test_ai(fight, entity, "Field.cell(0, -17)", "<Cell 0>");
+	test_ai(fight, entity, "Field.cell(306).x", "0");
+	test_ai(fight, entity, "Field.cell(595).x", "-17");
+	test_ai(fight, entity, "Field.cell(17).y", "0");
+	test_ai(fight, entity, "Field.cell(612).y", "17");
 	test_ai(fight, entity, "let me = Fight.getEntity() Field.lineOfSight(me.cell, me.getClosestEnemy().cell).class", "<class Boolean>");
 	test_ai(fight, entity, "let path = Field.path(Fight.getEntity().cell, Field.cell(0, 0)) path.size() == 0 || path.first() == Fight.getEntity().cell", "true");
 	test_ai(fight, entity, "Field.cells.size()", "613");
