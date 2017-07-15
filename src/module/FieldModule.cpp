@@ -8,6 +8,7 @@
 FieldModule::FieldModule() : Module("Field") {
 
 	static_field("obstacles", CellModule::array_type, (void*) &map_getObstacles);
+	static_field("cells", CellModule::array_type, (void*) &map_getCells);
 	static_field("type", ls::Type::INTEGER, (void*) &map_getType);
 
 	method("cell", ls::Method::Static, {{CellModule::type, {ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &map_cell, ls::Method::NATIVE}});
@@ -85,6 +86,14 @@ ls::LSArray<ls::LSValue*>* map_getObstacles() {
 		obstacles->push_back(c);
 	}
 	return obstacles;
+}
+
+ls::LSArray<ls::LSValue*>* map_getCells() {
+	auto cells = new ls::LSArray<ls::LSValue*>();
+	for (auto& c : Simulator::fight->field->cells) {
+		cells->push_back(c);
+	}
+	return cells;
 }
 
 int map_getDistance(const Cell* cell1, const Cell* cell2) {

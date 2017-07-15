@@ -17,6 +17,7 @@ ls::LSArray<ls::LSValue*>* map_getPath(Cell* cell1, const Cell* cell2);
 int map_getPathLength(Cell* cell1, const Cell* cell2);
 int map_getType();
 ls::LSArray<ls::LSValue*>* map_getObstacles();
+ls::LSArray<ls::LSValue*>* map_getCells();
 int map_getDistance(const Cell* cell1, const Cell* cell2);
 double map_getStraightDistance(const Cell* cell1, const Cell* cell2);
 
