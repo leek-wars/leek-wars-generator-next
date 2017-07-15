@@ -73,6 +73,7 @@ void Test::test_ai(Fight* fight, Entity* entity, std::string code, std::string e
 	Simulator::entity = entity;
 	manager.vm.output = entity->debug_output;
 	manager.vm_v1.output = entity->debug_output;
+	fight->manager = &manager;
 	std::string actual;
 	try {
 		actual = entity->ai->execute(manager.vm, manager.vm_v1);

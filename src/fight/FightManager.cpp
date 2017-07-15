@@ -114,6 +114,7 @@ void FightManager::start(Fight& fight, std::function<void(Report*)> callback) {
 	this->start_time = std::chrono::high_resolution_clock::now();
 	this->fight = &fight;
 	this->callback = callback;
+	fight.manager = this;
 	FightManager::current = this;
 
 	// Register a segfault catcher

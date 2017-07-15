@@ -12,6 +12,7 @@ class Chip;
 class Cell;
 #include "../action/Actions.hpp"
 #include "Statistics.hpp"
+class FightManager;
 
 class Fight {
 public:
@@ -27,6 +28,7 @@ public:
 	Statistics statistics;
 	int type;
 	int context;
+	FightManager* manager;
 
 	Fight();
 	virtual ~Fight();

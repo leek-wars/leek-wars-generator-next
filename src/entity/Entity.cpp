@@ -424,13 +424,10 @@ bool Entity::say(const LSValue* message) {
 	message->print(oss);
 
 	std::string msg = oss.str();
-
 	if (msg.size() > 500) {
 		msg = msg.substr(0, 500);
 	}
-
-	// TODO Censor say string
-	// msg = Censorship.checkString(message);
+	msg = fight->manager->censor.censor(msg);
 
 	fight->actions.add(new ActionSay(this, msg));
 	useTP(1);
