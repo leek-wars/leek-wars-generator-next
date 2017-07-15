@@ -1,5 +1,6 @@
 #include "Field.hpp"
 #include "../effect/Attack.hpp"
+#include "../util/Util.hpp"
 
 bool Field::line_of_sight(const Cell* start, const Cell* end) const {
 
@@ -59,12 +60,14 @@ std::vector<const Cell*> Field::get_path_between(Cell* start, const Cell* end, s
 
 std::vector<const Cell*> Field::get_path(Cell* c1, std::vector<const Cell*> end_cells, std::vector<const Cell*> ignored) const {
 
+	LOG << "Find path between " << c1->id << " and " << end_cells.at(0)->id << std::endl;
+
 	if (c1 == nullptr or end_cells.size() == 0) {
-		// cout << "[path] invalid cells" << endl;
+		LOG << "Invalid cells" << std::endl;
 		return {};
 	}
 	if (find(end_cells.begin(), end_cells.end(), c1) != end_cells.end()) {
-		// cout << "[path] already arrived" << endl;
+		LOG << "Already arrived" << std::endl;
 		return {};
 	}
 
@@ -98,6 +101,7 @@ std::vector<const Cell*> Field::get_path(Cell* c1, std::vector<const Cell*> end_
 				u = u->parent;
 			}
 			std::reverse(result.begin(), result.end());
+			LOG << "Path found: " << result.size() << std::endl;
 			return result;
 		}
 
@@ -118,6 +122,6 @@ std::vector<const Cell*> Field::get_path(Cell* c1, std::vector<const Cell*> end_
 			}
 		}
 	}
-	// cout << "[path] no path found!" << endl;
+	LOG_W << "No path found!" << std::endl;
 	return {};
 }
