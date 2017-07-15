@@ -50,7 +50,10 @@ void Test::test_fight() {
 	test_ai(fight, entity, "let path = Field.path(Fight.getEntity().cell, Field.cell(0, 0)) path.size() == 0 || path.first() == Fight.getEntity().cell", "true");
 
 	header("Fight > movement");
+	test_ai(fight, entity, "var me = Fight.getEntity(), e = me.getClosestEnemy(), d = me.cell.distance(e.cell) me.moveToward(e) me.cell.distance(e.cell) <= d", "true");
 	test_ai(fight, entity, "var me = Fight.getEntity(), e = me.getClosestEnemy(), d = me.cell.distance(e.cell) me.moveToward(e, 100) me.cell.distance(e.cell) <= d", "true");
+	test_ai(fight, entity, "var me = Fight.getEntity(), c = Field.cell(0, 0), d = me.cell.distance(c) me.moveToward(c, 100) me.cell.distance(c) <= d", "true");
+	test_ai(fight, entity, "var me = Fight.getEntity(), c = Field.cell(0, 0), d = me.cell.distance(c) me.moveToward(c) me.cell.distance(c) <= d", "true");
 }
 
 void Test::test_generateCritical() {
