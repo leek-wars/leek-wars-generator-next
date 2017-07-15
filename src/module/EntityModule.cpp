@@ -9,8 +9,7 @@
 #include "../item/Chip.hpp"
 
 const ls::LSClass* EntityModule::entity_clazz;
-const EntityType* const EntityModule::type = new EntityType();
-const ls::Type EntityModule::type_ptr(EntityModule::type, ls::Nature::POINTER, true);
+const ls::Type EntityModule::type(new EntityType(), ls::Nature::POINTER, true);
 const ls::Type EntityModule::array_type(ls::RawType::ARRAY, ls::Nature::POINTER, EntityModule::type);
 
 EntityModule::EntityModule() : Module("Entity") {
@@ -40,30 +39,30 @@ EntityModule::EntityModule() : Module("Entity") {
 	field("weapons", WeaponModule::array_type, (void*) &Entity::getWeapons);
 	field("wisdom", ls::Type::INTEGER, (void*) &Entity::getWisdom);
 
-	method("getAliveAllies", {{EntityModule::array_type, {EntityModule::type_ptr}, (void*) &Entity::get_alive_allies, ls::Method::NATIVE}});
-	method("getAliveEnemies", {{EntityModule::array_type, {EntityModule::type_ptr}, (void*) &Entity::get_alive_enemies, ls::Method::NATIVE}});
-	method("getAllies", {{EntityModule::array_type, {EntityModule::type_ptr}, (void*) &Entity::get_allies, ls::Method::NATIVE}});
-	method("getClosestAlly", {{EntityModule::type_ptr, {EntityModule::type_ptr}, (void*) &Entity::get_closest_ally, ls::Method::NATIVE}});
-	method("getClosestEnemy", {{EntityModule::type_ptr, {EntityModule::type_ptr}, (void*) &Entity::get_closest_enemy, ls::Method::NATIVE}});
-	method("getDeadAllies", {{EntityModule::array_type, {EntityModule::type_ptr}, (void*) &Entity::get_alive_allies, ls::Method::NATIVE}});
-	method("getDeadEnemies", {{EntityModule::array_type, {EntityModule::type_ptr}, (void*) &Entity::get_alive_enemies, ls::Method::NATIVE}});
-	method("getEnemies", {{EntityModule::array_type, {EntityModule::type_ptr}, (void*) &Entity::get_enemies, ls::Method::NATIVE}});
-	method("getFarthestAlly", {{EntityModule::type_ptr, {EntityModule::type_ptr}, (void*) &Entity::get_farthest_ally, ls::Method::NATIVE}});
-	method("getFarthestEnemy", {{EntityModule::type_ptr, {EntityModule::type_ptr}, (void*) &Entity::get_farthest_enemy, ls::Method::NATIVE}});
-	method("isAlly", {{ls::Type::BOOLEAN, {EntityModule::type_ptr}, (void*) &Entity::isAlly, ls::Method::NATIVE}});
-	method("isEnemy", {{ls::Type::BOOLEAN, {EntityModule::type_ptr}, (void*) &Entity::isEnemy, ls::Method::NATIVE}});
+	method("getAliveAllies", {{EntityModule::array_type, {EntityModule::type}, (void*) &Entity::get_alive_allies, ls::Method::NATIVE}});
+	method("getAliveEnemies", {{EntityModule::array_type, {EntityModule::type}, (void*) &Entity::get_alive_enemies, ls::Method::NATIVE}});
+	method("getAllies", {{EntityModule::array_type, {EntityModule::type}, (void*) &Entity::get_allies, ls::Method::NATIVE}});
+	method("getClosestAlly", {{EntityModule::type, {EntityModule::type}, (void*) &Entity::get_closest_ally, ls::Method::NATIVE}});
+	method("getClosestEnemy", {{EntityModule::type, {EntityModule::type}, (void*) &Entity::get_closest_enemy, ls::Method::NATIVE}});
+	method("getDeadAllies", {{EntityModule::array_type, {EntityModule::type}, (void*) &Entity::get_alive_allies, ls::Method::NATIVE}});
+	method("getDeadEnemies", {{EntityModule::array_type, {EntityModule::type}, (void*) &Entity::get_alive_enemies, ls::Method::NATIVE}});
+	method("getEnemies", {{EntityModule::array_type, {EntityModule::type}, (void*) &Entity::get_enemies, ls::Method::NATIVE}});
+	method("getFarthestAlly", {{EntityModule::type, {EntityModule::type}, (void*) &Entity::get_farthest_ally, ls::Method::NATIVE}});
+	method("getFarthestEnemy", {{EntityModule::type, {EntityModule::type}, (void*) &Entity::get_farthest_enemy, ls::Method::NATIVE}});
+	method("isAlly", {{ls::Type::BOOLEAN, {EntityModule::type}, (void*) &Entity::isAlly, ls::Method::NATIVE}});
+	method("isEnemy", {{ls::Type::BOOLEAN, {EntityModule::type}, (void*) &Entity::isEnemy, ls::Method::NATIVE}});
 	method("moveToward", {
-		{ls::Type::INTEGER, {EntityModule::type_ptr, EntityModule::type_ptr, ls::Type::INTEGER}, (void*) &Entity::moveTowardMP, ls::Method::NATIVE},
-		{ls::Type::INTEGER, {EntityModule::type_ptr, EntityModule::type_ptr}, (void*) &Entity::moveToward, ls::Method::NATIVE},
-		{ls::Type::INTEGER, {EntityModule::type_ptr, CellModule::type, ls::Type::INTEGER}, (void*) &Entity::moveTowardCellMP, ls::Method::NATIVE},
-		{ls::Type::INTEGER, {EntityModule::type_ptr, CellModule::type}, (void*) &Entity::moveTowardCell, ls::Method::NATIVE},
+		{ls::Type::INTEGER, {EntityModule::type, EntityModule::type, ls::Type::INTEGER}, (void*) &Entity::moveTowardMP, ls::Method::NATIVE},
+		{ls::Type::INTEGER, {EntityModule::type, EntityModule::type}, (void*) &Entity::moveToward, ls::Method::NATIVE},
+		{ls::Type::INTEGER, {EntityModule::type, CellModule::type, ls::Type::INTEGER}, (void*) &Entity::moveTowardCellMP, ls::Method::NATIVE},
+		{ls::Type::INTEGER, {EntityModule::type, CellModule::type}, (void*) &Entity::moveTowardCell, ls::Method::NATIVE},
 	});
-	method("useChip", {{ls::Type::INTEGER, {EntityModule::type_ptr, ChipModule::type, EntityModule::type_ptr}, (void*) &Entity::useChip, ls::Method::NATIVE}});
-	method("useWeapon", {{ls::Type::INTEGER, {EntityModule::type_ptr, EntityModule::type_ptr}, (void*) &Entity::useWeapon, ls::Method::NATIVE}});
-	method("say", {{ls::Type::BOOLEAN, {EntityModule::type_ptr, ls::Type::POINTER}, (void*) &Entity::say, ls::Method::NATIVE}});
+	method("useChip", {{ls::Type::INTEGER, {EntityModule::type, ChipModule::type, EntityModule::type}, (void*) &Entity::useChip, ls::Method::NATIVE}});
+	method("useWeapon", {{ls::Type::INTEGER, {EntityModule::type, EntityModule::type}, (void*) &Entity::useWeapon, ls::Method::NATIVE}});
+	method("say", {{ls::Type::BOOLEAN, {EntityModule::type, ls::Type::POINTER}, (void*) &Entity::say, ls::Method::NATIVE}});
 	method("setWeapon", {
-		{ls::Type::NULLL, {EntityModule::type_ptr, WeaponModule::type}, (void*) &entity_setWeapon, ls::Method::NATIVE},
-		{ls::Type::NULLL, {EntityModule::type_ptr, ls::Type::INTEGER}, (void*) &Entity::setWeaponInteger, ls::Method::NATIVE}
+		{ls::Type::NULLL, {EntityModule::type, WeaponModule::type}, (void*) &entity_setWeapon, ls::Method::NATIVE},
+		{ls::Type::NULLL, {EntityModule::type, ls::Type::INTEGER}, (void*) &Entity::setWeaponInteger, ls::Method::NATIVE}
 	});
 
 	/*

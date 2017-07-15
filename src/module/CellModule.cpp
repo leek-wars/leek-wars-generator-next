@@ -17,7 +17,7 @@ CellModule::CellModule() : Module("Cell") {
 	field("x", ls::Type::NUMBER);
 	field("y", ls::Type::NUMBER);
 	field("id", ls::Type::NUMBER);
-	field("entity", EntityModule::type_ptr);
+	field("entity", EntityModule::type);
 	field("obstacle", ls::Type::BOOLEAN_P);
 	field("walkable", ls::Type::BOOLEAN_P);
 	field("empty", ls::Type::BOOLEAN_P);
@@ -29,7 +29,7 @@ CellModule::CellModule() : Module("Cell") {
 	method("distance", {{ls::Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &Cell::distance, ls::Method::NATIVE}});
 	method("getX", {{ls::Type::INTEGER, {CellModule::type}, (void*) &Cell::getX, ls::Method::NATIVE}});
 	method("getY", {{ls::Type::INTEGER, {CellModule::type}, (void*) &Cell::getY, ls::Method::NATIVE}});
-	method("getEntity", {{EntityModule::type_ptr, {CellModule::type}, (void*) &Cell::getEntity, ls::Method::NATIVE}});
+	method("getEntity", {{EntityModule::type, {CellModule::type}, (void*) &Cell::getEntity, ls::Method::NATIVE}});
 	method("isAligned", {{ls::Type::BOOLEAN, {CellModule::type, CellModule::type}, (void*) &Cell::isAligned, ls::Method::NATIVE}});
 
 	// v1 functions

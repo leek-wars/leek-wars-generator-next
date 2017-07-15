@@ -23,7 +23,7 @@ FightModule::FightModule() : Module("Fight") {
 
 	method("getTurn", ls::Method::Static, {{ls::Type::INTEGER, {}, (void*) &fight_getTurn}});
 	method("getEntity", ls::Method::Static, {
-		{EntityModule::type_ptr, {}, (void*) &fight_getEntity, ls::Method::NATIVE}
+		{EntityModule::type, {}, (void*) &fight_getEntity, ls::Method::NATIVE}
 	});
 	method("getType", ls::Method::Static, {{ls::Type::INTEGER, {}, (void*) &fight_getType}});
 	method("getContext", ls::Method::Static, {{ls::Type::INTEGER, {}, (void*) &fight_getContext}});
