@@ -20,6 +20,7 @@
 Fight::Fight() : actions(this) {
 	field = nullptr;
 	Entity::next_id = 0;
+	trophy_manager.fight = this;
 }
 
 Fight::~Fight() {

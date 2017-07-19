@@ -13,6 +13,7 @@ class Cell;
 #include "../action/Actions.hpp"
 #include "Statistics.hpp"
 class FightManager;
+#include "TrophyManager.hpp"
 
 class Fight {
 public:
@@ -28,6 +29,7 @@ public:
 	int type;
 	int context;
 	FightManager* manager;
+	TrophyManager trophy_manager;
 
 	Fight();
 	virtual ~Fight();
