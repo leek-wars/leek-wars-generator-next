@@ -61,7 +61,7 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 	// Add V1 methods (starting by '_')
 	for (auto& method : entity_module->clazz->static_methods) {
 		if (method.first.at(0) == '_') {
-			auto fun = new ls::LSFunction<ls::LSValue*>(method.second[0].addr);
+			auto fun = new ls::LSFunction(method.second[0].addr);
 			fun->refs = 1;
 			fun->native = true;
 			vm_v1.add_constant(method.first.substr(1), method.second[0].type, fun);
