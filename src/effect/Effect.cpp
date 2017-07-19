@@ -18,6 +18,7 @@
 #include "EffectBuffAgility.hpp"
 #include "EffectBuffTP.hpp"
 #include "EffectBuffMP.hpp"
+#include "EffectDebuff.hpp"
 
 Effect::Effect() {
 	native = true;
@@ -100,6 +101,7 @@ Effect* Effect::construct(EffectType type) {
 		case EffectType::BUFF_AGILITY: return new EffectBuffAgility();
 		case EffectType::BUFF_TP: return new EffectBuffTP();
 		case EffectType::BUFF_MP: return new EffectBuffMP();
+		case EffectType::DEBUFF: return new EffectDebuff();
 		default:
 			LOG_E << "No such effect!" << std::endl;
 			assert(false or "No such effect!");
