@@ -22,7 +22,6 @@ public:
 	std::unique_ptr<Field> field;
 	std::vector<Team*> teams;
 	std::map<int, Entity*> entities;
-	int turn;
 	Order order;
 	Actions actions;
 	Statistics statistics;
@@ -37,6 +36,7 @@ public:
 	Report* crash();
 
 	Entity* getEntity(int id);
+	int turn();
 
 	int moveEntity(Entity* entity, const std::vector<const Cell*> path);
 

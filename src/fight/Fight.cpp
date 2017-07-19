@@ -19,7 +19,6 @@
 
 Fight::Fight() : actions(this) {
 	field = nullptr;
-	turn = 0;
 	Entity::next_id = 0;
 }
 
@@ -93,6 +92,10 @@ Entity* Fight::getEntity(int id) {
 	} catch (std::exception& e) {
 		return nullptr;
 	}
+}
+
+int Fight::turn() {
+	return order.turn;
 }
 
 bool Fight::hasCooldown(const Entity* entity, const Chip* chip) const {

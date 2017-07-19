@@ -32,7 +32,7 @@ FightModule::FightModule() : Module("Fight") {
 FightModule::~FightModule() {}
 
 int fight_getTurn() {
-	return Simulator::fight->turn;
+	return Simulator::fight->turn();
 }
 
 Entity* fight_getEntity() {
