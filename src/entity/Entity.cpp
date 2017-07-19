@@ -83,6 +83,10 @@ void Entity::addLife(int l) {
 	life += l;
 }
 
+void Entity::addMaximumLife(int l) {
+	total_life += l;
+}
+
 void Entity::setCell(Cell* cell) {
 	//cout << "set cell " << endl;
 	if (this->cell == nullptr) {
@@ -174,7 +178,7 @@ int Entity::getLife() const {
 }
 
 int Entity::getTotalLife() const {
-	return getCharacteristic(Characteristic::LIFE);
+	return total_life;
 }
 
 int Entity::getResistance() const {

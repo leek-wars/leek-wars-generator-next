@@ -104,6 +104,7 @@ public:
 	 * Characteristics
 	 */
  	void addLife(int l);
+	void addMaximumLife(int l);
  	void removeLife(int life, Entity* attacker);
 	void setCharacteristics(Characteristics characs);
 	int getCharacteristic(Characteristic characteristic) const;
