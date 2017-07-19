@@ -155,6 +155,7 @@ public:
 	void addLaunchedEffect(Effect* effect);
 	void removeEffect(Effect* effect);
 	void remove_launched_effect(Effect* effect);
+	void clear_effects();
 	void clear_poisons();
 
 	/*

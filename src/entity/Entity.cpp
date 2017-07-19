@@ -514,6 +514,15 @@ void Entity::remove_launched_effect(Effect* effect) {
 	}
 }
 
+void Entity::clear_effects() {
+	for (size_t i = 0; i < effects.size(); ++i) {
+		auto effect = (Effect*) effects[i];
+		effect->caster->remove_launched_effect(effect);
+		removeEffect(effect);
+		i--;
+	}
+}
+
 void Entity::clear_poisons() {
 	for (size_t i = 0; i < effects.size(); ++i) {
 		auto effect = (Effect*) effects[i];
