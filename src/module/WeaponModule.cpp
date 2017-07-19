@@ -3,6 +3,7 @@
 
 const ls::LSClass* WeaponModule::weapon_clazz;
 const ls::Type WeaponModule::type(new WeaponType(), ls::Nature::POINTER, true);
+const ls::Type WeaponModule::const_type(new WeaponType(), ls::Nature::POINTER, true, false, true);
 const ls::Type WeaponModule::array_type(ls::RawType::ARRAY, ls::Nature::POINTER, WeaponModule::type, true);
 
 jit_value_t Weapon_PISTOL(jit_function_t F) { return LS_CREATE_INTEGER(F, 37); }
