@@ -20,7 +20,9 @@ public:
 	virtual ~EntityModule();
 
 	static const ls::LSClass* entity_clazz;
+	static const EntityType* raw_type;
 	static const ls::Type type;
+	static const ls::Type const_type;
 	static const ls::Type array_type;
 };
 
