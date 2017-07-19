@@ -23,6 +23,7 @@
 #include "EffectPermutation.hpp"
 #include "EffectVitality.hpp"
 #include "EffectSummon.hpp"
+#include "EffectResurrect.hpp"
 
 Effect::Effect() {
 	native = true;
@@ -110,6 +111,7 @@ Effect* Effect::construct(EffectType type) {
 		case EffectType::PERMUTATION: return new EffectPermutation();
 		case EffectType::VITALITY: return new EffectVitality();
 		case EffectType::SUMMON: return new EffectSummon();
+		case EffectType::RESURRECT: return new EffectResurrect();
 		default:
 			LOG_E << "No such effect!" << std::endl;
 			assert(false or "No such effect!");
