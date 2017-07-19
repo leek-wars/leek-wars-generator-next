@@ -17,8 +17,8 @@ ChipModule::ChipModule(const FightManager& manager) : Module("Chip") {
 		});
 	}
 
-	field("id", ls::Type::NUMBER);
-	field("cost", ls::Type::NUMBER);
+	field("id", ls::Type::NUMBER_P);
+	field("cost", ls::Type::NUMBER_P);
 	field("name", ls::Type::STRING);
 
 	/*

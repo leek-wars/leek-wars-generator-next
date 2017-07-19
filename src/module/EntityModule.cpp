@@ -223,8 +223,8 @@ EntityModule::EntityModule() : Module("Entity") {
 	method("_listen", ls::Method::Static, {{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__listen}});
 	method("_moveToward", ls::Method::Static, {{ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &entity__moveToward}});
 	method("_say", ls::Method::Static, {{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__say}});
-	method("_setWeapon", ls::Method::Static, {{ls::Type::BOOLEAN, {ls::Type::NUMBER}, (void*) &entity__setWeapon}});
-	method("_useWeapon", ls::Method::Static, {{ls::Type::INTEGER, {ls::Type::NUMBER}, (void*) &entity__useWeapon}});
+	method("_setWeapon", ls::Method::Static, {{ls::Type::BOOLEAN, {ls::Type::NUMBER_P}, (void*) &entity__setWeapon}});
+	method("_useWeapon", ls::Method::Static, {{ls::Type::INTEGER, {ls::Type::NUMBER_P}, (void*) &entity__useWeapon}});
 }
 
 EntityModule::~EntityModule() {}
