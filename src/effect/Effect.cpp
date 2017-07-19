@@ -19,6 +19,7 @@
 #include "EffectBuffTP.hpp"
 #include "EffectBuffMP.hpp"
 #include "EffectDebuff.hpp"
+#include "EffectTeleport.hpp"
 
 Effect::Effect() {
 	native = true;
@@ -102,6 +103,7 @@ Effect* Effect::construct(EffectType type) {
 		case EffectType::BUFF_TP: return new EffectBuffTP();
 		case EffectType::BUFF_MP: return new EffectBuffMP();
 		case EffectType::DEBUFF: return new EffectDebuff();
+		case EffectType::TELEPORT: return new EffectTeleport();
 		default:
 			LOG_E << "No such effect!" << std::endl;
 			assert(false or "No such effect!");
