@@ -22,6 +22,7 @@
 #include "EffectTeleport.hpp"
 #include "EffectPermutation.hpp"
 #include "EffectVitality.hpp"
+#include "EffectSummon.hpp"
 
 Effect::Effect() {
 	native = true;
@@ -108,6 +109,7 @@ Effect* Effect::construct(EffectType type) {
 		case EffectType::TELEPORT: return new EffectTeleport();
 		case EffectType::PERMUTATION: return new EffectPermutation();
 		case EffectType::VITALITY: return new EffectVitality();
+		case EffectType::SUMMON: return new EffectSummon();
 		default:
 			LOG_E << "No such effect!" << std::endl;
 			assert(false or "No such effect!");
