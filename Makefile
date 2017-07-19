@@ -21,7 +21,7 @@ SANITIZE_FLAGS := -fsanitize=address -fno-omit-frame-pointer -fsanitize=undefine
 LIBS := -ljit -Lleekscript/build -lleekscript
 MAKEFLAGS += --jobs=$(shell nproc)
 
-.PHONY: test
+.PHONY: test leekscript
 
 all: build/leek-wars-generator
 
@@ -55,6 +55,10 @@ test: build/leek-wars-generator-test
 	@build/leek-wars-generator-test
 
 build/libleekscript.so:
+	cd leekscript && make -j8 lib
+	cp leekscript/build/libleekscript.so build/libleekscript.so
+
+leekscript:
 	cd leekscript && make -j8 lib
 	cp leekscript/build/libleekscript.so build/libleekscript.so
 
