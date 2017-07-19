@@ -17,7 +17,9 @@ public:
 	virtual ~CellModule();
 
 	static const ls::LSClass* cell_clazz;
+	static const CellType* raw_type;
 	static const ls::Type type;
+	static const ls::Type const_type;
 	static const ls::Type array_type;
 };
 

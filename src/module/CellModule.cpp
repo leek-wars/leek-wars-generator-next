@@ -7,7 +7,9 @@
 #include "../entity/Entity.hpp"
 
 const ls::LSClass* CellModule::cell_clazz;
-const ls::Type CellModule::type(new CellType(), ls::Nature::POINTER, true);
+const CellType* CellModule::raw_type(new CellType());
+const ls::Type CellModule::type(raw_type, ls::Nature::POINTER, true);
+const ls::Type CellModule::const_type(raw_type, ls::Nature::POINTER, true, false, true);
 const ls::Type CellModule::array_type(ls::RawType::ARRAY, ls::Nature::POINTER, CellModule::type);
 
 CellModule::CellModule() : Module("Cell") {
