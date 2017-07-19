@@ -32,8 +32,7 @@ void EffectDamage::apply(Fight* fight) {
 
 	// One shoot
 	if (target->getTotalLife() == damage && caster != target) {
-		// TODO Roxxor trophy
-		// fight.getTrophyManager().roxxor(caster);
+		fight->trophy_manager.unlock_roxxor(caster);
 	}
 
 	fight->actions.add(new ActionLoseLife(target, damage));
