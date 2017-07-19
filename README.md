@@ -9,3 +9,8 @@ Leek Wars new fight generator, in C++, working with the new [LeekScript](https:/
 ```
 make
 ```
+
+## Run tests
+```
+make test
+```
