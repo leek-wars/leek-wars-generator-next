@@ -4,6 +4,8 @@
 #include "../field/Field.hpp"
 #include "../fight/Fight.hpp"
 #include "../entity/Entity.hpp"
+#include "../util/Color.hpp"
+#include "ColorModule.hpp"
 
 FieldModule::FieldModule() : Module("Field") {
 
@@ -19,6 +21,10 @@ FieldModule::FieldModule() : Module("Field") {
 	method("path", ls::Method::Static, {{CellModule::array_type, {CellModule::type, CellModule::type}, (void*) &map_getPath, ls::Method::NATIVE}});
 	method("distance", ls::Method::Static, {{ls::Type::INTEGER, {CellModule::type, CellModule::type}, (void*) &map_getDistance, ls::Method::NATIVE}});
 	method("straightDistance", ls::Method::Static, {{ls::Type::REAL, {CellModule::type}, (void*) &map_getStraightDistance, ls::Method::NATIVE}});
+	method("mark", ls::Method::Static, {
+		{ls::Type::BOOLEAN, {CellModule::type, ColorModule::type_ptr, ls::Type::INTEGER}, (void*) &map_mark, ls::Method::NATIVE},
+		{ls::Type::BOOLEAN, {CellModule::array_type, ColorModule::type_ptr, ls::Type::INTEGER}, (void*) &map_mark_array, ls::Method::NATIVE}
+	});
 
 	// v1 functions
 	method("_getCellDistance", ls::Method::Static, {{ls::Type::INTEGER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &map__getCellDistance, ls::Method::NATIVE}});
@@ -109,6 +115,15 @@ int map_getDistance(const Cell* cell1, const Cell* cell2) {
 
 double map_getStraightDistance(const Cell* cell1, const Cell* cell2) {
 	return cell1->straightDistance(cell2);
+}
+
+bool map_mark(const Cell* cell, const Color* color, int duration) {
+	return Simulator::fight->mark({cell}, color->value, duration);
+}
+bool map_mark_array(const ls::LSArray<ls::LSValue*> cells, const Color* color, int duration) {
+	std::vector<const Cell*> cells_array;
+	for (const auto& c : cells) cells_array.push_back((const Cell*) c);
+	return Simulator::fight->mark(cells_array, color->value, duration);
 }
 
 /*

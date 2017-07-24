@@ -41,13 +41,11 @@ public:
 	int turn();
 
 	int moveEntity(Entity* entity, const std::vector<const Cell*> path);
-
 	bool generateCritical(Entity* entity) const;
-
 	bool hasCooldown(const Entity* entity, const Chip* chip) const;
-
 	int useWeapon(Entity* launcher, Cell* target);
 	int useChip(Entity* caster, Cell* cell, Chip* chip);
+	bool mark(std::vector<const Cell*> cells, int color, int duration);
 
 	Json entities_json() const;
 };

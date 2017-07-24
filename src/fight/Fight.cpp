@@ -200,6 +200,11 @@ int Fight::useChip(Entity* caster, Cell* target, Chip* chip) {
 	return result;
 }
 
+bool Fight::mark(std::vector<const Cell*> cells, int color, int duration) {
+	auto entity = order.current();
+	return actions.add_mark(entity, cells, color, duration);
+}
+
 Json Fight::entities_json() const {
 	Json json;
 	for (const auto& e : entities) {

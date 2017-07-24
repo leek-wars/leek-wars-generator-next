@@ -3,6 +3,7 @@
 
 #include <leekscript.h>
 #include "CellModule.hpp"
+class Color;
 
 class FieldModule : public ls::Module {
 public:
@@ -21,6 +22,8 @@ ls::LSArray<ls::LSValue*>* map_getObstacles();
 ls::LSArray<ls::LSValue*>* map_getCells();
 int map_getDistance(const Cell* cell1, const Cell* cell2);
 double map_getStraightDistance(const Cell* cell1, const Cell* cell2);
+bool map_mark(const Cell* cell, const Color* color, int duration);
+bool map_mark_array(const ls::LSArray<ls::LSValue*> cells, const Color* color, int duration);
 
 int map__getCellDistance(const ls::LSValue* cell1, const ls::LSValue* cell2);
 ls::LSValue* map__getCellFromXY(const ls::LSValue* x, const ls::LSValue* y);
