@@ -30,18 +30,33 @@ void Actions::add(Action* action) {
 void Actions::add_entity_logs(Entity* entity) {
 	auto debug = entity->debug_output->str();
 	if (debug.size()) {
-		entity->log_length += debug.size();
-		if (entity->log_length > MAX_LOGS_ENTITY) {
-			return; // Log limit exceeded
-		}
-		int action_id = actions.size() - 2; // Link the logs to the previous action
-		int id = entity->id;
-		if (logs[std::to_string(id)].is_null()) {
-			logs[std::to_string(id)] = {};
-		}
-		logs[std::to_string(id)][std::to_string(action_id)].push_back({id, (int) LogType::STANDARD, debug});
+		add_log(entity, {entity->id, (int) LogType::STANDARD, debug}, debug.size());
 		entity->debug_output->str("");
 	}
+}
+
+bool Actions::add_mark(Entity* entity, std::vector<const Cell*> cells, int color, int duration) {
+	std::vector<int> cells_int;
+	for (const auto& cell : cells) {
+		cells_int.push_back(cell->id);
+	}
+	std::stringstream stream;
+	stream << std::hex << color;
+	return add_log(entity, {entity->id, (int) LogType::MARK, cells_int, stream.str(), duration}, cells.size() * 5 + 8);
+}
+
+bool Actions::add_log(Entity* entity, Json&& json, int cost) {
+	entity->log_length += cost;
+	if (entity->log_length > MAX_LOGS_ENTITY) {
+		return false; // Log limit exceeded
+	}
+	int action_id = actions.size() - 2; // Link the logs to the previous action
+	auto id = std::to_string(entity->id);
+	if (logs[id].is_null()) {
+		logs[id] = {};
+	}
+	logs[id][std::to_string(action_id)].push_back(json);
+	return true;
 }
 
 int Actions::getNextId() {
