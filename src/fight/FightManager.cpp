@@ -96,6 +96,8 @@ std::string FightManager::compile(std::string ai) {
 	auto program = new ls::Program(code, name);
 	auto result = program->compile(vm, "{}");
 
+	LOG << "AI: " << program << std::endl;
+
 	auto errors = Json::array();
 	for (const auto& e : result.lexical_errors) {
 		errors.push_back(e.json());
