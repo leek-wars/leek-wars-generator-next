@@ -1,0 +1,11 @@
+let me = Fight.getEntity()
+let enemy = me.getClosestEnemy()
+
+var weapons = me.weapons
+let weapon = weapons[0]
+
+me.moveToward(enemy, 5)
+
+me.setWeapon(weapon)
+
+me.useWeapon(enemy)
