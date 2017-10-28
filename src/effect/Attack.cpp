@@ -19,6 +19,7 @@ Attack::Attack(int min_range, int max_range, LaunchType launch_type, AreaType ar
 	this->area.reset(Attack::getArea(this, area_type));
 	this->need_los = los;
 	this->attack_type = attack_type;
+	this->effects = effects;
 
 	for (const auto& e : effects) {
 		if (e.type == EffectType::HEAL) {
