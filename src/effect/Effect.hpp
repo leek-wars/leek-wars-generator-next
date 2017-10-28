@@ -62,7 +62,7 @@ public:
 	int attackID;
 	double jet;
 	Characteristics characs;
-	int logID = 0;
+	int id = 0;
 
 	Effect();
 	virtual ~Effect();

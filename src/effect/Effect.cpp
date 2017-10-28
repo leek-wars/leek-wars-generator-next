@@ -87,7 +87,8 @@ void Effect::createEffect(Fight* fight, EffectType type, int turns, double power
 	effect->apply(fight);
 
 	if (effect->turns > 0) {
-		fight->actions.add(new ActionAddEffect(attack_type, attack_id, caster, target, type, fight->actions.getEffectId(), effect->getEffectValue(), effect->turns));
+		effect->id = fight->actions.getEffectId();
+		fight->actions.add(new ActionAddEffect(attack_type, attack_id, effect->id, caster, target, type, effect->getEffectValue(), effect->turns));
 	}
 }
 

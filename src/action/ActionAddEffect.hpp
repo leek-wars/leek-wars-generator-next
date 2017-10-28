@@ -16,7 +16,7 @@ public:
 	int value;
 	int turns;
 
-	ActionAddEffect(AttackType type, int attackID, Entity* caster, Entity* target, EffectType effect_type, int effect_id, int value, int turns);
+	ActionAddEffect(AttackType type, int attackID, int effect_id, Entity* caster, Entity* target, EffectType effect_type, int value, int turns);
 	virtual ~ActionAddEffect();
 
 	virtual Json json() const override;

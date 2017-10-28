@@ -2,8 +2,7 @@
 #include "../effect/Attack.hpp"
 #include "../entity/Entity.hpp"
 
-ActionAddEffect::ActionAddEffect(AttackType type, int attack_id, Entity* caster, Entity* target, EffectType effect_type, int effect_id, int value, int turns) {
-
+ActionAddEffect::ActionAddEffect(AttackType type, int attack_id, int effect_id, Entity* caster, Entity* target, EffectType effect_type, int value, int turns) {
 	if (type == AttackType::CHIP) {
 		this->type = ActionType::ADD_CHIP_EFFECT;
 	} else if (type == AttackType::WEAPON) {
