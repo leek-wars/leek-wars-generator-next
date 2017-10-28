@@ -13,6 +13,7 @@ public:
 	Leek(Fight* fight, std::string name, int level, AI* ai, int skin, int hat);
 	virtual ~Leek();
 
+	virtual Json to_json() const override;
 };
 
 #endif

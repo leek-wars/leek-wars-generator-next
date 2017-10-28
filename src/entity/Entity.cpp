@@ -594,8 +594,6 @@ Json Entity::to_json() const {
 	json["name"] = name;
 	json["team"] = team->id + 1;
 	json["cellPos"] = start_cell->id;
-	json["appearence"] = 11;
-	json["skin"] = 9;
 	json["level"] = level;
 	json["type"] = 0;
 	json["strength"] = getStrength();

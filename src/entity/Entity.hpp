@@ -187,7 +187,7 @@ public:
 	/*
 	 * Export to JSON format
 	 */
-	Json to_json() const;
+	virtual Json to_json() const;
 };
 
 #endif

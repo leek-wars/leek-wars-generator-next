@@ -9,3 +9,10 @@ Leek::Leek(Fight* fight, std::string name, int level, AI* ai, int skin, int hat)
 }
 
 Leek::~Leek() {}
+
+Json Leek::to_json() const {
+	auto json = Entity::to_json();
+	json["skin"] = skin;
+	json["hat"] = hat;
+	return json;
+}
