@@ -147,6 +147,7 @@ public:
 	bool hasCooldown(int chipID) const;
 	int getCooldown(int chipID);
 	bool say(const ls::LSValue* message);
+	void die();
 
 	/*
 	 * Effects management

@@ -16,6 +16,7 @@
 #include "../action/ActionEndTurn.hpp"
 #include "../action/ActionEntityTurn.hpp"
 #include "../action/ActionAIError.hpp"
+#include "../action/ActionEntityDie.hpp"
 
 Fight::Fight() : actions(this) {
 	field = nullptr;
@@ -79,6 +80,17 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 	Report* report = new Report(this);
 	report->actions = &actions;
 	return report;
+}
+
+void Fight::entity_died(Entity* entity, Entity* killer) {
+	// TODO
+	// statistics.addKills(1);
+	order.removeEntity(entity);
+	if (entity->cell != nullptr) {
+		entity->cell->setEntity(nullptr);
+	}
+	entity->cell = nullptr;
+	actions.add(new ActionEntityDie(entity, killer));
 }
 
 Report* Fight::crash() {

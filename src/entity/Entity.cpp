@@ -65,13 +65,10 @@ void Entity::removeLife(int l, Entity* attacker) {
 		l = life;
 	}
 	life -= l;
-
 	fight->statistics.add_damage(attacker, l, this);
-
 	if (life <= 0) {
-		// TODO
-		// fight.onPlayerDie(this, attacker);
-		// die();
+		die();
+		fight->entity_died(this, attacker);
 	}
 }
 
@@ -460,6 +457,20 @@ bool Entity::say(const LSValue* message) {
 	useTP(1);
 	ls::LSValue::delete_temporary(message);
 	return true;
+}
+
+void Entity::die() {
+	// Remove effects
+	clear_effects();
+	// Remove launched effects
+	int effects = launched_effects.size() - 1;
+	while (effects >= 0) {
+		auto effect = (Effect*) launched_effects[effects--];
+		effect->target->removeEffect(effect);
+		launched_effects.pop_back();
+	}
+	// Kill summons
+	// TODO
 }
 
 int Entity::moveToward(Entity* target) {
