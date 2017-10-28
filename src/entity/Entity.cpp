@@ -555,7 +555,7 @@ std::ostream& Entity::dump(std::ostream& os, int) const {
 Json Entity::to_json() const {
 	Json json;
 	json["id"] = id;
-	json["life"] = life;
+	json["life"] = total_life;
 	json["tp"] = getTotalTP();
 	json["mp"] = getTotalMP();
 	json["name"] = name;
