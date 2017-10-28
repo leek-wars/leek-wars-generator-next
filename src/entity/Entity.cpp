@@ -413,7 +413,7 @@ void Entity::useMP(int mp) {
 	fight->actions.add(new ActionLoseMP(this, mp));
 }
 
-void Entity::endTurn() {
+void Entity::end_turn() {
 	used_tp = 0;
 	used_mp = 0;
 }

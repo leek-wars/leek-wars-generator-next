@@ -65,7 +65,7 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 			// TODO delete ex
 		}
 		vm.operations = 0;
-		entity->endTurn();
+		entity->end_turn();
 		actions.add(new ActionEndTurn(entity));
 		if (order.next()) {
 			actions.add(new ActionNewTurn(order.getTurn()));
