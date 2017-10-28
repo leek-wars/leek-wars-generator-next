@@ -37,7 +37,15 @@ Fight* FightLoader::load(const FightManager& manager, std::string file) {
 				v1 = e["v1"];
 			}
 			auto ai = new AI(Util::read_file(e["ai"]), e["ai"], v1);
-			auto leek = new Leek(fight, e["name"], e["level"], ai);
+			int hat = 0;
+			if (e.find("hat") != e.end()) {
+				hat = e["hat"];
+			}
+			int skin = 1;
+			if (e.find("skin") != e.end()) {
+				skin = e["skin"];
+			}
+			auto leek = new Leek(fight, e["name"], e["level"], ai, skin, hat);
 
 			Characteristics characs;
 

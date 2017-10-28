@@ -67,12 +67,12 @@ void Test::test_generateCritical() {
 	Util::log_enabled = true;
 
 	Fight fight;
-	auto leek1 = new Leek(&fight, "Franklin", 297, nullptr);
+	auto leek1 = new Leek(&fight, "Franklin", 297, nullptr, 1, 0);
 	Characteristics characs1;
 	characs1.set(Characteristic::AGILITY, 0);
 	leek1->setCharacteristics(characs1);
 
-	auto leek2 = new Leek(&fight, "Franklin", 297, nullptr);
+	auto leek2 = new Leek(&fight, "Franklin", 297, nullptr, 1, 0);
 	Characteristics characs2;
 	characs2.set(Characteristic::AGILITY, 1000);
 	leek2->setCharacteristics(characs2);

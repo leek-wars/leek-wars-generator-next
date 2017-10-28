@@ -7,8 +7,10 @@
 
 class Leek : public Entity {
 public:
+	int skin = 1;
+	int hat = 0;
 
-	Leek(Fight* fight, std::string name, int level, AI* ai);
+	Leek(Fight* fight, std::string name, int level, AI* ai, int skin, int hat);
 	virtual ~Leek();
 
 };
