@@ -69,6 +69,10 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 		vm.operations = 0;
 		entity->end_turn();
 		actions.add(new ActionEndTurn(entity));
+
+		if (is_finished()) {
+			break;
+		}
 		if (order.next()) {
 			actions.add(new ActionNewTurn(order.getTurn()));
 			LOG << "Turn " << order.getTurn() << std::endl;
@@ -80,6 +84,19 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 	Report* report = new Report(this);
 	report->actions = &actions;
 	return report;
+}
+
+bool Fight::is_finished() const {
+	int alive_teams = 0;
+	for (auto& team : teams) {
+		if (team->is_alive()) {
+			alive_teams++;
+			if (alive_teams >= 2) {
+				return false;
+			}
+		}
+	}
+	return true;
 }
 
 void Fight::entity_died(Entity* entity, Entity* killer) {

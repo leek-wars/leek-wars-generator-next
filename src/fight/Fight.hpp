@@ -40,6 +40,7 @@ public:
 	Entity* getEntity(int id);
 	int turn();
 
+	bool is_finished() const;
 	void entity_died(Entity* entity, Entity* killer);
 	int moveEntity(Entity* entity, const std::vector<const Cell*> path);
 	bool generateCritical(Entity* entity) const;
