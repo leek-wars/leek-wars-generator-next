@@ -126,12 +126,15 @@ int Fight::useWeapon(Entity* launcher, Cell* target) {
 	LOG << launcher->name << " (" << launcher->id << ") uses weapon " << weapon->name << " (" << weapon->id << ") : costs " << weapon->cost << ", tp: " << launcher->getTP() << std::endl;
 
 	if (weapon->cost > launcher->getTP()) {
+		LOG << "Not enough TP!" << std::endl;
 		return AttackResult::NOT_ENOUGH_TP;
 	}
 	if (!field->can_use_attack(launcher->cell, target, weapon->attack.get())) {
+		LOG << "Can't use this weapon!" << std::endl;
 		return AttackResult::INVALID_POSITION;
 	}
 
+	LOG << "Weapon attack succeed." << std::endl;
 	bool critical = generateCritical(launcher);
 	AttackResult result = critical ? AttackResult::CRITICAL : AttackResult::SUCCESS;
 
