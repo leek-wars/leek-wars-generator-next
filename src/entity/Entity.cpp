@@ -297,7 +297,7 @@ Entity* Entity::get_closest(ls::LSArray<ls::LSValue*> entities) const {
 	Entity* closest = nullptr;
 	int min_distance = std::numeric_limits<int>::max();
 	for (auto& entity : entities) {
-		if (entity == this) continue;
+		if (entity == this || ((Entity*) entity)->isDead()) continue;
 		int distance = cell->distance(((Entity*) entity)->cell);
 		if (distance < min_distance) {
 			min_distance = distance;
@@ -314,7 +314,7 @@ Entity* Entity::get_farthest(ls::LSArray<ls::LSValue*> entities) const {
 	Entity* farthest = nullptr;
 	int max_distance = std::numeric_limits<int>::max();
 	for (auto& entity : entities) {
-		if (entity == this) continue;
+		if (entity == this || ((Entity*) entity)->isDead()) continue;
 		int distance = cell->distance(((Entity*) entity)->cell);
 		if (distance > max_distance) {
 			max_distance = distance;
