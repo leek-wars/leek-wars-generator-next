@@ -14,3 +14,7 @@ void EffectShackleMP::apply(Fight*) {
 int EffectShackleMP::getEffectValue() const {
 	return shackle;
 }
+
+bool EffectShackleMP::stackable() const {
+	return true;
+}

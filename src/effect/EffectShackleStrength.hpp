@@ -9,6 +9,7 @@ public:
 
 	virtual void apply(Fight* fight) override;
 	virtual int getEffectValue() const override;
+	virtual bool stackable() const override;
 };
 
 #endif

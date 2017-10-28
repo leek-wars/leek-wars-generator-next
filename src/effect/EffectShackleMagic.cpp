@@ -14,3 +14,7 @@ void EffectShackleMagic::apply(Fight*) {
 int EffectShackleMagic::getEffectValue() const {
 	return shackle;
 }
+
+bool EffectShackleMagic::stackable() const {
+	return true;
+}
