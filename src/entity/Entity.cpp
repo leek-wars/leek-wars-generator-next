@@ -530,7 +530,7 @@ void Entity::addLaunchedEffect(Effect* effect) {
 
 void Entity::removeEffect(Effect* effect) {
 	effects.erase(std::find(effects.begin(), effects.end(), effect));
-	fight->actions.add(new ActionRemoveEffect(effect->logID));
+	fight->actions.add(new ActionRemoveEffect(effect->id));
 	updateBonusCharacteristics();
 }
 
