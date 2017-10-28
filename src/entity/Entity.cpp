@@ -559,7 +559,7 @@ Json Entity::to_json() const {
 	json["tp"] = getTotalTP();
 	json["mp"] = getTotalMP();
 	json["name"] = name;
-	json["team"] = team + 1;
+	json["team"] = team->id + 1;
 	json["cellPos"] = start_cell->id;
 	json["appearence"] = 11;
 	json["skin"] = 9;
