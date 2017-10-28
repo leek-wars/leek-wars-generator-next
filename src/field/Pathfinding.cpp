@@ -101,6 +101,9 @@ std::vector<const Cell*> Field::get_path(Cell* c1, std::vector<const Cell*> end_
 				u = u->parent;
 			}
 			std::reverse(result.begin(), result.end());
+			if (result.back()->entity != nullptr) {
+				result.pop_back(); // Exclude last cell if it's occupied
+			}
 			LOG << "Path found: " << result.size() << std::endl;
 			return result;
 		}
