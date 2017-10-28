@@ -74,6 +74,7 @@ void Effect::createEffect(Fight* fight, EffectType type, int turns, double power
 			for (unsigned i = 0; i < effects.size(); ++i) {
 				auto e = (Effect*) effects[i];
 				if (e->attackID == attack_id && e->type == type) {
+					e->caster->remove_launched_effect(e);
 					target->removeEffect(e);
 					break;
 				}
