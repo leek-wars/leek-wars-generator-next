@@ -252,7 +252,6 @@ int Entity::move(const std::vector<const Cell*> path) {
 		return 0;
 	}
 	fight->actions.add(new ActionMove(this, path));
-	fight->actions.add(new ActionLoseMP(this, size));
 
 	// TODO Statistics and trophy manager
 	// trophyManager.deplacement(entity.getFarmer(), path);
