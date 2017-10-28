@@ -3,8 +3,9 @@
 #include "../util/Util.hpp"
 
 const ls::LSClass* ChipModule::chip_clazz;
-const ls::Type ChipModule::type(new ChipType(), ls::Nature::POINTER, true);
-const ls::Type ChipModule::const_type(new ChipType(), ls::Nature::POINTER, true, false, true);
+const ChipType* ChipModule::raw_type(new ChipType());
+const ls::Type ChipModule::type(raw_type, ls::Nature::POINTER, true);
+const ls::Type ChipModule::const_type(raw_type, ls::Nature::POINTER, true, false, true);
 const ls::Type ChipModule::array_type(ls::RawType::ARRAY, ls::Nature::POINTER, ChipModule::type, true);
 
 jit_value_t Chip_SPARK(jit_function_t F) { return LS_CREATE_INTEGER(F, 1); }

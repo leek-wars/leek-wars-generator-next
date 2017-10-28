@@ -16,6 +16,7 @@ public:
 	virtual ~ChipModule();
 
 	static const ls::LSClass* chip_clazz;
+	static const ChipType* raw_type;
 	static const ls::Type type;
 	static const ls::Type const_type;
 	static const ls::Type array_type;

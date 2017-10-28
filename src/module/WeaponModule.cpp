@@ -2,8 +2,9 @@
 #include "../util/Util.hpp"
 
 const ls::LSClass* WeaponModule::weapon_clazz;
-const ls::Type WeaponModule::type(new WeaponType(), ls::Nature::POINTER, true);
-const ls::Type WeaponModule::const_type(new WeaponType(), ls::Nature::POINTER, true, false, true);
+const WeaponType* WeaponModule::raw_type(new WeaponType());
+const ls::Type WeaponModule::type(raw_type, ls::Nature::POINTER, true);
+const ls::Type WeaponModule::const_type(raw_type, ls::Nature::POINTER, true, false, true);
 const ls::Type WeaponModule::array_type(ls::RawType::ARRAY, ls::Nature::POINTER, WeaponModule::type, true);
 
 WeaponModule::WeaponModule(const FightManager& manager) : Module("Weapon") {
