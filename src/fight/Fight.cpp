@@ -52,6 +52,7 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 
 		LOG << "Turn of " << entity->name << " (" << entity->id << "), AI " << entity->ai->name << "..." << std::endl;
 		actions.add(new ActionEntityTurn(entity));
+		entity->start_turn();
 		try {
 			entity->ai->execute(vm, vm_v1);
 		} catch (ls::vm::ExceptionObj* ex) {

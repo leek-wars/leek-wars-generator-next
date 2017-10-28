@@ -132,6 +132,7 @@ public:
 	 */
 	void useTP(int tp);
 	void useMP(int mp);
+	void start_turn();
 	void end_turn();
 	int move(const std::vector<const Cell*> path);
 	int moveToward(Entity* target);

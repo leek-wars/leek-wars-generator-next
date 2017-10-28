@@ -413,6 +413,29 @@ void Entity::useMP(int mp) {
 	fight->actions.add(new ActionLoseMP(this, mp));
 }
 
+void Entity::start_turn() {
+	LOG << "Entity " << name << " start_turn()" << std::endl;
+	// At the start of his turn, decrease duration of his launched effects
+	// and apply effects that affects the entity at the beginning of his turn
+	// (poisons, ...)
+	for (auto& effect : this->effects) {
+		((Effect*) effect)->applyStartTurn(fight);
+		if (isDead()) {
+			return;
+		}
+	}
+	LOG << launched_effects.size() << " launched effects" << std::endl;
+	for (int e = 0; e < launched_effects.size(); ++e) {
+		auto effect = (Effect*) ((std::vector<LSValue*>) launched_effects).at(e);
+		effect->turns--; // Decrease duration
+		if (effect->turns <= 0) { // Effect done
+			effect->target->removeEffect(effect);
+			launched_effects.erase(launched_effects.begin() + e);
+			e--;
+		}
+	}
+}
+
 void Entity::end_turn() {
 	used_tp = 0;
 	used_mp = 0;
