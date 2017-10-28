@@ -38,7 +38,7 @@ void Team::applyCoolDown() {
 		if (c.second <= 1) {
 			cooldowns.erase(c.first);
 		} else {
-			cooldowns[c.first] =  c.second - 1;
+			cooldowns[c.first] = c.second - 1;
 		}
 	}
 }
