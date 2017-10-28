@@ -228,7 +228,7 @@ float Field::get_distance_float(const Cell* c1, const std::vector<const Cell*> c
 }
 
 int Field::get_cell_distance(const Cell* c1, const Cell* c2) const {
-	return abs(c1->x - c2->y) + abs(c1->y - c2->y);
+	return abs(c1->x - c2->x) + abs(c1->y - c2->y);
 }
 
 int Field::get_cell_distance(const Cell* c1, const std::vector<const Cell*> cells) const {
