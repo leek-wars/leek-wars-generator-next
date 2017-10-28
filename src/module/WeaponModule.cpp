@@ -6,9 +6,6 @@ const ls::Type WeaponModule::type(new WeaponType(), ls::Nature::POINTER, true);
 const ls::Type WeaponModule::const_type(new WeaponType(), ls::Nature::POINTER, true, false, true);
 const ls::Type WeaponModule::array_type(ls::RawType::ARRAY, ls::Nature::POINTER, WeaponModule::type, true);
 
-jit_value_t Weapon_PISTOL(jit_function_t F) { return LS_CREATE_INTEGER(F, 37); }
-jit_value_t Weapon_LASER(jit_function_t F) { return LS_CREATE_INTEGER(F, 42); }
-
 WeaponModule::WeaponModule(const FightManager& manager) : Module("Weapon") {
 
 	for (const auto& w : manager.weapons) {
