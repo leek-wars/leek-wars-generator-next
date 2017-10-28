@@ -135,13 +135,14 @@ int Fight::useWeapon(Entity* launcher, Cell* target) {
 	}
 
 	LOG << "Weapon attack succeed." << std::endl;
+
 	bool critical = generateCritical(launcher);
 	AttackResult result = critical ? AttackResult::CRITICAL : AttackResult::SUCCESS;
 
 	auto action = new ActionUseWeapon(launcher, target, weapon, result);
 	actions.add(action);
 
-	auto target_entities  = weapon->attack.get()->applyOnCell(this, launcher, target, weapon->id, critical);
+	auto target_entities = weapon->attack.get()->applyOnCell(this, launcher, target, weapon->id, critical);
 
 	// TODO Trophy manager
 	// trophyManager.weaponUsed(launcher, weapon, target_entities);
