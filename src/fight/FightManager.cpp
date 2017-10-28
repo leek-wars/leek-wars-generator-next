@@ -106,6 +106,7 @@ std::string FightManager::compile(std::string ai) {
 		errors.push_back(e.json());
 	}
 	for (const auto& e : result.semantical_errors) {
+		LOG << e.message() << std::endl;
 		errors.push_back(e.json());
 	}
 	return errors.dump();
