@@ -13,6 +13,7 @@
 #include "../util/Util.hpp"
 #include "../action/ActionLoseMP.hpp"
 #include "../action/ActionMove.hpp"
+#include "../action/ActionRemoveEffect.hpp"
 
 int Entity::next_id = 0;
 
@@ -528,9 +529,8 @@ void Entity::addLaunchedEffect(Effect* effect) {
 }
 
 void Entity::removeEffect(Effect* effect) {
-	// TODO Add ActionRemoveEffect action
-	// fight.log(new ActionRemoveEffect(effect.getLogID()));
 	effects.erase(std::find(effects.begin(), effects.end(), effect));
+	fight->actions.add(new ActionRemoveEffect(effect->logID));
 	updateBonusCharacteristics();
 }
 
