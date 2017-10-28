@@ -55,10 +55,12 @@ test: build/leek-wars-generator-test
 	@build/leek-wars-generator-test
 
 build/libleekscript.so:
+	@mkdir -p build
 	+cd leekscript && make lib
 	cp leekscript/build/libleekscript.so build/libleekscript.so
 
 leekscript:
+	@mkdir -p build
 	+cd leekscript && make lib
 	cp leekscript/build/libleekscript.so build/libleekscript.so
 
