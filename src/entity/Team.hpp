@@ -17,14 +17,12 @@ public:
 	virtual ~Team();
 
 	void add_entity(Entity* entity);
-
 	void addCooldown(Chip* chip, int cooldown);
-
 	bool hasCooldown(int chipID);
-
 	int getCooldown(int chipID);
-
 	void applyCoolDown();
+	bool is_dead() const;
+	bool is_alive() const;
 };
 
 #endif

@@ -42,3 +42,16 @@ void Team::applyCoolDown() {
 		}
 	}
 }
+
+bool Team::is_dead() const {
+	for (auto& l : entities) {
+		if (!l->isDead()) {
+			return false;
+		}
+	}
+	return true;
+}
+
+bool Team::is_alive() const {
+	return !is_dead();
+}
