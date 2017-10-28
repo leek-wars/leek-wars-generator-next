@@ -55,11 +55,11 @@ test: build/leek-wars-generator-test
 	@build/leek-wars-generator-test
 
 build/libleekscript.so:
-	cd leekscript && make -j8 lib
+	+cd leekscript && make lib
 	cp leekscript/build/libleekscript.so build/libleekscript.so
 
 leekscript:
-	cd leekscript && make -j8 lib
+	+cd leekscript && make lib
 	cp leekscript/build/libleekscript.so build/libleekscript.so
 
 # Build with coverage flags enabled
