@@ -40,9 +40,7 @@ bool Actions::add_mark(Entity* entity, std::vector<const Cell*> cells, int color
 	for (const auto& cell : cells) {
 		cells_int.push_back(cell->id);
 	}
-	std::stringstream stream;
-	stream << std::hex << color;
-	return add_log(entity, {entity->id, (int) LogType::MARK, cells_int, stream.str(), duration}, cells.size() * 5 + 8);
+	return add_log(entity, {entity->id, (int) LogType::MARK, cells_int, Util::int_to_hex_color(color), duration}, cells.size() * 5 + 8);
 }
 
 bool Actions::add_log(Entity* entity, Json&& json, int cost) {
