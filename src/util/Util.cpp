@@ -80,3 +80,9 @@ std::string Util::url_encode(const std::string& value) {
 	}
 	return escaped.str();
 }
+
+std::string Util::int_to_hex_color(int color) {
+	std::stringstream stream;
+	stream << std::hex << color;
+	return stream.str();
+}

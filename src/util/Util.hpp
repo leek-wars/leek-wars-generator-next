@@ -37,6 +37,8 @@ public:
 		if (log_enabled) return std::cout;
 		else return Util::dummy_stream;
 	}
+
+	static std::string int_to_hex_color(int color);
 };
 
 #endif
