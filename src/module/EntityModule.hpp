@@ -8,10 +8,10 @@ class Weapon;
 class Chip;
 class Effect;
 
-class EntityType : public ls::ObjectRawType {
+class EntityType : public ls::Object_type {
 public:
 	virtual const std::string getName() const override { return "entity"; };
-	virtual const std::string getClass() const override { return "Entity"; };
+	virtual std::string clazz() const override { return "Entity"; };
 };
 
 class EntityModule : public ls::Module {
@@ -20,7 +20,7 @@ public:
 	virtual ~EntityModule();
 
 	static const ls::LSClass* entity_clazz;
-	static const EntityType* raw_type;
+	static const std::shared_ptr<EntityType> raw_type;
 	static const ls::Type type;
 	static const ls::Type const_type;
 	static const ls::Type array_type;

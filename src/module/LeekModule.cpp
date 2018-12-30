@@ -10,8 +10,8 @@
 #include "../item/Chip.hpp"
 
 const ls::LSClass* LeekModule::leek_clazz;
-const LeekType* const LeekModule::type = new LeekType();
-const ls::Type LeekModule::type_ptr(LeekModule::type, ls::Nature::POINTER);
+const std::shared_ptr<LeekType> LeekModule::type = std::make_shared<LeekType>();
+const ls::Type LeekModule::type_ptr(LeekModule::type);
 
 LeekModule::LeekModule() : Module("Leek") {
 
@@ -25,19 +25,19 @@ LeekModule::LeekModule() : Module("Leek") {
 	// V1 methods
 	method("_getAIID", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &leek__getAIID, ls::Method::NATIVE},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &leek__getAIIDEntity, ls::Method::NATIVE},
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &leek__getAIIDEntity, ls::Method::NATIVE},
 	});
 	method("_getAIName", ls::Method::Static, {
 		{ls::Type::STRING, {}, (void*) &leek__getAIName, ls::Method::NATIVE},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &leek__getAINameEntity, ls::Method::NATIVE},
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &leek__getAINameEntity, ls::Method::NATIVE},
 	});
 	method("_getFarmerID", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &leek__getFarmerID, ls::Method::NATIVE},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &leek__getFarmerIDEntity, ls::Method::NATIVE},
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &leek__getFarmerIDEntity, ls::Method::NATIVE},
 	});
 	method("_getFarmerName", ls::Method::Static, {
 		{ls::Type::STRING, {}, (void*) &leek__getFarmerName, ls::Method::NATIVE},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &leek__getFarmerNameEntity, ls::Method::NATIVE},
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &leek__getFarmerNameEntity, ls::Method::NATIVE},
 	});
 }
 

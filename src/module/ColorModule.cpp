@@ -1,8 +1,8 @@
 #include "ColorModule.hpp"
 
 const ls::LSClass* ColorModule::color_clazz;
-const ColorType* const ColorModule::type = new ColorType();
-const ls::Type ColorModule::type_ptr(ColorModule::type, ls::Nature::POINTER);
+const std::shared_ptr<ColorType> ColorModule::type = std::make_shared<ColorType>();
+const ls::Type ColorModule::type_ptr(ColorModule::type);
 
 const Color* ColorModule::TRANSPARENT = new Color(0x00000000, true);
 const Color* ColorModule::BLACK = new Color(0xff000000, true);
@@ -25,17 +25,17 @@ Color* color_rgba(int r, int g, int b, int a) {
 
 ColorModule::ColorModule() : Module("Color") {
 
-	static_field("TRANSPARENT", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::TRANSPARENT); });
-	static_field("BLACK", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::BLACK); });
-	static_field("WHITE", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::WHITE); });
-	static_field("RED", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::RED); });
-	static_field("GREEN", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::GREEN); });
-	static_field("BLUE", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::BLUE); });
+	static_field("TRANSPARENT", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::TRANSPARENT, type_ptr); });
+	static_field("BLACK", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::BLACK, type_ptr); });
+	static_field("WHITE", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::WHITE, type_ptr); });
+	static_field("RED", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::RED, type_ptr); });
+	static_field("GREEN", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::GREEN, type_ptr); });
+	static_field("BLUE", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::BLUE, type_ptr); });
 
-	field("r", ls::Type::NUMBER_P);
-	field("g", ls::Type::NUMBER_P);
-	field("b", ls::Type::NUMBER_P);
-	field("a", ls::Type::NUMBER_P);
+	field("r", ls::Type::NUMBER);
+	field("g", ls::Type::NUMBER);
+	field("b", ls::Type::NUMBER);
+	field("a", ls::Type::NUMBER);
 
 	method("rgb", {
 		{ColorModule::type_ptr, {ls::Type::INTEGER, ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &color_rgb, ls::Method::NATIVE}

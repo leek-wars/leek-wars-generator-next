@@ -16,7 +16,7 @@ public:
 	virtual ~LeekModule();
 
 	static const ls::LSClass* leek_clazz;
-	static const LeekType* const type;
+	static const std::shared_ptr<LeekType> type;
 	static const ls::Type type_ptr;
 };
 

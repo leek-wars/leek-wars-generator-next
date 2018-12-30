@@ -2,6 +2,7 @@
 #define FIGHT_ORDER_HPP_
 
 #include <vector>
+#include <ostream>
 class Entity;
 class Summon;
 

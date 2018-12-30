@@ -17,7 +17,7 @@ public:
 	virtual ~WeaponModule();
 
 	static const ls::LSClass* weapon_clazz;
-	static const WeaponType* raw_type;
+	static const std::shared_ptr<WeaponType> raw_type;
 	static const ls::Type type;
 	static const ls::Type const_type;
 	static const ls::Type array_type;

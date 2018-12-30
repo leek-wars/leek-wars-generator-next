@@ -2,10 +2,10 @@
 #include "../util/Util.hpp"
 
 const ls::LSClass* WeaponModule::weapon_clazz;
-const WeaponType* WeaponModule::raw_type(new WeaponType());
-const ls::Type WeaponModule::type(raw_type, ls::Nature::POINTER, true);
-const ls::Type WeaponModule::const_type(raw_type, ls::Nature::POINTER, true, false, true);
-const ls::Type WeaponModule::array_type(ls::RawType::ARRAY, ls::Nature::POINTER, WeaponModule::type, true);
+const std::shared_ptr<WeaponType> WeaponModule::raw_type = std::make_shared<WeaponType>();
+const ls::Type WeaponModule::type(raw_type, true);
+const ls::Type WeaponModule::const_type(raw_type, true, false, true);
+const ls::Type WeaponModule::array_type = ls::Type::array(WeaponModule::type);
 
 WeaponModule::WeaponModule(const FightManager& manager) : Module("Weapon") {
 
@@ -15,8 +15,8 @@ WeaponModule::WeaponModule(const FightManager& manager) : Module("Weapon") {
 		});
 	}
 
-	field("id", ls::Type::NUMBER_P);
-	field("cost", ls::Type::NUMBER_P);
+	field("id", ls::Type::NUMBER);
+	field("cost", ls::Type::NUMBER);
 	field("name", ls::Type::STRING);
 }
 

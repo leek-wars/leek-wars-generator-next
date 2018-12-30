@@ -58,8 +58,8 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 			entity->ai->execute(vm, vm_v1);
 		} catch (ls::vm::ExceptionObj* ex) {
 			LOG << ex->to_string(true);
-			vm.last_exception = nullptr;
-			vm_v1.last_exception = nullptr;
+			// vm.last_exception = nullptr;
+			// vm_v1.last_exception = nullptr;
 			if (ex->type == ls::vm::Exception::OPERATION_LIMIT_EXCEEDED) {
 				actions.add(new ActionAIError(entity));
 				// TODO Add Breaker Trophy

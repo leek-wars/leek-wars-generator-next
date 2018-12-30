@@ -3,7 +3,7 @@
 
 #include <leekscript.h>
 
-class ItemType : public ls::ObjectRawType {
+class ItemType : public ls::Object_type {
 public:
 	const std::string getName() const { return "Item"; };
 };

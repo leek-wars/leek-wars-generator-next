@@ -7,10 +7,10 @@
 #include "../entity/Entity.hpp"
 
 const ls::LSClass* CellModule::cell_clazz;
-const CellType* CellModule::raw_type(new CellType());
-const ls::Type CellModule::type(raw_type, ls::Nature::POINTER, true);
-const ls::Type CellModule::const_type(raw_type, ls::Nature::POINTER, true, false, true);
-const ls::Type CellModule::array_type(ls::RawType::ARRAY, ls::Nature::POINTER, CellModule::type);
+const std::shared_ptr<CellType> CellModule::raw_type = std::make_shared<CellType>();
+const ls::Type CellModule::type(raw_type, true);
+const ls::Type CellModule::const_type(raw_type, true, false, true);
+const ls::Type CellModule::array_type = ls::Type::array(CellModule::type);
 
 CellModule::CellModule() : Module("Cell") {
 
@@ -28,13 +28,13 @@ CellModule::CellModule() : Module("Cell") {
 	method("isAligned", {{ls::Type::BOOLEAN, {CellModule::type, CellModule::type}, (void*) &Cell::isAligned, ls::Method::NATIVE}});
 
 	// v1 functions
-	method("_isEmptyCell", {{ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &cell__isEmptyCell}});
-	method("_isLeek", {{ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &cell__isLeek}});
-	method("_isObstacle", {{ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &cell__isObstacle}});
-	method("_getX", {{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &cell__getCellX}});
-	method("_getY", {{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &cell__getCellY}});
-	method("_getLeekOnCell", {{ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &cell__getLeekOnCell}});
-	method("_getCellContent", {{ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &cell__getCellContent}});
+	method("_isEmptyCell", {{ls::Type::BOOLEAN, {ls::Type::ANY}, (void*) &cell__isEmptyCell}});
+	method("_isLeek", {{ls::Type::BOOLEAN, {ls::Type::ANY}, (void*) &cell__isLeek}});
+	method("_isObstacle", {{ls::Type::BOOLEAN, {ls::Type::ANY}, (void*) &cell__isObstacle}});
+	method("_getX", {{ls::Type::ANY, {ls::Type::ANY}, (void*) &cell__getCellX}});
+	method("_getY", {{ls::Type::ANY, {ls::Type::ANY}, (void*) &cell__getCellY}});
+	method("_getLeekOnCell", {{ls::Type::INTEGER, {ls::Type::ANY}, (void*) &cell__getLeekOnCell}});
+	method("_getCellContent", {{ls::Type::INTEGER, {ls::Type::ANY}, (void*) &cell__getCellContent}});
 }
 
 CellModule::~CellModule() {}

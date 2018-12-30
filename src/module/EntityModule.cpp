@@ -9,10 +9,10 @@
 #include "../item/Chip.hpp"
 
 const ls::LSClass* EntityModule::entity_clazz;
-const EntityType* EntityModule::raw_type(new EntityType());
-const ls::Type EntityModule::type(raw_type, ls::Nature::POINTER, true);
-const ls::Type EntityModule::const_type(raw_type, ls::Nature::POINTER, true, false, true);
-const ls::Type EntityModule::array_type(ls::RawType::ARRAY, ls::Nature::POINTER, EntityModule::type);
+const std::shared_ptr<EntityType> EntityModule::raw_type = std::make_shared<EntityType>();
+const ls::Type EntityModule::type(raw_type, true);
+const ls::Type EntityModule::const_type(raw_type, true, false, true);
+const ls::Type EntityModule::array_type = ls::Type::array(EntityModule::type);
 
 EntityModule::EntityModule() : Module("Entity") {
 
@@ -61,7 +61,7 @@ EntityModule::EntityModule() : Module("Entity") {
 	});
 	method("useChip", {{ls::Type::INTEGER, {EntityModule::const_type, ChipModule::const_type, EntityModule::const_type}, (void*) &Entity::useChip, ls::Method::NATIVE}});
 	method("useWeapon", {{ls::Type::INTEGER, {EntityModule::const_type, EntityModule::const_type}, (void*) &Entity::useWeapon, ls::Method::NATIVE}});
-	method("say", {{ls::Type::BOOLEAN, {EntityModule::const_type, ls::Type::CONST_POINTER}, (void*) &Entity::say, ls::Method::NATIVE}});
+	method("say", {{ls::Type::BOOLEAN, {EntityModule::const_type, ls::Type::CONST_ANY}, (void*) &Entity::say, ls::Method::NATIVE}});
 	method("setWeapon", {
 		{ls::Type::NULLL, {EntityModule::const_type, WeaponModule::const_type}, (void*) &entity_setWeapon, ls::Method::NATIVE},
 		{ls::Type::NULLL, {EntityModule::const_type, ls::Type::CONST_INTEGER}, (void*) &Entity::setWeaponInteger, ls::Method::NATIVE}
@@ -70,75 +70,75 @@ EntityModule::EntityModule() : Module("Entity") {
 	/*
 	 * V1 functions
 	 */
-	method("_getLeek", ls::Method::Static, {{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getLeek, ls::Method::NATIVE}});
+	method("_getLeek", ls::Method::Static, {{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getLeek, ls::Method::NATIVE}});
 
 	method("_getAbsoluteShield", ls::Method::Static, {
-		{ls::Type::POINTER, {}, (void*) &entity__getAbsoluteShield, ls::Method::NATIVE},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getAbsoluteShieldEntity, ls::Method::NATIVE}
+		{ls::Type::ANY, {}, (void*) &entity__getAbsoluteShield, ls::Method::NATIVE},
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getAbsoluteShieldEntity, ls::Method::NATIVE}
 	});
 	method("_getAgility", ls::Method::Static, {
-		{ls::Type::POINTER, {}, (void*) &entity__getAgility, ls::Method::NATIVE},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getAgilityEntity, ls::Method::NATIVE}
+		{ls::Type::ANY, {}, (void*) &entity__getAgility, ls::Method::NATIVE},
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getAgilityEntity, ls::Method::NATIVE}
 	});
 	method("_getBirthTurn", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getBirthTurn},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getBirthTurnEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getBirthTurnEntity}
 	});
 	method("_getCell", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getCell},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getCellEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getCellEntity}
 	});
 	method("_getChips", ls::Method::Static, {
 		{ls::Type::INT_ARRAY, {}, (void*) &entity__getChips},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getChipsEntity},
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getChipsEntity},
 	});
 	method("_getCores", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getCores},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getCoresEntity},
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getCoresEntity},
 	});
 	method("_getDamageReturn", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getDamageReturn},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getDamageReturnEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getDamageReturnEntity}
 	});
 	method("_getEffects", ls::Method::Static, {
 		{ls::Type::PTR_ARRAY, {}, (void*) &entity__getEffects},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getEffectsEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getEffectsEntity}
 	});
 	method("_getEntityTurnOrder", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getEntityTurnOrder},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getEntityTurnOrderEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getEntityTurnOrderEntity}
 	});
 	method("_getFrequency", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getFrequency},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getFrequencyEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getFrequencyEntity}
 	});
 	method("_getLaunchedEffects", ls::Method::Static, {
 		{ls::Type::PTR_ARRAY, {}, (void*) &entity__getLaunchedEffects},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getLaunchedEffectsEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getLaunchedEffectsEntity}
 	});
 	method("_getLeekID", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getLeekID},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getLeekIDEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getLeekIDEntity}
 	});
 	method("_getLevel", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getLevel},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getLevelEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getLevelEntity}
 	});
 	method("_getLife", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getLife},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getLifeEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getLifeEntity}
 	});
 	method("_getMagic", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getMagic},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getMagicEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getMagicEntity}
 	});
 	method("_getMP", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getMP},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getMPEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getMPEntity}
 	});
 	method("_getName", ls::Method::Static, {
 		{ls::Type::STRING, {}, (void*) &entity__getName},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getNameEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getNameEntity}
 	});
 	method("_getNearestEnemy", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getNearestEnemy}
@@ -148,83 +148,83 @@ EntityModule::EntityModule() : Module("Entity") {
 	});
 	method("_getRelativeShield", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getRelativeShield},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getRelativeShieldEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getRelativeShieldEntity}
 	});
 	method("_getResistance", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getResistance},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getResistanceEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getResistanceEntity}
 	});
 	method("_getScience", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getScience},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getScienceEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getScienceEntity}
 	});
 	method("_getStrength", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getStrength},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getStrengthEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getStrengthEntity}
 	});
 	method("_getSummoner", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getSummoner},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getSummonerEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getSummonerEntity}
 	});
 	method("_getTeamID", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getTeamID},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getTeamIDEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getTeamIDEntity}
 	});
 	method("_getTeamName", ls::Method::Static, {
 		{ls::Type::STRING, {}, (void*) &entity__getTeamName},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getTeamNameEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getTeamNameEntity}
 	});
 	method("_getTotalLife", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getTotalLife},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getTotalLifeEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getTotalLifeEntity}
 	});
 	method("_getTotalMP", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getTotalMP},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getTotalMPEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getTotalMPEntity}
 	});
 	method("_getTotalTP", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getTotalTP},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getTotalTPEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getTotalTPEntity}
 	});
 	method("_getTP", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getTP},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getTPEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getTPEntity}
 	});
 	method("_getType", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getType},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getTypeEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getTypeEntity}
 	});
 	method("_getWeapon", ls::Method::Static, {
-		{ls::Type::POINTER, {}, (void*) &entity__getWeapon},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getWeaponEntity}
+		{ls::Type::ANY, {}, (void*) &entity__getWeapon},
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getWeaponEntity}
 	});
 	method("_getWeapons", ls::Method::Static, {
 		{ls::Type::INT_ARRAY, {}, (void*) &entity__getWeapons},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getWeaponsEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getWeaponsEntity}
 	});
 	method("_getWisdom", ls::Method::Static, {
 		{ls::Type::INTEGER, {}, (void*) &entity__getWisdom},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getWisdomEntity}
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getWisdomEntity}
 	});
-	method("_isAlive", ls::Method::Static, {{ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &entity__isAlive}});
-	method("_isAlly", ls::Method::Static, {{ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &entity__isAlly}});
-	method("_isDead", ls::Method::Static, {{ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &entity__isDead}});
-	method("_isEnemy", ls::Method::Static, {{ls::Type::BOOLEAN, {ls::Type::POINTER}, (void*) &entity__isEnemy}});
+	method("_isAlive", ls::Method::Static, {{ls::Type::BOOLEAN, {ls::Type::ANY}, (void*) &entity__isAlive}});
+	method("_isAlly", ls::Method::Static, {{ls::Type::BOOLEAN, {ls::Type::ANY}, (void*) &entity__isAlly}});
+	method("_isDead", ls::Method::Static, {{ls::Type::BOOLEAN, {ls::Type::ANY}, (void*) &entity__isDead}});
+	method("_isEnemy", ls::Method::Static, {{ls::Type::BOOLEAN, {ls::Type::ANY}, (void*) &entity__isEnemy}});
 	method("_isSummon", ls::Method::Static, {
 		{ls::Type::BOOLEAN, {}, (void*) &entity__isSummon},
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__isSummonEntity},
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__isSummonEntity},
 	});
 
 	method("_getCooldown", ls::Method::Static, {
-		{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__getCooldown},
-		{ls::Type::POINTER, {ls::Type::POINTER, ls::Type::POINTER}, (void*) &entity__getCooldownEntity},
+		{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__getCooldown},
+		{ls::Type::ANY, {ls::Type::ANY, ls::Type::ANY}, (void*) &entity__getCooldownEntity},
 	});
 
-	method("_listen", ls::Method::Static, {{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__listen}});
-	method("_moveToward", ls::Method::Static, {{ls::Type::INTEGER, {ls::Type::POINTER}, (void*) &entity__moveToward}});
-	method("_say", ls::Method::Static, {{ls::Type::POINTER, {ls::Type::POINTER}, (void*) &entity__say}});
-	method("_setWeapon", ls::Method::Static, {{ls::Type::BOOLEAN, {ls::Type::NUMBER_P}, (void*) &entity__setWeapon}});
-	method("_useWeapon", ls::Method::Static, {{ls::Type::INTEGER, {ls::Type::NUMBER_P}, (void*) &entity__useWeapon}});
+	method("_listen", ls::Method::Static, {{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__listen}});
+	method("_moveToward", ls::Method::Static, {{ls::Type::INTEGER, {ls::Type::ANY}, (void*) &entity__moveToward}});
+	method("_say", ls::Method::Static, {{ls::Type::ANY, {ls::Type::ANY}, (void*) &entity__say}});
+	method("_setWeapon", ls::Method::Static, {{ls::Type::BOOLEAN, {ls::Type::NUMBER}, (void*) &entity__setWeapon}});
+	method("_useWeapon", ls::Method::Static, {{ls::Type::INTEGER, {ls::Type::NUMBER}, (void*) &entity__useWeapon}});
 }
 
 EntityModule::~EntityModule() {}

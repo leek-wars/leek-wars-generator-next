@@ -64,7 +64,7 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 			auto fun = new ls::LSFunction(method.second[0].addr);
 			fun->refs = 1;
 			fun->native = true;
-			vm_v1.add_constant(method.first.substr(1), method.second[0].type, fun);
+			vm_v1.add_internal_var(method.first.substr(1), method.second[0].type, fun);
 		}
 	}
 	// Add V1 weapons and chips constants
@@ -72,13 +72,13 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 		auto constant = ls::LSNumber::get(w.second->id);
 		constant->refs = 1;
 		constant->native = true;
-		vm_v1.add_constant(Util::toupper("weapon_" + w.first), ls::Type::NUMBER_P, constant);
+		vm_v1.add_internal_var(Util::toupper("weapon_" + w.first), ls::Type::ANY, constant);
 	}
 	for (const auto& c : chips) {
 		auto constant = ls::LSNumber::get(c.second->id);
 		constant->refs = 1;
 		constant->native = true;
-		vm_v1.add_constant(Util::toupper("chip_" + c.first), ls::Type::NUMBER_P, constant);
+		vm_v1.add_internal_var(Util::toupper("chip_" + c.first), ls::Type::ANY, constant);
 	}
 
 	// Load forbidden words
