@@ -16,9 +16,9 @@ OBJ_TEST := $(patsubst %.cpp,build/default/%.o,$(SRC_TEST))
 OBJ_COVERAGE := $(patsubst %.cpp,build/coverage/%.o,$(SRC))
 OBJ_SANITIZED := $(patsubst %.cpp,build/sanitized/%.o,$(SRC))
 
-FLAGS := -std=c++11 -O2 -g3 -Wall -Wextra -Wno-pmf-conversions -Ileekscript/src/
+FLAGS := -std=c++17 -O0 -g3 -Wall -Wextra -Wno-pmf-conversions -Ileekscript/src/
 SANITIZE_FLAGS := -fsanitize=address -fno-omit-frame-pointer -fsanitize=undefined -fsanitize=float-divide-by-zero # -fsanitize=float-cast-overflow
-LIBS := -ljit -Lleekscript/build -lleekscript
+LIBS := `llvm-config --ldflags --libs core orcjit` -Lleekscript/build -lleekscript
 MAKEFLAGS += --jobs=$(shell nproc)
 
 .PHONY: test leekscript
