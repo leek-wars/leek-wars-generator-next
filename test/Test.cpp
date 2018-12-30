@@ -13,6 +13,11 @@ Test::Test() {
 }
 
 int main(int, char**) {
+
+	llvm::InitializeNativeTarget();
+	llvm::InitializeNativeTargetAsmPrinter();
+	llvm::InitializeNativeTargetAsmParser();
+
 	srand(time(0));
 	Util::log_enabled = false;
 	Test().tests();

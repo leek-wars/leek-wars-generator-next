@@ -53,6 +53,10 @@ int main(int argc, char** argv) {
 	}
 
 	// Global initialization
+	llvm::InitializeNativeTarget();
+	llvm::InitializeNativeTargetAsmPrinter();
+	llvm::InitializeNativeTargetAsmParser();
+
 	srand(time(NULL));
 	ls::LSNull::set_null_value(ls::LSNull::create());
 	ls::LSBoolean::set_true_value(ls::LSBoolean::create(true));
@@ -62,7 +66,7 @@ int main(int argc, char** argv) {
 
 	// Start the fight
 	std::string fight_file(input);
- 	LOG << "Load fight '" << fight_file << "'..." << std::endl;
+	LOG << "Load fight '" << fight_file << "'..." << std::endl;
 	auto fight = FightLoader::load(manager, fight_file);
 	if (fight == nullptr) {
 		LOG_W << "Fight failed to load!" << std::endl;
