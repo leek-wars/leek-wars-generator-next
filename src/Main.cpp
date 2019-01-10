@@ -56,11 +56,7 @@ int main(int argc, char** argv) {
 	llvm::InitializeNativeTarget();
 	llvm::InitializeNativeTargetAsmPrinter();
 	llvm::InitializeNativeTargetAsmParser();
-
 	srand(time(NULL));
-	ls::LSNull::set_null_value(ls::LSNull::create());
-	ls::LSBoolean::set_true_value(ls::LSBoolean::create(true));
-	ls::LSBoolean::set_false_value(ls::LSBoolean::create(false));
 
 	FightManager manager;
 
