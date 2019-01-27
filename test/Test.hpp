@@ -28,6 +28,7 @@ public:
 	Test();
 	virtual ~Test();
 
+	void test_types();
 	void test_fight();
 	void test_fight_v1();
 	void test_censor();

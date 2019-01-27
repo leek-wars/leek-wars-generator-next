@@ -30,6 +30,7 @@ void Test::tests() {
 	exeTime = 0;
 
 	// Run tests
+	test_types();
 	test_field();
 	test_generateCritical();
 	test_censor();
