@@ -10,14 +10,14 @@ const ls::Type WeaponModule::array_type = ls::Type::array(WeaponModule::type);
 WeaponModule::WeaponModule(const FightManager& manager) : Module("Weapon") {
 
 	for (const auto& w : manager.weapons) {
-		static_field(Util::toupper(w.first), ls::Type::INTEGER, [&](ls::Compiler& c) {
+		static_field(Util::toupper(w.first), ls::Type::integer(), [&](ls::Compiler& c) {
 			return c.new_integer(w.second->id);
 		});
 	}
 
-	field("id", ls::Type::NUMBER);
-	field("cost", ls::Type::NUMBER);
-	field("name", ls::Type::STRING);
+	field("id", ls::Type::number());
+	field("cost", ls::Type::number());
+	field("name", ls::Type::string());
 }
 
 WeaponModule::~WeaponModule() {}

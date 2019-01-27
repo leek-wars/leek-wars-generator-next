@@ -16,28 +16,28 @@ const ls::Type LeekModule::type_ptr(LeekModule::type);
 LeekModule::LeekModule() : Module("Leek") {
 
 	method("getFarmerID", {
-		{ls::Type::INTEGER, {LeekModule::type_ptr}, (void*) &leek_getFarmerID, ls::Method::NATIVE}
+		{ls::Type::integer(), {LeekModule::type_ptr}, (void*) &leek_getFarmerID, ls::Method::NATIVE}
 	});
 	method("getFarmerName", {
-		{ls::Type::STRING, {LeekModule::type_ptr}, (void*) &leek_getFarmerName, ls::Method::NATIVE}
+		{ls::Type::string(), {LeekModule::type_ptr}, (void*) &leek_getFarmerName, ls::Method::NATIVE}
 	});
 
 	// V1 methods
 	method("_getAIID", ls::Method::Static, {
-		{ls::Type::INTEGER, {}, (void*) &leek__getAIID, ls::Method::NATIVE},
-		{ls::Type::ANY, {ls::Type::ANY}, (void*) &leek__getAIIDEntity, ls::Method::NATIVE},
+		{ls::Type::integer(), {}, (void*) &leek__getAIID, ls::Method::NATIVE},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &leek__getAIIDEntity, ls::Method::NATIVE},
 	});
 	method("_getAIName", ls::Method::Static, {
-		{ls::Type::STRING, {}, (void*) &leek__getAIName, ls::Method::NATIVE},
-		{ls::Type::ANY, {ls::Type::ANY}, (void*) &leek__getAINameEntity, ls::Method::NATIVE},
+		{ls::Type::string(), {}, (void*) &leek__getAIName, ls::Method::NATIVE},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &leek__getAINameEntity, ls::Method::NATIVE},
 	});
 	method("_getFarmerID", ls::Method::Static, {
-		{ls::Type::INTEGER, {}, (void*) &leek__getFarmerID, ls::Method::NATIVE},
-		{ls::Type::ANY, {ls::Type::ANY}, (void*) &leek__getFarmerIDEntity, ls::Method::NATIVE},
+		{ls::Type::integer(), {}, (void*) &leek__getFarmerID, ls::Method::NATIVE},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &leek__getFarmerIDEntity, ls::Method::NATIVE},
 	});
 	method("_getFarmerName", ls::Method::Static, {
-		{ls::Type::STRING, {}, (void*) &leek__getFarmerName, ls::Method::NATIVE},
-		{ls::Type::ANY, {ls::Type::ANY}, (void*) &leek__getFarmerNameEntity, ls::Method::NATIVE},
+		{ls::Type::string(), {}, (void*) &leek__getFarmerName, ls::Method::NATIVE},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &leek__getFarmerNameEntity, ls::Method::NATIVE},
 	});
 }
 

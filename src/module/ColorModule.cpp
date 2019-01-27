@@ -32,16 +32,16 @@ ColorModule::ColorModule() : Module("Color") {
 	static_field("GREEN", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::GREEN, type_ptr); });
 	static_field("BLUE", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::BLUE, type_ptr); });
 
-	field("r", ls::Type::NUMBER);
-	field("g", ls::Type::NUMBER);
-	field("b", ls::Type::NUMBER);
-	field("a", ls::Type::NUMBER);
+	field("r", ls::Type::number());
+	field("g", ls::Type::number());
+	field("b", ls::Type::number());
+	field("a", ls::Type::number());
 
 	method("rgb", {
-		{ColorModule::type_ptr, {ls::Type::INTEGER, ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &color_rgb, ls::Method::NATIVE}
+		{ColorModule::type_ptr, {ls::Type::integer(), ls::Type::integer(), ls::Type::integer()}, (void*) &color_rgb, ls::Method::NATIVE}
 	});
 	method("rgba", {
-		{ColorModule::type_ptr, {ls::Type::INTEGER, ls::Type::INTEGER, ls::Type::INTEGER, ls::Type::INTEGER}, (void*) &color_rgba, ls::Method::NATIVE}
+		{ColorModule::type_ptr, {ls::Type::integer(), ls::Type::integer(), ls::Type::integer(), ls::Type::integer()}, (void*) &color_rgba, ls::Method::NATIVE}
 	});
 
 	ColorModule::color_clazz = this->clazz;

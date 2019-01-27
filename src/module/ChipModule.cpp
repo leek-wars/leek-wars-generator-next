@@ -13,37 +13,37 @@ ls::Compiler::value Chip_SPARK(ls::Compiler& c) { return c.new_integer(1); }
 ChipModule::ChipModule(const FightManager& manager) : Module("Chip") {
 
 	for (const auto& w : manager.chips) {
-		static_field(Util::toupper(w.first), ls::Type::INTEGER, [&](ls::Compiler& c) {
+		static_field(Util::toupper(w.first), ls::Type::integer(), [&](ls::Compiler& c) {
 			return c.new_integer(w.second->id);
 		});
 	}
 
-	field("id", ls::Type::NUMBER);
-	field("cost", ls::Type::NUMBER);
-	field("name", ls::Type::STRING);
+	field("id", ls::Type::number());
+	field("cost", ls::Type::number());
+	field("name", ls::Type::string());
 
 	/*
 	 * V1
 	 */
-	method("_canUseChip", {{ls::Type::BOOLEAN, {ls::Type::ANY, ls::Type::ANY}, (void*) &chip__canUseChip}});
-	method("_canUseChipOnCell", {{ls::Type::BOOLEAN, {ls::Type::ANY, ls::Type::ANY}, (void*) &chip__canUseChipOnCell}});
-	method("_chipNeedLos", {{ls::Type::BOOLEAN, {ls::Type::ANY}, (void*) &chip__chipNeedLos}});
-	method("_getChipArea", {{ls::Type::ANY, {ls::Type::ANY}, (void*) &chip__getChipArea}});
-	method("_getChipCooldown", {{ls::Type::INTEGER, {ls::Type::ANY}, (void*) &chip__getChipCooldown}});
-	method("_getChipCost", {{ls::Type::ANY, {ls::Type::ANY}, (void*) &chip__getChipCost}});
+	method("_canUseChip", {{ls::Type::boolean(), {ls::Type::any(), ls::Type::any()}, (void*) &chip__canUseChip}});
+	method("_canUseChipOnCell", {{ls::Type::boolean(), {ls::Type::any(), ls::Type::any()}, (void*) &chip__canUseChipOnCell}});
+	method("_chipNeedLos", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &chip__chipNeedLos}});
+	method("_getChipArea", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipArea}});
+	method("_getChipCooldown", {{ls::Type::integer(), {ls::Type::any()}, (void*) &chip__getChipCooldown}});
+	method("_getChipCost", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipCost}});
 	method("_getChipEffectiveAreaCell", {
-		{ls::Type::ANY, {ls::Type::ANY}, (void*) &chip__getChipEffectiveArea},
-		{ls::Type::ANY, {ls::Type::ANY, ls::Type::ANY}, (void*) &chip__getChipEffectiveAreaCell},
-		{ls::Type::ANY, {ls::Type::ANY, ls::Type::ANY, ls::Type::ANY}, (void*) &chip__getChipEffectiveAreaCellFrom},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipEffectiveArea},
+		{ls::Type::any(), {ls::Type::any(), ls::Type::any()}, (void*) &chip__getChipEffectiveAreaCell},
+		{ls::Type::any(), {ls::Type::any(), ls::Type::any(), ls::Type::any()}, (void*) &chip__getChipEffectiveAreaCellFrom},
 	});
-	method("_getChipEffects", {{ls::Type::ANY, {ls::Type::ANY}, (void*) &chip__getChipEffects}});
-	method("_getChipFailure", {{ls::Type::INTEGER, {ls::Type::ANY}, (void*) &chip__getChipFailure}});
-	method("_getChipMaxRange", {{ls::Type::ANY, {ls::Type::ANY}, (void*) &chip__getChipMaxRange}});
-	method("_getChipMinRange", {{ls::Type::ANY, {ls::Type::ANY}, (void*) &chip__getChipMinRange}});
-	method("_getChipName", {{ls::Type::STRING, {ls::Type::ANY}, (void*) &chip__getChipName}});
-	method("_getCurrentCooldown", {{ls::Type::ANY, {ls::Type::ANY}, (void*) &chip__getCurrentCooldown}});
-	method("_isChip", {{ls::Type::BOOLEAN, {ls::Type::ANY}, (void*) &chip__isChip}});
-	method("_isInlineChip", {{ls::Type::BOOLEAN, {ls::Type::ANY}, (void*) &chip__isInlineChip}});
+	method("_getChipEffects", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipEffects}});
+	method("_getChipFailure", {{ls::Type::integer(), {ls::Type::any()}, (void*) &chip__getChipFailure}});
+	method("_getChipMaxRange", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipMaxRange}});
+	method("_getChipMinRange", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipMinRange}});
+	method("_getChipName", {{ls::Type::string(), {ls::Type::any()}, (void*) &chip__getChipName}});
+	method("_getCurrentCooldown", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getCurrentCooldown}});
+	method("_isChip", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &chip__isChip}});
+	method("_isInlineChip", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &chip__isInlineChip}});
 }
 
 ChipModule::~ChipModule() {}
