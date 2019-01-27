@@ -67,6 +67,8 @@ void Test::test_ai(Fight* fight, Entity* entity, std::string code, std::string e
 	auto ai = new AI(code, "ai", false);
 	entity->ai.reset(ai);
 	int errors = entity->ai->compile(manager.vm, manager.vm_v1);
+	// entity->ai->program->print(std::cout, true);
+	// std::cout << std::endl;
 	if (errors > 0) {
 		std::cout << errors << " error(s) in AI!" << std::endl;
 	}
