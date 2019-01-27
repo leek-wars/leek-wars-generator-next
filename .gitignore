@@ -9,3 +9,4 @@ Release/
 .settings/
 /fight.json
 src/doc
+.vscode
