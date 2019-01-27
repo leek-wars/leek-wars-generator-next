@@ -4,11 +4,16 @@
 #include <leekscript.h>
 #include "ItemModule.hpp"
 #include "../fight/FightManager.hpp"
+#include "colors.h"
 
 class WeaponType : public ItemType {
 public:
 	const std::string getName() const { return "weapon"; };
 	const std::string getClass() const { return "Weapon"; };
+	virtual std::ostream& print(std::ostream& os) const override {
+		os << BLUE_BOLD << "weapon" << END_COLOR;
+		return os;
+	}
 };
 
 class WeaponModule : public ls::Module {
