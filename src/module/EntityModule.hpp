@@ -7,11 +7,16 @@ class Weapon;
 #include "CellModule.hpp"
 class Chip;
 class Effect;
+#include "colors.h"
 
 class EntityType : public ls::Object_type {
 public:
 	virtual const std::string getName() const override { return "entity"; };
 	virtual std::string clazz() const override { return "Entity"; };
+	virtual std::ostream& print(std::ostream& os) const override {
+		os << BLUE_BOLD << "entity" << END_COLOR;
+		return os;
+	}
 };
 
 class EntityModule : public ls::Module {
