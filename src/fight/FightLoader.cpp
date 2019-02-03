@@ -116,7 +116,8 @@ Fight* FightLoader::load(const FightManager& manager, std::string file) {
 
 	fight->teams = teams;
 
-	fight->field.reset(new Field(17, 17, 30, teams));
+	int obstacle_count = fight->manager->random.getInt(40, 60);
+	fight->field.reset(new Field(fight, 18, 18, obstacle_count, teams));
 
 	return fight;
 }
