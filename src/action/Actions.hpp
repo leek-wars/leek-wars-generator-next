@@ -31,8 +31,6 @@ public:
 
 	Json json();
 
-	void addEntity(Entity* entity, bool valid_ai);
-
 	void addMap(Map* map);
 };
 
