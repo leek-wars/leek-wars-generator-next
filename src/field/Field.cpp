@@ -73,21 +73,21 @@ void Field::generate(int obstacles_count, const std::vector<Team*>& teams) {
 					Cell* c3 = get_cell_by_direction(c, Direction::SOUTH);
 					Cell* c4 = get_cell_by_direction(c3, Direction::EAST);
 					if (c2 == nullptr || c3 == nullptr || c4 == nullptr
-						|| !c2->available() || !c3->available() || !c4->available())
+						|| !c2->available() || !c3->available() || !c4->available()) {
 						size = 1;
-					else {
+					} else {
 						c2->setObstacle(0, -1);
 						c3->setObstacle(0, -1);
 						c4->setObstacle(0, -1);
-						obstacles.push_back(c2);
-						obstacles.push_back(c3);
-						obstacles.push_back(c4);
 					}
 				}
-				c->setObstacle(type, size);
 				obstacles.push_back(c);
+				c->setObstacle(type, size);
 			}
 		}
+		std::sort(obstacles.begin(), obstacles.end(), [&](Cell* c1, Cell* c2) {
+			return c1->id > c2->id;
+		});
 		ConnexeMap cm(this);
 		std::vector<Entity*> entities;
 
