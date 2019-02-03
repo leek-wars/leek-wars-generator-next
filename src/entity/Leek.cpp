@@ -13,6 +13,8 @@ Leek::~Leek() {}
 Json Leek::to_json() const {
 	auto json = Entity::to_json();
 	json["skin"] = skin;
-	json["hat"] = hat;
+	if (hat != 0) {
+		json["hat"] = hat;
+	}
 	return json;
 }
