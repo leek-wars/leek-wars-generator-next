@@ -7,6 +7,7 @@
 #include <functional>
 #include <chrono>
 #include "../entity/Censor.hpp"
+#include "RandomGenerator.hpp"
 
 class FightManager {
 public:
@@ -23,6 +24,7 @@ public:
 	std::map<int, Chip*> chips;
 	Fight* fight;
 	Censor censor;
+	RandomGenerator random;
 
 	std::string compile(std::string ai);
 	void start(Fight& fight, std::function<void(Report*)> callback);
