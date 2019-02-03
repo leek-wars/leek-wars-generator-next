@@ -14,20 +14,10 @@ Cell::Cell(Field* field, int id, int x, int y) {
 	this->x = x;
 	this->y = y;
 
-	if (y == 0 && x < field->width) {
-		north = false;
-		west = false;
-	} else if (y + 1 == field->height && x >= field->width) {
-		east = false;
-		south = false;
-	}
-	if (x == 0) {
-		south = false;
-		west = false;
-	} else if (x + 1 == field->width) {
-		north = false;
-		east = false;
-	}
+	if (x + y == field->width - 1) east = south = false;
+	if (-x - y == field->width - 1) north = west = false;
+	if (x - y == field->width - 1) north = east = false;
+	if (-x + y == field->width - 1) west = south = false;
 
 	this->refs = 1;
 	this->native = true;
