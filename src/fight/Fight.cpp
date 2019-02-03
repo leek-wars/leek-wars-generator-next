@@ -17,6 +17,7 @@
 #include "../action/ActionEntityTurn.hpp"
 #include "../action/ActionAIError.hpp"
 #include "../action/ActionEntityDie.hpp"
+#include "FightManager.hpp"
 
 Fight::Fight() : actions(this) {
 	field = nullptr;
@@ -141,7 +142,7 @@ bool Fight::hasCooldown(const Entity* entity, const Chip* chip) const {
 }
 
 bool Fight::generateCritical(Entity* entity) const {
-	return Util::random() < ((double) entity->getAgility() / 1000);
+	return manager->random.getDouble() < ((double) entity->getAgility() / 1000);
 }
 
 int Fight::useWeapon(Entity* launcher, Cell* target) {

@@ -6,6 +6,7 @@
 
 #include <vector>
 #include "../entity/Entity.hpp"
+class FightManager;
 
 class StartOrder {
 
@@ -17,7 +18,7 @@ public:
 	virtual ~StartOrder();
 
 	void addEntity(Entity* entity);
-	std::vector<Entity*> compute();
+	std::vector<Entity*> compute(FightManager* manager);
 };
 
 #endif

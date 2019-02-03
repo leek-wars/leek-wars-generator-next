@@ -11,6 +11,8 @@
 #include "../effect/Attack.hpp"
 #include "../entity/Team.hpp"
 #include "../colors.h"
+#include "../fight/Fight.hpp"
+#include "../fight/FightManager.hpp"
 
 Field::Field(int width, int height, int obstacles_count, const std::vector<Team*>& teams) {
 
@@ -55,18 +57,18 @@ void Field::generate(int obstacles_count, const std::vector<Team*>& teams) {
 
 	int nb = 0;
 	bool valid = false;
+	type = fight->manager->random.getInt(0, 4);
 
 	while (!valid && nb < 64) {
 
 		valid = true;
-		type = Util::rand_int(0, 4);
 		obstacles.clear();
 
 		for (int i = 0; i < obstacles_count; i++) {
-			auto c = get_cell(Util::rand_int(cells.size()));
+			auto c = get_cell(fight->manager->random.getInt(0, cells.size()));
 			if (c != nullptr && c->available()) {
-				int size = Util::rand_int(1, 2);
-				int type = Util::rand_int(0, 2);
+				int size = fight->manager->random.getInt(1, 2);
+				int type = fight->manager->random.getInt(0, 2);
 				if (size == 2) {
 					Cell* c2 = get_cell_by_direction(c, Direction::EAST);
 					Cell* c3 = get_cell_by_direction(c, Direction::SOUTH);
@@ -144,7 +146,7 @@ Cell* Field::get_random_cell() {
 	Cell* c = nullptr;
 	int security = 0;
 	do {
-		c = get_cell(Util::rand_int(cells.size()));
+		c = get_cell(fight->manager->random.getInt(0, cells.size()));
 	} while (!c->available() && security++ < 512);
 	return c;
 }
@@ -153,8 +155,8 @@ Cell* Field::get_random_cell(int part) {
 	Cell* c = nullptr;
 	int security = 0;
 	do {
-		int y = Util::rand_int(height - 1);
-		int x = Util::rand_int(width / 4);
+		int y = fight->manager->random.getInt(0, height - 1);
+		int x = fight->manager->random.getInt(0, width / 4);
 		int cellid = y * (width * 2 - 1);
 		cellid += (part - 1) * width / 4 + x;
 		c = get_cell(cellid);

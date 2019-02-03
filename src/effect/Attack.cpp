@@ -10,6 +10,8 @@
 #include "../area/AreaCircle.hpp"
 #include "../area/AreaLaserLine.hpp"
 #include "../field/Field.hpp"
+#include "../fight/Fight.hpp"
+#include "../fight/FightManager.hpp"
 
 Attack::Attack(int min_range, int max_range, LaunchType launch_type, AreaType area_type, bool los, std::vector<EffectParameters> effects, AttackType attack_type) {
 
@@ -75,7 +77,7 @@ std::vector<Entity*> Attack::applyOnCell(Fight* fight, Entity* caster, Cell* tar
 	}
 
 	// On défini le jet
-	double jet = Util::random();
+	double jet = fight->manager->random.getDouble();
 
 	// Apply effects
 	for (auto& parameters : effects) {

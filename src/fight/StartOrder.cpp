@@ -2,6 +2,7 @@
 #include <algorithm>
 #include "StartOrder.hpp"
 #include "../entity/Team.hpp"
+#include "FightManager.hpp"
 
 StartOrder::StartOrder() {}
 
@@ -16,7 +17,7 @@ void StartOrder::addEntity(Entity* entity) {
 	total_entities++;
 }
 
-std::vector<Entity*> StartOrder::compute() {
+std::vector<Entity*> StartOrder::compute(FightManager* manager) {
 
 	// Sort entities inside team on their frequency
 	for (std::vector<Entity*> team : teams) {
@@ -60,7 +61,7 @@ std::vector<Entity*> StartOrder::compute() {
 
 	for (unsigned t = 0; t < teams.size(); ++t) {
 
-		double v = (double) rand() / RAND_MAX;
+		double v = (double) manager->random.getDouble() / RAND_MAX;
 
 		for (unsigned i = 0; i < remaining.size(); ++i) {
 
