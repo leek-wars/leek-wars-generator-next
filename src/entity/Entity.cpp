@@ -227,6 +227,10 @@ int Entity::getRelativeShield() const {
 	return getCharacteristic(Characteristic::RELATIVE_SHIELD);
 }
 
+int Entity::getOwnerId() const {
+	return -1;
+}
+
 int Entity::getCharacteristic(Characteristic characteristic) const {
 	return base_characs.get(characteristic) + bonus_characs.get(characteristic);
 }
@@ -605,5 +609,6 @@ Json Entity::to_json() const {
 	json["wisdom"] = getWisdom();
 	json["summon"] = false;
 	json["farmer"] = farmer;
+	json["owner"] = getOwnerId();
 	return json;
 }

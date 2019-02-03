@@ -126,6 +126,7 @@ public:
 	int getDamageReturn() const;
 	int getAbsoluteShield() const;
 	int getRelativeShield() const;
+	virtual int getOwnerId() const;
 
 	/*
 	 * Fight actions

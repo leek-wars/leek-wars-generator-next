@@ -5,8 +5,12 @@
 
 class Summon: public Entity {
 public:
+	Entity* owner;
+
 	Summon(Fight* fight, int level);
 	virtual ~Summon();
+
+	virtual int getOwnerId() const override;
 };
 
 #endif
