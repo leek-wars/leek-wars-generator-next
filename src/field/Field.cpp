@@ -348,7 +348,7 @@ Json Field::json() const {
 		obstacles_json[std::to_string(c->id)] = std::vector<int>{ c->obstacle, c->obstacle_size };
 	}
 	return {
-		{"type", 1},
+		{"type", type},
 		{"obstacles", obstacles_json},
 		{"width", width},
 		{"height", height}
