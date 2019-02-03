@@ -12,18 +12,6 @@
 std::ostream Util::dummy_stream(0);
 bool Util::log_enabled = true;
 
-float Util::random() {
-	return (float) rand() / RAND_MAX;
-}
-
-int Util::rand_int(int max) {
-	return rand() % max;
-}
-
-int Util::rand_int(int min, int max) {
-	return min + rand() % (max - min + 1);
-}
-
 std::vector<std::string> Util::split(const std::string& s, char delim) {
 	std::vector<std::string> elems;
 	std::stringstream ss(s);

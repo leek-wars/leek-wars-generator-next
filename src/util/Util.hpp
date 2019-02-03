@@ -16,9 +16,6 @@
 class Util {
 public:
 
-	static float random();
-	static int rand_int(int min);
-	static int rand_int(int min, int max);
 	static bool log_enabled;
 	static std::ostream dummy_stream;
 
