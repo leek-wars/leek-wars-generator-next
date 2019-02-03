@@ -8,6 +8,7 @@
 class Team;
 class Attack;
 #include "Cell.hpp"
+class Fight;
 
 class Field {
 public:
@@ -29,8 +30,9 @@ public:
 	int max_x = -1;
 	int min_y = -1;
 	int max_y = -1;
+	Fight* fight;
 
-	Field(int width, int height, int obstacles, const std::vector<Team*>& teams);
+	Field(Fight* fight, int width, int height, int obstacles, const std::vector<Team*>& teams);
 	virtual ~Field();
 
 	Cell* get_cell(int id);

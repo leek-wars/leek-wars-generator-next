@@ -14,26 +14,25 @@
 #include "../fight/Fight.hpp"
 #include "../fight/FightManager.hpp"
 
-Field::Field(int width, int height, int obstacles_count, const std::vector<Team*>& teams) {
-
+Field::Field(Fight* fight, int width, int height, int obstacles_count, const std::vector<Team*>& teams) {
+	this->fight = fight;
 	this->width = width;
 	this->height = height;
-	min_x = -width;
-	min_y = -width;
-	max_x = width;
-	max_y = width;
-	sx = width * 2 + 1;
-	sy = width * 2 + 1;
+	min_x = -width + 1;
+	min_y = -width + 1;
+	max_x = width - 1;
+	max_y = width - 1;
+	sx = (width - 1) * 2 + 1;
+	sy = (width - 1) * 2 + 1;
 
 	coord.resize(sx);
 	for (int i = 0; i < sx; ++i) {
 		coord[i].resize(sy, nullptr);
 	}
-
-	for (int x = -width; x <= width; x++) {
-		for (int y = -width; y <= width; y++) {
-			if (abs(x) + abs(y) > width) continue;
-			int id = (width + 1) * width + (width + 1) * y - width * x;
+	for (int x = -width + 1; x < width; x++) {
+		for (int y = -width + 1; y < width; y++) {
+			if (abs(x) + abs(y) >= width) continue;
+			int id = width * (width - 1) + width * x + (width - 1) * y;
 			auto cell = new Cell(this, id, x, y);
 			cells.push_back(cell);
 			coord[cell->x - min_x][cell->y - min_y] = cell;
@@ -278,13 +277,13 @@ Cell* Field::get_cell_by_direction(Cell* cell, Direction dir) {
 		return nullptr;
 	}
 	if (dir == Direction::NORTH and cell->north) {
-		return (Cell*) int_to_cell(cell->id - cell->field->width + 1);
+		return (Cell*) int_to_cell(cell->id - width + 1);
 	} else if (dir == Direction::WEST && cell->west) {
-		return (Cell*) int_to_cell(cell->id - cell->field->width);
+		return (Cell*) int_to_cell(cell->id - width);
 	} else if (dir == Direction::EAST && cell->east) {
-		return (Cell*) int_to_cell(cell->id + cell->field->width);
+		return (Cell*) int_to_cell(cell->id + width);
 	} else if (dir == Direction::SOUTH && cell->south) {
-		return (Cell*) int_to_cell(cell->id + cell->field->width - 1);
+		return (Cell*) int_to_cell(cell->id + width - 1);
 	}
 	return nullptr;
 }
