@@ -22,7 +22,7 @@ std::vector<Entity*> StartOrder::compute(FightManager* manager) {
 	// Sort entities inside team on their frequency
 	for (std::vector<Entity*> team : teams) {
 		std::sort(team.begin(), team.end(), [](const Entity* a, const Entity* b) -> bool {
-		    return a->getFrequency() > b->getFrequency();
+			return a->getFrequency() > b->getFrequency();
 		});
 	}
 
