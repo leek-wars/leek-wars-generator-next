@@ -12,6 +12,7 @@
 Fight* FightLoader::load(const FightManager& manager, std::string file) {
 
 	auto fight = new Fight();
+	fight->manager = (FightManager*) &manager;
 
 	// TODO create a Util::read_file_json
 	std::string str = Util::read_file(file);
