@@ -67,6 +67,7 @@ void Test::test_generateCritical() {
 	Util::log_enabled = true;
 
 	Fight fight;
+	fight.manager = &manager;
 	auto leek1 = new Leek(&fight, "Franklin", 297, nullptr, 1, 0);
 	Characteristics characs1;
 	characs1.set(Characteristic::AGILITY, 0);
