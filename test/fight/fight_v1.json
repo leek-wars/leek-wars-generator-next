@@ -2,6 +2,7 @@
 		[
 			{	"ai": "test/ai/v1/example_ai.leek",
 				"v1": true,
+				"farmer": 555,
 				"name": "Trevor",
 				"level": 301,
 				"life": 5000,
@@ -16,6 +17,7 @@
 		[
 			{	"ai": "test/ai/v1/basic_ai.leek",
 				"v1": true,
+				"farmer": 666,
 				"name": "Franklin",
 				"level": 1000,
 				"life": 10000,
