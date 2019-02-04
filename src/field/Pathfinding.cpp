@@ -20,6 +20,7 @@ bool Field::line_of_sight_attack(const Cell* start, const Cell* end, const Attac
 }
 
 bool Field::line_of_sight_ignored(const Cell* start, const Cell* end, std::vector<const Cell*> ignored) const {
+	// LOG << "lineOfSight " << *start << " " << start << " <=> " << *end << " " << end << std::endl;
 
 	auto check_cell = [&](Cell* cell) {
 		if (cell == nullptr || !cell->walkable) return false;
