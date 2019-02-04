@@ -7,7 +7,8 @@ void Test::test_field() {
 	Util::log_enabled = true;
 
 	Fight fight;
-	Field field(17, 17, 120, {});
+	fight.manager = &manager;
+	Field field(&fight, 17, 17, 120, {});
 	int cells = field.cells.size();
 
 	// Display one interesting path
