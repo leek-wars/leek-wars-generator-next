@@ -247,7 +247,6 @@ int Entity::getTalent() const {
 }
 
 int Entity::move(const std::vector<const Cell*> path) {
-
 	int size = path.size();
 	if (size == 0 or size > getMP()) {
 		return 0;
