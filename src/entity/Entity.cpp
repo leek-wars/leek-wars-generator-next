@@ -506,6 +506,9 @@ int Entity::moveTowardCellMP(Cell* target, int max_mp) {
 	if (path.size() == 0) {
 		return 0;
 	}
+	if (path.size() > 1) {
+		fight->field->draw_path(path, cell, target);
+	}
 	return move({path.begin() + 1, path.begin() + std::min((int) path.size(), mp + 1)});
 }
 
