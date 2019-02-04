@@ -35,12 +35,16 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 
 	Simulator::fight = this;
 
+	StartOrder startorder;
 	for (auto& team : teams) {
 		for (auto& entity : team->entities) {
-			entities.insert({entity->id, entity});
-			order.addEntity(entity);
-			entity->ai->compile(vm, vm_v1);
+			startorder.addEntity(entity);
 		}
+	}
+	for (const auto& entity : startorder.compute(manager)) {
+		entities.insert({entity->id, entity});
+		order.addEntity(entity);
+		entity->ai->compile(vm, vm_v1);
 	}
 
 	actions.add(new ActionStartFight());
