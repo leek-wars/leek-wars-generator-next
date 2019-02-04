@@ -90,7 +90,7 @@ Fight* FightLoader::load(const FightManager& manager, std::string file) {
 			std::vector<Weapon*> weapons;
 			if (e.find("weapons") != e.end()) {
 				for (const auto& w : e["weapons"]) {
-					weapons.push_back(manager.weapons.at(w));
+					weapons.push_back(manager.weapons.at(w.get<int>()));
 				}
 			}
 			leek->setWeapons(weapons);
