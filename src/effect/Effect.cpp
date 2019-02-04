@@ -66,6 +66,8 @@ void Effect::createEffect(Fight* fight, EffectType type, int turns, double power
 	effect->attackType = attack_type;
 	effect->attackID = attack_id;
 	effect->jet = jet;
+	effect->erosionRate = type == EffectType::POISON ? 0.10 : 0.05;
+	if (critical) effect->erosionRate += 0.10;
 
 	// Add effect to the target and the caster
 	if (effect->turns > 0) {

@@ -63,6 +63,7 @@ public:
 	double jet;
 	Characteristics characs;
 	int id = 0;
+	double erosionRate;
 
 	Effect();
 	virtual ~Effect();

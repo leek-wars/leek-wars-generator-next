@@ -7,9 +7,10 @@
 class ActionLoseLife : public Action {
 	int target;
 	int life;
+	int erosion;
 public:
 
-	ActionLoseLife(Entity* target, int life);
+	ActionLoseLife(Entity* target, int life, int erosion);
 
 	virtual Json json() const override;
 };

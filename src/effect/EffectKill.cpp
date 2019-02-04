@@ -5,7 +5,7 @@
 
 void EffectKill::apply(Fight* fight) {
 	damage = target->getLife();
-	fight->actions.add(new ActionLoseLife(target, damage));
+	fight->actions.add(new ActionLoseLife(target, damage, 0));
 	target->removeLife(damage, caster);
 }
 

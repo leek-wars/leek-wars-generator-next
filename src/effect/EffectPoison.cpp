@@ -13,7 +13,8 @@ void EffectPoison::applyStartTurn(Fight* fight) {
 	if (target->getLife() < damage) {
 		damage = target->getLife();
 	}
-	fight->actions.add(new ActionLoseLife(target, damage));
+	int erosion = (int) round(damage * erosionRate);
+	fight->actions.add(new ActionLoseLife(target, damage, erosion));
 	target->removeLife(damage, caster);
 	// TODO Manage statistics
 	// fight.statistics.addDamagePoison(damages);

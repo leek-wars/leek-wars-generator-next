@@ -35,7 +35,9 @@ void EffectDamage::apply(Fight* fight) {
 		fight->trophy_manager.unlock_roxxor(caster);
 	}
 
-	fight->actions.add(new ActionLoseLife(target, damage));
+	int erosion = (int) round(damage * erosionRate);
+
+	fight->actions.add(new ActionLoseLife(target, damage, erosion));
 	target->removeLife(damage, caster);
 
 	// Life steal
@@ -55,8 +57,9 @@ void EffectDamage::apply(Fight* fight) {
 		if (caster->getLife() < return_damage) {
 			return_damage = caster->getLife();
 		}
+		int return_erosion = (int) round(return_damage * erosionRate);
 		if (return_damage > 0) {
-			fight->actions.add(new ActionLoseLife(caster, return_damage));
+			fight->actions.add(new ActionLoseLife(caster, return_damage, return_erosion));
 			caster->removeLife(return_damage, target);
 		}
 	}
