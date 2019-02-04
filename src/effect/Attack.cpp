@@ -78,6 +78,7 @@ std::vector<Entity*> Attack::applyOnCell(Fight* fight, Entity* caster, Cell* tar
 
 	// On défini le jet
 	double jet = fight->manager->random.getDouble();
+	LOG << "Attack jet " << jet << std::endl;
 
 	// Apply effects
 	for (auto& parameters : effects) {
