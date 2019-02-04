@@ -166,7 +166,7 @@ int Fight::useWeapon(Entity* launcher, Cell* target) {
 		return AttackResult::NOT_ENOUGH_TP;
 	}
 	if (!field->can_use_attack(launcher->cell, target, weapon->attack.get())) {
-		LOG << "Can't use this weapon!" << std::endl;
+		LOG << "Invalid position to use this weapon!" << std::endl;
 		return AttackResult::INVALID_POSITION;
 	}
 
