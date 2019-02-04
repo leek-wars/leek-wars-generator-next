@@ -31,8 +31,8 @@ bool Field::line_of_sight_ignored(const Cell* start, const Cell* end, std::vecto
 	int y1 = start->y - min_y;
 	int a = abs(start->y - end->y);
 	int b = abs(start->x - end->x);
-	int dx = copysign(1, end->x - start->x);
-	int dy = copysign(1, end->y - start->y);
+	int dx = start->x > end->x ? -1 : 1;
+	int dy = start->y > end->y ? -1 : 1;
 	float h = 0;
 	float y = 0;
 	if (b > 0) {
@@ -40,14 +40,18 @@ bool Field::line_of_sight_ignored(const Cell* start, const Cell* end, std::vecto
 		for (int x = 0; x < b; ++x) {
 			y = 0.5 + (x * 2 + 1) * d;
 			for (int i = 0; i < ceil(y) - h; i++) {
-				if (!check_cell(coord[y1 + (h + i) * dy][x1])) return false;
+				if (!check_cell(coord[x1][y1 + (h + i) * dy])) {
+					return false;
+				}
 			}
 			h = floor(y + 2 * std::numeric_limits<float>::epsilon());
 			x1 += dx;
 		}
 	}
 	for (int i = 0; i < a + 1 - h; i++) {
-		if (!check_cell(coord[y1 + (h + i) * dy][x1])) return false;
+		if (!check_cell(coord[x1][y1 + (h + i) * dy])) {
+			return false;
+		}
 	}
 	return true;
 }
