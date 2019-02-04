@@ -18,6 +18,7 @@
 #include "../action/ActionAIError.hpp"
 #include "../action/ActionEntityDie.hpp"
 #include "FightManager.hpp"
+#include "StartOrder.hpp"
 
 Fight::Fight() : actions(this) {
 	field = nullptr;
