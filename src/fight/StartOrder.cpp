@@ -3,6 +3,7 @@
 #include "StartOrder.hpp"
 #include "../entity/Team.hpp"
 #include "FightManager.hpp"
+#include "../util/Util.hpp"
 
 StartOrder::StartOrder() {}
 
@@ -18,6 +19,7 @@ void StartOrder::addEntity(Entity* entity) {
 }
 
 std::vector<Entity*> StartOrder::compute(FightManager* manager) {
+	LOG << "StartOrder::compute()" << std::endl;
 
 	// Sort entities inside team on their frequency
 	for (std::vector<Entity*> team : teams) {
