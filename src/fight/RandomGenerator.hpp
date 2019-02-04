@@ -3,7 +3,8 @@
 
 class RandomGenerator {
 public:
-	long n = 1;
+	long n;
+	RandomGenerator();
 
 	void seed(long seed);
 	double getDouble();
