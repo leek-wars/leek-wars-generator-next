@@ -4,5 +4,5 @@
 ActionLama::ActionLama(Entity* caster) : caster(caster->id) {}
 
 Json ActionLama::json() const {
-	return {(int) ActionType::LOST_MP, caster};
+	return {(int) ActionType::LAMA, caster};
 }
