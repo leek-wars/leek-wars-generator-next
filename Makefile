@@ -6,6 +6,8 @@ BUILD_DIR := $(addprefix build/default/,$(SRC_DIR))
 BUILD_DIR += $(addprefix build/default/,$(TEST_DIR))
 BUILD_DIR += $(addprefix build/coverage/,$(SRC_DIR))
 BUILD_DIR += $(addprefix build/sanitized/,$(SRC_DIR))
+BUILD_DIR += $(addprefix build/deps/,$(SRC_DIR))
+BUILD_DIR += $(addprefix build/deps/,$(TEST_DIR))
 
 SRC := $(foreach d,$(SRC_DIR),$(wildcard $(d)/*.cpp))
 SRC_TEST := $(foreach d,$(TEST_DIR),$(wildcard $(d)/*.cpp))
@@ -15,6 +17,7 @@ OBJ_MAIN = build/default/src/Main.o
 OBJ_TEST := $(patsubst %.cpp,build/default/%.o,$(SRC_TEST))
 OBJ_COVERAGE := $(patsubst %.cpp,build/coverage/%.o,$(SRC))
 OBJ_SANITIZED := $(patsubst %.cpp,build/sanitized/%.o,$(SRC))
+DEPS := $(patsubst %.cpp,build/deps/%.d,$(SRC))
 
 FLAGS := -std=c++17 -O0 -g3 -Wall -Wextra -Wno-pmf-conversions -Ileekscript/src/
 SANITIZE_FLAGS := -fsanitize=address -fno-omit-frame-pointer -fsanitize=undefined -fsanitize=float-divide-by-zero # -fsanitize=float-cast-overflow
@@ -27,6 +30,7 @@ all: build/leek-wars-generator
 
 build/default/%.o: %.cpp
 	g++ -c -Ilibs/ $(FLAGS) -o "$@" "$<"
+	g++ $(FLAGS) -MM -MT $@ $*.cpp -MF build/deps/$*.d
 
 build/coverage/%.o: %.cpp
 	g++ -c $(FLAGS) -O0 -fprofile-arcs -ftest-coverage -o "$@" "$<"
@@ -107,3 +111,6 @@ clean:
 	@echo "----------------"
 	@echo "Project cleaned."
 	@echo "----------------"
+
+# Objects dependencies
+-include $(DEPS)
