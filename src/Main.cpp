@@ -52,10 +52,8 @@ int main(int argc, char** argv) {
 		return 0;
 	}
 
-	// Global initialization
-	llvm::InitializeNativeTarget();
-	llvm::InitializeNativeTargetAsmPrinter();
-	llvm::InitializeNativeTargetAsmParser();
+	// Global LeekScript initialization
+	ls::init();
 
 	FightManager manager;
 
