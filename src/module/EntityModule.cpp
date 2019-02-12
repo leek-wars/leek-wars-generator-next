@@ -247,21 +247,6 @@ const ls::LSNull* entity_setWeapon(Entity* entity, const Weapon* weapon) {
  */
 
 /*
- * Internal function to get a entity from the function argument
- * Null -> my entity
- * Number -> an entity id, try to get it
- */
-inline Entity* entity__getEntity(const ls::LSValue* entity) {
-	if (dynamic_cast<const ls::LSNull*>(entity)) {
-		return Simulator::entity;
-	}
-	if (const ls::LSNumber* n = dynamic_cast<const ls::LSNumber*>(entity)) {
-		return Simulator::fight->getEntity(n->value);
-	}
-	return nullptr;
-}
-
-/*
  * Internal function to get an entity characteristic
  */
 inline ls::LSValue* entity__getCharacteristic(const ls::LSValue* entity, Characteristic charac) {
