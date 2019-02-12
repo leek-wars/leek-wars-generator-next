@@ -118,6 +118,7 @@ ls::LSArray<ls::LSValue*>* entity__listen();
 int entity__moveToward(const ls::LSValue* entity);
 bool entity__say(const ls::LSValue* message);
 bool entity__setWeapon(const ls::LSNumber* weapon);
+int entity__useChip(ls::LSValue* chip, ls::LSValue* target);
 int entity__useWeapon(ls::LSValue* target);
 
 #endif

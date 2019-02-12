@@ -224,6 +224,7 @@ EntityModule::EntityModule() : Module("Entity") {
 	method("_moveToward", ls::Method::Static, {{ls::Type::integer(), {ls::Type::any()}, (void*) &entity__moveToward}});
 	method("_say", ls::Method::Static, {{ls::Type::any(), {ls::Type::any()}, (void*) &entity__say}});
 	method("_setWeapon", ls::Method::Static, {{ls::Type::boolean(), {ls::Type::number()}, (void*) &entity__setWeapon}});
+	method("_useChip", ls::Method::Static, {{ls::Type::integer(), {ls::Type::number(), ls::Type::number()}, (void*) &entity__useChip}});
 	method("_useWeapon", ls::Method::Static, {{ls::Type::integer(), {ls::Type::number()}, (void*) &entity__useWeapon}});
 }
 
@@ -608,8 +609,9 @@ ls::LSValue* entity__resurrect() {
 ls::LSValue* entity__summon() {
 	// TODO
 }
-ls::LSValue* entity__useChip() {
-	// TODO
+int entity__useChip(ls::LSValue* chip, ls::LSValue* target) {
+	auto e = Simulator::getEntity(target);
+	return Simulator::entity->useChip((Chip*) chip, e);
 }
 ls::LSValue* entity__useChipOnCell() {
 	// TODO
