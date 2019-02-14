@@ -37,7 +37,7 @@ EntityModule::EntityModule() : Module("Entity") {
 	field("totalMP", ls::Type::integer(), (void*) &Entity::getTotalMP);
 	field("totalTP", ls::Type::integer(), (void*) &Entity::getTotalTP);
 	field("tp", ls::Type::integer(), (void*) &Entity::getTP);
-	field("weapon", WeaponModule::type, (void*) &Entity::getWeapon);
+	field("weapon", ls::Type({WeaponModule::type, ls::Type::null()}), (void*) &Entity::getWeapon);
 	field("weapons", WeaponModule::array_type, (void*) &Entity::getWeapons);
 	field("wisdom", ls::Type::integer(), (void*) &Entity::getWisdom);
 
@@ -195,8 +195,8 @@ EntityModule::EntityModule() : Module("Entity") {
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getTypeEntity}
 	});
 	method("_getWeapon", ls::Method::Static, {
-		{ls::Type::any(), {}, (void*) &entity__getWeapon},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getWeaponEntity}
+		{ls::Type({ls::Type::number(), ls::Type::null()}), {}, (void*) &entity__getWeapon},
+		{ls::Type({ls::Type::number(), ls::Type::null()}), {ls::Type::any()}, (void*) &entity__getWeaponEntity}
 	});
 	method("_getWeapons", ls::Method::Static, {
 		{ls::Type::array(ls::Type::integer()), {}, (void*) &entity__getWeapons},
@@ -513,7 +513,7 @@ ls::LSValue* entity__getTypeEntity(const ls::LSValue* entity) {
 }
 
 ls::LSValue* entity__getWeapon() {
-	// TODO
+	return Simulator::entity->weapon == nullptr ? ls::LSNull::get() : ls::LSNumber::get(Simulator::entity->weapon->id);
 }
 ls::LSValue* entity__getWeaponEntity(const ls::LSValue* entity) {
 	Entity* e = Simulator::getEntity(entity);

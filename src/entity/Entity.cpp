@@ -109,8 +109,8 @@ void Entity::setChips(std::vector<Chip*> chips) {
 	this->chips.refs = 1;
 }
 
-const Weapon* Entity::getWeapon() {
-	return this->weapon == nullptr ? (Weapon*)ls::LSNull::get() : this->weapon;
+const ls::LSValue* Entity::getWeapon() {
+	return this->weapon == nullptr ? ls::LSNull::get() : this->weapon;
 }
 
 ls::LSArray<ls::LSValue*>* Entity::getWeapons() {

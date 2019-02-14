@@ -93,7 +93,7 @@ public:
 	 * Items
 	 */
 	void setWeapons(std::vector<Weapon*> weapons);
-	const Weapon* getWeapon();
+	const LSValue* getWeapon();
 	ls::LSArray<ls::LSValue*>* getWeapons();
 	bool setWeapon(const Weapon* weapon);
 	bool setWeaponInteger(int weapon);
