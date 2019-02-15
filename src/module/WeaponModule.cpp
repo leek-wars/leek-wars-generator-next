@@ -18,6 +18,9 @@ WeaponModule::WeaponModule(const FightManager& manager) : Module("Weapon") {
 	field("id", ls::Type::number());
 	field("cost", ls::Type::number());
 	field("name", ls::Type::string());
+
+	// V1
+	method("_getWeaponMaxRange", ls::Method::Static, {{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponMaxRange}});
 }
 
 WeaponModule::~WeaponModule() {}
