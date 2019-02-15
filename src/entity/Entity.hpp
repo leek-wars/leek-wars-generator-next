@@ -136,6 +136,7 @@ public:
 	void start_turn();
 	void end_turn();
 	int move(const std::vector<const Cell*> path);
+	int moveAwayFrom(Entity* target);
 	int moveToward(Entity* target);
 	int moveTowardMP(Entity* target, int max_mp);
 	int moveTowardCell(Cell* target);

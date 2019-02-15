@@ -476,6 +476,11 @@ void Entity::die() {
 	// TODO
 }
 
+int Entity::moveAwayFrom(Entity* target) {
+	// TODO
+	return 0;
+}
+
 int Entity::moveToward(Entity* target) {
 	return moveTowardMP(target, getMP());
 }
