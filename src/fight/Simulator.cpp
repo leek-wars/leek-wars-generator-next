@@ -1,4 +1,5 @@
 #include "Simulator.hpp"
+#include "Fight.hpp"
 
 Fight* Simulator::fight;
 Entity* Simulator::entity;
