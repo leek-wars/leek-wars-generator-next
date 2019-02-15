@@ -59,13 +59,15 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 	vm_v1.add_module(new ChipModule(*this));
 
 	// Add V1 methods (starting by '_')
-	for (auto& method : entity_module->clazz->static_methods) {
-		if (method.first.at(0) == '_') {
-			auto fun = new ls::LSFunction(method.second[0].addr);
-			fun->refs = 1;
-			fun->native = true;
-			vm_v1.add_internal_var(method.first.substr(1), method.second[0].type, fun);
-		}
+	for (const auto& module : vm_v1.modules) {
+		// for (auto& method : module->clazz->static_methods) {
+		// 	if (method.first.at(0) == '_') {
+		// 		auto fun = new ls::LSFunction(method.second[0].addr);
+		// 		fun->refs = 1;
+		// 		fun->native = true;
+		// 		vm_v1.add_internal_var(method.first.substr(1), method.second[0].type, fun);
+		// 	}
+		// }
 	}
 	// Add V1 weapons and chips constants
 	for (const auto& w : weapons) {
