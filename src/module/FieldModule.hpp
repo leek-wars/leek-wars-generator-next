@@ -25,6 +25,7 @@ double map_getStraightDistance(const Cell* cell1, const Cell* cell2);
 bool map_mark(const Cell* cell, const Color* color, int duration);
 bool map_mark_array(const ls::LSArray<ls::LSValue*> cells, const Color* color, int duration);
 
+// V1
 int map__getCellDistance(const ls::LSValue* cell1, const ls::LSValue* cell2);
 ls::LSValue* map__getCellFromXY(const ls::LSValue* x, const ls::LSValue* y);
 double map__getDistance(const ls::LSValue* cell1, const ls::LSValue* cell2);
