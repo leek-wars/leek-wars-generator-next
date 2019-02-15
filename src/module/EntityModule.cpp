@@ -221,6 +221,7 @@ EntityModule::EntityModule() : Module("Entity") {
 	});
 
 	method("_listen", ls::Method::Static, {{ls::Type::any(), {ls::Type::any()}, (void*) &entity__listen}});
+	method("_moveAwayFrom", ls::Method::Static, {{ls::Type::integer(), {ls::Type::any()}, (void*) &entity__moveAwayFrom}});
 	method("_moveToward", ls::Method::Static, {{ls::Type::integer(), {ls::Type::any()}, (void*) &entity__moveToward}});
 	method("_say", ls::Method::Static, {{ls::Type::any(), {ls::Type::any()}, (void*) &entity__say}});
 	method("_setWeapon", ls::Method::Static, {{ls::Type::boolean(), {ls::Type::number()}, (void*) &entity__setWeapon}});
@@ -574,6 +575,14 @@ int entity__getLeek() {
 ls::LSArray<ls::LSValue*>* entity__listen() {
 	// TODO
 	return new ls::LSArray<ls::LSValue*>();
+}
+
+int entity__moveAwayFrom(const ls::LSValue* entity) {
+	auto e = Simulator::getEntity(entity);
+	if (e == nullptr) {
+		return 0;
+	}
+	return Simulator::entity->moveAwayFrom(e);
 }
 
 int entity__moveToward(const ls::LSValue* entity) {
