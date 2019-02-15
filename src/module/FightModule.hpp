@@ -18,4 +18,7 @@ Entity* fight_getEntity();
 int fight_getType();
 int fight_getContext();
 
+// V1
+int fight__getEntity();
+
 #endif
