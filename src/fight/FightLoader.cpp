@@ -111,7 +111,7 @@ Fight* FightLoader::load(const FightManager& manager, std::string file) {
 			leek->farmer = e["farmer"].get<int>();
 			team->add_entity(leek);
 
-			if (fight->actions.logs.find(std::to_string(leek->farmer)) == fight->actions.logs.end()) {
+			if (leek->ai and fight->actions.logs.find(std::to_string(leek->farmer)) == fight->actions.logs.end()) {
 				fight->actions.logs[std::to_string(leek->farmer)] = Json::object();
 			}
 		}
