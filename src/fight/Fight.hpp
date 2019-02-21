@@ -30,6 +30,7 @@ public:
 	int context;
 	FightManager* manager;
 	TrophyManager trophy_manager;
+	int max_turns = MAX_TURNS;
 
 	Fight();
 	virtual ~Fight();

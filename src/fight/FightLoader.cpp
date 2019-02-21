@@ -122,6 +122,10 @@ Fight* FightLoader::load(const FightManager& manager, std::string file) {
 
 	int obstacle_count = fight->manager->random.getInt(40, 60);
 	fight->field.reset(new Field(fight, 18, 18, obstacle_count, teams));
+	
+	if (json.find("max_turns") != json.end()) {
+		fight->max_turns = json["max_turns"];
+	}
 
 	return fight;
 }

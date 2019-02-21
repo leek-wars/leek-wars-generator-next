@@ -52,7 +52,7 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 
 	actions.add(new ActionStartFight());
 
-	while (order.getTurn() <= MAX_TURNS) {
+	while (order.getTurn() <= max_turns) {
 
 		auto entity = order.current();
 		Simulator::entity = entity;
