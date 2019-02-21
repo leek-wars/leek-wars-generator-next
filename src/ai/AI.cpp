@@ -18,6 +18,8 @@ AI::~AI() {
 
 int AI::compile(ls::VM& vm, ls::VM& vm_v1) {
 
+	LOG << "Compile AI " << name << " " << (v1 ? "[v1]" : "[v2]") << std::endl;
+
 	ls::VM::current_vm = v1 ? &vm_v1 : &vm;
 	program = new ls::Program(code, name);
 	auto result = program->compile(v1 ? vm_v1 : vm, "{}");
