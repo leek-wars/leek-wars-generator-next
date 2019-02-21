@@ -45,7 +45,9 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 	for (const auto& entity : startorder.compute(manager)) {
 		entities.insert({entity->id, entity});
 		order.addEntity(entity);
-		entity->ai->compile(vm, vm_v1);
+		if (entity->ai) {
+			entity->ai->compile(vm, vm_v1);
+		}
 	}
 
 	actions.add(new ActionStartFight());
@@ -57,11 +59,13 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 		vm.output = entity->debug_output;
 		vm_v1.output = entity->debug_output;
 
-		LOG << "Turn of " << entity->name << " (" << entity->id << "), AI " << entity->ai->name << "..." << std::endl;
+		LOG << "Turn of " << entity->name << " (" << entity->id << ") AI " << (entity->ai ? entity->ai->name : "(no ai)") << "..." << std::endl;
 		actions.add(new ActionEntityTurn(entity));
 		entity->start_turn();
 		try {
-			entity->ai->execute(vm, vm_v1);
+			if (entity->ai) {
+				entity->ai->execute(vm, vm_v1);
+			}
 		} catch (ls::vm::ExceptionObj* ex) {
 			LOG << ex->to_string(true);
 			// vm.last_exception = nullptr;

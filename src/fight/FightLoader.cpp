@@ -37,7 +37,10 @@ Fight* FightLoader::load(const FightManager& manager, std::string file) {
 			if (e.find("v1") != e.end()) {
 				v1 = e["v1"];
 			}
-			auto ai = new AI(Util::read_file(e["ai"]), e["ai"], v1);
+			AI* ai = nullptr;
+			if (e.find("ai") != e.end()) {
+				ai = new AI(Util::read_file(e["ai"]), e["ai"], v1);
+			}
 			int hat = 0;
 			if (e.find("hat") != e.end()) {
 				hat = e["hat"];
