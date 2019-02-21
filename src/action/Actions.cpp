@@ -48,8 +48,8 @@ bool Actions::add_log(Entity* entity, Json&& json, int cost) {
 	if (entity->log_length > MAX_LOGS_ENTITY) {
 		return false; // Log limit exceeded
 	}
-	int action_id = actions.size() - 2; // Link the logs to the previous action
-	auto id = std::to_string(entity->id);
+	int action_id = actions.size() - 1; // Link the logs to the previous action
+	auto id = std::to_string(entity->farmer);
 	if (logs[id].is_null()) {
 		logs[id] = {};
 	}
