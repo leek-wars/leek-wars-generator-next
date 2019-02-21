@@ -30,6 +30,7 @@ void Actions::add(Action* action) {
 void Actions::add_entity_logs(Entity* entity) {
 	auto debug = entity->debug_output->str();
 	if (debug.size()) {
+		if (debug.back() == '\n') debug.pop_back();
 		add_log(entity, {entity->id, (int) LogType::STANDARD, debug}, debug.size());
 		entity->debug_output->str("");
 	}
