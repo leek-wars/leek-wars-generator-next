@@ -19,8 +19,8 @@ public:
 
 	ls::VM vm;
 	ls::VM vm_v1;
-	std::map<std::string, Weapon*> weapons;
-	std::map<std::string, Chip*> chips;
+	std::map<int, Weapon*> weapons;
+	std::map<int, Chip*> chips;
 	Fight* fight;
 	Censor censor;
 

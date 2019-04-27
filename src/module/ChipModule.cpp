@@ -13,7 +13,7 @@ ls::Compiler::value Chip_SPARK(ls::Compiler& c) { return c.new_integer(1); }
 ChipModule::ChipModule(const FightManager& manager) : Module("Chip") {
 
 	for (const auto& w : manager.chips) {
-		static_field(Util::toupper(w.first), ls::Type::integer(), [&](ls::Compiler& c) {
+		static_field(Util::toupper(w.second->name), ls::Type::integer(), [&](ls::Compiler& c) {
 			return c.new_integer(w.second->id);
 		});
 	}
