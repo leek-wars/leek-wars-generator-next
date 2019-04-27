@@ -604,5 +604,6 @@ Json Entity::to_json() const {
 	json["frequency"] = getFrequency();
 	json["wisdom"] = getWisdom();
 	json["summon"] = false;
+	json["farmer"] = farmer;
 	return json;
 }
