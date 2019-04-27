@@ -28,7 +28,7 @@ Fight* FightLoader::load(const FightManager& manager, std::string file) {
 
 		auto team = new Team(teams.size());
 
-		for (const auto& e : t["entities"]) {
+		for (const auto& e : t) {
 
 			LOG << "Load entity " << e["name"] << std::endl;
 
