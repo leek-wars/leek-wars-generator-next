@@ -25,14 +25,14 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 
 	// Load weapons
 	auto weapons_json = Json::parse(Util::read_file("data/weapons.json"));
-	for (const auto& w : weapons_json["weapons"]) {
+	for (const auto& w : weapons_json) {
 		auto weapon = new Weapon(w["id"], w["name"], w["cost"], build_attack(w, AttackType::WEAPON), w["template"]);
 		weapons.insert({w["name"].get<std::string>(), weapon});
 	}
 
 	// Load chips
 	auto chips_json = Json::parse(Util::read_file("data/chips.json"));
-	for (const auto& c : chips_json["chips"]) {
+	for (const auto& c : chips_json) {
 		auto chip = new Chip(c["id"], c["name"], c["cost"], c["cooldown"], c["team_cooldown"].get<int>(), c["initial_cooldown"], build_attack(c, AttackType::CHIP), c["template"]);
 		chips.insert({c["name"].get<std::string>(), chip});
 	}
