@@ -73,7 +73,7 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 		if (is_finished()) {
 			break;
 		}
-		if (order.next()) {
+		if (order.next() && order.getTurn() <= MAX_TURNS) {
 			actions.add(new ActionNewTurn(order.getTurn()));
 			LOG << "Turn " << order.getTurn() << std::endl;
 		}
