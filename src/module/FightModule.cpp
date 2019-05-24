@@ -29,8 +29,7 @@ FightModule::FightModule() : Module("Fight") {
 	method("getContext", ls::Method::Static, {{ls::Type::integer(), {}, (void*) &fight_getContext}});
 
 	// V1
-	method("_getLeek", ls::Method::Static, {{ls::Type::integer(), {}, (void*) &fight__getEntity}});
-	method("_getTurn", ls::Method::Static, {{ls::Type::integer(), {}, (void*) &fight_getTurn}});
+	method("getLeek", {{ls::Type::integer(), {}, (void*) &fight__getEntity, ls::Method::NATIVE}});
 }
 
 FightModule::~FightModule() {}

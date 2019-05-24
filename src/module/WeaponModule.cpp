@@ -20,7 +20,10 @@ WeaponModule::WeaponModule(const FightManager& manager) : Module("Weapon") {
 	field("name", ls::Type::string());
 
 	// V1
-	method("_getWeaponMaxRange", ls::Method::Static, {{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponMaxRange}});
+	method("getWeaponMaxRange", {
+		{ls::Type::integer(), {}, (void*) &weapon__getWeaponMaxRange, ls::Method::NATIVE},
+		{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponMaxRangeWeapon, ls::Method::NATIVE},
+	});
 }
 
 WeaponModule::~WeaponModule() {}
@@ -94,11 +97,13 @@ int weapon__getWeaponFailure(const ls::LSValue*) {
 /*
  * -1 or integer, always int
  */
-int weapon__getWeaponMaxRange(const ls::LSValue* weapon) {
 
 }
 int weapon__getWeaponMinRange(const ls::LSValue* weapon) {
 
+int weapon__getWeaponMaxRange() {
+	return Simulator::entity->weapon->attack->max_range;
+}
 }
 
 ls::LSString* weapon__getWeaponName() {

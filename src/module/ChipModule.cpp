@@ -25,25 +25,27 @@ ChipModule::ChipModule(const FightManager& manager) : Module("Chip") {
 	/*
 	 * V1
 	 */
-	method("_canUseChip", {{ls::Type::boolean(), {ls::Type::any(), ls::Type::any()}, (void*) &chip__canUseChip}});
-	method("_canUseChipOnCell", {{ls::Type::boolean(), {ls::Type::any(), ls::Type::any()}, (void*) &chip__canUseChipOnCell}});
-	method("_chipNeedLos", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &chip__chipNeedLos}});
-	method("_getChipArea", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipArea}});
-	method("_getChipCooldown", {{ls::Type::integer(), {ls::Type::any()}, (void*) &chip__getChipCooldown}});
-	method("_getChipCost", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipCost}});
-	method("_getChipEffectiveAreaCell", {
+	method("canUseChip", {{ls::Type::boolean(), {ls::Type::any(), ls::Type::any()}, (void*) &chip__canUseChip}});
+	method("canUseChipOnCell", {{ls::Type::boolean(), {ls::Type::any(), ls::Type::any()}, (void*) &chip__canUseChipOnCell}});
+	method("chipNeedLos", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &chip__chipNeedLos}});
+	method("getChipArea", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipArea}});
+	method("getChipCooldown", {{ls::Type::integer(), {ls::Type::any()}, (void*) &chip__getChipCooldown}});
+	method("getChipCost", {
+		{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipCost, ls::Method::NATIVE}
+	});
+	method("getChipEffectiveAreaCell", {
 		{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipEffectiveArea},
 		{ls::Type::any(), {ls::Type::any(), ls::Type::any()}, (void*) &chip__getChipEffectiveAreaCell},
 		{ls::Type::any(), {ls::Type::any(), ls::Type::any(), ls::Type::any()}, (void*) &chip__getChipEffectiveAreaCellFrom},
 	});
-	method("_getChipEffects", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipEffects}});
-	method("_getChipFailure", {{ls::Type::integer(), {ls::Type::any()}, (void*) &chip__getChipFailure}});
-	method("_getChipMaxRange", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipMaxRange}});
-	method("_getChipMinRange", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipMinRange}});
-	method("_getChipName", {{ls::Type::string(), {ls::Type::any()}, (void*) &chip__getChipName}});
-	method("_getCurrentCooldown", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getCurrentCooldown}});
-	method("_isChip", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &chip__isChip}});
-	method("_isInlineChip", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &chip__isInlineChip}});
+	method("getChipEffects", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipEffects}});
+	method("getChipFailure", {{ls::Type::integer(), {ls::Type::any()}, (void*) &chip__getChipFailure}});
+	method("getChipMaxRange", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipMaxRange}});
+	method("getChipMinRange", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipMinRange}});
+	method("getChipName", {{ls::Type::string(), {ls::Type::any()}, (void*) &chip__getChipName}});
+	method("getCurrentCooldown", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getCurrentCooldown}});
+	method("isChip", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &chip__isChip}});
+	method("isInlineChip", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &chip__isInlineChip}});
 }
 
 ChipModule::~ChipModule() {}

@@ -27,21 +27,21 @@ FieldModule::FieldModule() : Module("Field") {
 	});
 
 	// v1 functions
-	method("_getCellDistance", ls::Method::Static, {{ls::Type::integer(), {ls::Type::any(), ls::Type::any()}, (void*) &map__getCellDistance, ls::Method::NATIVE}});
-	method("_getCellFromXY", ls::Method::Static, {{ls::Type::any(), {ls::Type::any(), ls::Type::any()}, (void*) &map__getCellFromXY, ls::Method::NATIVE}});
-	method("_getDistance", ls::Method::Static, {{ls::Type::real(), {ls::Type::any(), ls::Type::any()}, (void*) &map__getDistance, ls::Method::NATIVE}});
-	method("_getMapType", ls::Method::Static, {{ls::Type::integer(), {}, (void*) &map__getMapType, ls::Method::NATIVE}});
-	method("_getObstacles", ls::Method::Static, {{ls::Type::array(ls::Type::integer()), {}, (void*) &map__getObstacles, ls::Method::NATIVE}});
-	method("_getPath", ls::Method::Static, {
+	method("getCellDistance", ls::Method::Static, {{ls::Type::integer(), {ls::Type::any(), ls::Type::any()}, (void*) &map__getCellDistance, ls::Method::NATIVE}});
+	method("getCellFromXY", ls::Method::Static, {{ls::Type::any(), {ls::Type::any(), ls::Type::any()}, (void*) &map__getCellFromXY, ls::Method::NATIVE}});
+	method("getDistance", ls::Method::Static, {{ls::Type::real(), {ls::Type::any(), ls::Type::any()}, (void*) &map__getDistance, ls::Method::NATIVE}});
+	method("getMapType", ls::Method::Static, {{ls::Type::integer(), {}, (void*) &map__getMapType, ls::Method::NATIVE}});
+	method("getObstacles", ls::Method::Static, {{ls::Type::array(ls::Type::integer()), {}, (void*) &map__getObstacles, ls::Method::NATIVE}});
+	method("getPath", ls::Method::Static, {
 		{ls::Type::any(), {ls::Type::any(), ls::Type::any()}, (void*) &map__getPath, ls::Method::NATIVE},
 		{ls::Type::any(), {ls::Type::any(), ls::Type::any(), ls::Type::any()}, (void*) &map__getPathIgnored, ls::Method::NATIVE}
 	});
-	method("_getPathLength", ls::Method::Static, {
+	method("getPathLength", ls::Method::Static, {
 		{ls::Type::any(), {ls::Type::any(), ls::Type::any()}, (void*) &map__getPathLength, ls::Method::NATIVE},
 		{ls::Type::any(), {ls::Type::any(), ls::Type::any(), ls::Type::any()}, (void*) &map__getPathLengthIgnored, ls::Method::NATIVE}
 	});
-	method("_isOnSameLine", ls::Method::Static, {{ls::Type::boolean(), {ls::Type::any(), ls::Type::any()}, (void*) &map__isOnSameLine, ls::Method::NATIVE}});
-	method("_lineOfSight", ls::Method::Static, {
+	method("isOnSameLine", ls::Method::Static, {{ls::Type::boolean(), {ls::Type::any(), ls::Type::any()}, (void*) &map__isOnSameLine, ls::Method::NATIVE}});
+	method("lineOfSight", ls::Method::Static, {
 		{ls::Type::any(), {ls::Type::any(), ls::Type::any()}, (void*) &map__lineOfSight, ls::Method::NATIVE},
 		{ls::Type::any(), {ls::Type::any(), ls::Type::any()}, (void*) &map__lineOfSightIgnored, ls::Method::NATIVE}
 	});

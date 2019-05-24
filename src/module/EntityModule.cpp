@@ -70,163 +70,156 @@ EntityModule::EntityModule() : Module("Entity") {
 	/*
 	 * V1 functions
 	 */
-	method("_getLeek", ls::Method::Static, {{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getLeek, ls::Method::NATIVE}});
-
-	method("_getAbsoluteShield", ls::Method::Static, {
+	method("getAbsoluteShield", ls::Method::Static, {
 		{ls::Type::any(), {}, (void*) &entity__getAbsoluteShield, ls::Method::NATIVE},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getAbsoluteShieldEntity, ls::Method::NATIVE}
 	});
-	method("_getAgility", ls::Method::Static, {
+	method("getAgility", ls::Method::Static, {
 		{ls::Type::any(), {}, (void*) &entity__getAgility, ls::Method::NATIVE},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getAgilityEntity, ls::Method::NATIVE}
 	});
-	method("_getBirthTurn", ls::Method::Static, {
+	method("getBirthTurn", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getBirthTurn},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getBirthTurnEntity}
 	});
-	method("_getCell", ls::Method::Static, {
-		{ls::Type::integer(), {}, (void*) &entity__getCell},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getCellEntity}
+	method("getCell", {
+		{ls::Type::integer(), {}, (void*) &entity__getCell, ls::Method::NATIVE},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getCellEntity, ls::Method::NATIVE}
 	});
-	method("_getChips", ls::Method::Static, {
+	method("getChips", ls::Method::Static, {
 		{ls::Type::array(ls::Type::integer()), {}, (void*) &entity__getChips},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getChipsEntity},
 	});
-	method("_getCores", ls::Method::Static, {
+	method("getCores", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getCores},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getCoresEntity},
 	});
-	method("_getDamageReturn", ls::Method::Static, {
+	method("getDamageReturn", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getDamageReturn},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getDamageReturnEntity}
 	});
-	method("_getEffects", ls::Method::Static, {
+	method("getEffects", ls::Method::Static, {
 		{ls::Type::array(), {}, (void*) &entity__getEffects},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getEffectsEntity}
 	});
-	method("_getEntityTurnOrder", ls::Method::Static, {
+	method("getEntityTurnOrder", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getEntityTurnOrder},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getEntityTurnOrderEntity}
 	});
-	method("_getFrequency", ls::Method::Static, {
+	method("getFrequency", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getFrequency},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getFrequencyEntity}
 	});
-	method("_getLaunchedEffects", ls::Method::Static, {
+	method("getLaunchedEffects", ls::Method::Static, {
 		{ls::Type::array(), {}, (void*) &entity__getLaunchedEffects},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getLaunchedEffectsEntity}
 	});
-	method("_getLeekID", ls::Method::Static, {
+	method("getLeekID", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getLeekID},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getLeekIDEntity}
 	});
-	method("_getLevel", ls::Method::Static, {
+	method("getLevel", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getLevel},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getLevelEntity}
 	});
-	method("_getLife", ls::Method::Static, {
-		{ls::Type::integer(), {}, (void*) &entity__getLife},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getLifeEntity}
+	method("getLife", {
+		{ls::Type::integer(), {}, (void*) &entity__getLife, ls::Method::NATIVE},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getLifeEntity, ls::Method::NATIVE}
 	});
-	method("_getMagic", ls::Method::Static, {
+	method("getMagic", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getMagic},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getMagicEntity}
 	});
-	method("_getMP", ls::Method::Static, {
+	method("getMP", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getMP},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getMPEntity}
 	});
-	method("_getName", ls::Method::Static, {
-		{ls::Type::string(), {}, (void*) &entity__getName},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getNameEntity}
+	method("getName", {
+		{ls::Type::string(), {}, (void*) &entity__getName, ls::Method::NATIVE},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getNameEntity, ls::Method::NATIVE}
 	});
-	method("_getNearestEnemy", ls::Method::Static, {
-		{ls::Type::integer(), {}, (void*) &entity__getNearestEnemy}
+	method("getNearestEnemy", {
+		{ls::Type::integer(), {}, (void*) &entity__getNearestEnemy, ls::Method::NATIVE}
 	});
-	method("_getNearestAlly", ls::Method::Static, {
-		{ls::Type::integer(), {}, (void*) &entity__getNearestAlly}
+	method("getNearestAlly", {
+		{ls::Type::integer(), {}, (void*) &entity__getNearestAlly, ls::Method::NATIVE}
 	});
-	method("_getRelativeShield", ls::Method::Static, {
+	method("getRelativeShield", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getRelativeShield},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getRelativeShieldEntity}
 	});
-	method("_getResistance", ls::Method::Static, {
+	method("getResistance", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getResistance},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getResistanceEntity}
 	});
-	method("_getScience", ls::Method::Static, {
+	method("getScience", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getScience},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getScienceEntity}
 	});
-	method("_getStrength", ls::Method::Static, {
+	method("getStrength", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getStrength},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getStrengthEntity}
 	});
-	method("_getSummoner", ls::Method::Static, {
+	method("getSummoner", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getSummoner},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getSummonerEntity}
 	});
-	method("_getTeamID", ls::Method::Static, {
+	method("getTeamID", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getTeamID},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getTeamIDEntity}
 	});
-	method("_getTeamName", ls::Method::Static, {
+	method("getTeamName", ls::Method::Static, {
 		{ls::Type::string(), {}, (void*) &entity__getTeamName},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getTeamNameEntity}
 	});
-	method("_getTotalLife", ls::Method::Static, {
-		{ls::Type::integer(), {}, (void*) &entity__getTotalLife},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getTotalLifeEntity}
+	method("getTotalLife", {
+		{ls::Type::integer(), {}, (void*) &entity__getTotalLife, ls::Method::NATIVE},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getTotalLifeEntity, ls::Method::NATIVE}
 	});
-	method("_getTotalMP", ls::Method::Static, {
+	method("getTotalMP", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getTotalMP},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getTotalMPEntity}
 	});
-	method("_getTotalTP", ls::Method::Static, {
+	method("getTotalTP", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getTotalTP},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getTotalTPEntity}
 	});
-	method("_getTP", ls::Method::Static, {
-		{ls::Type::integer(), {}, (void*) &entity__getTP},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getTPEntity}
+	method("getTP", {
+		{ls::Type::integer(), {}, (void*) &entity__getTP, ls::Method::NATIVE},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getTPEntity, ls::Method::NATIVE}
 	});
-	method("_getType", ls::Method::Static, {
+	method("getType", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getType},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getTypeEntity}
 	});
-	method("_getWeapon", ls::Method::Static, {
-		{ls::Type({ls::Type::number(), ls::Type::null()}), {}, (void*) &entity__getWeapon},
-		{ls::Type({ls::Type::number(), ls::Type::null()}), {ls::Type::any()}, (void*) &entity__getWeaponEntity}
+	method("getWeapon", {
+		{ls::Type({ls::Type::number(), ls::Type::null()}), {}, (void*) &entity__getWeapon, ls::Method::NATIVE},
+		{ls::Type({ls::Type::number(), ls::Type::null()}), {ls::Type::any()}, (void*) &entity__getWeaponEntity, ls::Method::NATIVE}
 	});
-	method("_getWeapons", ls::Method::Static, {
+	method("getWeapons", ls::Method::Static, {
 		{ls::Type::array(ls::Type::integer()), {}, (void*) &entity__getWeapons},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getWeaponsEntity}
 	});
-	method("_getWisdom", ls::Method::Static, {
+	method("getWisdom", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getWisdom},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getWisdomEntity}
 	});
-	method("_isAlive", ls::Method::Static, {{ls::Type::boolean(), {ls::Type::any()}, (void*) &entity__isAlive}});
-	method("_isAlly", ls::Method::Static, {{ls::Type::boolean(), {ls::Type::any()}, (void*) &entity__isAlly}});
-	method("_isDead", ls::Method::Static, {{ls::Type::boolean(), {ls::Type::any()}, (void*) &entity__isDead}});
-	method("_isEnemy", ls::Method::Static, {{ls::Type::boolean(), {ls::Type::any()}, (void*) &entity__isEnemy}});
-	method("_isSummon", ls::Method::Static, {
+	method("isAlive", ls::Method::Static, {{ls::Type::boolean(), {ls::Type::any()}, (void*) &entity__isAlive}});
+	method("isAlly", ls::Method::Static, {{ls::Type::boolean(), {ls::Type::any()}, (void*) &entity__isAlly}});
+	method("isDead", ls::Method::Static, {{ls::Type::boolean(), {ls::Type::any()}, (void*) &entity__isDead}});
+	method("isEnemy", ls::Method::Static, {{ls::Type::boolean(), {ls::Type::any()}, (void*) &entity__isEnemy}});
+	method("isSummon", ls::Method::Static, {
 		{ls::Type::boolean(), {}, (void*) &entity__isSummon},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__isSummonEntity},
 	});
 
-	method("_getCooldown", ls::Method::Static, {
+	method("getCooldown", ls::Method::Static, {
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getCooldown},
 		{ls::Type::any(), {ls::Type::any(), ls::Type::any()}, (void*) &entity__getCooldownEntity},
 	});
 
-	method("_listen", ls::Method::Static, {{ls::Type::any(), {ls::Type::any()}, (void*) &entity__listen}});
-	method("_moveAwayFrom", ls::Method::Static, {{ls::Type::integer(), {ls::Type::any()}, (void*) &entity__moveAwayFrom}});
-	method("_moveToward", ls::Method::Static, {{ls::Type::integer(), {ls::Type::any()}, (void*) &entity__moveToward}});
-	method("_say", ls::Method::Static, {{ls::Type::any(), {ls::Type::any()}, (void*) &entity__say}});
-	method("_setWeapon", ls::Method::Static, {{ls::Type::boolean(), {ls::Type::number()}, (void*) &entity__setWeapon}});
-	method("_useChip", ls::Method::Static, {{ls::Type::integer(), {ls::Type::number(), ls::Type::number()}, (void*) &entity__useChip}});
-	method("_useWeapon", ls::Method::Static, {{ls::Type::integer(), {ls::Type::number()}, (void*) &entity__useWeapon}});
+	method("listen", ls::Method::Static, {{ls::Type::any(), {ls::Type::any()}, (void*) &entity__listen}});
+	method("say", ls::Method::Static, {{ls::Type::any(), {ls::Type::any()}, (void*) &entity__say}});
 }
 
 EntityModule::~EntityModule() {}

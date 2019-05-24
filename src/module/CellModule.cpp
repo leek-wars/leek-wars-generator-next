@@ -28,13 +28,13 @@ CellModule::CellModule() : Module("Cell") {
 	method("isAligned", {{ls::Type::boolean(), {CellModule::type, CellModule::type}, (void*) &Cell::isAligned, ls::Method::NATIVE}});
 
 	// v1 functions
-	method("_isEmptyCell", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &cell__isEmptyCell}});
-	method("_isLeek", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &cell__isLeek}});
-	method("_isObstacle", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &cell__isObstacle}});
-	method("_getX", {{ls::Type::any(), {ls::Type::any()}, (void*) &cell__getCellX}});
-	method("_getY", {{ls::Type::any(), {ls::Type::any()}, (void*) &cell__getCellY}});
-	method("_getLeekOnCell", {{ls::Type::integer(), {ls::Type::any()}, (void*) &cell__getLeekOnCell}});
-	method("_getCellContent", {{ls::Type::integer(), {ls::Type::any()}, (void*) &cell__getCellContent}});
+	method("isEmptyCell", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &cell__isEmptyCell}});
+	method("isLeek", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &cell__isLeek}});
+	method("isObstacle", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &cell__isObstacle}});
+	method("getX", {{ls::Type::any(), {ls::Type::any()}, (void*) &cell__getCellX}});
+	method("getY", {{ls::Type::any(), {ls::Type::any()}, (void*) &cell__getCellY}});
+	method("getLeekOnCell", {{ls::Type::integer(), {ls::Type::any()}, (void*) &cell__getLeekOnCell}});
+	method("getCellContent", {{ls::Type::integer(), {ls::Type::any()}, (void*) &cell__getCellContent}});
 }
 
 CellModule::~CellModule() {}
