@@ -23,7 +23,7 @@ public:
 	int getEffectId();
 
 	void add(Action* action);
-	void add_entity_logs(Entity* entity);
+	void add_entity_log(Entity* entity, std::string log);
 	bool add_mark(Entity* entity, std::vector<const Cell*> cells, int color, int duration);
 	bool add_log(Entity* entity, Json&& log, int cost);
 

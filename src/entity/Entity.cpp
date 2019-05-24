@@ -35,7 +35,7 @@ Entity::Entity(Fight* fight, std::string name, int level)
 	talent = 1000;
 	cell = nullptr;
 
-	debug_output = new std::ostringstream();
+	debug_output = new EntityOutput(this);
 }
 
 Entity::~Entity() {}

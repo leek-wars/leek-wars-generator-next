@@ -20,20 +20,10 @@ int Actions::getEffectId() {
 
 void Actions::add(Action* action) {
 	actions.push_back(action);
-
-	// Add personal logs
-	if (Simulator::entity) {
-		add_entity_logs(Simulator::entity);
-	}
 }
 
-void Actions::add_entity_logs(Entity* entity) {
-	auto debug = entity->debug_output->str();
-	if (debug.size()) {
-		if (debug.back() == '\n') debug.pop_back();
-		add_log(entity, {entity->id, (int) LogType::STANDARD, debug}, debug.size());
-		entity->debug_output->str("");
-	}
+void Actions::add_entity_log(Entity* entity, std::string debug) {
+	add_log(entity, {entity->id, (int) LogType::STANDARD, debug}, debug.size());
 }
 
 bool Actions::add_mark(Entity* entity, std::vector<const Cell*> cells, int color, int duration) {
@@ -49,7 +39,7 @@ bool Actions::add_log(Entity* entity, Json&& json, int cost) {
 	if (entity->log_length > MAX_LOGS_ENTITY) {
 		return false; // Log limit exceeded
 	}
-	int action_id = actions.size() - 1; // Link the logs to the previous action
+	int action_id = actions.size(); // Link the logs to the previous action
 	auto id = std::to_string(entity->farmer);
 	if (logs[id].is_null()) {
 		logs[id] = {};

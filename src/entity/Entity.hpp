@@ -11,6 +11,7 @@
 #include "../item/Chip.hpp"
 #include "../item/Weapon.hpp"
 #include "../module/EntityModule.hpp"
+#include "EntityOutput.hpp"
 class Fight;
 class Effect;
 class Team;
@@ -69,7 +70,7 @@ public:
 	// TODO registers
 	// private Register mRegister = null;
 
-	std::ostringstream* debug_output;
+	EntityOutput* debug_output;
 	size_t log_length = 0;
 
 	Entity(Fight* fight, std::string name, int level);
