@@ -62,10 +62,11 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 	for (const auto& module : vm_v1.modules) {
 		for (auto& method : module->clazz->methods) {
 			if (method.first.at(0) == '_') {
-				auto fun = new ls::LSFunction(method.second[0].addr);
-				fun->refs = 1;
-				fun->native = true;
-				vm_v1.add_internal_var(method.first.substr(1), method.second[0].type, fun);
+				ls::Callable callable { method.first.substr(1) };
+				for (const auto& implem : method.second) {
+					callable.add_version({ method.first.substr(1), implem.type, implem.addr });
+				}
+				vm_v1.add_internal_var(method.first.substr(1), method.second[0].type, nullptr, new ls::Callable(callable));
 			}
 		}
 	}
