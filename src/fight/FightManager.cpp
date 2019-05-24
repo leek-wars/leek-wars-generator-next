@@ -58,18 +58,6 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 	vm_v1.add_module(new ColorModule());
 	vm_v1.add_module(new ChipModule(*this));
 
-	// Add V1 methods (starting by '_')
-	for (const auto& module : vm_v1.modules) {
-		for (auto& method : module->clazz->methods) {
-			if (method.first.at(0) == '_') {
-				ls::Callable callable { method.first.substr(1) };
-				for (const auto& implem : method.second) {
-					callable.add_version({ method.first.substr(1), implem.type, implem.addr });
-				}
-				vm_v1.add_internal_var(method.first.substr(1), method.second[0].type, nullptr, new ls::Callable(callable));
-			}
-		}
-	}
 	// Add V1 weapons and chips constants
 	for (const auto& w : weapons) {
 		auto constant = ls::LSNumber::get(w.first);
