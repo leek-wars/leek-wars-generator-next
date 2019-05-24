@@ -1,6 +1,7 @@
 #include "ChipModule.hpp"
 #include "../fight/FightManager.hpp"
 #include "../util/Util.hpp"
+#include "../fight/Simulator.hpp"
 
 const ls::LSClass* ChipModule::chip_clazz;
 const std::shared_ptr<ChipType> ChipModule::raw_type = std::make_shared<ChipType>();
@@ -75,11 +76,16 @@ int chip__getChipCooldown(const ls::LSValue* chip) {
 	// TODO
 }
 /*
- * Null or integer
- * Cell 0 if argument cell is null.
+ * return: Null or integer (different from getWeaponCost)
  */
 ls::LSValue* chip__getChipCost(const ls::LSValue* chip) {
-	// TODO
+	if (auto number = dynamic_cast<const ls::LSNumber*>(chip)) {
+		auto i = Simulator::fight->manager->chips.find(number->value);
+		if (i != Simulator::fight->manager->chips.end()) {
+			return ls::LSNumber::get(i->second->cost);
+		}
+	}
+	return ls::LSNull::get();
 }
 
 ls::LSValue* chip__getChipEffectiveArea(const ls::LSValue* chip) {
