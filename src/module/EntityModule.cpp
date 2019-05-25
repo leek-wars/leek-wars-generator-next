@@ -58,6 +58,7 @@ EntityModule::EntityModule() : Module("Entity") {
 		{ls::Type::integer(), {EntityModule::const_type, EntityModule::const_type}, (void*) &Entity::moveToward, ls::Method::NATIVE},
 		{ls::Type::integer(), {EntityModule::const_type, CellModule::const_type, ls::Type::const_integer()}, (void*) &Entity::moveTowardCellMP, ls::Method::NATIVE},
 		{ls::Type::integer(), {EntityModule::const_type, CellModule::const_type}, (void*) &Entity::moveTowardCell, ls::Method::NATIVE},
+		{ls::Type::integer(), {ls::Type::any()}, (void*) &entity__moveToward, ls::Method::NATIVE}
 	});
 	method("useChip", {{ls::Type::integer(), {EntityModule::const_type, ChipModule::const_type, EntityModule::const_type}, (void*) &Entity::useChip, ls::Method::NATIVE}});
 	method("useWeapon", {{ls::Type::integer(), {EntityModule::const_type, EntityModule::const_type}, (void*) &Entity::useWeapon, ls::Method::NATIVE}});
