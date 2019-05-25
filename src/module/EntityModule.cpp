@@ -566,10 +566,6 @@ bool entity__isSummonEntity(const ls::LSValue* entity) {
 	return false;
 }
 
-int entity__getLeek() {
-	return Simulator::entity->id;
-}
-
 ls::LSArray<ls::LSValue*>* entity__listen() {
 	// TODO
 	return new ls::LSArray<ls::LSValue*>();
