@@ -22,20 +22,20 @@ WeaponModule::WeaponModule(const FightManager& manager) : Module("Weapon") {
 
 	// V1
 	method("getWeaponCost", {
-		{ls::Type::integer(), {}, (void*) &weapon__getWeaponCost, ls::Method::NATIVE},
-		{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponCostWeapon, ls::Method::NATIVE},
+		{ls::Type::integer(), {}, (void*) &weapon__getWeaponCost},
+		{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponCostWeapon},
 	});
 	method("getWeaponEffects", {
-		{ls::Type::any(), {}, (void*) &weapon__getWeaponEffects, ls::Method::NATIVE},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &weapon__getWeaponEffectsWeapon, ls::Method::NATIVE},
+		{ls::Type::any(), {}, (void*) &weapon__getWeaponEffects},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &weapon__getWeaponEffectsWeapon},
 	});
 	method("getWeaponMinRange", {
-		{ls::Type::integer(), {}, (void*) &weapon__getWeaponMinRange, ls::Method::NATIVE},
-		{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponMinRangeWeapon, ls::Method::NATIVE},
+		{ls::Type::integer(), {}, (void*) &weapon__getWeaponMinRange},
+		{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponMinRangeWeapon},
 	});
 	method("getWeaponMaxRange", {
-		{ls::Type::integer(), {}, (void*) &weapon__getWeaponMaxRange, ls::Method::NATIVE},
-		{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponMaxRangeWeapon, ls::Method::NATIVE},
+		{ls::Type::integer(), {}, (void*) &weapon__getWeaponMaxRange},
+		{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponMaxRangeWeapon},
 	});
 }
 

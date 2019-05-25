@@ -32,7 +32,7 @@ ChipModule::ChipModule(const FightManager& manager) : Module("Chip") {
 	method("getChipArea", {{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipArea}});
 	method("getChipCooldown", {{ls::Type::integer(), {ls::Type::any()}, (void*) &chip__getChipCooldown}});
 	method("getChipCost", {
-		{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipCost, ls::Method::NATIVE}
+		{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipCost}
 	});
 	method("getChipEffectiveAreaCell", {
 		{ls::Type::any(), {ls::Type::any()}, (void*) &chip__getChipEffectiveArea},

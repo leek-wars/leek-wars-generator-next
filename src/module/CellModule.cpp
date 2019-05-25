@@ -24,8 +24,8 @@ CellModule::CellModule() : Module("Cell") {
 	field("walkable", ls::Type::boolean(), (void*) &Cell::isWalkable);
 	field("empty", ls::Type::boolean(), (void*) &Cell::isEmpty);
 
-	method("distance", {{ls::Type::integer(), {CellModule::type, CellModule::type}, (void*) &Cell::distance, ls::Method::NATIVE}});
-	method("isAligned", {{ls::Type::boolean(), {CellModule::type, CellModule::type}, (void*) &Cell::isAligned, ls::Method::NATIVE}});
+	method("distance", {{ls::Type::integer(), {CellModule::type, CellModule::type}, (void*) &Cell::distance}});
+	method("isAligned", {{ls::Type::boolean(), {CellModule::type, CellModule::type}, (void*) &Cell::isAligned}});
 
 	// v1 functions
 	method("isEmptyCell", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &cell__isEmptyCell}});

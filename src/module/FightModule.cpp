@@ -22,16 +22,16 @@ FightModule::FightModule() : Module("Fight") {
 	static_field("MAX_TURNS", ls::Type::integer(), [](ls::Compiler& c) { return c.new_integer(64); });
 
 	method("getTurn", {
-		{ls::Type::integer(), {}, (void*) &fight_getTurn, ls::Method::NATIVE}
+		{ls::Type::integer(), {}, (void*) &fight_getTurn}
 	});
 	method("getEntity", ls::Method::Static, {
-		{EntityModule::type, {}, (void*) &fight_getEntity, ls::Method::NATIVE}
+		{EntityModule::type, {}, (void*) &fight_getEntity}
 	});
 	method("getType", ls::Method::Static, {{ls::Type::integer(), {}, (void*) &fight_getType}});
 	method("getContext", ls::Method::Static, {{ls::Type::integer(), {}, (void*) &fight_getContext}});
 
 	// V1
-	method("getLeek", {{ls::Type::integer(), {}, (void*) &fight__getEntity, ls::Method::NATIVE}});
+	method("getLeek", {{ls::Type::integer(), {}, (void*) &fight__getEntity}});
 }
 
 FightModule::~FightModule() {}

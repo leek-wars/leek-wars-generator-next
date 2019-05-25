@@ -41,58 +41,58 @@ EntityModule::EntityModule() : Module("Entity") {
 	field("weapons", WeaponModule::array_type, (void*) &Entity::getWeapons);
 	field("wisdom", ls::Type::integer(), (void*) &Entity::getWisdom);
 
-	method("getAliveAllies", {{EntityModule::array_type, {EntityModule::const_type}, (void*) &Entity::get_alive_allies, ls::Method::NATIVE}});
-	method("getAliveEnemies", {{EntityModule::array_type, {EntityModule::const_type}, (void*) &Entity::get_alive_enemies, ls::Method::NATIVE}});
-	method("getAllies", {{EntityModule::array_type, {EntityModule::const_type}, (void*) &Entity::get_allies, ls::Method::NATIVE}});
-	method("getClosestAlly", {{EntityModule::type, {EntityModule::const_type}, (void*) &Entity::get_closest_ally, ls::Method::NATIVE}});
-	method("getClosestEnemy", {{EntityModule::type, {EntityModule::const_type}, (void*) &Entity::get_closest_enemy, ls::Method::NATIVE}});
-	method("getDeadAllies", {{EntityModule::array_type, {EntityModule::const_type}, (void*) &Entity::get_alive_allies, ls::Method::NATIVE}});
-	method("getDeadEnemies", {{EntityModule::array_type, {EntityModule::const_type}, (void*) &Entity::get_alive_enemies, ls::Method::NATIVE}});
-	method("getEnemies", {{EntityModule::array_type, {EntityModule::const_type}, (void*) &Entity::get_enemies, ls::Method::NATIVE}});
-	method("getFarthestAlly", {{EntityModule::type, {EntityModule::const_type}, (void*) &Entity::get_farthest_ally, ls::Method::NATIVE}});
-	method("getFarthestEnemy", {{EntityModule::type, {EntityModule::const_type}, (void*) &Entity::get_farthest_enemy, ls::Method::NATIVE}});
-	method("isAlly", {{ls::Type::boolean(), {EntityModule::const_type}, (void*) &Entity::isAlly, ls::Method::NATIVE}});
-	method("isEnemy", {{ls::Type::boolean(), {EntityModule::const_type}, (void*) &Entity::isEnemy, ls::Method::NATIVE}});
+	method("getAliveAllies", {{EntityModule::array_type, {EntityModule::const_type}, (void*) &Entity::get_alive_allies}});
+	method("getAliveEnemies", {{EntityModule::array_type, {EntityModule::const_type}, (void*) &Entity::get_alive_enemies}});
+	method("getAllies", {{EntityModule::array_type, {EntityModule::const_type}, (void*) &Entity::get_allies}});
+	method("getClosestAlly", {{EntityModule::type, {EntityModule::const_type}, (void*) &Entity::get_closest_ally}});
+	method("getClosestEnemy", {{EntityModule::type, {EntityModule::const_type}, (void*) &Entity::get_closest_enemy}});
+	method("getDeadAllies", {{EntityModule::array_type, {EntityModule::const_type}, (void*) &Entity::get_alive_allies}});
+	method("getDeadEnemies", {{EntityModule::array_type, {EntityModule::const_type}, (void*) &Entity::get_alive_enemies}});
+	method("getEnemies", {{EntityModule::array_type, {EntityModule::const_type}, (void*) &Entity::get_enemies}});
+	method("getFarthestAlly", {{EntityModule::type, {EntityModule::const_type}, (void*) &Entity::get_farthest_ally}});
+	method("getFarthestEnemy", {{EntityModule::type, {EntityModule::const_type}, (void*) &Entity::get_farthest_enemy}});
+	method("isAlly", {{ls::Type::boolean(), {EntityModule::const_type}, (void*) &Entity::isAlly}});
+	method("isEnemy", {{ls::Type::boolean(), {EntityModule::const_type}, (void*) &Entity::isEnemy}});
 	method("moveToward", {
-		{ls::Type::integer(), {EntityModule::const_type, EntityModule::const_type, ls::Type::const_integer()}, (void*) &Entity::moveTowardMP, ls::Method::NATIVE},
-		{ls::Type::integer(), {EntityModule::const_type, EntityModule::const_type}, (void*) &Entity::moveToward, ls::Method::NATIVE},
-		{ls::Type::integer(), {EntityModule::const_type, CellModule::const_type, ls::Type::const_integer()}, (void*) &Entity::moveTowardCellMP, ls::Method::NATIVE},
-		{ls::Type::integer(), {EntityModule::const_type, CellModule::const_type}, (void*) &Entity::moveTowardCell, ls::Method::NATIVE},
-		{ls::Type::integer(), {ls::Type::any()}, (void*) &entity__moveToward, ls::Method::NATIVE}
+		{ls::Type::integer(), {EntityModule::const_type, EntityModule::const_type, ls::Type::const_integer()}, (void*) &Entity::moveTowardMP},
+		{ls::Type::integer(), {EntityModule::const_type, EntityModule::const_type}, (void*) &Entity::moveToward},
+		{ls::Type::integer(), {EntityModule::const_type, CellModule::const_type, ls::Type::const_integer()}, (void*) &Entity::moveTowardCellMP},
+		{ls::Type::integer(), {EntityModule::const_type, CellModule::const_type}, (void*) &Entity::moveTowardCell},
+		{ls::Type::integer(), {ls::Type::any()}, (void*) &entity__moveToward}
 	});
 	method("useChip", {
-		{ls::Type::integer(), {EntityModule::const_type, ChipModule::const_type, EntityModule::const_type}, (void*) &Entity::useChip, ls::Method::NATIVE},
-		{ls::Type::integer(), {ls::Type::any(), ls::Type::any()}, (void*) &entity__useChip, ls::Method::NATIVE}
+		{ls::Type::integer(), {EntityModule::const_type, ChipModule::const_type, EntityModule::const_type}, (void*) &Entity::useChip},
+		{ls::Type::integer(), {ls::Type::any(), ls::Type::any()}, (void*) &entity__useChip}
 	});
 	method("useWeapon", {
-		{ls::Type::integer(), {EntityModule::const_type, EntityModule::const_type}, (void*) &Entity::useWeapon, ls::Method::NATIVE},
-		{ls::Type::integer(), {ls::Type::any()}, (void*) &entity__useWeapon, ls::Method::NATIVE}
+		{ls::Type::integer(), {EntityModule::const_type, EntityModule::const_type}, (void*) &Entity::useWeapon},
+		{ls::Type::integer(), {ls::Type::any()}, (void*) &entity__useWeapon}
 	});
-	method("say", {{ls::Type::boolean(), {EntityModule::const_type, ls::Type::const_any()}, (void*) &Entity::say, ls::Method::NATIVE}});
+	method("say", {{ls::Type::boolean(), {EntityModule::const_type, ls::Type::const_any()}, (void*) &Entity::say}});
 	method("setWeapon", {
-		{ls::Type::null(), {EntityModule::const_type, WeaponModule::const_type}, (void*) &entity_setWeapon, ls::Method::NATIVE},
-		{ls::Type::null(), {EntityModule::const_type, ls::Type::const_integer()}, (void*) &Entity::setWeaponInteger, ls::Method::NATIVE},
-		{ls::Type::boolean(), {ls::Type::number()}, (void*) &entity__setWeapon, ls::Method::NATIVE}
+		{ls::Type::null(), {EntityModule::const_type, WeaponModule::const_type}, (void*) &entity_setWeapon},
+		{ls::Type::null(), {EntityModule::const_type, ls::Type::const_integer()}, (void*) &Entity::setWeaponInteger},
+		{ls::Type::boolean(), {ls::Type::number()}, (void*) &entity__setWeapon}
 	});
 
 	/*
 	 * V1 functions
 	 */
 	method("getAbsoluteShield", ls::Method::Static, {
-		{ls::Type::any(), {}, (void*) &entity__getAbsoluteShield, ls::Method::NATIVE},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getAbsoluteShieldEntity, ls::Method::NATIVE}
+		{ls::Type::any(), {}, (void*) &entity__getAbsoluteShield},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getAbsoluteShieldEntity}
 	});
 	method("getAgility", ls::Method::Static, {
-		{ls::Type::any(), {}, (void*) &entity__getAgility, ls::Method::NATIVE},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getAgilityEntity, ls::Method::NATIVE}
+		{ls::Type::any(), {}, (void*) &entity__getAgility},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getAgilityEntity}
 	});
 	method("getBirthTurn", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getBirthTurn},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getBirthTurnEntity}
 	});
 	method("getCell", {
-		{ls::Type::integer(), {}, (void*) &entity__getCell, ls::Method::NATIVE},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getCellEntity, ls::Method::NATIVE}
+		{ls::Type::integer(), {}, (void*) &entity__getCell},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getCellEntity}
 	});
 	method("getChips", ls::Method::Static, {
 		{ls::Type::array(ls::Type::integer()), {}, (void*) &entity__getChips},
@@ -131,8 +131,8 @@ EntityModule::EntityModule() : Module("Entity") {
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getLevelEntity}
 	});
 	method("getLife", {
-		{ls::Type::integer(), {}, (void*) &entity__getLife, ls::Method::NATIVE},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getLifeEntity, ls::Method::NATIVE}
+		{ls::Type::integer(), {}, (void*) &entity__getLife},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getLifeEntity}
 	});
 	method("getMagic", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getMagic},
@@ -143,14 +143,14 @@ EntityModule::EntityModule() : Module("Entity") {
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getMPEntity}
 	});
 	method("getName", {
-		{ls::Type::string(), {}, (void*) &entity__getName, ls::Method::NATIVE},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getNameEntity, ls::Method::NATIVE}
+		{ls::Type::string(), {}, (void*) &entity__getName},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getNameEntity}
 	});
 	method("getNearestEnemy", {
-		{ls::Type::integer(), {}, (void*) &entity__getNearestEnemy, ls::Method::NATIVE}
+		{ls::Type::integer(), {}, (void*) &entity__getNearestEnemy}
 	});
 	method("getNearestAlly", {
-		{ls::Type::integer(), {}, (void*) &entity__getNearestAlly, ls::Method::NATIVE}
+		{ls::Type::integer(), {}, (void*) &entity__getNearestAlly}
 	});
 	method("getRelativeShield", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getRelativeShield},
@@ -181,8 +181,8 @@ EntityModule::EntityModule() : Module("Entity") {
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getTeamNameEntity}
 	});
 	method("getTotalLife", {
-		{ls::Type::integer(), {}, (void*) &entity__getTotalLife, ls::Method::NATIVE},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getTotalLifeEntity, ls::Method::NATIVE}
+		{ls::Type::integer(), {}, (void*) &entity__getTotalLife},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getTotalLifeEntity}
 	});
 	method("getTotalMP", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getTotalMP},
@@ -193,16 +193,16 @@ EntityModule::EntityModule() : Module("Entity") {
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getTotalTPEntity}
 	});
 	method("getTP", {
-		{ls::Type::integer(), {}, (void*) &entity__getTP, ls::Method::NATIVE},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getTPEntity, ls::Method::NATIVE}
+		{ls::Type::integer(), {}, (void*) &entity__getTP},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getTPEntity}
 	});
 	method("getType", ls::Method::Static, {
 		{ls::Type::integer(), {}, (void*) &entity__getType},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &entity__getTypeEntity}
 	});
 	method("getWeapon", {
-		{ls::Type({ls::Type::number(), ls::Type::null()}), {}, (void*) &entity__getWeapon, ls::Method::NATIVE},
-		{ls::Type({ls::Type::number(), ls::Type::null()}), {ls::Type::any()}, (void*) &entity__getWeaponEntity, ls::Method::NATIVE}
+		{ls::Type({ls::Type::number(), ls::Type::null()}), {}, (void*) &entity__getWeapon},
+		{ls::Type({ls::Type::number(), ls::Type::null()}), {ls::Type::any()}, (void*) &entity__getWeaponEntity}
 	});
 	method("getWeapons", ls::Method::Static, {
 		{ls::Type::array(ls::Type::integer()), {}, (void*) &entity__getWeapons},

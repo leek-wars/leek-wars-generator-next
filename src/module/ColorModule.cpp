@@ -38,10 +38,10 @@ ColorModule::ColorModule() : Module("Color") {
 	field("a", ls::Type::number());
 
 	method("rgb", {
-		{ColorModule::type_ptr, {ls::Type::integer(), ls::Type::integer(), ls::Type::integer()}, (void*) &color_rgb, ls::Method::NATIVE}
+		{ColorModule::type_ptr, {ls::Type::integer(), ls::Type::integer(), ls::Type::integer()}, (void*) &color_rgb}
 	});
 	method("rgba", {
-		{ColorModule::type_ptr, {ls::Type::integer(), ls::Type::integer(), ls::Type::integer(), ls::Type::integer()}, (void*) &color_rgba, ls::Method::NATIVE}
+		{ColorModule::type_ptr, {ls::Type::integer(), ls::Type::integer(), ls::Type::integer(), ls::Type::integer()}, (void*) &color_rgba}
 	});
 
 	ColorModule::color_clazz = this->clazz;
