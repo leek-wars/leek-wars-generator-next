@@ -21,8 +21,14 @@ int AI::compile(ls::VM& vm, ls::VM& vm_v1) {
 	LOG << "Compile AI " << name << " " << (v1 ? "[v1]" : "[v2]") << std::endl;
 
 	ls::VM::current_vm = v1 ? &vm_v1 : &vm;
+	bool ir = false;
+	if (Util::file_exists(name + ".ll")) {
+		name = name + ".ll";
+		code = Util::read_file(name + ".ll");
+		ir = true;
+	}
 	program = new ls::Program(code, name);
-	auto result = program->compile(v1 ? vm_v1 : vm, "{}");
+	auto result = program->compile(v1 ? vm_v1 : vm, "{}", false, true, false, ir);
 	int errors = 0;
 
 	if (result.lexical_errors.size()) {
