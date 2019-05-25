@@ -85,10 +85,12 @@ ls::LSValue* weapon__getWeaponEffectiveAreaWeaponFrom(const ls::LSValue* weapon,
  * Returns null or effect array
  */
 ls::LSValue* weapon__getWeaponEffects() {
-
+	// TODO
+	return new ls::LSArray<ls::LSValue*>();
 }
 ls::LSValue* weapon__getWeaponEffectsWeapon(const ls::LSValue* weapon) {
-
+	// TODO
+	return new ls::LSArray<ls::LSValue*>();
 }
 
 /*
