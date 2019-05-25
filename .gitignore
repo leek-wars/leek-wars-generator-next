@@ -10,3 +10,4 @@ Release/
 /fight.json
 src/doc
 .vscode
+*.ll
