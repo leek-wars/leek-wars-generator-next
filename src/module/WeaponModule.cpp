@@ -1,5 +1,6 @@
 #include "WeaponModule.hpp"
 #include "../util/Util.hpp"
+#include "../fight/Simulator.hpp"
 
 const ls::LSClass* WeaponModule::weapon_clazz;
 const std::shared_ptr<WeaponType> WeaponModule::raw_type = std::make_shared<WeaponType>();
@@ -20,6 +21,18 @@ WeaponModule::WeaponModule(const FightManager& manager) : Module("Weapon") {
 	field("name", ls::Type::string());
 
 	// V1
+	method("getWeaponCost", {
+		{ls::Type::integer(), {}, (void*) &weapon__getWeaponCost, ls::Method::NATIVE},
+		{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponCostWeapon, ls::Method::NATIVE},
+	});
+	method("getWeaponEffects", {
+		{ls::Type::any(), {}, (void*) &weapon__getWeaponEffects, ls::Method::NATIVE},
+		{ls::Type::any(), {ls::Type::any()}, (void*) &weapon__getWeaponEffectsWeapon, ls::Method::NATIVE},
+	});
+	method("getWeaponMinRange", {
+		{ls::Type::integer(), {}, (void*) &weapon__getWeaponMinRange, ls::Method::NATIVE},
+		{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponMinRangeWeapon, ls::Method::NATIVE},
+	});
 	method("getWeaponMaxRange", {
 		{ls::Type::integer(), {}, (void*) &weapon__getWeaponMaxRange, ls::Method::NATIVE},
 		{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponMaxRangeWeapon, ls::Method::NATIVE},
@@ -56,7 +69,6 @@ ls::LSValue* weapon__getWeaponArea(const ls::LSValue* weapon) {
  */
 int weapon__getWeaponCost() {
 	return Simulator::entity->weapon->cost;
-
 }
 int weapon__getWeaponCostWeapon(const ls::LSValue* weapon) {
 	if (auto number = dynamic_cast<const ls::LSNumber*>(weapon)) {
@@ -106,13 +118,17 @@ int weapon__getWeaponFailure(const ls::LSValue*) {
 /*
  * -1 or integer, always int
  */
-
+int weapon__getWeaponMinRange() {
+	return Simulator::entity->weapon->attack->min_range;
 }
-int weapon__getWeaponMinRange(const ls::LSValue* weapon) {
-
+int weapon__getWeaponMinRangeWeapon(const ls::LSValue* weapon) {
+	return ((Weapon*) weapon)->attack->min_range;
+}
 int weapon__getWeaponMaxRange() {
 	return Simulator::entity->weapon->attack->max_range;
 }
+int weapon__getWeaponMaxRangeWeapon(const ls::LSValue* weapon) {
+	return ((Weapon*) weapon)->attack->max_range;
 }
 
 ls::LSString* weapon__getWeaponName() {
