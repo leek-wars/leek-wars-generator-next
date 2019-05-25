@@ -26,6 +26,7 @@ public:
 	template <typename T>
 	static bool contains(const std::vector<T>& vector, const T& element);
 
+	static bool file_exists(std::string file);
 	static std::string read_file(std::string file);
 
 	static std::string url_encode(const std::string& value);

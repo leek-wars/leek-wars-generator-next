@@ -43,6 +43,11 @@ bool Util::contains(const std::vector<T>& vector, const T& element) {
 	return find(vector.begin(), vector.end(), element) != vector.end();
 }
 
+bool Util::file_exists(std::string name) {
+    std::ifstream f(name.c_str());
+    return f.good();
+}
+
 std::string Util::read_file(std::string file) {
 	std::ifstream ifs(file.data());
 	std::string content = std::string((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
