@@ -13,9 +13,14 @@ ls::Compiler::value Chip_SPARK(ls::Compiler& c) { return c.new_integer(1); }
 
 ChipModule::ChipModule(const FightManager& manager) : Module("Chip") {
 
-	for (const auto& w : manager.chips) {
-		static_field(Util::toupper(w.second->name), ls::Type::integer(), [&](ls::Compiler& c) {
-			return c.new_integer(w.second->id);
+	for (const auto& chip : manager.chips) {
+		// Chip.SPARK : V2 version
+		static_field(Util::toupper(chip.second->name), ls::Type::integer(), [&](ls::Compiler& c) {
+			return c.new_integer(chip.second->id);
+		});
+		// CHIP_SPARK : V1 version
+		static_field(std::string("CHIP_") + Util::toupper(chip.second->name), ls::Type::integer(), [&](ls::Compiler& c) {
+			return c.new_integer(chip.second->id);
 		});
 	}
 

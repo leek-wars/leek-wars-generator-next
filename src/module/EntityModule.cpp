@@ -72,7 +72,7 @@ EntityModule::EntityModule() : Module("Entity") {
 	method("setWeapon", {
 		{ls::Type::null(), {EntityModule::const_type, WeaponModule::const_type}, (void*) &entity_setWeapon},
 		{ls::Type::null(), {EntityModule::const_type, ls::Type::const_integer()}, (void*) &Entity::setWeaponInteger},
-		{ls::Type::boolean(), {ls::Type::number()}, (void*) &entity__setWeapon}
+		{ls::Type::boolean(), {ls::Type::any()}, (void*) &entity__setWeapon}
 	});
 
 	/*

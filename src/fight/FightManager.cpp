@@ -60,20 +60,6 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 	vm_v1.add_module(new ColorModule());
 	vm_v1.add_module(new ChipModule(*this));
 
-	// Add V1 weapons and chips constants
-	for (const auto& w : weapons) {
-		auto constant = ls::LSNumber::get(w.first);
-		constant->refs = 1;
-		constant->native = true;
-		vm_v1.add_internal_var(Util::toupper("weapon_" + w.second->name), ls::Type::any(), constant);
-	}
-	for (const auto& c : chips) {
-		auto constant = ls::LSNumber::get(c.second->id);
-		constant->refs = 1;
-		constant->native = true;
-		vm_v1.add_internal_var(Util::toupper("chip_" + c.second->name), ls::Type::any(), constant);
-	}
-
 	// Load forbidden words
 	censor.load("data/forbidden_words.txt");
 }
