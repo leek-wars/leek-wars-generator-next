@@ -24,11 +24,11 @@ FightModule::FightModule() : Module("Fight") {
 	method("getTurn", {
 		{ls::Type::integer(), {}, (void*) &fight_getTurn}
 	});
-	method("getEntity", ls::Method::Static, {
+	method("getEntity", {
 		{EntityModule::type, {}, (void*) &fight_getEntity}
 	});
-	method("getType", ls::Method::Static, {{ls::Type::integer(), {}, (void*) &fight_getType}});
-	method("getContext", ls::Method::Static, {{ls::Type::integer(), {}, (void*) &fight_getContext}});
+	method("getType", {{ls::Type::integer(), {}, (void*) &fight_getType}});
+	method("getContext", {{ls::Type::integer(), {}, (void*) &fight_getContext}});
 
 	// V1
 	method("getLeek", {{ls::Type::integer(), {}, (void*) &fight__getEntity}});
