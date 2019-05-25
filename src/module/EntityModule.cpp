@@ -60,8 +60,14 @@ EntityModule::EntityModule() : Module("Entity") {
 		{ls::Type::integer(), {EntityModule::const_type, CellModule::const_type}, (void*) &Entity::moveTowardCell, ls::Method::NATIVE},
 		{ls::Type::integer(), {ls::Type::any()}, (void*) &entity__moveToward, ls::Method::NATIVE}
 	});
-	method("useChip", {{ls::Type::integer(), {EntityModule::const_type, ChipModule::const_type, EntityModule::const_type}, (void*) &Entity::useChip, ls::Method::NATIVE}});
-	method("useWeapon", {{ls::Type::integer(), {EntityModule::const_type, EntityModule::const_type}, (void*) &Entity::useWeapon, ls::Method::NATIVE}});
+	method("useChip", {
+		{ls::Type::integer(), {EntityModule::const_type, ChipModule::const_type, EntityModule::const_type}, (void*) &Entity::useChip, ls::Method::NATIVE},
+		{ls::Type::integer(), {ls::Type::any(), ls::Type::any()}, (void*) &entity__useChip, ls::Method::NATIVE}
+	});
+	method("useWeapon", {
+		{ls::Type::integer(), {EntityModule::const_type, EntityModule::const_type}, (void*) &Entity::useWeapon, ls::Method::NATIVE},
+		{ls::Type::integer(), {ls::Type::any()}, (void*) &entity__useWeapon, ls::Method::NATIVE}
+	});
 	method("say", {{ls::Type::boolean(), {EntityModule::const_type, ls::Type::const_any()}, (void*) &Entity::say, ls::Method::NATIVE}});
 	method("setWeapon", {
 		{ls::Type::null(), {EntityModule::const_type, WeaponModule::const_type}, (void*) &entity_setWeapon, ls::Method::NATIVE},
