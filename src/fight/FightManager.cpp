@@ -73,7 +73,7 @@ std::string FightManager::compile(std::string ai) {
 
 	ls::VM::current_vm = &vm;
 	auto program = new ls::Program(code, name);
-	auto result = program->compile(vm, "{}");
+	auto result = program->compile(vm);
 
 	LOG << "AI: " << program << std::endl;
 

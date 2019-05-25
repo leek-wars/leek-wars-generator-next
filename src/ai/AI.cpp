@@ -28,7 +28,7 @@ int AI::compile(ls::VM& vm, ls::VM& vm_v1, bool use_ll_cache) {
 		ir = true;
 	}
 	program = new ls::Program(code, name);
-	auto result = program->compile(v1 ? vm_v1 : vm, "{}", false, true, false, ir);
+	auto result = program->compile(v1 ? vm_v1 : vm, nullptr, false, true, false, ir);
 	int errors = 0;
 
 	if (result.lexical_errors.size()) {
