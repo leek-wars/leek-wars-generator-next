@@ -55,10 +55,17 @@ ls::LSValue* weapon__getWeaponArea(const ls::LSValue* weapon) {
  * Always returns an integer
  */
 int weapon__getWeaponCost() {
+	return Simulator::entity->weapon->cost;
 
 }
 int weapon__getWeaponCostWeapon(const ls::LSValue* weapon) {
-
+	if (auto number = dynamic_cast<const ls::LSNumber*>(weapon)) {
+		auto i = Simulator::fight->manager->weapons.find(number->value);
+		if (i != Simulator::fight->manager->weapons.end()) {
+			return i->second->cost;
+		}
+	}
+	return -1;
 }
 
 /*
