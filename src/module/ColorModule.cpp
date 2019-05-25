@@ -25,12 +25,12 @@ Color* color_rgba(int r, int g, int b, int a) {
 
 ColorModule::ColorModule() : Module("Color") {
 
-	static_field("TRANSPARENT", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::TRANSPARENT, type_ptr); });
-	static_field("BLACK", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::BLACK, type_ptr); });
-	static_field("WHITE", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::WHITE, type_ptr); });
-	static_field("RED", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::RED, type_ptr); });
-	static_field("GREEN", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::GREEN, type_ptr); });
-	static_field("BLUE", ColorModule::type_ptr, [](ls::Compiler& c) { return c.new_pointer((void*) ColorModule::BLUE, type_ptr); });
+	static_field("TRANSPARENT", ColorModule::type_ptr, &ColorModule::TRANSPARENT);
+	static_field("BLACK", ColorModule::type_ptr, &ColorModule::BLACK);
+	static_field("WHITE", ColorModule::type_ptr, &ColorModule::WHITE);
+	static_field("RED", ColorModule::type_ptr, &ColorModule::RED);
+	static_field("GREEN", ColorModule::type_ptr, &ColorModule::GREEN);
+	static_field("BLUE", ColorModule::type_ptr, & ColorModule::BLUE);
 
 	field("r", ls::Type::number());
 	field("g", ls::Type::number());
