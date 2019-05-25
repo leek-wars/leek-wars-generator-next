@@ -9,9 +9,9 @@
 
 FieldModule::FieldModule() : Module("Field") {
 
-	static_field("obstacles", CellModule::array_type, (void*) &map_getObstacles);
-	static_field("cells", CellModule::array_type, (void*) &map_getCells);
-	static_field("type", ls::Type::integer(), (void*) &map_getType);
+	static_field_fun("obstacles", CellModule::array_type, (void*) &map_getObstacles);
+	static_field_fun("cells", CellModule::array_type, (void*) &map_getCells);
+	static_field_fun("type", ls::Type::integer(), (void*) &map_getType);
 
 	method("cell", ls::Method::Static, {
 		{CellModule::type, {ls::Type::integer(), ls::Type::integer()}, (void*) &map_cell},
