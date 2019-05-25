@@ -46,7 +46,7 @@ Report* Fight::start(ls::VM& vm, ls::VM& vm_v1) {
 		entities.insert({entity->id, entity});
 		order.addEntity(entity);
 		if (entity->ai) {
-			entity->ai->compile(vm, vm_v1);
+			entity->ai->compile(vm, vm_v1, true);
 		}
 	}
 
