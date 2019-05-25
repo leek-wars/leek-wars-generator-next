@@ -116,6 +116,7 @@ bool entity__isSummon();
 bool entity__isSummonEntity(const ls::LSValue* entity);
 ls::LSArray<ls::LSValue*>* entity__listen();
 int entity__moveAwayFrom(const ls::LSValue* entity);
+int entity__moveAwayFromMP(const ls::LSValue* entity, int mp);
 int entity__moveToward(const ls::LSValue* entity);
 bool entity__say(const ls::LSValue* message);
 bool entity__setWeapon(const ls::LSNumber* weapon);

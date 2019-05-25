@@ -219,6 +219,10 @@ EntityModule::EntityModule() : Module("Entity") {
 	});
 
 	method("listen", ls::Method::Static, {{ls::Type::any(), {ls::Type::any()}, (void*) &entity__listen}});
+	method("moveAwayFrom", ls::Method::Static, {
+		{ls::Type::integer(), {ls::Type::any()}, (void*) &entity__moveAwayFrom},
+		{ls::Type::integer(), {ls::Type::any(), ls::Type::integer()}, (void*) &entity__moveAwayFromMP},
+	});
 	method("say", ls::Method::Static, {{ls::Type::any(), {ls::Type::any()}, (void*) &entity__say}});
 }
 
@@ -571,6 +575,14 @@ ls::LSArray<ls::LSValue*>* entity__listen() {
 }
 
 int entity__moveAwayFrom(const ls::LSValue* entity) {
+	auto e = Simulator::getEntity(entity);
+	if (e == nullptr) {
+		return 0;
+	}
+	return Simulator::entity->moveAwayFrom(e);
+}
+
+int entity__moveAwayFromMP(const ls::LSValue* entity, int mp) {
 	auto e = Simulator::getEntity(entity);
 	if (e == nullptr) {
 		return 0;
