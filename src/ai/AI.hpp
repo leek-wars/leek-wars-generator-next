@@ -13,8 +13,9 @@ public:
 	ls::Program* program;
 	bool v1 = false;
 	bool valid = true;
+	bool nocache = false;
 
-	AI(std::string code, std::string name, bool v1 = false);
+	AI(std::string code, std::string name, bool v1 = false, bool nocache = false);
 	virtual ~AI();
 
 	int compile(ls::VM& vm, ls::VM& vm_v1, bool use_ll_cache = false);

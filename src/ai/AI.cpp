@@ -2,12 +2,13 @@
 #include "../module/EntityModule.hpp"
 #include "../util/Util.hpp"
 
-AI::AI(std::string code, std::string ai_name, bool v1) {
+AI::AI(std::string code, std::string ai_name, bool v1, bool nocache) {
 	this->id = 12765;
 	this->name = ai_name;
 	this->code = code;
 	this->program = nullptr;
 	this->v1 = v1;
+	this->nocache = nocache;
 }
 
 AI::~AI() {
@@ -16,19 +17,18 @@ AI::~AI() {
 	}
 }
 
-int AI::compile(ls::VM& vm, ls::VM& vm_v1, bool use_ll_cache) {
+int AI::compile(ls::VM& vm, ls::VM& vm_v1, bool use_bc_cache) {
 
 	LOG << "Compile AI " << name << " " << (v1 ? "[v1]" : "[v2]") << std::endl;
 
 	ls::VM::current_vm = v1 ? &vm_v1 : &vm;
-	bool ir = false;
-	if (use_ll_cache and Util::file_exists(name + ".ll")) {
-		name = name + ".ll";
-		code = Util::read_file(name + ".ll");
-		ir = true;
+	bool bc = false;
+	if (not nocache and use_bc_cache and Util::file_exists(name + ".bc")) {
+		name = name + ".bc";
+		bc = true;
 	}
 	program = new ls::Program(code, name);
-	auto result = program->compile(v1 ? vm_v1 : vm, nullptr, false, true, false, ir);
+	auto result = program->compile(v1 ? vm_v1 : vm, nullptr, !bc, false, false, false, bc);
 	int errors = 0;
 
 	if (result.lexical_errors.size()) {

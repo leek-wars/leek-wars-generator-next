@@ -9,7 +9,7 @@
 #include "../area/Area.hpp"
 #include "FightManager.hpp"
 
-Fight* FightLoader::load(const FightManager& manager, std::string file) {
+Fight* FightLoader::load(const FightManager& manager, std::string file, bool nocache) {
 
 	auto fight = new Fight();
 	fight->manager = (FightManager*) &manager;
@@ -39,7 +39,7 @@ Fight* FightLoader::load(const FightManager& manager, std::string file) {
 			}
 			AI* ai = nullptr;
 			if (e.find("ai") != e.end()) {
-				ai = new AI(Util::read_file(e["ai"]), e["ai"], v1);
+				ai = new AI(Util::read_file(e["ai"]), e["ai"], v1, nocache);
 			}
 			int hat = 0;
 			if (e.find("hat") != e.end()) {

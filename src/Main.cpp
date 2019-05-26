@@ -26,13 +26,15 @@
 int main(int argc, char** argv) {
 
 	// Read options
-	bool quiet = false;
+	bool logs = false;
 	bool compile = false;
+	bool nocache = false;
 	std::string input;
 	for (int i = 1; i < argc; ++i) {
 		std::string o(argv[i]);
-		if (o == "-q" or o == "-Q") quiet = true;
+		if (o == "-l" or o == "-L" or o == "--logs") logs = true;
 		else if (o == "-c" or o == "-C") compile = true;
+		else if (o == "--nocache") nocache = true;
 		else input = o;
 	}
 	if (not input.size()) {
@@ -40,9 +42,7 @@ int main(int argc, char** argv) {
 		return 1;
 	}
 
-	if (quiet) {
-		Util::log_enabled = false;
-	}
+	Util::log_enabled = logs;
 
 	LOG << "~~ leek-wars-simulator v1.0 ~~" << std::endl;
 
@@ -60,7 +60,7 @@ int main(int argc, char** argv) {
 	// Start the fight
 	std::string fight_file(input);
 	LOG << "Load fight '" << fight_file << "'..." << std::endl;
-	auto fight = FightLoader::load(manager, fight_file);
+	auto fight = FightLoader::load(manager, fight_file, nocache);
 	if (fight == nullptr) {
 		LOG_W << "Fight failed to load!" << std::endl;
 		return 0;

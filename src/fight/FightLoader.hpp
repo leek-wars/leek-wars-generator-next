@@ -7,7 +7,7 @@ class Fight;
 
 class FightLoader {
 public:
-	static Fight* load(const FightManager& manager, std::string file);
+	static Fight* load(const FightManager& manager, std::string file, bool nocache);
 };
 
 #endif
