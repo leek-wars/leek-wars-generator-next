@@ -29,18 +29,22 @@ WeaponModule::WeaponModule(const FightManager& manager) : Module("Weapon") {
 	method("getWeaponCost", {
 		{ls::Type::integer(), {}, (void*) &weapon__getWeaponCost},
 		{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponCostWeapon},
+		{ls::Type::integer(), {ls::Type::integer()}, (void*) &weapon__getWeaponCostWeapon_int},
 	});
 	method("getWeaponEffects", {
 		{ls::Type::any(), {}, (void*) &weapon__getWeaponEffects},
 		{ls::Type::any(), {ls::Type::any()}, (void*) &weapon__getWeaponEffectsWeapon},
+		{ls::Type::any(), {ls::Type::integer()}, (void*) &weapon__getWeaponEffectsWeapon_int},
 	});
 	method("getWeaponMinRange", {
 		{ls::Type::integer(), {}, (void*) &weapon__getWeaponMinRange},
 		{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponMinRangeWeapon},
+		{ls::Type::integer(), {ls::Type::integer()}, (void*) &weapon__getWeaponMinRangeWeapon_int},
 	});
 	method("getWeaponMaxRange", {
 		{ls::Type::integer(), {}, (void*) &weapon__getWeaponMaxRange},
 		{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponMaxRangeWeapon},
+		{ls::Type::integer(), {ls::Type::integer()}, (void*) &weapon__getWeaponMaxRangeWeapon_int},
 	});
 }
 
@@ -59,6 +63,15 @@ const Weapon* get_weapon(const ls::LSValue* x) {
 	}
 	return nullptr;
 }
+const Weapon* get_weapon_int(int x) {
+	if (x == -1) return Simulator::entity->weapon;
+	auto i = Simulator::fight->manager->weapons.find(x);
+	if (i != Simulator::fight->manager->weapons.end()) {
+		return i->second;
+	}
+	return nullptr;
+}
+
 bool weapon__canUseWeapon(const ls::LSValue* entity) {
 
 }
@@ -88,6 +101,9 @@ int weapon__getWeaponCost() {
 int weapon__getWeaponCostWeapon(const ls::LSValue* weapon) {
 	if (auto w = get_weapon(weapon)) return w->cost;
 	return -1;
+}
+int weapon__getWeaponCostWeapon_int(int weapon) {
+	if (auto w = get_weapon_int(weapon)) return w->cost;
 	return -1;
 }
 
@@ -130,6 +146,11 @@ ls::LSValue* weapon__getWeaponEffectsWeapon(const ls::LSValue* weapon) {
 	if (!w) return ls::LSNull::get();
 	return get_effects(w);
 }
+ls::LSValue* weapon__getWeaponEffectsWeapon_int(int weapon) {
+	auto w = get_weapon_int(weapon);
+	if (!w) return ls::LSNull::get();
+	return get_effects(w);
+}
 
 /*
  * Deprecated: always 0
@@ -151,11 +172,19 @@ int weapon__getWeaponMinRangeWeapon(const ls::LSValue* weapon) {
 	if (auto w = get_weapon(weapon)) return w->attack->min_range;
 	return -1;
 }
+int weapon__getWeaponMinRangeWeapon_int(int weapon) {
+	if (auto w = get_weapon_int(weapon)) return w->attack->min_range;
+	return -1;
+}
 int weapon__getWeaponMaxRange() {
 	return Simulator::entity->weapon->attack->max_range;
 }
 int weapon__getWeaponMaxRangeWeapon(const ls::LSValue* weapon) {
 	if (auto w = get_weapon(weapon)) return w->attack->max_range;
+	return -1;
+}
+int weapon__getWeaponMaxRangeWeapon_int(int weapon) {
+	if (auto w = get_weapon_int(weapon)) return w->attack->max_range;
 	return -1;
 }
 
