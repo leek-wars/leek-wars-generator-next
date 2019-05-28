@@ -11,3 +11,4 @@ Release/
 src/doc
 .vscode
 *.ll
+*.bc
