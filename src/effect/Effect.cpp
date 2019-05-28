@@ -124,3 +124,8 @@ Effect* Effect::construct(EffectType type) {
 			return nullptr;
 	}
 }
+
+bool Effect::isStackable(EffectType type) {
+	return type == EffectType::POISON || type == EffectType::SHACKLE_MP || type == EffectType::SHACKLE_TP 
+		|| type == EffectType::SHACKLE_STRENGTH || type == EffectType::SHACKLE_MAGIC || type == EffectType::VULNERABILITY;
+}

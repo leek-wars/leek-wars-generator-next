@@ -18,7 +18,8 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 	auto build_attack = [](Json i, AttackType type) {
 		std::vector<EffectParameters> effects;
 		for (const auto& e : i["effects"]) {
-			effects.push_back({(EffectType) e["id"].get<int>(), e["value1"], e["value2"], e["turns"], e["targets"]});
+			auto id = (EffectType) e["id"].get<int>();
+			effects.push_back({id, e["value1"], e["value2"], e["turns"], e["targets"], Effect::isStackable(id)});
 		}
 		return new Attack(i["min_range"], i["max_range"], (LaunchType) i["launch_type"].get<int>(), (AreaType) i["area"].get<int>(), i["los"].get<int>(), effects, type);
 	};

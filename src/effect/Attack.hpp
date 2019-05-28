@@ -36,6 +36,7 @@ struct EffectParameters {
 	double value2;
 	int turns;
 	int targets;
+	bool stackable;
 };
 
 class Attack {
