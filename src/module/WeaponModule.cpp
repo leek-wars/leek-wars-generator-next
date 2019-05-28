@@ -49,6 +49,16 @@ WeaponModule::~WeaponModule() {}
 /*
  * V1 methods
  */
+const Weapon* get_weapon(const ls::LSValue* x) {
+	if (auto number = dynamic_cast<const ls::LSNumber*>(x)) {
+		if (number->value == -1) return Simulator::entity->weapon;
+		auto i = Simulator::fight->manager->weapons.find(number->value);
+		if (i != Simulator::fight->manager->weapons.end()) {
+			return i->second;
+		}
+	}
+	return nullptr;
+}
 bool weapon__canUseWeapon(const ls::LSValue* entity) {
 
 }
@@ -76,12 +86,8 @@ int weapon__getWeaponCost() {
 	return Simulator::entity->weapon->cost;
 }
 int weapon__getWeaponCostWeapon(const ls::LSValue* weapon) {
-	if (auto number = dynamic_cast<const ls::LSNumber*>(weapon)) {
-		auto i = Simulator::fight->manager->weapons.find(number->value);
-		if (i != Simulator::fight->manager->weapons.end()) {
-			return i->second->cost;
-		}
-	}
+	if (auto w = get_weapon(weapon)) return w->cost;
+	return -1;
 	return -1;
 }
 
@@ -101,13 +107,28 @@ ls::LSValue* weapon__getWeaponEffectiveAreaWeaponFrom(const ls::LSValue* weapon,
 /*
  * Returns null or effect array
  */
+ls::LSValue* get_effects(const Weapon* weapon) {
+	auto effects = new ls::LSArray<ls::LSValue*>();
+	for (const auto& effect : weapon->attack->effects) {
+		auto e = new ls::LSArray<ls::LSValue*>();
+		e->push_back(ls::LSNumber::get((int) effect.type));
+		e->push_back(ls::LSNumber::get(effect.value1));
+		e->push_back(ls::LSNumber::get(effect.value1 + effect.value2));
+		e->push_back(ls::LSNumber::get(effect.turns));
+		e->push_back(ls::LSNumber::get(effect.targets));
+		e->push_back(ls::LSBoolean::get(effect.stackable));
+		effects->push_back(e);
+	}
+	return effects;
+}
 ls::LSValue* weapon__getWeaponEffects() {
-	// TODO
-	return new ls::LSArray<ls::LSValue*>();
+	if (not Simulator::entity->weapon) return ls::LSNull::get();
+	return get_effects(Simulator::entity->weapon);
 }
 ls::LSValue* weapon__getWeaponEffectsWeapon(const ls::LSValue* weapon) {
-	// TODO
-	return new ls::LSArray<ls::LSValue*>();
+	auto w = get_weapon(weapon);
+	if (!w) return ls::LSNull::get();
+	return get_effects(w);
 }
 
 /*
@@ -127,13 +148,15 @@ int weapon__getWeaponMinRange() {
 	return Simulator::entity->weapon->attack->min_range;
 }
 int weapon__getWeaponMinRangeWeapon(const ls::LSValue* weapon) {
-	return ((Weapon*) weapon)->attack->min_range;
+	if (auto w = get_weapon(weapon)) return w->attack->min_range;
+	return -1;
 }
 int weapon__getWeaponMaxRange() {
 	return Simulator::entity->weapon->attack->max_range;
 }
 int weapon__getWeaponMaxRangeWeapon(const ls::LSValue* weapon) {
-	return ((Weapon*) weapon)->attack->max_range;
+	if (auto w = get_weapon(weapon)) return w->attack->max_range;
+	return -1;
 }
 
 ls::LSString* weapon__getWeaponName() {
