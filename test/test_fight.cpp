@@ -6,7 +6,7 @@ void Test::test_fight() {
 	header("Fight");
 	Util::log_enabled = false;
 
-	auto fight = FightLoader::load(manager, "test/fight/fight.json");
+	auto fight = FightLoader::load(manager, "test/fight/fight.json", true);
 	auto entity = fight->teams[0]->entities[0];
 
 	header("Fight > entity");
@@ -90,7 +90,7 @@ void Test::test_fight_v1() {
 	header("Fight > v1");
 	Util::log_enabled = false;
 
-	auto fight = FightLoader::load(manager, "test/fight/fight_v1.json");
+	auto fight = FightLoader::load(manager, "test/fight/fight_v1.json", false);
 
 	// Run the fight
 	manager.start(*fight, [&](Report* report) {
