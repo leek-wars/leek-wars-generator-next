@@ -400,8 +400,12 @@ ls::LSValue* entity__getCellEntity(const ls::LSValue* entity) {
 }
 
 ls::LSArray<int>* entity__getChips() {
-	// TODO Int array
-//	return Simulator::entity->chips.clone();
+	auto ret = new ls::LSArray<int>(Simulator::entity->chips.size());
+	for (const auto& chip : Simulator::entity->chips) {
+		ret->push_back(((Chip*) chip)->id);
+	}
+	return ret;
+
 }
 ls::LSValue* entity__getChipsEntity(const ls::LSValue* entity) {
 	Entity* e = Simulator::getEntity(entity);
@@ -528,7 +532,11 @@ ls::LSValue* entity__getWeaponEntity(const ls::LSValue* entity) {
 }
 
 ls::LSArray<int>* entity__getWeapons() {
-	// TODO
+	auto ret = new ls::LSArray<int>(Simulator::entity->weapons.size());
+	for (const auto& weapon : Simulator::entity->weapons) {
+		ret->push_back(((Weapon*) weapon)->id);
+	}
+	return ret;
 }
 ls::LSValue* entity__getWeaponsEntity(const ls::LSValue* entity) {
 	Entity* e = Simulator::getEntity(entity);
