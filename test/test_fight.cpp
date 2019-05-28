@@ -22,7 +22,7 @@ void Test::test_fight() {
 	test_ai(fight, entity, "Fight.getEntity().weapons.size()", "1");
 	test_ai(fight, entity, "Fight.getEntity().weapons ~~ x -> x.name", "['m_laser']");
 	test_ai(fight, entity, "Fight.getEntity().weapon", "null");
-	test_ai(fight, entity, "Fight.getEntity().chips", "[<Chip protein>]");
+	test_ai(fight, entity, "Fight.getEntity().chips", "[<Chip protein>, <Chip venom>]");
 	test_ai(fight, entity, "Fight.getEntity().damageReturn", "0");
 	test_ai(fight, entity, "Fight.getEntity().frequency", "0");
 	test_ai(fight, entity, "Fight.getEntity().relativeShield", "0");
@@ -32,6 +32,7 @@ void Test::test_fight() {
 	test_ai(fight, entity, "Fight.getEntity().magic", "0");
 	test_ai(fight, entity, "Fight.getEntity().wisdom", "0");
 	test_ai(fight, entity, "Fight.getEntity().agility", "0");
+	test_ai(fight, entity, Util::read_file("test/ai/issue235.leek"), "[[<Chip venom>], []]");
 
 	header("Fight > fight functions");
 	test_ai(fight, entity, "Fight.getEntity().getClosestEnemy().name in ['Bob', 'Boss', 'Donald']", "true");

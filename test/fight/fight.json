@@ -10,7 +10,7 @@
 				"mp": 6,
 				"cell": 123,
 				"weapons": [47],
-				"chips": [8]
+				"chips": [8, 97]
 			},
 			{	"ai": "test/ai/color.leek",
 				"name": "Yolo",

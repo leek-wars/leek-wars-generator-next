@@ -1,0 +1,6 @@
+var me = Fight.getEntity()
+var him = me.getClosestEnemy()
+function useIt(me, target, chipName) {
+    return me.chips.filter(c => me && target && c.name == chipName)
+}
+[useIt(me, him, 'venom'), useIt(me, him, 'spark')]
