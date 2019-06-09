@@ -4,11 +4,18 @@
 #include <leekscript.h>
 class Cell;
 class LSEntity;
+#include "colors.h"
 
 class CellType : public ls::Object_type {
 public:
+	CellType() : ls::Object_type(true) {}
 	virtual const std::string getName() const override { return "cell"; };
-	virtual std::string clazz() const override { return "Cell"; };
+	virtual std::string class_name() const override { return "Cell"; };
+	virtual Type* clone() const override { return new CellType(); }
+	virtual std::ostream& print(std::ostream& os) const override {
+		os << BLUE_BOLD << "cell" << END_COLOR;
+		return os;
+	}
 };
 
 class CellModule : public ls::Module {
@@ -17,7 +24,6 @@ public:
 	virtual ~CellModule();
 
 	static const ls::LSClass* cell_clazz;
-	static const std::shared_ptr<CellType> raw_type;
 	static const ls::Type* type;
 	static const ls::Type* const_type;
 	static const ls::Type* array_type;

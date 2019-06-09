@@ -8,6 +8,7 @@ class Leek;
 class LeekType : public EntityType {
 public:
 	const std::string getName() const { return "Leek"; };
+	virtual Type* clone() const override { return new LeekType(); }
 };
 
 class LeekModule : public ls::Module {
@@ -16,7 +17,6 @@ public:
 	virtual ~LeekModule();
 
 	static const ls::LSClass* leek_clazz;
-	static const std::shared_ptr<LeekType> raw_type;
 	static const ls::Type* type;
 };
 

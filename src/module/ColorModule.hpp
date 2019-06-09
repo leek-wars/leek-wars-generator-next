@@ -8,7 +8,8 @@
 class ColorType : public ls::Integer_type {
 public:
 	virtual const std::string getName() const override { return "color"; };
-	virtual std::string clazz() const override { return "Color"; };
+	virtual std::string class_name() const override { return "Color"; };
+	virtual Type* clone() const override { return new ColorType(); }
 };
 
 class ColorModule : public ls::Module {

@@ -9,10 +9,9 @@
 #include "../item/Chip.hpp"
 
 const ls::LSClass* EntityModule::entity_clazz;
-const std::shared_ptr<EntityType> EntityModule::raw_type = std::make_shared<EntityType>();
-const ls::Type* EntityModule::type = new ls::Type(raw_type, true);
+const ls::Type* EntityModule::type = new EntityType();
 const ls::Type* EntityModule::const_type = type->add_constant();
-const ls::Type* EntityModule::array_type = ls::Type::array(EntityModule::type);
+const ls::Type* EntityModule::array_type = ls::Type::array(type);
 
 EntityModule::EntityModule(ls::VM* vm) : Module(vm, "Entity") {
 

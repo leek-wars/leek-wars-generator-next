@@ -8,6 +8,7 @@ class FightManager;
 class ChipType : public ItemType {
 public:
 	const std::string getName() const { return "Chip"; };
+	virtual Type* clone() const override { return new ChipType(); }
 };
 
 class ChipModule : public ls::Module {
@@ -16,7 +17,6 @@ public:
 	virtual ~ChipModule();
 
 	static const ls::LSClass* chip_clazz;
-	static const std::shared_ptr<ChipType> raw_type;
 	static const ls::Type* type;
 	static const ls::Type* const_type;
 	static const ls::Type* array_type;

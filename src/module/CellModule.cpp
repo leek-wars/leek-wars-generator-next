@@ -7,10 +7,9 @@
 #include "../entity/Entity.hpp"
 
 const ls::LSClass* CellModule::cell_clazz;
-const std::shared_ptr<CellType> CellModule::raw_type = std::make_shared<CellType>();
-const ls::Type* CellModule::type = new ls::Type(raw_type, true);
+const ls::Type* CellModule::type = new CellType();
 const ls::Type* CellModule::const_type = type->add_constant();
-const ls::Type* CellModule::array_type = ls::Type::array(CellModule::type);
+const ls::Type* CellModule::array_type = ls::Type::array(type);
 
 CellModule::CellModule(ls::VM* vm) : Module(vm, "Cell") {
 

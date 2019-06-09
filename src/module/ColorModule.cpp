@@ -1,8 +1,7 @@
 #include "ColorModule.hpp"
 
 const ls::LSClass* ColorModule::color_clazz;
-const std::shared_ptr<ColorType> ColorModule::raw_type = std::make_shared<ColorType>();
-const ls::Type* ColorModule::type = new ls::Type(ColorModule::raw_type);
+const ls::Type* ColorModule::type = new ColorType();
 
 const Color* ColorModule::TRANSPARENT = new Color(0x00000000, true);
 const Color* ColorModule::BLACK = new Color(0xff000000, true);

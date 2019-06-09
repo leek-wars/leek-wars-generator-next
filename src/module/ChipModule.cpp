@@ -4,10 +4,9 @@
 #include "../fight/Simulator.hpp"
 
 const ls::LSClass* ChipModule::chip_clazz;
-const std::shared_ptr<ChipType> ChipModule::raw_type = std::make_shared<ChipType>();
-const ls::Type* ChipModule::type = new ls::Type(raw_type, true);
+const ls::Type* ChipModule::type = new ChipType();
 const ls::Type* ChipModule::const_type = type->add_constant();
-const ls::Type* ChipModule::array_type = ls::Type::array(ChipModule::type);
+const ls::Type* ChipModule::array_type = ls::Type::array(type);
 
 ls::Compiler::value Chip_SPARK(ls::Compiler& c) { return c.new_integer(1); }
 

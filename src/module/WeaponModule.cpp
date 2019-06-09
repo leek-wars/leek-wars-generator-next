@@ -3,10 +3,9 @@
 #include "../fight/Simulator.hpp"
 
 const ls::LSClass* WeaponModule::weapon_clazz;
-const std::shared_ptr<WeaponType> WeaponModule::raw_type = std::make_shared<WeaponType>();
-const ls::Type* WeaponModule::type = new ls::Type(raw_type, true);
+const ls::Type* WeaponModule::type = new WeaponType();
 const ls::Type* WeaponModule::const_type = type->add_constant();
-const ls::Type* WeaponModule::array_type = ls::Type::array(WeaponModule::type);
+const ls::Type* WeaponModule::array_type = ls::Type::array(type);
 
 WeaponModule::WeaponModule(ls::VM* vm, const FightManager& manager) : Module(vm, "Weapon") {
 

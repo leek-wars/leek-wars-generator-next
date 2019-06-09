@@ -10,6 +10,7 @@ class WeaponType : public ItemType {
 public:
 	const std::string getName() const { return "weapon"; };
 	const std::string getClass() const { return "Weapon"; };
+	virtual Type* clone() const override { return new WeaponType(); }
 	virtual std::ostream& print(std::ostream& os) const override {
 		os << BLUE_BOLD << "weapon" << END_COLOR;
 		return os;
@@ -22,7 +23,6 @@ public:
 	virtual ~WeaponModule();
 
 	static const ls::LSClass* weapon_clazz;
-	static const std::shared_ptr<WeaponType> raw_type;
 	static const ls::Type* type;
 	static const ls::Type* const_type;
 	static const ls::Type* array_type;

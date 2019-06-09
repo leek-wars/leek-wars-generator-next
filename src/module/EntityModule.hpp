@@ -11,8 +11,11 @@ class Effect;
 
 class EntityType : public ls::Object_type {
 public:
+	EntityType() : ls::Object_type(true) {}
 	virtual const std::string getName() const override { return "entity"; };
-	virtual std::string clazz() const override { return "Entity"; };
+	virtual const std::string getJsonName() const override { return "entity"; }
+	virtual std::string class_name() const override { return "Entity"; }
+	virtual Type* clone() const override { return new EntityType(); }
 	virtual std::ostream& print(std::ostream& os) const override {
 		os << BLUE_BOLD << "entity" << END_COLOR;
 		return os;
@@ -25,7 +28,6 @@ public:
 	virtual ~EntityModule();
 
 	static const ls::LSClass* entity_clazz;
-	static const std::shared_ptr<EntityType> raw_type;
 	static const ls::Type* type;
 	static const ls::Type* const_type;
 	static const ls::Type* array_type;

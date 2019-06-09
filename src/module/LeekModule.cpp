@@ -10,8 +10,7 @@
 #include "../item/Chip.hpp"
 
 const ls::LSClass* LeekModule::leek_clazz;
-const std::shared_ptr<LeekType> LeekModule::raw_type = std::make_shared<LeekType>();
-const ls::Type* LeekModule::type = new ls::Type(LeekModule::raw_type, true);
+const ls::Type* LeekModule::type = new LeekType();
 
 LeekModule::LeekModule(ls::VM* vm) : Module(vm, "Leek") {
 
