@@ -10,7 +10,7 @@ public:
 
 class ItemModule : public ls::Module {
 public:
-	ItemModule();
+	ItemModule(ls::VM* vm);
 	virtual ~ItemModule();
 };
 

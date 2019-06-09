@@ -4,47 +4,47 @@
 
 const ls::LSClass* WeaponModule::weapon_clazz;
 const std::shared_ptr<WeaponType> WeaponModule::raw_type = std::make_shared<WeaponType>();
-const ls::Type WeaponModule::type(raw_type, true);
-const ls::Type WeaponModule::const_type(raw_type, true, false, true);
-const ls::Type WeaponModule::array_type = ls::Type::array(WeaponModule::type);
+const ls::Type* WeaponModule::type = new ls::Type(raw_type, true);
+const ls::Type* WeaponModule::const_type = type->add_constant();
+const ls::Type* WeaponModule::array_type = ls::Type::array(WeaponModule::type);
 
-WeaponModule::WeaponModule(const FightManager& manager) : Module("Weapon") {
+WeaponModule::WeaponModule(ls::VM* vm, const FightManager& manager) : Module(vm, "Weapon") {
 
 	for (const auto& w : manager.weapons) {
 		// Weapon.PISTOL : V2 version
-		static_field(Util::toupper(w.second->name), ls::Type::integer(), [&](ls::Compiler& c) {
+		static_field(Util::toupper(w.second->name), ls::Type::integer, [&](ls::Compiler& c) {
 			return c.new_integer(w.second->id);
 		});
 		// WEAPON_PISTOL : V1 version
-		static_field(std::string("WEAPON_") + Util::toupper(w.second->name), ls::Type::integer(), [&](ls::Compiler& c) {
+		static_field(std::string("WEAPON_") + Util::toupper(w.second->name), ls::Type::integer, [&](ls::Compiler& c) {
 			return c.new_integer(w.second->id);
 		});
 	}
 
-	field("id", ls::Type::number());
-	field("cost", ls::Type::number());
-	field("name", ls::Type::string());
+	field("id", ls::Type::number);
+	field("cost", ls::Type::number);
+	field("name", ls::Type::string);
 
 	// V1
 	method("getWeaponCost", {
-		{ls::Type::integer(), {}, (void*) &weapon__getWeaponCost},
-		{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponCostWeapon},
-		{ls::Type::integer(), {ls::Type::integer()}, (void*) &weapon__getWeaponCostWeapon_int},
+		{ls::Type::integer, {}, (void*) &weapon__getWeaponCost},
+		{ls::Type::integer, {ls::Type::any}, (void*) &weapon__getWeaponCostWeapon},
+		{ls::Type::integer, {ls::Type::integer}, (void*) &weapon__getWeaponCostWeapon_int},
 	});
 	method("getWeaponEffects", {
-		{ls::Type::any(), {}, (void*) &weapon__getWeaponEffects},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &weapon__getWeaponEffectsWeapon},
-		{ls::Type::any(), {ls::Type::integer()}, (void*) &weapon__getWeaponEffectsWeapon_int},
+		{ls::Type::any, {}, (void*) &weapon__getWeaponEffects},
+		{ls::Type::any, {ls::Type::any}, (void*) &weapon__getWeaponEffectsWeapon},
+		{ls::Type::any, {ls::Type::integer}, (void*) &weapon__getWeaponEffectsWeapon_int},
 	});
 	method("getWeaponMinRange", {
-		{ls::Type::integer(), {}, (void*) &weapon__getWeaponMinRange},
-		{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponMinRangeWeapon},
-		{ls::Type::integer(), {ls::Type::integer()}, (void*) &weapon__getWeaponMinRangeWeapon_int},
+		{ls::Type::integer, {}, (void*) &weapon__getWeaponMinRange},
+		{ls::Type::integer, {ls::Type::any}, (void*) &weapon__getWeaponMinRangeWeapon},
+		{ls::Type::integer, {ls::Type::integer}, (void*) &weapon__getWeaponMinRangeWeapon_int},
 	});
 	method("getWeaponMaxRange", {
-		{ls::Type::integer(), {}, (void*) &weapon__getWeaponMaxRange},
-		{ls::Type::integer(), {ls::Type::any()}, (void*) &weapon__getWeaponMaxRangeWeapon},
-		{ls::Type::integer(), {ls::Type::integer()}, (void*) &weapon__getWeaponMaxRangeWeapon_int},
+		{ls::Type::integer, {}, (void*) &weapon__getWeaponMaxRange},
+		{ls::Type::integer, {ls::Type::any}, (void*) &weapon__getWeaponMaxRangeWeapon},
+		{ls::Type::integer, {ls::Type::integer}, (void*) &weapon__getWeaponMaxRangeWeapon_int},
 	});
 }
 

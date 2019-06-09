@@ -39,27 +39,27 @@ FightManager::FightManager() : vm(), vm_v1(true) {
 	}
 
 	// V2
-	vm.add_module(new FightModule());
-	vm.add_module(new EntityModule());
-	vm.add_module(new LeekModule());
-	vm.add_module(new FieldModule());
-	vm.add_module(new CellModule());
-	vm.add_module(new ItemModule());
-	vm.add_module(new WeaponModule(*this));
-	vm.add_module(new ColorModule());
-	vm.add_module(new ChipModule(*this));
+	vm.add_module(new FightModule(&vm));
+	vm.add_module(new EntityModule(&vm));
+	vm.add_module(new LeekModule(&vm));
+	vm.add_module(new FieldModule(&vm));
+	vm.add_module(new CellModule(&vm));
+	vm.add_module(new ItemModule(&vm));
+	vm.add_module(new WeaponModule(&vm, *this));
+	vm.add_module(new ColorModule(&vm));
+	vm.add_module(new ChipModule(&vm, *this));
 
 	// V1
-	auto entity_module = new EntityModule();
-	vm_v1.add_module(new FightModule());
+	auto entity_module = new EntityModule(&vm);
+	vm_v1.add_module(new FightModule(&vm));
 	vm_v1.add_module(entity_module);
-	vm_v1.add_module(new LeekModule());
-	vm_v1.add_module(new FieldModule());
-	vm_v1.add_module(new CellModule());
-	vm_v1.add_module(new ItemModule());
-	vm_v1.add_module(new WeaponModule(*this));
-	vm_v1.add_module(new ColorModule());
-	vm_v1.add_module(new ChipModule(*this));
+	vm_v1.add_module(new LeekModule(&vm));
+	vm_v1.add_module(new FieldModule(&vm));
+	vm_v1.add_module(new CellModule(&vm));
+	vm_v1.add_module(new ItemModule(&vm));
+	vm_v1.add_module(new WeaponModule(&vm, *this));
+	vm_v1.add_module(new ColorModule(&vm));
+	vm_v1.add_module(new ChipModule(&vm, *this));
 
 	// Load forbidden words
 	censor.load("data/forbidden_words.txt");
@@ -79,13 +79,7 @@ std::string FightManager::compile(std::string ai) {
 	LOG << "AI: " << program << std::endl;
 
 	auto errors = Json::array();
-	for (const auto& e : result.lexical_errors) {
-		errors.push_back(e.json());
-	}
-	for (const auto& e : result.syntaxical_errors) {
-		errors.push_back(e.json());
-	}
-	for (const auto& e : result.semantical_errors) {
+	for (const auto& e : result.errors) {
 		LOG << e.message() << std::endl;
 		errors.push_back(e.json());
 	}

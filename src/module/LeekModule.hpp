@@ -12,12 +12,12 @@ public:
 
 class LeekModule : public ls::Module {
 public:
-	LeekModule();
+	LeekModule(ls::VM* vm);
 	virtual ~LeekModule();
 
 	static const ls::LSClass* leek_clazz;
-	static const std::shared_ptr<LeekType> type;
-	static const ls::Type type_ptr;
+	static const std::shared_ptr<LeekType> raw_type;
+	static const ls::Type* type;
 };
 
 int leek_getFarmerID(Leek* leek);

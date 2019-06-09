@@ -28,40 +28,23 @@ int AI::compile(ls::VM& vm, ls::VM& vm_v1, bool use_bc_cache) {
 		bc = true;
 	}
 	program = new ls::Program(code, name);
-	auto result = program->compile(v1 ? vm_v1 : vm, nullptr, !bc, false, false, false, bc);
+	auto result = program->compile(v1 ? vm_v1 : vm, nullptr, !bc, false, false, bc);
 	int errors = 0;
 
-	if (result.lexical_errors.size()) {
-		LOG_W << result.lexical_errors.size() << " lexical error(s) in AI " << name << std::endl;
-		for (const auto& e : result.lexical_errors) {
-			LOG_W << "Line " << e.line << ": " << e.message() << std::endl;
-		}
-		valid = false;
-		errors += result.lexical_errors.size();
-	}
-	if (result.syntaxical_errors.size()) {
-		LOG_W << result.syntaxical_errors.size() << " syntaxic error(s) in AI " << name << std::endl;
-		for (const auto& e : result.syntaxical_errors) {
-			LOG_W << "Line " << e.token->location.start.line << ": " << e.message() << std::endl;
-		}
-		valid = false;
-		errors += result.syntaxical_errors.size();
-	}
-
-	if (result.semantical_errors.size()) {
-		LOG_W << result.semantical_errors.size() << " semantic error(s) in AI " << name << std::endl;
+	if (result.errors.size()) {
+		LOG_W << result.errors.size() << " semantic error(s) in AI " << name << std::endl;
 		bool first = true;
-		for (const auto& e : result.semantical_errors) {
+		for (const auto& e : result.errors) {
 			if (!first) LOG_W << std::endl;
-			LOG_W << e.file << ":" << e.location.start.line << ": " << e.underline_code << std::endl << "   ▶ " << e.message() << std::endl;
+			LOG_W << e.location.file->path << ":" << e.location.start.line << ": " << e.underline_code << std::endl << "   ▶ " << e.message() << std::endl;
 			first = false;
 		}
 		valid = false;
-		errors += result.semantical_errors.size();
+		errors += result.errors.size();
 	}
 
 	LOG << "AI [" << name << "] : ";
-	if (result.lexical_errors.size() == 0 && result.syntaxical_errors.size() == 0) {
+	if (result.errors.size() == 0) {
 		program->print(Util::log(), true);
 		LOG << std::endl;
 	} else {

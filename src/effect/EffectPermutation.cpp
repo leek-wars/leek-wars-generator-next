@@ -2,7 +2,7 @@
 #include "../entity/Entity.hpp"
 #include "../fight/Fight.hpp"
 
-void EffectPermutation::apply(Fight* fight) {
+void EffectPermutation::apply(Fight*) {
 	auto start = caster->cell;
 	auto end = target->cell;
 	if (start == nullptr or end == nullptr) {

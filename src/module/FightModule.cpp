@@ -17,21 +17,21 @@
  * let ctx = Fight.Context.GARDEN
  */
 
-FightModule::FightModule() : Module("Fight") {
+FightModule::FightModule(ls::VM* vm) : Module(vm, "Fight") {
 
-	static_field("MAX_TURNS", ls::Type::integer(), [](ls::Compiler& c) { return c.new_integer(64); });
+	static_field("MAX_TURNS", ls::Type::integer, [](ls::Compiler& c) { return c.new_integer(64); });
 
 	method("getTurn", {
-		{ls::Type::integer(), {}, (void*) &fight_getTurn}
+		{ls::Type::integer, {}, (void*) &fight_getTurn}
 	});
 	method("getEntity", {
 		{EntityModule::type, {}, (void*) &fight_getEntity}
 	});
-	method("getType", {{ls::Type::integer(), {}, (void*) &fight_getType}});
-	method("getContext", {{ls::Type::integer(), {}, (void*) &fight_getContext}});
+	method("getType", {{ls::Type::integer, {}, (void*) &fight_getType}});
+	method("getContext", {{ls::Type::integer, {}, (void*) &fight_getContext}});
 
 	// V1
-	method("getLeek", {{ls::Type::integer(), {}, (void*) &fight__getEntity}});
+	method("getLeek", {{ls::Type::integer, {}, (void*) &fight__getEntity}});
 }
 
 FightModule::~FightModule() {}

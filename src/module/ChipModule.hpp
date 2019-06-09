@@ -12,14 +12,14 @@ public:
 
 class ChipModule : public ls::Module {
 public:
-	ChipModule(const FightManager& manager);
+	ChipModule(ls::VM* vm, const FightManager& manager);
 	virtual ~ChipModule();
 
 	static const ls::LSClass* chip_clazz;
 	static const std::shared_ptr<ChipType> raw_type;
-	static const ls::Type type;
-	static const ls::Type const_type;
-	static const ls::Type array_type;
+	static const ls::Type* type;
+	static const ls::Type* const_type;
+	static const ls::Type* array_type;
 };
 
 bool chip__canUseChip(const ls::LSValue* chip, const ls::LSValue* entity);

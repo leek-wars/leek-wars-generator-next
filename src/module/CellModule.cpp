@@ -8,33 +8,33 @@
 
 const ls::LSClass* CellModule::cell_clazz;
 const std::shared_ptr<CellType> CellModule::raw_type = std::make_shared<CellType>();
-const ls::Type CellModule::type(raw_type, true);
-const ls::Type CellModule::const_type(raw_type, true, false, true);
-const ls::Type CellModule::array_type = ls::Type::array(CellModule::type);
+const ls::Type* CellModule::type = new ls::Type(raw_type, true);
+const ls::Type* CellModule::const_type = type->add_constant();
+const ls::Type* CellModule::array_type = ls::Type::array(CellModule::type);
 
-CellModule::CellModule() : Module("Cell") {
+CellModule::CellModule(ls::VM* vm) : Module(vm, "Cell") {
 
 	CellModule::cell_clazz = this->clazz;
 
-	field("x", ls::Type::integer(), (void*) &Cell::getX);
-	field("y", ls::Type::integer(), (void*) &Cell::getY);
-	field("id", ls::Type::integer(), (void*) &Cell::getId);
+	field("x", ls::Type::integer, (void*) &Cell::getX);
+	field("y", ls::Type::integer, (void*) &Cell::getY);
+	field("id", ls::Type::integer, (void*) &Cell::getId);
 	field("entity", EntityModule::type, (void*) &Cell::getEntity);
-	field("obstacle", ls::Type::boolean(), (void*) &Cell::isObstacle);
-	field("walkable", ls::Type::boolean(), (void*) &Cell::isWalkable);
-	field("empty", ls::Type::boolean(), (void*) &Cell::isEmpty);
+	field("obstacle", ls::Type::boolean, (void*) &Cell::isObstacle);
+	field("walkable", ls::Type::boolean, (void*) &Cell::isWalkable);
+	field("empty", ls::Type::boolean, (void*) &Cell::isEmpty);
 
-	method("distance", {{ls::Type::integer(), {CellModule::type, CellModule::type}, (void*) &Cell::distance}});
-	method("isAligned", {{ls::Type::boolean(), {CellModule::type, CellModule::type}, (void*) &Cell::isAligned}});
+	method("distance", {{ls::Type::integer, {CellModule::type, CellModule::type}, (void*) &Cell::distance}});
+	method("isAligned", {{ls::Type::boolean, {CellModule::type, CellModule::type}, (void*) &Cell::isAligned}});
 
 	// v1 functions
-	method("isEmptyCell", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &cell__isEmptyCell}});
-	method("isLeek", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &cell__isLeek}});
-	method("isObstacle", {{ls::Type::boolean(), {ls::Type::any()}, (void*) &cell__isObstacle}});
-	method("getX", {{ls::Type::any(), {ls::Type::any()}, (void*) &cell__getCellX}});
-	method("getY", {{ls::Type::any(), {ls::Type::any()}, (void*) &cell__getCellY}});
-	method("getLeekOnCell", {{ls::Type::integer(), {ls::Type::any()}, (void*) &cell__getLeekOnCell}});
-	method("getCellContent", {{ls::Type::integer(), {ls::Type::any()}, (void*) &cell__getCellContent}});
+	method("isEmptyCell", {{ls::Type::boolean, {ls::Type::any}, (void*) &cell__isEmptyCell}});
+	method("isLeek", {{ls::Type::boolean, {ls::Type::any}, (void*) &cell__isLeek}});
+	method("isObstacle", {{ls::Type::boolean, {ls::Type::any}, (void*) &cell__isObstacle}});
+	method("getX", {{ls::Type::any, {ls::Type::any}, (void*) &cell__getCellX}});
+	method("getY", {{ls::Type::any, {ls::Type::any}, (void*) &cell__getCellY}});
+	method("getLeekOnCell", {{ls::Type::integer, {ls::Type::any}, (void*) &cell__getLeekOnCell}});
+	method("getCellContent", {{ls::Type::integer, {ls::Type::any}, (void*) &cell__getCellContent}});
 }
 
 CellModule::~CellModule() {}

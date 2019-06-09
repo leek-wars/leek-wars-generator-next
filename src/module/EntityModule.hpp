@@ -21,14 +21,14 @@ public:
 
 class EntityModule : public ls::Module {
 public:
-	EntityModule();
+	EntityModule(ls::VM*);
 	virtual ~EntityModule();
 
 	static const ls::LSClass* entity_clazz;
 	static const std::shared_ptr<EntityType> raw_type;
-	static const ls::Type type;
-	static const ls::Type const_type;
-	static const ls::Type array_type;
+	static const ls::Type* type;
+	static const ls::Type* const_type;
+	static const ls::Type* array_type;
 };
 
 const Entity* entity_getClosestEnemy(Entity* entity);

@@ -13,14 +13,14 @@ public:
 
 class CellModule : public ls::Module {
 public:
-	CellModule();
+	CellModule(ls::VM* vm);
 	virtual ~CellModule();
 
 	static const ls::LSClass* cell_clazz;
 	static const std::shared_ptr<CellType> raw_type;
-	static const ls::Type type;
-	static const ls::Type const_type;
-	static const ls::Type array_type;
+	static const ls::Type* type;
+	static const ls::Type* const_type;
+	static const ls::Type* array_type;
 };
 
 bool cell__isEmptyCell(const ls::LSValue* cell);

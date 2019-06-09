@@ -7,43 +7,43 @@
 #include "../util/Color.hpp"
 #include "ColorModule.hpp"
 
-FieldModule::FieldModule() : Module("Field") {
+FieldModule::FieldModule(ls::VM* vm) : Module(vm, "Field") {
 
 	static_field_fun("obstacles", CellModule::array_type, (void*) &map_getObstacles);
 	static_field_fun("cells", CellModule::array_type, (void*) &map_getCells);
-	static_field_fun("type", ls::Type::integer(), (void*) &map_getType);
+	static_field_fun("type", ls::Type::integer, (void*) &map_getType);
 
 	method("cell", {
-		{CellModule::type, {ls::Type::integer(), ls::Type::integer()}, (void*) &map_cell},
-		{CellModule::type, {ls::Type::integer()}, (void*) &map_cell1}
+		{CellModule::type, {ls::Type::integer, ls::Type::integer}, (void*) &map_cell},
+		{CellModule::type, {ls::Type::integer}, (void*) &map_cell1}
 	});
-	method("lineOfSight", {{ls::Type::boolean(), {CellModule::type, CellModule::type}, (void*) &map_lineOfSight}});
+	method("lineOfSight", {{ls::Type::boolean, {CellModule::type, CellModule::type}, (void*) &map_lineOfSight}});
 	method("path", {{CellModule::array_type, {CellModule::type, CellModule::type}, (void*) &map_getPath}});
-	method("distance", {{ls::Type::integer(), {CellModule::type, CellModule::type}, (void*) &map_getDistance}});
-	method("straightDistance", {{ls::Type::real(), {CellModule::type}, (void*) &map_getStraightDistance}});
+	method("distance", {{ls::Type::integer, {CellModule::type, CellModule::type}, (void*) &map_getDistance}});
+	method("straightDistance", {{ls::Type::real, {CellModule::type}, (void*) &map_getStraightDistance}});
 	method("mark", {
-		{ls::Type::boolean(), {CellModule::type, ColorModule::type_ptr, ls::Type::integer()}, (void*) &map_mark},
-		{ls::Type::boolean(), {CellModule::array_type, ColorModule::type_ptr, ls::Type::integer()}, (void*) &map_mark_array}
+		{ls::Type::boolean, {CellModule::type, ColorModule::type, ls::Type::integer}, (void*) &map_mark},
+		{ls::Type::boolean, {CellModule::array_type, ColorModule::type, ls::Type::integer}, (void*) &map_mark_array}
 	});
 
 	// v1 functions
-	method("getCellDistance", {{ls::Type::integer(), {ls::Type::any(), ls::Type::any()}, (void*) &map__getCellDistance}});
-	method("getCellFromXY", {{ls::Type::any(), {ls::Type::any(), ls::Type::any()}, (void*) &map__getCellFromXY}});
-	method("getDistance", {{ls::Type::real(), {ls::Type::any(), ls::Type::any()}, (void*) &map__getDistance}});
-	method("getMapType", {{ls::Type::integer(), {}, (void*) &map__getMapType}});
-	method("getObstacles", {{ls::Type::array(ls::Type::integer()), {}, (void*) &map__getObstacles}});
+	method("getCellDistance", {{ls::Type::integer, {ls::Type::any, ls::Type::any}, (void*) &map__getCellDistance}});
+	method("getCellFromXY", {{ls::Type::any, {ls::Type::any, ls::Type::any}, (void*) &map__getCellFromXY}});
+	method("getDistance", {{ls::Type::real, {ls::Type::any, ls::Type::any}, (void*) &map__getDistance}});
+	method("getMapType", {{ls::Type::integer, {}, (void*) &map__getMapType}});
+	method("getObstacles", {{ls::Type::array(ls::Type::integer), {}, (void*) &map__getObstacles}});
 	method("getPath", {
-		{ls::Type::any(), {ls::Type::any(), ls::Type::any()}, (void*) &map__getPath},
-		{ls::Type::any(), {ls::Type::any(), ls::Type::any(), ls::Type::any()}, (void*) &map__getPathIgnored}
+		{ls::Type::any, {ls::Type::any, ls::Type::any}, (void*) &map__getPath},
+		{ls::Type::any, {ls::Type::any, ls::Type::any, ls::Type::any}, (void*) &map__getPathIgnored}
 	});
 	method("getPathLength", {
-		{ls::Type::any(), {ls::Type::any(), ls::Type::any()}, (void*) &map__getPathLength},
-		{ls::Type::any(), {ls::Type::any(), ls::Type::any(), ls::Type::any()}, (void*) &map__getPathLengthIgnored}
+		{ls::Type::any, {ls::Type::any, ls::Type::any}, (void*) &map__getPathLength},
+		{ls::Type::any, {ls::Type::any, ls::Type::any, ls::Type::any}, (void*) &map__getPathLengthIgnored}
 	});
-	method("isOnSameLine", {{ls::Type::boolean(), {ls::Type::any(), ls::Type::any()}, (void*) &map__isOnSameLine}});
+	method("isOnSameLine", {{ls::Type::boolean, {ls::Type::any, ls::Type::any}, (void*) &map__isOnSameLine}});
 	method("lineOfSight", {
-		{ls::Type::any(), {ls::Type::any(), ls::Type::any()}, (void*) &map__lineOfSight},
-		{ls::Type::any(), {ls::Type::any(), ls::Type::any()}, (void*) &map__lineOfSightIgnored}
+		{ls::Type::any, {ls::Type::any, ls::Type::any}, (void*) &map__lineOfSight},
+		{ls::Type::any, {ls::Type::any, ls::Type::any}, (void*) &map__lineOfSightIgnored}
 	});
 }
 

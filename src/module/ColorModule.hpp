@@ -13,12 +13,12 @@ public:
 
 class ColorModule : public ls::Module {
 public:
-	ColorModule();
+	ColorModule(ls::VM* vm);
 	virtual ~ColorModule();
 
 	static const ls::LSClass* color_clazz;
-	static const std::shared_ptr<ColorType> type;
-	static const ls::Type type_ptr;
+	static const std::shared_ptr<ColorType> raw_type;
+	static const ls::Type* type;
 
 	static const Color* TRANSPARENT;
 	static const Color* BLACK;

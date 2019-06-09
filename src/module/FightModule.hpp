@@ -9,7 +9,7 @@ class FightClass : public ls::LSObject {};
 
 class FightModule : public ls::Module {
 public:
-	FightModule();
+	FightModule(ls::VM* vm);
 	virtual ~FightModule();
 };
 

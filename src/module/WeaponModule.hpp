@@ -18,14 +18,14 @@ public:
 
 class WeaponModule : public ls::Module {
 public:
-	WeaponModule(const FightManager& manager);
+	WeaponModule(ls::VM* vm, const FightManager& manager);
 	virtual ~WeaponModule();
 
 	static const ls::LSClass* weapon_clazz;
 	static const std::shared_ptr<WeaponType> raw_type;
-	static const ls::Type type;
-	static const ls::Type const_type;
-	static const ls::Type array_type;
+	static const ls::Type* type;
+	static const ls::Type* const_type;
+	static const ls::Type* array_type;
 };
 
 bool weapon__canUseWeapon(const ls::LSValue* entity);

@@ -10,34 +10,34 @@
 #include "../item/Chip.hpp"
 
 const ls::LSClass* LeekModule::leek_clazz;
-const std::shared_ptr<LeekType> LeekModule::type = std::make_shared<LeekType>();
-const ls::Type LeekModule::type_ptr(LeekModule::type);
+const std::shared_ptr<LeekType> LeekModule::raw_type = std::make_shared<LeekType>();
+const ls::Type* LeekModule::type = new ls::Type(LeekModule::raw_type, true);
 
-LeekModule::LeekModule() : Module("Leek") {
+LeekModule::LeekModule(ls::VM* vm) : Module(vm, "Leek") {
 
 	method("getFarmerID", {
-		{ls::Type::integer(), {LeekModule::type_ptr}, (void*) &leek_getFarmerID}
+		{ls::Type::integer, {LeekModule::type}, (void*) &leek_getFarmerID}
 	});
 	method("getFarmerName", {
-		{ls::Type::string(), {LeekModule::type_ptr}, (void*) &leek_getFarmerName}
+		{ls::Type::string, {LeekModule::type}, (void*) &leek_getFarmerName}
 	});
 
 	// V1 methods
 	method("getAIID", {
-		{ls::Type::integer(), {}, (void*) &leek__getAIID},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &leek__getAIIDEntity},
+		{ls::Type::integer, {}, (void*) &leek__getAIID},
+		{ls::Type::any, {ls::Type::any}, (void*) &leek__getAIIDEntity},
 	});
 	method("getAIName", {
-		{ls::Type::string(), {}, (void*) &leek__getAIName},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &leek__getAINameEntity},
+		{ls::Type::string, {}, (void*) &leek__getAIName},
+		{ls::Type::any, {ls::Type::any}, (void*) &leek__getAINameEntity},
 	});
 	method("getFarmerID", {
-		{ls::Type::integer(), {}, (void*) &leek__getFarmerID},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &leek__getFarmerIDEntity},
+		{ls::Type::integer, {}, (void*) &leek__getFarmerID},
+		{ls::Type::any, {ls::Type::any}, (void*) &leek__getFarmerIDEntity},
 	});
 	method("getFarmerName", {
-		{ls::Type::string(), {}, (void*) &leek__getFarmerName},
-		{ls::Type::any(), {ls::Type::any()}, (void*) &leek__getFarmerNameEntity},
+		{ls::Type::string, {}, (void*) &leek__getFarmerName},
+		{ls::Type::any, {ls::Type::any}, (void*) &leek__getFarmerNameEntity},
 	});
 }
 

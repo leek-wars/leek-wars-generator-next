@@ -7,7 +7,7 @@ class Color;
 
 class FieldModule : public ls::Module {
 public:
-	FieldModule();
+	FieldModule(ls::VM* vm);
 	virtual ~FieldModule();
 };
 
